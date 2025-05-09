@@ -367,10 +367,11 @@
           return list;
         }
 
-        document.addEventListener('DOMContentLoaded', init);
+        return { init };
       }
 
-      IPStrategyFinder();
+      const app = IPStrategyFinder();
+      app.init();
     }).catch(err => {
       console.error('Error loading data:', err);
       document.getElementById('app').textContent = 'Failed to load data.';
