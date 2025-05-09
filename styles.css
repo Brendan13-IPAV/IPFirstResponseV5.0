@@ -267,6 +267,37 @@
       margin-bottom: 5px;
     }
 
+.tag-trademark {
+  background-color: rgba(222, 67, 38, 0.1);
+  color: var(--trademark-color);
+}
+
+.tag-patent {
+  background-color: rgba(29, 167, 175, 0.1);
+  color: var(--patent-color);
+}
+
+.tag-design {
+  background-color: rgba(132, 201, 143, 0.1);
+  color: var(--design-color);
+}
+
+.tag-pbr {
+  background-color: rgba(241, 172, 30, 0.1);
+  color: var(--pbr-color);
+}
+
+.tag-copyright {
+  background-color: rgba(120, 122, 187, 0.1);
+  color: var(--copyright-color);
+}
+
+.tag-any {
+  background-color: rgba(102, 112, 133, 0.1);
+  color: var(--any-color);
+}
+
+
     /* Relevancy indicator */
     .relevancy {
       display: flex;
