@@ -255,7 +255,8 @@
 
           if (!state.accordions.preferences) return wrapper;
 
-
+          const accordion = document.createElement('div');
+          accordion.className = 'accordion';
           const accordion = document.createElement('div');
           accordion.className = 'accordion';
 
@@ -346,76 +347,52 @@
 
           return wrapper;
         }
-function getTagValue(prefKey, scoreValue) {
-  const config = preferenceConfigs[prefKey];
-  if (!config) return '';
-  const closest = config.options.reduce((prev, curr) =>
-    Math.abs(curr.value * 5 - scoreValue) < Math.abs(prev.value * 5 - scoreValue) ? curr : prev
-  );
-  return closest.label;
-}
 
-        
-    function renderStrategyCards() {
-  const list = document.createElement('div');
-  list.className = 'strategy-grid';
+        function renderStrategyCards() {
+          const list = document.createElement('div');
+          list.className = 'strategy-grid';
+          list.style.display = 'grid';
+          list.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+          list.style.gap = '30px';
 
-  state.filteredStrategies.forEach(strategy => {
-    const card = document.createElement('div');
-    card.className = 'strategy-card';
+          state.filteredStrategies.forEach((strategy, index) => {
+            const card = document.createElement('div');
+            card.className = 'strategy-card';
+            card.style.opacity = '0';
+            card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+            setTimeout(() => { card.style.opacity = '1'; }, 50);
+            card.style.transition = 'transform 0.6s ease';
+            if (index % 2 === 1) {
+              card.style.transform = 'translateY(50%)';
+            }
+            card.innerHTML = `
+              <div class="strategy-overtitle">${strategy.overtitle}</div>
+              <h3 class="strategy-title">${strategy.title}</h3>
+              <p class="strategy-description">${strategy.description}</p>
+              <div class="relevancy-badge">${Math.round(strategy.matchScore)}% match</div>
+            `;
+            list.appendChild(card);
+          });
 
-    // Get color class based on first IP right
-    const mainRight = strategy.right.split('; ')[0];
-    const rightColorClass = `border-${mainRight.toLowerCase().replace(/\s/g, '')}`;
-
-    // Relevancy class
-    let relevanceClass = '';
-    let relevanceLabel = '';
-    const score = strategy.matchScore;
-    if (score >= 90) { relevanceClass = 'very-high'; relevanceLabel = 'Very High'; }
-    else if (score >= 75) { relevanceClass = 'high'; relevanceLabel = 'High'; }
-    else if (score >= 50) { relevanceClass = 'medium'; relevanceLabel = 'Medium'; }
-    else if (score >= 25) { relevanceClass = 'low'; relevanceLabel = 'Low'; }
-    else { relevanceClass = 'very-low'; relevanceLabel = 'Very Low'; }
-
-    card.classList.add(`border-${mainRight.toLowerCase().replace(/\s/g, '')}`);
-
-    card.innerHTML = `
-      <div class="relevancy">
-        <span class="relevancy-label">Likely Applicability:</span>
-        <span class="relevancy-badge ${relevanceClass}">${relevanceLabel}</span>
-      </div>
-      <div class="strategy-overtitle">${strategy.overtitle}</div>
-      <h3 class="strategy-title">${strategy.title}</h3>
-      <p class="strategy-description">${strategy.description}</p>
-
-      <div class="strategy-metadata">
-        <div class="metadata-row">
-          <span>Time Commitment:</span>
-          <span class="tag">${getTagValue('timeCommitment', strategy.scores.timeCommitment)}</span>
-        </div>
-        <div class="metadata-row">
-          <span>Investment:</span>
-          <span class="tag">${getTagValue('investment', strategy.scores.investment)}</span>
-        </div>
-        <div class="metadata-row">
-          <span>IP Type:</span>
-          <span class="tag">${strategy.right}</span>
-        </div>
-      </div>
-    `;
-    list.appendChild(card);
-  });
-
-  return list;
-}
-
+          return list;
+        }
 
         return { init };
       }
 
       const app = IPStrategyFinder();
       app.init();
+
+      // Add reset filters button
+      const resetBtn = document.createElement('button');
+      resetBtn.textContent = 'Clear All Filters';
+      resetBtn.style.margin = '20px 0';
+      resetBtn.className = 'reset-button';
+      resetBtn.onclick = () => {
+        localStorage.removeItem('ipStrategyState');
+        location.reload();
+      };
+      document.getElementById('app').prepend(resetBtn);
     }).catch(err => {
       console.error('Error loading data:', err);
       document.getElementById('app').textContent = 'Failed to load data.';
