@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IP Strategy Finder</title>
+
+  <!-- CSS now loaded separately -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- (Optional) React if you're using it -->
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
- 
 </head>
 <body>
   <header class="header">
@@ -22,7 +26,7 @@
   </header>
 
   <div class="container main-content">
-    <div id="app"></div>
+    <div id="app">Loading...</div>
   </div>
 
   <footer class="footer">
@@ -31,37 +35,30 @@
     </div>
   </footer>
 
-  <!-- Simple pre-built data -->
-<script>
-  // Load both JSON files at once
-  Promise.all([
-    fetch('strategies.json').then(res => res.json()),
-    fetch('preferences.json').then(res => res.json())
-  ])
-  .then(([strategiesData, preferenceConfigs]) => {
+  <!-- Main App Logic -->
+  <script>
+    // Load data first
+    Promise.all([
+      fetch('strategies.json').then(res => res.json()),
+      fetch('preferences.json').then(res => res.json())
+    ])
+    .then(([strategiesData, preferenceConfigs]) => {
+      // Static UI options
+      const ipRightsOptions = [
+        { id: 'Patent', label: 'Patents', color: 'patent' },
+        { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
+        { id: 'Design', label: 'Design rights', color: 'design' },
+        { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
+        { id: 'Copyright', label: 'Copyright', color: 'copyright' },
+        { id: 'Any', label: 'Any IP right', color: 'any' }
+      ];
 
-    // IP rights options
-    var ipRightsOptions = [
-      { id: 'Patent', label: 'Patents', color: 'patent' },
-      { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
-      { id: 'Design', label: 'Design rights', color: 'design' },
-      { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
-      { id: 'Copyright', label: 'Copyright', color: 'copyright' },
-      { id: 'Any', label: 'Any IP right', color: 'any' }
-    ];
-    
-    // Situation options
-    var situationOptions = [
-      { id: 'Accused', label: 'I\'ve been accused of infringing' },
-      { id: 'Enforcement', label: 'I believe my IP has been infringed' },
-      { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
-      { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
-    ];
-
-    renderStrategies(strategiesData);
-    setupFilters(preferenceConfigs);
-  })
-  .catch(error => console.error('Failed to load JSON files:', error));
+      const situationOptions = [
+        { id: 'Accused', label: 'I\'ve been accused of infringing' },
+        { id: 'Enforcement', label: 'I believe my IP has been infringed' },
+        { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
+        { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
+      ];
 
     // Main application code
     function IPStrategyFinder() {
