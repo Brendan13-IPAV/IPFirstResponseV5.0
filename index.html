@@ -346,42 +346,75 @@
           return wrapper;
         }
 
-        function renderStrategyCards() {
-          const list = document.createElement('div');
-          list.className = 'card-grid';
+       function getTagValue(prefKey, scoreValue) {
+  const config = preferenceConfigs[prefKey];
+  if (!config) return '';
+  const closest = config.options.reduce((prev, curr) =>
+    Math.abs(curr.value * 5 - scoreValue) < Math.abs(prev.value * 5 - scoreValue) ? curr : prev
+  );
+  return closest.label;
+}
 
-          state.filteredStrategies.forEach((strategy, index) => {
-            const card = document.createElement('div');
-            card.className = 'strategy-card';
-            card.style.opacity = '0';
-            card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
-            setTimeout(() => { card.style.opacity = '1'; }, 50);
-            card.style.transition = 'transform 0.6s ease';
-            
-            const showUnknown = Object.values(state.preferences).every(v => v === 0) && Object.values(state.otherFactors).every(v => v === 'neutral');
+function renderStrategyCards() {
+  const list = document.createElement('div');
+  list.className = 'card-grid';
 
-            let matchLabel = 'Unknown';
-            let relevanceClass = 'unknown';
-            const score = strategy.matchScore;
-            if (!showUnknown) {
-              if (score >= 90) { matchLabel = 'Very High'; relevanceClass = 'very-high'; }
-              else if (score >= 75) { matchLabel = 'High'; relevanceClass = 'high'; }
-              else if (score >= 50) { matchLabel = 'Medium'; relevanceClass = 'medium'; }
-              else if (score >= 25) { matchLabel = 'Low'; relevanceClass = 'low'; }
-              else { matchLabel = 'Very Low'; relevanceClass = 'very-low'; }
-            }
+  const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
+  const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
+  const showUnknown = (activePrefs + activeFactors) < 2;
 
-            card.innerHTML = `
-              <div class="strategy-overtitle">${strategy.overtitle}</div>
-              <h3 class="strategy-title">${strategy.title}</h3>
-              <p class="strategy-description">${strategy.description}</p>
-              <div class="relevancy-badge \${relevanceClass}">\${matchLabel}</div>
-            `;
-            list.appendChild(card);
-          });
+  state.filteredStrategies.forEach((strategy, index) => {
+    const card = document.createElement('div');
+    card.className = 'strategy-card';
+    card.style.opacity = '0';
+    card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+    setTimeout(() => { card.style.opacity = '1'; }, 50);
 
-          return list;
-        }
+    const mainRight = strategy.right.split('; ')[0];
+    const borderClass = `border-${mainRight.toLowerCase().replace(/\s/g, '')}`;
+    card.classList.add(borderClass);
+
+    let matchLabel = 'Unknown';
+    let relevanceClass = 'unknown';
+    const score = strategy.matchScore;
+    if (!showUnknown) {
+      if (score >= 90) { matchLabel = 'Very High'; relevanceClass = 'very-high'; }
+      else if (score >= 75) { matchLabel = 'High'; relevanceClass = 'high'; }
+      else if (score >= 50) { matchLabel = 'Medium'; relevanceClass = 'medium'; }
+      else if (score >= 25) { matchLabel = 'Low'; relevanceClass = 'low'; }
+      else { matchLabel = 'Very Low'; relevanceClass = 'very-low'; }
+    }
+
+    card.innerHTML = `
+      <div class="relevancy">
+        <span class="relevancy-label">Likely Applicability:</span>
+        <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
+      </div>
+      <div class="strategy-overtitle">${strategy.overtitle}</div>
+      <h3 class="strategy-title">${strategy.title}</h3>
+      <p class="strategy-description">${strategy.description}</p>
+      <div class="strategy-metadata">
+        <div class="metadata-row">
+          <span>Time Commitment:</span>
+          <span class="tag">${getTagValue('timeCommitment', strategy.scores.timeCommitment)}</span>
+        </div>
+        <div class="metadata-row">
+          <span>Investment:</span>
+          <span class="tag">${getTagValue('investment', strategy.scores.investment)}</span>
+        </div>
+        <div class="metadata-row">
+          <span>IP Type:</span>
+          <span class="tag">${strategy.right}</span>
+        </div>
+      </div>
+    `;
+
+    list.appendChild(card);
+  });
+
+  return list;
+}
+
 
         return { init };
       }
