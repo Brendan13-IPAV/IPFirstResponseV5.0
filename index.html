@@ -365,11 +365,24 @@
             if (index % 2 === 1) {
               card.style.transform = 'translateY(50%)';
             }
+            const showUnknown = Object.values(state.preferences).every(v => v === 0) && Object.values(state.otherFactors).every(v => v === 'neutral');
+
+            let matchLabel = 'Unknown';
+            let relevanceClass = 'unknown';
+            const score = strategy.matchScore;
+            if (!showUnknown) {
+              if (score >= 90) { matchLabel = 'Very High'; relevanceClass = 'very-high'; }
+              else if (score >= 75) { matchLabel = 'High'; relevanceClass = 'high'; }
+              else if (score >= 50) { matchLabel = 'Medium'; relevanceClass = 'medium'; }
+              else if (score >= 25) { matchLabel = 'Low'; relevanceClass = 'low'; }
+              else { matchLabel = 'Very Low'; relevanceClass = 'very-low'; }
+            }
+
             card.innerHTML = `
               <div class="strategy-overtitle">${strategy.overtitle}</div>
               <h3 class="strategy-title">${strategy.title}</h3>
               <p class="strategy-description">${strategy.description}</p>
-              <div class="relevancy-badge">${Math.round(strategy.matchScore)}% match</div>
+              <div class="relevancy-badge \${relevanceClass}">\${matchLabel}</div>
             `;
             list.appendChild(card);
           });
