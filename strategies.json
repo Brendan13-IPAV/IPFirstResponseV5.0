@@ -1,10 +1,55 @@
 [
   {
+    "id": 1,
+    "overtitle": "Patent opposition",
+    "title": "Challenge a new or amended patent",
+    "description": "Initiate a challenge to the validity of a new patent with IP Australia",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Patent",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 8,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 2,
+    "overtitle": "Patent re-examination",
+    "title": "Challenge a granted patent",
+    "description": "Request a re-examination with IP Australia, to revoke or amend a granted patent",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Patent",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 7,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 8,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 3,
+    "overtitle": "Court - Patent",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Escalate a wide range of patent matters to court",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Patent",
+    "scores": {
+      "timeCommitment": 9,
+      "investment": 10,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 9,
+      "legalAction": 10
+    }
+  },
+  {
     "id": 4,
     "overtitle": "Trade mark opposition",
     "title": "Challenge the registration of a trade mark",
-    "description": "Initiate a trade mark opposition process...",
-    "responseType": ["Enforcement", "Professional"],
+    "description": "Initiate a trade mark opposition process against a new trademark with IP Australia",
+    "responseType": ["Enforcement"],
     "right": "Trade mark",
     "scores": {
       "timeCommitment": 6,
@@ -13,6 +58,1010 @@
       "thirdPartyServices": 7,
       "legalAction": 7
     }
+  },
+  {
+    "id": 5,
+    "overtitle": "Trade mark registration revocation",
+    "title": "Remove a trade mark from the register",
+    "description": "Let IP Australia know a recently registered trade mark should not have been registered",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 6,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 6,
+    "overtitle": "Trade mark non-use action",
+    "title": "Remove a trade mark from the register",
+    "description": "Request IP Australia removes a trade mark from the register for non-use",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 5,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 6,
+      "legalAction": 6
+    }
+  },
+  {
+    "id": 7,
+    "overtitle": "Court - Trade Mark",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Escalate a wide range of trade mark matters to court",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 9,
+      "investment": 10,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 9,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 8,
+    "overtitle": "Interim court injuction order",
+    "title": "Stop infringing activity immediately",
+    "description": "Lodge an interim injunction order through court",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 8,
+      "investment": 9,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 8,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 9,
+    "overtitle": "World IP Organisation (WIPO) ",
+    "title": "Resolve international disputes",
+    "description": "Seek dispute resolution through the WIPO Arbitration and Mediation Center",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 7,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 8,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 10,
+    "overtitle": "Alternative dispute resolution (ADR)",
+    "title": "resolve conflicts with the help of experienced facilitators",
+    "description": "Understand more about the options in the ADR space.",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 5,
+      "commercialAgreements": 6,
+      "thirdPartyServices": 7,
+      "legalAction": 4
+    }
+  },
+  {
+    "id": 11,
+    "overtitle": "ASBFEO",
+    "title": "Access help tailored to resolve business disputes",
+    "description": "Australia Small Business & Family Enterprise Ombudsman (ASBFEO).",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 3,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 7,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 12,
+    "overtitle": "Mediation",
+    "title": "Resolve IP issues with the help of a third party",
+    "description": "Invite the other party to enter into mediation to agree to mutually acceptable agreement.",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 5,
+      "commercialAgreements": 7,
+      "thirdPartyServices": 8,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 13,
+    "overtitle": "Arbitration",
+    "title": "Resolve IP issues with the help of a third party",
+    "description": "Agree to be bound by the decision of a highly qualified third party assessment.",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 6,
+      "commercialAgreements": 7,
+      "thirdPartyServices": 9,
+      "legalAction": 5
+    }
+  },
+  {
+    "id": 14,
+    "overtitle": "Letter of demand",
+    "title": "Demand the other party stops infringing",
+    "description": "Send a letter to the infringing party notifying them of potential infringement.",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 3,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 4,
+      "legalAction": 4
+    }
+  },
+  {
+    "id": 15,
+    "overtitle": "Informal contact",
+    "title": "Provide an opportunity to stop infringement",
+    "description": "Alert the alleged infringer of your registered rights to allow them to stop infringing.",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 1,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 1,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 16,
+    "overtitle": "Informal contact",
+    "title": "Respond informally to accusations of IP infringement",
+    "description": "Let the accuser know about your circumstances.",
+    "responseType": ["Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 1,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 1,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 17,
+    "overtitle": "Negotiation",
+    "title": "Agree to a commercial arrangement",
+    "description": "Work with an IP professional to come to an agreement with another party.",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 4,
+      "commercialAgreements": 9,
+      "thirdPartyServices": 6,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 18,
+    "overtitle": "Takedown request",
+    "title": "Stop infringement facilitated online",
+    "description": "Request infringing material is removed from online marketplaces and platforms.",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark; Copyright",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 4,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 19,
+    "overtitle": "Report IP crime or safety concerns",
+    "title": "Prevent risks to public interest",
+    "description": "Inform Government about risks to public health, crime, counterfeiting, frauds & scams.",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 20,
+    "overtitle": "Notice of Objection",
+    "title": "Stop infringing goods entering the country",
+    "description": "Lodge a notice of objection with the Australian Border Force.",
+    "responseType": ["Enforcement", "Proactive"],
+    "right": "Trade mark; Copyright",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 7,
+      "legalAction": 5
+    }
+  },
+  {
+    "id": 21,
+    "overtitle": "IP attorney or lawyer",
+    "title": "Obtain legal advice on enforcement options",
+    "description": "Seek a qualified & experienced professional to provide specific, tailored advice.",
+    "responseType": ["Enforcement", "Proactive", "Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 7,
+      "commercialAgreements": 5,
+      "thirdPartyServices": 9,
+      "legalAction": 6
+    }
+  },
+  {
+    "id": 22,
+    "overtitle": "International options",
+    "title": "Enforce your IP overseas",
+    "description": "Understand options relating to enforcing your IP overseas. ",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 8,
+      "commercialAgreements": 6,
+      "thirdPartyServices": 8,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 23,
+    "overtitle": "Monitor the situation",
+    "title": "Take no immediate action",
+    "description": "Strategically enforce your IP only when worthwhile.",
+    "responseType": ["Enforcement", "Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 1,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 2,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 24,
+    "overtitle": "Rebrand your business",
+    "title": "Avoid potential IP conflicts",
+    "description": "Strategically rebrand your business to avoid disputes.",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 8,
+      "investment": 9,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 5,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 25,
+    "overtitle": "IP insurance",
+    "title": "Coverage against potential future infringement",
+    "description": "Protect yourself from certain costs involved in IP disputes",
+    "responseType": ["Proactive"],
+    "right": "Patents; Trade mark; Copyright",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 6,
+      "commercialAgreements": 7,
+      "thirdPartyServices": 8,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 26,
+    "overtitle": "Domain Name Dispute (auDRP)",
+    "title": "Dispute a domain name that infringes your trade mark",
+    "description": "Dispute an .au domain name that may infringe an IP right",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 5
+    }
+  },
+  {
+    "id": 27,
+    "overtitle": "Domain Name Dispute (UDRP)",
+    "title": "Challenge the use of international domain name",
+    "description": "Dispute an international domain name that may infringe an IP right",
+    "responseType": ["Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 7,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 8,
+      "legalAction": 6
+    }
+  },
+  {
+    "id": 28,
+    "overtitle": "Apply for a trade mark ",
+    "title": "Register your trade mark  ",
+    "description": "Strengthen your position as the registered owner of your trade mark in Australia",
+    "responseType": ["Proactive", "Enforcement"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 7,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 29,
+    "overtitle": "Contact intermediaries",
+    "title": "Engage with product distributors",
+    "description": "Establish and maintain connections with suppliers, manufacturers, and resellers of your goods.",
+    "responseType": ["Proactive", "Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 3,
+      "commercialAgreements": 7,
+      "thirdPartyServices": 4,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 30,
+    "overtitle": "IP audits",
+    "title": "Review your IP portfolio",
+    "description": "Understand and assess the health and enforceability of your IP.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 8,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 31,
+    "overtitle": "Registration",
+    "title": "Register your trade mark",
+    "description": "Apply to register your trade mark with IP Australia.",
+    "responseType": ["Proactive", "Enforcement", "Accused"],
+    "right": "Trade marks",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 7,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 32,
+    "overtitle": "IP licensing",
+    "title": "License your IP rights",
+    "description": "Let others use your trade mark under agreed terms.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 4,
+      "commercialAgreements": 10,
+      "thirdPartyServices": 7,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 33,
+    "overtitle": "Legislation",
+    "title": "Understand relevant laws",
+    "description": "Review the laws that protect and govern your trade mark rights.",
+    "responseType": ["Proactive"],
+    "right": "Trade marks",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 2,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 34,
+    "overtitle": "Monitoring service - TMs",
+    "title": "Monitor for infringement",
+    "description": "Get alerts when others use similar trade marks.",
+    "responseType": ["Proactive"],
+    "right": "Trade marks",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 4,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 8,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 35,
+    "overtitle": "Monitoring service - Designs",
+    "title": "Monitor for infringement",
+    "description": "Get alerts when others offer similar designs for sale.",
+    "responseType": ["Proactive"],
+    "right": "Designs",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 4,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 8,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 36,
+    "overtitle": "Inspector service",
+    "title": "Send inspectors to farms or nurseries",
+    "description": "Get alerts when others are growing your plant varieties without compensation",
+    "responseType": ["Proactive"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 6,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 9,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 37,
+    "overtitle": "In-house expertise",
+    "title": "Employ IP specialists",
+    "description": "Hire specialists to manage your business IP matters.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 9,
+      "commercialAgreements": 5,
+      "thirdPartyServices": 3,
+      "legalAction": 4
+    }
+  },
+  {
+    "id": 38,
+    "overtitle": "Customer awareness",
+    "title": "Educate your customers",
+    "description": "Help customers recognise and choose your brand above others.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 5,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 4,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 39,
+    "overtitle": "Supply chain protection",
+    "title": "Monitor supply chains",
+    "description": "Identify key stakeholders in your product's supply chain to protect your interests.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 5,
+      "commercialAgreements": 6,
+      "thirdPartyServices": 5,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 40,
+    "overtitle": "Proactive strategy",
+    "title": "Plan offensive actions",
+    "description": "Implement proactive measures to protect your IP, including legal actions.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 7,
+      "commercialAgreements": 5,
+      "thirdPartyServices": 6,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 41,
+    "overtitle": "Defensive strategy",
+    "title": "Implement defensive measures",
+    "description": "Identify ways to protect your business without commencing legal action.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 4,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 5,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 42,
+    "overtitle": "Market presence",
+    "title": "Use your IP actively",
+    "description": "Ensure your IP is actively used in the market to maintain rights.",
+    "responseType": ["Proactive"],
+    "right": "Trade marks",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 5,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 3,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 43,
+    "overtitle": "Online protection",
+    "title": "Register with brand platforms",
+    "description": "Strengthen your standing in online marketplaces like Amazon Brand Registry.",
+    "responseType": ["Proactive"],
+    "right": "Trade marks",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 6,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 44,
+    "overtitle": "Risk assessment",
+    "title": "Predict potential infringement",
+    "description": "Determine likely areas of IP infringement to strengthen your response plan.",
+    "responseType": ["Proactive"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 4,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 6,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 45,
+    "overtitle": "Register monitoring",
+    "title": "Track similar registrations",
+    "description": "Set up alerts when others try to register similar trade marks.",
+    "responseType": ["Proactive"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 2,
+      "investment": 3,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 7,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 46,
+    "overtitle": "Patent comparison",
+    "title": "Compare patent claims",
+    "description": "Evaluate similarities and differences between patent claims to assess scope and potential infringement.",
+    "responseType": ["Proactive"],
+    "right": "Patent",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 5,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 47,
+    "overtitle": "IP search",
+    "title": "Find and understand existing IP rights",
+    "description": "Discover existing IP rights that may impact your business decisions.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 3,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 6,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 48,
+    "overtitle": "Portfolio expansion",
+    "title": "Apply for additional IP rights",
+    "description": "Extend your IP protection by securing additional rights in relevant categories.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 7,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 7,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 49,
+    "overtitle": "Market entry assessment",
+    "title": "Request a freedom to operate search",
+    "description": "Determine if your product or service might infringe on existing IP rights.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 8,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 50,
+    "overtitle": "IP audits",
+    "title": "Commission an IP rights audit",
+    "description": "Obtain a comprehensive assessment of your existing IP assets and protections.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 9,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 51,
+    "overtitle": "Commercialisation",
+    "title": "Develop a strategy to make money from your IP",
+    "description": "Create an integrated plan to leverage your IP assets for business growth.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 6,
+      "commercialAgreements": 9,
+      "thirdPartyServices": 7,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 52,
+    "overtitle": "Negotiate a resolution",
+    "title": "Engage constructively with rights holders",
+    "description": "Make mutually beneficial deals with other IP rights owners.",
+    "responseType": ["Accused"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 4,
+      "commercialAgreements": 8,
+      "thirdPartyServices": 6,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 53,
+    "overtitle": "IP valuation",
+    "title": "Determine the value of IP",
+    "description": "Get professional assessment of the financial worth of specific intellectual property.",
+    "responseType": ["Accused", "Enforcement"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 6,
+      "commercialAgreements": 5,
+      "thirdPartyServices": 9,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 54,
+    "overtitle": "IP assessment",
+    "title": "Gather detailed information",
+    "description": "Obtain expert insights about your specific IP situation and options.",
+    "responseType": ["Proactive"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 8,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 55,
+    "overtitle": "Finding an IP professional",
+    "title": "Preparing for your IP professional consultation",
+    "description": "Make the most of initial meetings with IP professionals through proper preparation.",
+    "responseType": ["Proactive", "Accused", "Enforcement"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 8,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 56,
+    "overtitle": "Ownership disputes",
+    "title": "Resolve ownership conflicts",
+    "description": "Negotiate solutions to IP ownership disputes with professional guidance.",
+    "responseType": ["Proactive", "Accused", "Enforcement"],
+    "right": "Patents; Designs",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 7,
+      "commercialAgreements": 7,
+      "thirdPartyServices": 8,
+      "legalAction": 7
+    }
+  },
+  {
+    "id": 57,
+    "overtitle": "Check for spam",
+    "title": "Read their accusation carefully",
+    "description": "Consider their allegations and whether their contact letter seems legitimate",
+    "responseType": ["Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 1,
+      "investment": 1,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 1,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 58,
+    "overtitle": "Counterclaims",
+    "title": "File a counterclaim",
+    "description": "Consider if it's appropriate to take infringement action against the other party",
+    "responseType": ["Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 7,
+      "investment": 7,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 7,
+      "legalAction": 9
+    }
+  },
+  {
+    "id": 59,
+    "overtitle": "Review their IP",
+    "title": "Check the other party's IP",
+    "description": "Make sure they have valid IP and raise any issues with these",
+    "responseType": ["Proactive", "Accused"],
+    "right": "All types",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 3,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 6,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 60,
+    "overtitle": "Designs certification",
+    "title": "Certify your registered design",
+    "description": "Make sure your registered design is fully protected against infringement",
+    "responseType": ["Proactive", "Enforcement"],
+    "right": "Designs",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 61,
+    "overtitle": "Request designs examination",
+    "title": "Request examination of a registered design",
+    "description": "Ask IP Australia to assess someone's registered design for validity ",
+    "responseType": ["Proactive", "Accused"],
+    "right": "Designs",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 5,
+      "commercialAgreements": 1,
+      "thirdPartyServices": 7,
+      "legalAction": 4
+    }
+  },
+  {
+    "id": 62,
+    "overtitle": "Court - PBR",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Take PBR infringement or violation of licensing terms to court",
+    "responseType": ["Enforcement"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 9,
+      "investment": 10,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 9,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 63,
+    "overtitle": "Farm saved seed",
+    "title": "Consider exemptions",
+    "description": "Check if you qualify for an exemption for items propagated on your farm",
+    "responseType": ["Accused"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 64,
+    "overtitle": "Licensing agreements",
+    "title": "Review licensing arrangements",
+    "description": "Check any existing licencing agreements to ensure you're complying",
+    "responseType": ["Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 3,
+      "commercialAgreements": 9,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
+  },
+  {
+    "id": 65,
+    "overtitle": "PBR contracts",
+    "title": "Set up propagation contracts",
+    "description": "Set up licencing terms for customers which assign royalties to propagation or non-propagation arrangments",
+    "responseType": ["Proactive"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 9,
+      "thirdPartyServices": 7,
+      "legalAction": 2
+    }
+  },
+  {
+    "id": 66,
+    "overtitle": "PBR rights extension",
+    "title": "Extend your PBR rights",
+    "description": "Claim further PBR rights over certain harvested materials, dependent and essentially derived varieties",
+    "responseType": ["Enforcement"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 7,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 8,
+      "legalAction": 5
+    }
+  },
+  {
+    "id": 67,
+    "overtitle": "Court - Designs",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Enforce your certified designs right through the court system",
+    "responseType": ["Enforcement"],
+    "right": "Designs",
+    "scores": {
+      "timeCommitment": 9,
+      "investment": 10,
+      "commercialAgreements": 3,
+      "thirdPartyServices": 9,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 68,
+    "overtitle": "PBR grant objections",
+    "title": "Object to a PBR",
+    "description": "Object to the granting of a PBR with IP Australia",
+    "responseType": ["Enforcement"],
+    "right": "PBR",
+    "scores": {
+      "timeCommitment": 5,
+      "investment": 6,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 6
+    }
+  },
+  {
+    "id": 69,
+    "overtitle": "Unjust threats",
+    "title": "Take action against unjust threats",
+    "description": "Take another party to court for making ungrounded accusions of infringement",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 8,
+      "investment": 9,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 8,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 70,
+    "overtitle": "Stop infringing activity",
+    "title": "Cease using the IP",
+    "description": "Stop using the IP you're accused of infringing ",
+    "responseType": ["Accused"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 4,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 2,
+      "legalAction": 1
+    }
+  },
+  {
+    "id": 71,
+    "overtitle": "Contact intermediaries",
+    "title": "Alert your supply chain to issues",
+    "description": "Ask intermediaries to cease enabling infringement",
+    "responseType": ["Enforcement"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 4,
+      "investment": 3,
+      "commercialAgreements": 6,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
   }
-  // Add more strategies as needed
 ]
