@@ -343,3 +343,9 @@
     .empty-message {
       color: var(--text-secondary);
     }
+
+.relevancy-badge.unknown {
+  background-color: #d1d5db; /* Tailwind gray-300 */
+  color: #374151; /* Tailwind gray-700 */
+}
+
