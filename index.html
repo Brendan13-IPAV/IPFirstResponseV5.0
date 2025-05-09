@@ -346,7 +346,7 @@
           return wrapper;
         }
 
-       function getTagValue(prefKey, scoreValue) {
+   function getTagValue(prefKey, scoreValue) {
   const config = preferenceConfigs[prefKey];
   if (!config) return '';
   const closest = config.options.reduce((prev, curr) =>
@@ -408,12 +408,12 @@ function renderStrategyCards() {
         </div>
       </div>
     `;
-
     list.appendChild(card);
   });
 
   return list;
 }
+
 
 
         return { init };
