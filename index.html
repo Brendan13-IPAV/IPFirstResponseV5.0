@@ -4,11 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP Strategy Finder</title>
-  <!-- Load React and ReactDOM first -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
-  <!-- Load Babel for JSX transpilation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.18.12/babel.min.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <style>
     /* Base styles */
     body {
@@ -82,17 +79,16 @@
     .main-content {
       padding: 40px 0;
     }
-
-    /* Card styling */
-    .card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1);
-      padding: 24px;
+    
+    /* Page title */
+    .page-title {
+      color: var(--teal);
+      font-size: 24px;
+      font-weight: bold;
       margin-bottom: 20px;
     }
 
-    /* Filter pill styles */
+    /* Filter pills */
     .active-filters {
       display: flex;
       flex-wrap: wrap;
@@ -112,7 +108,7 @@
       cursor: pointer;
     }
 
-    .filter-pill .remove {
+    .filter-remove {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -125,41 +121,12 @@
       font-size: 12px;
     }
 
-    .filter-pill:hover .remove {
-      background-color: rgba(0, 0, 0, 0.15);
-    }
-
-    .filter-pill.right-patent {
-      background-color: rgba(29, 167, 175, 0.1);
-      border-color: var(--patent-color);
-    }
-
-    .filter-pill.right-trademark {
+    .right-trademark {
       background-color: rgba(222, 67, 38, 0.1);
       border-color: var(--trademark-color);
     }
 
-    .filter-pill.right-design {
-      background-color: rgba(132, 201, 143, 0.1);
-      border-color: var(--design-color);
-    }
-
-    .filter-pill.right-pbr {
-      background-color: rgba(241, 172, 30, 0.1);
-      border-color: var(--pbr-color);
-    }
-
-    .filter-pill.right-copyright {
-      background-color: rgba(120, 122, 187, 0.1);
-      border-color: var(--copyright-color);
-    }
-
-    .filter-pill.right-any {
-      background-color: rgba(102, 112, 133, 0.1);
-      border-color: var(--any-color);
-    }
-
-    .filter-pill.situation {
+    .situation {
       background-color: rgba(85, 171, 201, 0.1);
       border-color: var(--teal);
     }
@@ -167,13 +134,14 @@
     /* Accordion */
     .accordion {
       margin-bottom: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
     }
 
     .accordion-header {
       background-color: white;
       padding: 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
       font-weight: 500;
       display: flex;
       justify-content: space-between;
@@ -181,31 +149,18 @@
       cursor: pointer;
     }
 
-    .accordion-header:hover {
-      background-color: #F9FAFB;
-    }
-
-    .accordion-arrow {
-      width: 24px;
-      height: 24px;
+    .accordion-title {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #888;
+    }
+
+    .accordion-icon {
       margin-right: 8px;
-    }
-
-    .accordion-title-section {
-      display: flex;
-      align-items: center;
     }
 
     .accordion-content {
       padding: 16px;
-      border: 1px solid var(--border-color);
-      border-top: none;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-top: 1px solid var(--border-color);
     }
 
     /* Grid layout */
@@ -245,14 +200,10 @@
       transition: all 0.2s;
     }
 
-    .radio-button.selected {
+    .radio-selected {
       background-color: var(--teal);
       color: white;
       border-color: var(--teal);
-    }
-
-    .radio-button:hover:not(.selected) {
-      background-color: #F0F4F8;
     }
 
     /* Preference button group styles */
@@ -266,24 +217,47 @@
       margin-bottom: 8px;
     }
 
-    /* Strategy card styles */
-    .strategy-card {
-      border-left: 3px solid var(--teal);
-      height: 100%;
+    /* Card styling */
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1);
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
-    .card-grid {
+    /* Strategy grid */
+    .strategy-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 20px;
     }
 
-    .card-wrapper:nth-child(3n+2) {
-      transform: translateY(20px);
+    .strategy-wrapper:nth-child(odd) {
+      transform: translateY(40px);
     }
 
-    /* Tags */
+    .strategy-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1);
+      padding: 24px;
+      height: 100%;
+    }
+
+    .border-trademark {
+      border-left: 3px solid var(--trademark-color);
+    }
+
+    .border-any {
+      border-left: 3px solid var(--any-color);
+    }
+
+    .border-copyright {
+      border-left: 3px solid var(--copyright-color);
+    }
+
+    /* Tag styling */
     .tag {
       display: inline-block;
       background-color: rgba(85, 171, 201, 0.1);
@@ -295,68 +269,17 @@
       margin-bottom: 5px;
     }
 
-    .tag-patent {
-      background-color: rgba(29, 167, 175, 0.1);
-      color: var(--patent-color);
-    }
-
-    .tag-trademark {
-      background-color: rgba(222, 67, 38, 0.1);
-      color: var(--trademark-color);
-    }
-
-    .tag-design {
-      background-color: rgba(132, 201, 143, 0.1);
-      color: var(--design-color);
-    }
-
-    .tag-pbr {
-      background-color: rgba(241, 172, 30, 0.1);
-      color: var(--pbr-color);
-    }
-
-    .tag-copyright {
-      background-color: rgba(120, 122, 187, 0.1);
-      color: var(--copyright-color);
-    }
-
-    .tag-any {
-      background-color: rgba(102, 112, 133, 0.1);
-      color: var(--any-color);
-    }
-
-    /* Border colors */
-    .border-patent {
-      border-left: 3px solid var(--patent-color);
-    }
-
-    .border-trademark {
-      border-left: 3px solid var(--trademark-color);
-    }
-
-    .border-design {
-      border-left: 3px solid var(--design-color);
-    }
-
-    .border-pbr {
-      border-left: 3px solid var(--pbr-color);
-    }
-
-    .border-copyright {
-      border-left: 3px solid var(--copyright-color);
-    }
-
-    .border-any {
-      border-left: 3px solid var(--any-color);
-    }
-
-    /* Relevancy indicator styles */
-    .relevancy-indicator {
+    /* Relevancy indicator */
+    .relevancy {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
-      margin-bottom: 16px;
-      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .relevancy-label {
+      font-size: 11px;
+      margin-right: 5px;
     }
 
     .relevancy-badge {
@@ -364,31 +287,69 @@
       border-radius: 4px;
       font-size: 14px;
       font-weight: 600;
+      color: white;
     }
 
-    .relevancy-very-high {
+    .very-high {
       background-color: rgba(34, 197, 94, 1);
-      color: white;
     }
 
-    .relevancy-high {
+    .high {
       background-color: rgba(34, 197, 94, 0.8);
-      color: white;
     }
 
-    .relevancy-medium {
+    .medium {
       background-color: rgba(34, 197, 94, 0.6);
-      color: white;
     }
 
-    .relevancy-low {
+    .low {
       background-color: rgba(34, 197, 94, 0.4);
-      color: white;
     }
 
-    .relevancy-very-low {
+    .very-low {
       background-color: rgba(34, 197, 94, 0.2);
-      color: white;
+    }
+
+    /* Strategy details */
+    .strategy-overtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .strategy-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .strategy-description {
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .strategy-metadata {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .metadata-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    /* Empty state */
+    .empty-state {
+      background-color: #F9FAFB;
+      padding: 32px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .empty-message {
+      color: var(--text-secondary);
     }
   </style>
 </head>
@@ -415,9 +376,10 @@
     </div>
   </footer>
 
-  <script type="text/babel" data-type="module">
-    // Sample strategy data
-    const strategiesData = [
+  <!-- Simple pre-built data -->
+  <script>
+    // IP Strategy data
+    var strategiesData = [
       {
         id: 4,
         overtitle: "Trade mark opposition",
@@ -509,764 +471,839 @@
         }
       }
     ];
+
+    // IP rights options
+    var ipRightsOptions = [
+      { id: 'Patent', label: 'Patents', color: 'patent' },
+      { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
+      { id: 'Design', label: 'Design rights', color: 'design' },
+      { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
+      { id: 'Copyright', label: 'Copyright', color: 'copyright' },
+      { id: 'Any', label: 'Any IP right', color: 'any' }
+    ];
     
-    const IPStrategyFinder = () => {
-      // State for app data
-      const [strategies, setStrategies] = React.useState([]);
-      const [loading, setLoading] = React.useState(true);
-      const [accordions, setAccordions] = React.useState({
-        preferences: false,
-        otherFactors: false
-      });
-      
-      // Preference configurations
-      const preferenceConfigs = {
-        timeCommitment: {
-          label: 'Time Commitment',
-          options: [
-            { value: -2, label: 'Days' },
-            { value: -1, label: 'Weeks' },
-            { value: 0, label: 'No preference' },
-            { value: 1, label: '1-12 Months' },
-            { value: 2, label: '12+ Months' }
-          ]
-        },
-        investment: {
-          label: 'Investment',
-          options: [
-            { value: -2, label: 'Under $1,000' },
-            { value: -1, label: 'Under $5,000' },
-            { value: 0, label: 'No preference' },
-            { value: 1, label: 'Under $25,000' },
-            { value: 2, label: '$25,000+' }
-          ]
-        },
-        commercialAgreements: {
-          label: 'Commercial Agreements',
-          options: [
-            { value: -1, label: 'Avoid agreements' },
-            { value: 0, label: 'No preference' },
-            { value: 1, label: 'Open to agreements' }
-          ]
-        },
-        thirdPartyServices: {
-          label: 'Third-Party Services',
-          options: [
-            { value: -2, label: 'Self-managed only' },
-            { value: -1, label: 'Minimal assistance' },
-            { value: 0, label: 'No preference' },
-            { value: 1, label: 'Professional support' },
-            { value: 2, label: 'Full service solution' }
-          ]
-        },
-        legalAction: {
-          label: 'Legal Action',
-          options: [
-            { value: -2, label: 'Strongly avoid' },
-            { value: -1, label: 'Prefer to avoid' },
-            { value: 0, label: 'No preference' },
-            { value: 1, label: 'Open to consider' },
-            { value: 2, label: 'Willing to use' }
-          ]
-        }
-      };
-      
-      // State for user selections - pre-selected "Trade mark" and "Enforcement"
-      const [selectedRights, setSelectedRights] = React.useState(['Trade mark']);
-      const [selectedSituations, setSelectedSituations] = React.useState(['Enforcement']);
-      const [preferences, setPreferences] = React.useState({
-        timeCommitment: 0,
-        investment: 0,
-        commercialAgreements: 0,
-        thirdPartyServices: 0,
-        legalAction: 0
-      });
-      
-      // State for other factors
-      const [otherFactors, setOtherFactors] = React.useState({
-        onlineMarkets: 'neutral',
-        domainName: 'neutral',
-        importingGoods: 'neutral',
-        identifyParty: 'neutral'
-      });
-      
-      // Filtered and ranked strategies
-      const [filteredStrategies, setFilteredStrategies] = React.useState([]);
-      
-      // Options for IP rights
-      const ipRightsOptions = [
-        { id: 'Patent', label: 'Patents', color: 'patent' },
-        { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
-        { id: 'Design', label: 'Design rights', color: 'design' },
-        { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
-        { id: 'Copyright', label: 'Copyright', color: 'copyright' },
-        { id: 'Any', label: 'Any IP right', color: 'any' }
-      ];
-      
-      // Options for situation
-      const situationOptions = [
-        { id: 'Accused', label: 'I\'ve been accused of infringing' },
-        { id: 'Enforcement', label: 'I believe my IP has been infringed' },
-        { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
-        { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
-      ];
-      
-      // Initialize data
-      React.useEffect(() => {
-        // Use the pre-defined data
-        setStrategies(strategiesData);
-        setLoading(false);
-      }, []);
+    // Situation options
+    var situationOptions = [
+      { id: 'Accused', label: 'I\'ve been accused of infringing' },
+      { id: 'Enforcement', label: 'I believe my IP has been infringed' },
+      { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
+      { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
+    ];
 
-      // Get readable preference text
-      const getPreferenceText = (preference, value) => {
-        const config = preferenceConfigs[preference];
-        const option = config.options.find(opt => opt.value === value);
-        return option ? option.label : 'No preference';
-      };
-      
-      // Helper function for getting IP right color class
-      const getRightColor = (rightId) => {
-        const right = ipRightsOptions.find(opt => opt.id === rightId);
-        return right ? right.color : 'any';
-      };
-      
-      // Helper function for getting situation label
-      const getSituationLabel = (situationId) => {
-        const situation = situationOptions.find(opt => opt.id === situationId);
-        return situation ? situation.label : situationId;
-      };
-      
-      // Helper function to get relevancy level text and CSS class
-      const getRelevancyLevel = (score) => {
-        if (score >= 90) return { level: 'very-high', text: 'Very High' };
-        if (score >= 75) return { level: 'high', text: 'High' };
-        if (score >= 50) return { level: 'medium', text: 'Medium' };
-        if (score >= 25) return { level: 'low', text: 'Low' };
-        return { level: 'very-low', text: 'Very Low' };
-      };
-      
-      // Toggle section accordion
-      const toggleAccordion = (section) => {
-        setAccordions({
-          ...accordions,
-          [section]: !accordions[section]
-        });
-      };
-      
-      // Toggle IP right selection
-      const toggleRight = (rightId) => {
-        if (selectedRights.includes(rightId)) {
-          setSelectedRights(selectedRights.filter(id => id !== rightId));
-        } else {
-          setSelectedRights([...selectedRights, rightId]);
-        }
-      };
-      
-      // Toggle situation selection
-      const toggleSituation = (situationId) => {
-        if (selectedSituations.includes(situationId)) {
-          setSelectedSituations(selectedSituations.filter(id => id !== situationId));
-        } else {
-          setSelectedSituations([...selectedSituations, situationId]);
-        }
-      };
-      
-      // Toggle factor selection
-      const toggleFactor = (factor, value) => {
-        setOtherFactors({
-          ...otherFactors,
-          [factor]: value
-        });
-      };
-      
-      // Toggle preference option
-      const togglePreference = (preference, value) => {
-        // If already selected, reset to 0 (no preference)
-        if (preferences[preference] === value) {
-          setPreferences({
-            ...preferences,
-            [preference]: 0
-          });
-        } else {
-          setPreferences({
-            ...preferences,
-            [preference]: value
-          });
+    // Preference configurations
+    var preferenceConfigs = {
+      timeCommitment: {
+        label: 'Time Commitment',
+        options: [
+          { value: -2, label: 'Days' },
+          { value: -1, label: 'Weeks' },
+          { value: 1, label: '1-12 Months' },
+          { value: 2, label: '12+ Months' }
+        ]
+      },
+      investment: {
+        label: 'Investment',
+        options: [
+          { value: -2, label: 'Under $1,000' },
+          { value: -1, label: 'Under $5,000' },
+          { value: 1, label: 'Under $25,000' },
+          { value: 2, label: '$25,000+' }
+        ]
+      },
+      commercialAgreements: {
+        label: 'Commercial Agreements',
+        options: [
+          { value: -1, label: 'Avoid agreements' },
+          { value: 1, label: 'Open to agreements' }
+        ]
+      },
+      thirdPartyServices: {
+        label: 'Third-Party Services',
+        options: [
+          { value: -2, label: 'Self-managed only' },
+          { value: -1, label: 'Minimal assistance' },
+          { value: 1, label: 'Professional support' },
+          { value: 2, label: 'Full service solution' }
+        ]
+      },
+      legalAction: {
+        label: 'Legal Action',
+        options: [
+          { value: -2, label: 'Strongly avoid' },
+          { value: -1, label: 'Prefer to avoid' },
+          { value: 1, label: 'Open to consider' },
+          { value: 2, label: 'Willing to use' }
+        ]
+      }
+    };
+  </script>
+
+  <script>
+    // Main application code
+    function IPStrategyFinder() {
+      // State management
+      var state = {
+        loading: true,
+        strategies: [],
+        filteredStrategies: [],
+        accordions: {
+          preferences: false,
+          otherFactors: false
+        },
+        selectedRights: ['Trade mark'],
+        selectedSituations: ['Enforcement'],
+        preferences: {
+          timeCommitment: 0,
+          investment: 0,
+          commercialAgreements: 0,
+          thirdPartyServices: 0,
+          legalAction: 0
+        },
+        otherFactors: {
+          onlineMarkets: 'neutral',
+          domainName: 'neutral',
+          importingGoods: 'neutral',
+          identifyParty: 'neutral'
         }
       };
 
-      // Remove right filter
-      const removeRightFilter = (rightId) => {
-        setSelectedRights(selectedRights.filter(id => id !== rightId));
-      };
+      // Initialize and render the application
+      function init() {
+        // Set strategies data and update loading state
+        state.strategies = strategiesData;
+        state.loading = false;
 
-      // Remove situation filter
-      const removeSituationFilter = (situationId) => {
-        setSelectedSituations(selectedSituations.filter(id => id !== situationId));
-      };
+        // Filter and rank strategies based on initial state
+        filterAndRankStrategies();
 
-      // Remove preference filter
-      const removePreferenceFilter = (preference) => {
-        setPreferences({
-          ...preferences,
-          [preference]: 0
-        });
-      };
+        // Render the UI
+        render();
+      }
 
-      // Calculate filtered and ranked strategies when user selections change
-      React.useEffect(() => {
-        if (loading) return;
-        
-        // First filter strategies based on selected rights and situations
-        let filtered = [...strategies];
+      // Filter and rank strategies based on current selections
+      function filterAndRankStrategies() {
+        // Start with all strategies
+        var filtered = state.strategies.slice();
         
         // Filter by selected IP rights
-        if (selectedRights.length > 0) {
-          filtered = filtered.filter(strategy => {
-            const strategyRights = strategy.right.split('; ');
-            return selectedRights.some(right => 
-              strategyRights.includes(right) || strategyRights.includes('Any')|| strategyRights.includes('Any IP right')
-            );
+        if (state.selectedRights.length > 0) {
+          filtered = filtered.filter(function(strategy) {
+            var strategyRights = strategy.right.split('; ');
+            return state.selectedRights.some(function(right) {
+              return strategyRights.includes(right) || 
+                     strategyRights.includes('Any') || 
+                     strategyRights.includes('Any IP right');
+            });
           });
         }
         
         // Filter by selected situations
-        if (selectedSituations.length > 0) {
-          filtered = filtered.filter(strategy => {
-            return selectedSituations.some(situation => 
-              strategy.responseType.includes(situation)
-            );
+        if (state.selectedSituations.length > 0) {
+          filtered = filtered.filter(function(strategy) {
+            return state.selectedSituations.some(function(situation) {
+              return strategy.responseType.includes(situation);
+            });
           });
         }
         
-        // Calculate preference match scores for each strategy
-        const ranked = filtered.map(strategy => {
-          // Initialize match score calculation
-          let totalScore = 0;
-          let totalWeight = 0;
-          const matches = [];
-          const nonMatches = [];
+        // Calculate scores and rank strategies
+        var ranked = filtered.map(function(strategy) {
+          var totalScore = 0;
+          var totalWeight = 0;
+          var matches = [];
+          var nonMatches = [];
           
-          // Helper function to calculate match for a preference
-          const calculatePreferenceMatch = (preference, prefValue, strategyValue) => {
-            // Skip if user has no preference (value is 0)
+          // Calculate match for each preference
+          function calculateMatch(preference, prefValue, strategyValue) {
             if (prefValue === 0) return { score: 0, weight: 0 };
             
-            // Get the configuration for this preference
-            const config = preferenceConfigs[preference];
-            const maxValue = Math.max(...config.options.map(opt => Math.abs(opt.value)));
+            var config = preferenceConfigs[preference];
+            var values = config.options.map(function(opt) { 
+              return Math.abs(opt.value); 
+            });
+            var maxValue = Math.max.apply(null, values);
             
-            // For positive preferences (user wants high value)
             if (prefValue > 0) {
-              // Convert the preference value to expected strategy value (0-10 scale)
-              const expectedValue = (prefValue / maxValue) * 10;
-              // Calculate match (10 is perfect match, 0 is worst)
-              const score = Math.max(0, 10 - Math.abs(expectedValue - strategyValue));
-              // Use preference strength as weight
-              const weight = Math.abs(prefValue) / maxValue;
+              var expectedValue = (prefValue / maxValue) * 10;
+              var score = Math.max(0, 10 - Math.abs(expectedValue - strategyValue));
+              var weight = Math.abs(prefValue) / maxValue;
               
-              return { 
-                score, 
-                weight,
-                isMatch: score > 5
-              };
-            } 
-            // For negative preferences (user wants low value)
-            else {
-              // For negative preferences, lower strategy values are better
-              const score = Math.max(0, 10 - strategyValue);
-              // Use preference strength as weight
-              const weight = Math.abs(prefValue) / maxValue;
-              
-              return {
-                score,
-                weight,
-                isMatch: score > 5
-              };
-            }
-          };
-
-          // Calculate matches for each preference
-          const timeMatch = calculatePreferenceMatch(
-            'timeCommitment', 
-            preferences.timeCommitment, 
-            strategy.scores.timeCommitment
-          );
-          
-          const investmentMatch = calculatePreferenceMatch(
-            'investment', 
-            preferences.investment, 
-            strategy.scores.investment
-          );
-          
-          const agreementMatch = calculatePreferenceMatch(
-            'commercialAgreements', 
-            preferences.commercialAgreements, 
-            strategy.scores.commercialAgreements
-          );
-          
-          const serviceMatch = calculatePreferenceMatch(
-            'thirdPartyServices', 
-            preferences.thirdPartyServices, 
-            strategy.scores.thirdPartyServices
-          );
-          
-          const legalMatch = calculatePreferenceMatch(
-            'legalAction', 
-            preferences.legalAction, 
-            strategy.scores.legalAction
-          );
-          
-          // Add preference matches to the lists
-          if (timeMatch.weight > 0) {
-            if (timeMatch.isMatch) {
-              matches.push('Time commitment');
+              return { score: score, weight: weight, isMatch: score > 5 };
             } else {
-              nonMatches.push('Time commitment');
+              var score = Math.max(0, 10 - strategyValue);
+              var weight = Math.abs(prefValue) / maxValue;
+              
+              return { score: score, weight: weight, isMatch: score > 5 };
             }
           }
           
-          if (investmentMatch.weight > 0) {
-            if (investmentMatch.isMatch) {
-              matches.push('Investment level');
-            } else {
-              nonMatches.push('Investment level');
-            }
+          // Calculate matches for each preference
+          var timeMatch = calculateMatch('timeCommitment', 
+            state.preferences.timeCommitment, 
+            strategy.scores.timeCommitment);
+          
+          var investMatch = calculateMatch('investment', 
+            state.preferences.investment, 
+            strategy.scores.investment);
+          
+          var agreementMatch = calculateMatch('commercialAgreements', 
+            state.preferences.commercialAgreements, 
+            strategy.scores.commercialAgreements);
+          
+          var serviceMatch = calculateMatch('thirdPartyServices', 
+            state.preferences.thirdPartyServices, 
+            strategy.scores.thirdPartyServices);
+          
+          var legalMatch = calculateMatch('legalAction', 
+            state.preferences.legalAction, 
+            strategy.scores.legalAction);
+          
+          // Add matches to lists
+          if (timeMatch.weight > 0) {
+            if (timeMatch.isMatch) matches.push('Time commitment');
+            else nonMatches.push('Time commitment');
+          }
+          
+          if (investMatch.weight > 0) {
+            if (investMatch.isMatch) matches.push('Investment level');
+            else nonMatches.push('Investment level');
           }
           
           if (agreementMatch.weight > 0) {
-            if (agreementMatch.isMatch) {
-              matches.push('Commercial agreements');
-            } else {
-              nonMatches.push('Commercial agreements');
-            }
+            if (agreementMatch.isMatch) matches.push('Commercial agreements');
+            else nonMatches.push('Commercial agreements');
           }
           
           if (serviceMatch.weight > 0) {
-            if (serviceMatch.isMatch) {
-              matches.push('Third-party services');
-            } else {
-              nonMatches.push('Third-party services');
-            }
+            if (serviceMatch.isMatch) matches.push('Third-party services');
+            else nonMatches.push('Third-party services');
           }
           
           if (legalMatch.weight > 0) {
-            if (legalMatch.isMatch) {
-              matches.push('Legal action');
-            } else {
-              nonMatches.push('Legal action');
-            }
+            if (legalMatch.isMatch) matches.push('Legal action');
+            else nonMatches.push('Legal action');
           }
           
-          // Calculate overall weighted score
+          // Calculate weighted scores
           totalScore += timeMatch.score * timeMatch.weight;
-          totalScore += investmentMatch.score * investmentMatch.weight;
+          totalScore += investMatch.score * investMatch.weight;
           totalScore += agreementMatch.score * agreementMatch.weight;
           totalScore += serviceMatch.score * serviceMatch.weight;
           totalScore += legalMatch.score * legalMatch.weight;
           
           totalWeight += timeMatch.weight;
-          totalWeight += investmentMatch.weight;
+          totalWeight += investMatch.weight;
           totalWeight += agreementMatch.weight;
           totalWeight += serviceMatch.weight;
           totalWeight += legalMatch.weight;
           
-          // Calculate final match score (0-100 scale)
-          const matchScore = totalWeight > 0 
+          // Calculate final match score
+          var matchScore = totalWeight > 0 
             ? (totalScore / (totalWeight * 10)) * 100 
-            : 100; // Perfect score if no preferences set
+            : 100;
           
+          // Return the strategy with its score
           return {
-            ...strategy,
-            matchScore,
-            matches,
-            nonMatches
+            id: strategy.id,
+            overtitle: strategy.overtitle,
+            title: strategy.title,
+            description: strategy.description,
+            responseType: strategy.responseType,
+            right: strategy.right,
+            scores: strategy.scores,
+            matchScore: matchScore,
+            matches: matches,
+            nonMatches: nonMatches
           };
         });
         
         // Sort by match score (highest first)
-        ranked.sort((a, b) => b.matchScore - a.matchScore);
+        ranked.sort(function(a, b) {
+          return b.matchScore - a.matchScore;
+        });
         
-        setFilteredStrategies(ranked);
-      }, [loading, strategies, selectedRights, selectedSituations, preferences]);
-
-      // Show loading state
-      if (loading) {
-        return (
-          <div className="text-center py-12">
-            <div className="text-xl">Loading IP strategies...</div>
-          </div>
-        );
+        state.filteredStrategies = ranked;
       }
 
-      // Render main component
-      return (
-        <div>
-          <h1 className="text-3xl font-bold mb-6" style={{ color: 'var(--teal)' }}>IP Strategy Finder</h1>
+      // Helper functions
+      function getSituationLabel(situationId) {
+        var situation = situationOptions.find(function(opt) {
+          return opt.id === situationId;
+        });
+        return situation ? situation.label : situationId;
+      }
+      
+      function getRightColor(rightId) {
+        var right = ipRightsOptions.find(function(opt) {
+          return opt.id === rightId;
+        });
+        return right ? right.color : 'any';
+      }
+      
+      function getPreferenceText(preference, value) {
+        if (value === 0) return '';
+        
+        var config = preferenceConfigs[preference];
+        var option = config.options.find(function(opt) {
+          return opt.value === value;
+        });
+        
+        return option ? option.label : '';
+      }
+      
+      function getRelevancyLevel(score) {
+        if (score >= 90) return { level: 'very-high', text: 'Very High' };
+        if (score >= 75) return { level: 'high', text: 'High' };
+        if (score >= 50) return { level: 'medium', text: 'Medium' };
+        if (score >= 25) return { level: 'low', text: 'Low' };
+        return { level: 'very-low', text: 'Very Low' };
+      }
+
+      // Event handlers
+      function toggleAccordion(section) {
+        state.accordions[section] = !state.accordions[section];
+        render();
+      }
+      
+      function togglePreference(preference, value) {
+        if (state.preferences[preference] === value) {
+          state.preferences[preference] = 0;
+        } else {
+          state.preferences[preference] = value;
+        }
+        
+        filterAndRankStrategies();
+        render();
+      }
+      
+      function toggleFactor(factor, value) {
+        state.otherFactors[factor] = value;
+        
+        filterAndRankStrategies();
+        render();
+      }
+      
+      function removeRightFilter(rightId) {
+        state.selectedRights = state.selectedRights.filter(function(id) {
+          return id !== rightId;
+        });
+        
+        filterAndRankStrategies();
+        render();
+      }
+      
+      function removeSituationFilter(situationId) {
+        state.selectedSituations = state.selectedSituations.filter(function(id) {
+          return id !== situationId;
+        });
+        
+        filterAndRankStrategies();
+        render();
+      }
+      
+      function removePreferenceFilter(preference) {
+        state.preferences[preference] = 0;
+        
+        filterAndRankStrategies();
+        render();
+      }
+
+      // Rendering functions
+      function render() {
+        var appElement = document.getElementById('app');
+        appElement.innerHTML = '';
+        
+        if (state.loading) {
+          appElement.innerHTML = '<div class="text-center py-12"><div class="text-xl">Loading IP strategies...</div></div>';
+          return;
+        }
+        
+        var mainContainer = document.createElement('div');
+        
+        // Title
+        var title = document.createElement('h1');
+        title.className = 'page-title';
+        title.textContent = 'IP Strategy Finder';
+        mainContainer.appendChild(title);
+        
+        // Active filters
+        mainContainer.appendChild(renderFilterPills());
+        
+        // Main grid
+        var grid = document.createElement('div');
+        grid.className = 'grid';
+        
+        // Left column - User selections
+        var leftCol = document.createElement('div');
+        leftCol.appendChild(renderPreferencesAccordion());
+        leftCol.appendChild(renderOtherFactorsAccordion());
+        
+        // Right column - Results
+        var rightCol = document.createElement('div');
+        rightCol.appendChild(renderStrategies());
+        
+        grid.appendChild(leftCol);
+        grid.appendChild(rightCol);
+        mainContainer.appendChild(grid);
+        
+        appElement.appendChild(mainContainer);
+      }
+      
+      function renderFilterPills() {
+        var container = document.createElement('div');
+        container.className = 'active-filters';
+        
+        // Render selected rights pills
+        state.selectedRights.forEach(function(rightId) {
+          var pill = document.createElement('div');
+          pill.className = 'filter-pill right-' + getRightColor(rightId);
+          pill.onclick = function() { removeRightFilter(rightId); };
           
-          {/* Active Filters Section */}
-          <div className="active-filters mb-6">
-            {selectedRights.map(rightId => (
-              <div 
-                key={`filter-right-${rightId}`} 
-                className={`filter-pill right-${getRightColor(rightId)}`}
-                onClick={() => removeRightFilter(rightId)}
-              >
-                {ipRightsOptions.find(opt => opt.id === rightId)?.label || rightId}
-                <span className="remove">×</span>
-              </div>
-            ))}
-            
-            {selectedSituations.map(situationId => (
-              <div 
-                key={`filter-situation-${situationId}`} 
-                className="filter-pill situation"
-                onClick={() => removeSituationFilter(situationId)}
-              >
-                {getSituationLabel(situationId)}
-                <span className="remove">×</span>
-              </div>
-            ))}
-            
-            {Object.entries(preferences).map(([key, value]) => (
-              value !== 0 ? (
-                <div 
-                  key={`filter-pref-${key}`} 
-                  className="filter-pill"
-                  onClick={() => removePreferenceFilter(key)}
-                >
-                  {preferenceConfigs[key].label}: {getPreferenceText(key, value)}
-                  <span className="remove">×</span>
-                </div>
-              ) : null
-            ))}
-            
-            {Object.entries(otherFactors).map(([key, value]) => (
-              value !== 'neutral' ? (
-                <div 
-                  key={`filter-factor-${key}`} 
-                  className="filter-pill"
-                  onClick={() => toggleFactor(key, 'neutral')}
-                >
-                  {key === 'onlineMarkets' ? 'Online marketplaces' : 
-                   key === 'domainName' ? 'Domain name issues' : 
-                   key === 'importingGoods' ? 'Importing goods' : 
-                   'Identify party'}: {value === 'yes' ? 'Yes' : value === 'no' ? 'No' : 'Unsure'}
-                  <span className="remove">×</span>
-                </div>
-              ) : null
-            ))}
-          </div>
+          var label = ipRightsOptions.find(function(opt) {
+            return opt.id === rightId;
+          });
+          pill.textContent = label ? label.label : rightId;
           
-          <div className="grid">
-            {/* Left column - User selections */}
-            <div>
-              {/* Preferences Section */}
-              <div className="accordion mb-6">
-                <div 
-                  className="accordion-header"
-                  onClick={() => toggleAccordion('preferences')}
-                >
-                  <div className="accordion-title-section">
-                    <div className="accordion-arrow">
-                      {accordions.preferences ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
-                        </svg>
-                      ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                    <span>Your Preferences</span>
-                  </div>
-                  
-                  <div>
-                    {Object.values(preferences).some(v => v !== 0) && (
-                      <span className="text-sm text-gray-500">Preferences set</span>
-                    )}
-                  </div>
-                </div>
-                
-                {accordions.preferences && (
-                  <div className="accordion-content">
-                    <p className="mb-4">The following are possible considerations which might be relevant:</p>
-                    
-                    {/* Render preference groups */}
-                    {Object.entries(preferenceConfigs).map(([prefKey, config]) => (
-                      <div className="preference-group" key={prefKey}>
-                        <label className="preference-label">{config.label}</label>
-                        <div className="radio-group">
-                          {config.options.map(option => (
-                            <label 
-                              key={`${prefKey}-${option.value}`}
-                              className={`radio-button ${preferences[prefKey] === option.value ? 'selected' : ''}`}
-                              onClick={() => togglePreference(prefKey, option.value)}
-                            >
-                              {option.label}
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+          var removeBtn = document.createElement('span');
+          removeBtn.className = 'filter-remove';
+          removeBtn.textContent = '×';
+          pill.appendChild(removeBtn);
+          
+          container.appendChild(pill);
+        });
+        
+        // Render selected situations pills
+        state.selectedSituations.forEach(function(situationId) {
+          var pill = document.createElement('div');
+          pill.className = 'filter-pill situation';
+          pill.onclick = function() { removeSituationFilter(situationId); };
+          
+          pill.textContent = getSituationLabel(situationId);
+          
+          var removeBtn = document.createElement('span');
+          removeBtn.className = 'filter-remove';
+          removeBtn.textContent = '×';
+          pill.appendChild(removeBtn);
+          
+          container.appendChild(pill);
+        });
+        
+        // Render preference pills
+        Object.entries(state.preferences).forEach(function([key, value]) {
+          if (value !== 0) {
+            var pill = document.createElement('div');
+            pill.className = 'filter-pill';
+            pill.onclick = function() { toggleFactor(key, 'neutral'); };
+            
+            var label = '';
+            if (key === 'onlineMarkets') label = 'Online marketplaces';
+            else if (key === 'domainName') label = 'Domain name issues';
+            else if (key === 'importingGoods') label = 'Importing goods';
+            else label = 'Identify party';
+            
+            var valueText = '';
+            if (value === 'yes') valueText = 'Yes';
+            else if (value === 'no') valueText = 'No';
+            else valueText = 'Unsure';
+            
+            pill.textContent = label + ': ' + valueText;
+            
+            var removeBtn = document.createElement('span');
+            removeBtn.className = 'filter-remove';
+            removeBtn.textContent = '×';
+            pill.appendChild(removeBtn);
+            
+            container.appendChild(pill);
+          }
+        });
+        
+        return container;
+      }
+      
+      function renderPreferencesAccordion() {
+        var accordion = document.createElement('div');
+        accordion.className = 'accordion mb-6';
+        
+        // Accordion header
+        var header = document.createElement('div');
+        header.className = 'accordion-header';
+        header.onclick = function() { toggleAccordion('preferences'); };
+        
+        var title = document.createElement('div');
+        title.className = 'accordion-title';
+        
+        var icon = document.createElement('span');
+        icon.className = 'accordion-icon';
+        icon.textContent = state.accordions.preferences ? '▲' : '▼';
+        title.appendChild(icon);
+        
+        var titleText = document.createTextNode('Your Preferences');
+        title.appendChild(titleText);
+        header.appendChild(title);
+        
+        var statusDiv = document.createElement('div');
+        var hasPreferences = Object.values(state.preferences).some(function(v) { return v !== 0; });
+        if (hasPreferences) {
+          var status = document.createElement('span');
+          status.style.fontSize = '14px';
+          status.style.color = '#667085';
+          status.textContent = 'Preferences set';
+          statusDiv.appendChild(status);
+        }
+        header.appendChild(statusDiv);
+        
+        accordion.appendChild(header);
+        
+        // Accordion content (only if open)
+        if (state.accordions.preferences) {
+          var content = document.createElement('div');
+          content.className = 'accordion-content';
+          
+          var description = document.createElement('p');
+          description.style.marginBottom = '16px';
+          description.textContent = 'The following are possible considerations which might be relevant:';
+          content.appendChild(description);
+          
+          // Render each preference group
+          Object.entries(preferenceConfigs).forEach(function([prefKey, config]) {
+            var group = document.createElement('div');
+            group.className = 'preference-group';
+            
+            var label = document.createElement('label');
+            label.className = 'preference-label';
+            label.textContent = config.label;
+            group.appendChild(label);
+            
+            var radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+            
+            // Render each option
+            config.options.forEach(function(option) {
+              var radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.preferences[prefKey] === option.value) {
+                radio.className += ' radio-selected';
+              }
               
-              {/* Other Factors Section */}
-              <div className="accordion mb-6">
-                <div 
-                  className="accordion-header"
-                  onClick={() => toggleAccordion('otherFactors')}
-                >
-                  <div className="accordion-title-section">
-                    <div className="accordion-arrow">
-                      {accordions.otherFactors ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
-                        </svg>
-                      ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                    <span>Other Factors</span>
-                  </div>
-                  
-                  <div>
-                    {Object.values(otherFactors).some(v => v !== 'neutral') && (
-                      <span className="text-sm text-gray-500">Factors selected</span>
-                    )}
-                  </div>
-                </div>
-                
-                {accordions.otherFactors && (
-                  <div className="accordion-content">
-                    <p className="mb-4">Does the issue involve:</p>
-                    
-                    <div className="mb-4">
-                      {/* Online marketplaces */}
-                      <div className="preference-group mb-3">
-                        <label className="preference-label">Online market places or advertising</label>
-                        <div className="radio-group">
-                          <label 
-                            className={`radio-button ${otherFactors.onlineMarkets === 'yes' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('onlineMarkets', otherFactors.onlineMarkets === 'yes' ? 'neutral' : 'yes')}
-                          >
-                            Yes
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.onlineMarkets === 'no' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('onlineMarkets', otherFactors.onlineMarkets === 'no' ? 'neutral' : 'no')}
-                          >
-                            No
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.onlineMarkets === 'unsure' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('onlineMarkets', otherFactors.onlineMarkets === 'unsure' ? 'neutral' : 'unsure')}
-                          >
-                            Unsure
-                          </label>
-                        </div>
-                      </div>
-                      
-                      {/* Domain name issues */}
-                      <div className="preference-group mb-3">
-                        <label className="preference-label">Domain name issues</label>
-                        <div className="radio-group">
-                          <label 
-                            className={`radio-button ${otherFactors.domainName === 'yes' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('domainName', otherFactors.domainName === 'yes' ? 'neutral' : 'yes')}
-                          >
-                            Yes
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.domainName === 'no' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('domainName', otherFactors.domainName === 'no' ? 'neutral' : 'no')}
-                          >
-                            No
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.domainName === 'unsure' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('domainName', otherFactors.domainName === 'unsure' ? 'neutral' : 'unsure')}
-                          >
-                            Unsure
-                          </label>
-                        </div>
-                      </div>
-                      
-                      {/* Importing goods */}
-                      <div className="preference-group mb-3">
-                        <label className="preference-label">Importing goods to Australia</label>
-                        <div className="radio-group">
-                          <label 
-                            className={`radio-button ${otherFactors.importingGoods === 'yes' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('importingGoods', otherFactors.importingGoods === 'yes' ? 'neutral' : 'yes')}
-                          >
-                            Yes
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.importingGoods === 'no' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('importingGoods', otherFactors.importingGoods === 'no' ? 'neutral' : 'no')}
-                          >
-                            No
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.importingGoods === 'unsure' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('importingGoods', otherFactors.importingGoods === 'unsure' ? 'neutral' : 'unsure')}
-                          >
-                            Unsure
-                          </label>
-                        </div>
-                      </div>
-                      
-                      {/* Identify the other party */}
-                      <div className="preference-group mb-3">
-                        <label className="preference-label">Difficulty identifying the other party?</label>
-                        <div className="radio-group">
-                          <label 
-                            className={`radio-button ${otherFactors.identifyParty === 'yes' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('identifyParty', otherFactors.identifyParty === 'yes' ? 'neutral' : 'yes')}
-                          >
-                            Yes
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.identifyParty === 'no' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('identifyParty', otherFactors.identifyParty === 'no' ? 'neutral' : 'no')}
-                          >
-                            No
-                          </label>
-                          <label 
-                            className={`radio-button ${otherFactors.identifyParty === 'unsure' ? 'selected' : ''}`}
-                            onClick={() => toggleFactor('identifyParty', otherFactors.identifyParty === 'unsure' ? 'neutral' : 'unsure')}
-                          >
-                            Unsure
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+              radio.textContent = option.label;
+              radio.onclick = function() { togglePreference(prefKey, option.value); };
               
-              {/* IP Rights Selection */}
-              <div className="card mb-6">
-                <h3 className="text-lg font-semibold mb-4">IP Rights</h3>
-                <div className="radio-group">
-                  {ipRightsOptions.map(option => (
-                    <label 
-                      key={option.id}
-                      className={`radio-button ${selectedRights.includes(option.id) ? 'selected' : ''}`}
-                      onClick={() => toggleRight(option.id)}
-                    >
-                      {option.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Situation Selection */}
-              <div className="card">
-                <h3 className="text-lg font-semibold mb-4">Your Situation</h3>
-                <div className="radio-group">
-                  {situationOptions.map(option => (
-                    <label 
-                      key={option.id}
-                      className={`radio-button ${selectedSituations.includes(option.id) ? 'selected' : ''}`}
-                      onClick={() => toggleSituation(option.id)}
-                    >
-                      {option.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
+              radioGroup.appendChild(radio);
+            });
+            
+            group.appendChild(radioGroup);
+            content.appendChild(group);
+          });
+          
+          accordion.appendChild(content);
+        }
+        
+        return accordion;
+      }
+      
+      function renderOtherFactorsAccordion() {
+        var accordion = document.createElement('div');
+        accordion.className = 'accordion mb-6';
+        
+        // Accordion header
+        var header = document.createElement('div');
+        header.className = 'accordion-header';
+        header.onclick = function() { toggleAccordion('otherFactors'); };
+        
+        var title = document.createElement('div');
+        title.className = 'accordion-title';
+        
+        var icon = document.createElement('span');
+        icon.className = 'accordion-icon';
+        icon.textContent = state.accordions.otherFactors ? '▲' : '▼';
+        title.appendChild(icon);
+        
+        var titleText = document.createTextNode('Other Factors');
+        title.appendChild(titleText);
+        header.appendChild(title);
+        
+        var statusDiv = document.createElement('div');
+        var hasFactors = Object.values(state.otherFactors).some(function(v) { return v !== 'neutral'; });
+        if (hasFactors) {
+          var status = document.createElement('span');
+          status.style.fontSize = '14px';
+          status.style.color = '#667085';
+          status.textContent = 'Factors selected';
+          statusDiv.appendChild(status);
+        }
+        header.appendChild(statusDiv);
+        
+        accordion.appendChild(header);
+        
+        // Accordion content (only if open)
+        if (state.accordions.otherFactors) {
+          var content = document.createElement('div');
+          content.className = 'accordion-content';
+          
+          var description = document.createElement('p');
+          description.style.marginBottom = '16px';
+          description.textContent = 'Does the issue involve:';
+          content.appendChild(description);
+          
+          // Render factor options
+          var factors = [
+            { key: 'onlineMarkets', label: 'Online market places or advertising' },
+            { key: 'domainName', label: 'Domain name issues' },
+            { key: 'importingGoods', label: 'Importing goods to Australia' },
+            { key: 'identifyParty', label: 'Difficulty identifying the other party?' }
+          ];
+          
+          factors.forEach(function(factor) {
+            var group = document.createElement('div');
+            group.className = 'preference-group';
+            group.style.marginBottom = '12px';
+            
+            var label = document.createElement('label');
+            label.className = 'preference-label';
+            label.textContent = factor.label;
+            group.appendChild(label);
+            
+            var radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+            
+            // Yes option
+            var yesBtn = document.createElement('label');
+            yesBtn.className = 'radio-button';
+            if (state.otherFactors[factor.key] === 'yes') {
+              yesBtn.className += ' radio-selected';
+            }
+            yesBtn.textContent = 'Yes';
+            yesBtn.onclick = function() {
+              toggleFactor(factor.key, state.otherFactors[factor.key] === 'yes' ? 'neutral' : 'yes');
+            };
+            radioGroup.appendChild(yesBtn);
+            
+            // No option
+            var noBtn = document.createElement('label');
+            noBtn.className = 'radio-button';
+            if (state.otherFactors[factor.key] === 'no') {
+              noBtn.className += ' radio-selected';
+            }
+            noBtn.textContent = 'No';
+            noBtn.onclick = function() {
+              toggleFactor(factor.key, state.otherFactors[factor.key] === 'no' ? 'neutral' : 'no');
+            };
+            radioGroup.appendChild(noBtn);
+            
+            // Unsure option
+            var unsureBtn = document.createElement('label');
+            unsureBtn.className = 'radio-button';
+            if (state.otherFactors[factor.key] === 'unsure') {
+              unsureBtn.className += ' radio-selected';
+            }
+            unsureBtn.textContent = 'Unsure';
+            unsureBtn.onclick = function() {
+              toggleFactor(factor.key, state.otherFactors[factor.key] === 'unsure' ? 'neutral' : 'unsure');
+            };
+            radioGroup.appendChild(unsureBtn);
+            
+            group.appendChild(radioGroup);
+            content.appendChild(group);
+          });
+          
+          accordion.appendChild(content);
+        }
+        
+        return accordion;
+      }
+      
+      function renderStrategies() {
+        var container = document.createElement('div');
+        container.className = 'card';
+        
+        var title = document.createElement('h2');
+        title.style.fontSize = '20px';
+        title.style.fontWeight = 'bold';
+        title.style.marginBottom = '16px';
+        title.style.color = 'var(--teal)';
+        
+        if (state.filteredStrategies.length > 0) {
+          title.textContent = 'Potential IP Strategies';
+        } else {
+          title.textContent = 'Select criteria to see potential strategies';
+        }
+        
+        container.appendChild(title);
+        
+        if (state.filteredStrategies.length === 0) {
+          var emptyState = document.createElement('div');
+          emptyState.className = 'empty-state';
+          
+          var message = document.createElement('p');
+          message.className = 'empty-message';
+          
+          if (state.selectedRights.length > 0 || state.selectedSituations.length > 0) {
+            message.textContent = 'No options match your current criteria. Try adjusting your selections.';
+          } else {
+            message.textContent = 'Select your IP rights and situation to see options to consider.';
+          }
+          
+          emptyState.appendChild(message);
+          container.appendChild(emptyState);
+        } else {
+          var strategyGrid = document.createElement('div');
+          strategyGrid.className = 'strategy-grid';
+          
+          state.filteredStrategies.forEach(function(strategy, index) {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'strategy-wrapper';
+            
+            var card = document.createElement('div');
+            card.className = 'strategy-card';
+            
+            // Get the right border color
+            var rights = strategy.right.split('; ');
+            var mainRight = rights[0];
+            card.className += ' border-' + getRightColor(mainRight);
+            
+            // Relevancy indicator
+            var relevancy = document.createElement('div');
+            relevancy.className = 'relevancy';
+            
+            var relevancyLabel = document.createElement('span');
+            relevancyLabel.className = 'relevancy-label';
+            relevancyLabel.textContent = 'Likely Applicability:';
+            relevancy.appendChild(relevancyLabel);
+            
+            var relevancyScore = getRelevancyLevel(strategy.matchScore);
+            var relevancyBadge = document.createElement('span');
+            relevancyBadge.className = 'relevancy-badge ' + relevancyScore.level;
+            relevancyBadge.textContent = relevancyScore.text;
+            relevancy.appendChild(relevancyBadge);
+            
+            card.appendChild(relevancy);
+            
+            // Strategy details
+            var overtitle = document.createElement('div');
+            overtitle.className = 'strategy-overtitle';
+            overtitle.textContent = strategy.overtitle;
+            card.appendChild(overtitle);
+            
+            var title = document.createElement('h3');
+            title.className = 'strategy-title';
+            title.textContent = strategy.title;
+            card.appendChild(title);
+            
+            var description = document.createElement('p');
+            description.className = 'strategy-description';
+            description.textContent = strategy.description;
+            card.appendChild(description);
+            
+            // Strategy metadata
+            var metadata = document.createElement('div');
+            metadata.className = 'strategy-metadata';
+            
+            // Time commitment
+            var timeRow = document.createElement('div');
+            timeRow.className = 'metadata-row';
+            
+            var timeLabel = document.createElement('span');
+            timeLabel.textContent = 'Time Commitment:';
+            timeRow.appendChild(timeLabel);
+            
+            var timeValue = document.createElement('span');
+            timeValue.className = 'tag';
+            
+            if (strategy.scores.timeCommitment <= 2) {
+              timeValue.textContent = 'Days';
+            } else if (strategy.scores.timeCommitment <= 4) {
+              timeValue.textContent = 'Weeks';
+            } else if (strategy.scores.timeCommitment <= 7) {
+              timeValue.textContent = '1-12 Months';
+            } else {
+              timeValue.textContent = '12+ Months';
+            }
+            
+            timeRow.appendChild(timeValue);
+            metadata.appendChild(timeRow);
+            
+            // Investment
+            var investRow = document.createElement('div');
+            investRow.className = 'metadata-row';
+            
+            var investLabel = document.createElement('span');
+            investLabel.textContent = 'Investment:';
+            investRow.appendChild(investLabel);
+            
+            var investValue = document.createElement('span');
+            investValue.className = 'tag';
+            
+            if (strategy.scores.investment <= 2) {
+              investValue.textContent = 'Under $1,000';
+            } else if (strategy.scores.investment <= 4) {
+              investValue.textContent = 'Under $5,000';
+            } else if (strategy.scores.investment <= 6) {
+              investValue.textContent = 'Under $10,000';
+            } else if (strategy.scores.investment <= 8) {
+              investValue.textContent = 'Under $25,000';
+            } else {
+              investValue.textContent = '$25,000+';
+            }
+            
+            investRow.appendChild(investValue);
+            metadata.appendChild(investRow);
+            
+            // IP Type
+            var ipRow = document.createElement('div');
+            ipRow.className = 'metadata-row';
+            
+            var ipLabel = document.createElement('span');
+            ipLabel.textContent = 'IP Type:';
+            ipRow.appendChild(ipLabel);
+            
+            var ipValue = document.createElement('span');
+            ipValue.className = 'tag';
+            ipValue.textContent = strategy.right;
+            ipRow.appendChild(ipValue);
+            metadata.appendChild(ipRow);
+            
+            card.appendChild(metadata);
+            wrapper.appendChild(card);
+            strategyGrid.appendChild(wrapper);
+          });
+          
+          container.appendChild(strategyGrid);
+        }
+        
+        return container;
+      }
 
-            {/* Right column - Results */}
-            <div>
-              <div className="card">
-                <h2 className="text-xl font-bold mb-4" style={{ color: 'var(--teal)' }}>
-                  {filteredStrategies.length > 0 
-                    ? 'Potential IP Strategies' 
-                    : 'Select criteria to see potential strategies'}
-                </h2>
-                
-                {filteredStrategies.length === 0 ? (
-                  <div className="bg-gray-50 p-8 text-center rounded-lg">
-                    <p className="text-gray-600">
-                      {selectedRights.length > 0 || selectedSituations.length > 0
-                        ? 'No options match your current criteria. Try adjusting your selections.'
-                        : 'Select your IP rights and situation to see options to consider.'}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="card-grid">
-                    {filteredStrategies.map(strategy => {
-                      const rights = strategy.right.split('; ');
-                      const mainRight = rights[0];
-                      const borderClass = `border-${getRightColor(mainRight)}`;
+      // Initialize the application
+      init();
+      
+      // Return public API
+      return {
+        init: init
+      };
+    }
 
-                      return (
-                        <div key={strategy.id} className="card-wrapper">
-                          <div className={`card ${borderClass}`}>
-                            <div className="relevancy-indicator" style={{ marginBottom: '10px', justifyContent: 'flex-end' }}>
-                              <span style={{ fontSize: '11px', alignSelf: 'flex-end', marginRight: '5px' }}>Likely Applicability:</span>
-                              <span className={`relevancy-badge relevancy-${getRelevancyLevel(strategy.matchScore).level}`}>
-                                {getRelevancyLevel(strategy.matchScore).text}
-                              </span>
-                            </div>
-                            
-                            <div className="text-sm text-gray-500 mb-1">{strategy.overtitle}</div>
-                            <h3 className="text-lg font-semibold mb-2">{strategy.title}</h3>
-                            <p className="text-gray-700 mb-4">{strategy.description}</p>
-                            
-                            {/* Time commitment, investment, and IP type info */}
-                            <div style={{ fontSize: '11px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span>Time Commitment:</span>
-                                <span className="tag" style={{ backgroundColor: 'rgba(85, 171, 201, 0.1)' }}>
-                                  {strategy.scores.timeCommitment <= 2 ? 'Days' : 
-                                  strategy.scores.timeCommitment <= 4 ? 'Weeks' : 
-                                  strategy.scores.timeCommitment <= 7 ? '1-12 Months' : '12+ Months'}
-                                </span>
-                              </div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span>Investment:</span>
-                                <span className="tag" style={{ backgroundColor: 'rgba(85, 171, 201, 0.1)' }}>
-                                  {strategy.scores.investment <= 2 ? 'Under $1,000' : 
-                                  strategy.scores.investment <= 4 ? 'Under $5,000' : 
-                                  strategy.scores.investment <= 6 ? 'Under $10,000' : 
-                                  strategy.scores.investment <= 8 ? 'Under $25,000' : '$25,000+'}
-                                </span>
-                              </div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span>IP Type:</span>
-                                <span className="tag" style={{ backgroundColor: 'rgba(85, 171, 201, 0.1)' }}>
-                                  {strategy.right}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    };
-
-    // Render the app
-    ReactDOM.render(
-      <IPStrategyFinder />,
-      document.getElementById('app')
-    );
+    // Start the application when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      var app = IPStrategyFinder();
+    });
   </script>
 </body>
-</html>
+</html> = 'filter-pill';
+            pill.onclick = function() { removePreferenceFilter(key); };
+            
+            pill.textContent = preferenceConfigs[key].label + ': ' + getPreferenceText(key, value);
+            
+            var removeBtn = document.createElement('span');
+            removeBtn.className = 'filter-remove';
+            removeBtn.textContent = '×';
+            pill.appendChild(removeBtn);
+            
+            container.appendChild(pill);
+          }
+        });
+        
+        // Render other factors pills
+        Object.entries(state.otherFactors).forEach(function([key, value]) {
+          if (value !== 'neutral') {
+            var pill = document.createElement('div');
+            pill.className
