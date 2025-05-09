@@ -404,7 +404,7 @@ function renderStrategyCards() {
         </div>
         <div class="metadata-row">
           <span>IP Type:</span>
-          <span class="tag">${strategy.right}</span>
+          <span class="tag tag-${strategy.right.toLowerCase().replace(/\s/g, '')}">${strategy.right}</span>
         </div>
       </div>
     `;
