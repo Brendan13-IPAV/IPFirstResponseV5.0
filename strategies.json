@@ -1,0 +1,18 @@
+[
+  {
+    "id": 4,
+    "overtitle": "Trade mark opposition",
+    "title": "Challenge the registration of a trade mark",
+    "description": "Initiate a trade mark opposition process...",
+    "responseType": ["Enforcement", "Professional"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 6,
+      "investment": 6,
+      "commercialAgreements": 2,
+      "thirdPartyServices": 7,
+      "legalAction": 7
+    }
+  }
+  // Add more strategies as needed
+]
