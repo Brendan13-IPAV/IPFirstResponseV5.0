@@ -35,6 +35,17 @@
       padding: 0 20px;
     }
 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.card-grid > .strategy-card:nth-child(3n+2) {
+  transform: translateY(50%);
+}
+
     /* Header */
     .header {
       background-color: var(--dark-blue);
