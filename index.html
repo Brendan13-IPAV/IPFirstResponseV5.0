@@ -7,10 +7,6 @@
 
   <!-- External CSS -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Optional: React (only needed if you're using it) -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 </head>
 <body>
   <header class="header">
@@ -35,13 +31,11 @@
     </div>
   </footer>
 
-  <!-- Application Logic -->
   <script>
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
       fetch('preferences.json').then(res => res.json())
-    ])
-    .then(([strategiesData, preferenceConfigs]) => {
+    ]).then(([strategiesData, preferenceConfigs]) => {
 
       const ipRightsOptions = [
         { id: 'Patent', label: 'Patents', color: 'patent' },
@@ -60,21 +54,22 @@
       ];
 
       function IPStrategyFinder() {
+        const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
         const state = {
           loading: true,
           strategies: strategiesData,
           filteredStrategies: [],
-          accordions: { preferences: false, otherFactors: false },
-          selectedRights: ['Trade mark'],
-          selectedSituations: ['Enforcement'],
-          preferences: {
+          accordions: savedState.accordions || { preferences: true, otherFactors: true },
+          selectedRights: savedState.selectedRights || ['Trade mark'],
+          selectedSituations: savedState.selectedSituations || ['Enforcement'],
+          preferences: savedState.preferences || {
             timeCommitment: 0,
             investment: 0,
             commercialAgreements: 0,
             thirdPartyServices: 0,
             legalAction: 0
           },
-          otherFactors: {
+          otherFactors: savedState.otherFactors || {
             onlineMarkets: 'neutral',
             domainName: 'neutral',
             importingGoods: 'neutral',
@@ -82,774 +77,304 @@
           }
         };
 
-                // Your original functions like init(), filterAndRankStrategies(), render(), etc. go here.
-        // All uses of "strategiesData" and "preferenceConfigs" inside your logic will now just work
-        // because they're captured from the .then() scope
-
         function init() {
           state.loading = false;
           filterAndRankStrategies();
           render();
         }
 
-        
+        function filterAndRankStrategies() {
+          let filtered = state.strategies.slice();
 
-    // Main application code
-    function IPStrategyFinder() {
-      // State management
-      var state = {
-        loading: true,
-        strategies: [],
-        filteredStrategies: [],
-        accordions: {
-          preferences: false,
-          otherFactors: false
-        },
-        selectedRights: ['Trade mark'],
-        selectedSituations: ['Enforcement'],
-        preferences: {
-          timeCommitment: 0,
-          investment: 0,
-          commercialAgreements: 0,
-          thirdPartyServices: 0,
-          legalAction: 0
-        },
-        otherFactors: {
-          onlineMarkets: 'neutral',
-          domainName: 'neutral',
-          importingGoods: 'neutral',
-          identifyParty: 'neutral'
-        }
-      };
-
-      // Initialize and render the application
-      function init() {
-        // Set strategies data and update loading state
-        state.strategies = strategiesData;
-        state.loading = false;
-
-        // Filter and rank strategies based on initial state
-        filterAndRankStrategies();
-
-        // Render the UI
-        render();
-      }
-
-      // Filter and rank strategies based on current selections
-      function filterAndRankStrategies() {
-        // Start with all strategies
-        var filtered = state.strategies.slice();
-        
-        // Filter by selected IP rights
-        if (state.selectedRights.length > 0) {
-          filtered = filtered.filter(function(strategy) {
-            var strategyRights = strategy.right.split('; ');
-            return state.selectedRights.some(function(right) {
-              return strategyRights.includes(right) || 
-                     strategyRights.includes('Any') || 
-                     strategyRights.includes('Any IP right');
+          if (state.selectedRights.length > 0) {
+            filtered = filtered.filter(strategy => {
+              const strategyRights = strategy.right.split('; ');
+              return state.selectedRights.some(right =>
+                strategyRights.includes(right) ||
+                strategyRights.includes('Any') ||
+                strategyRights.includes('Any IP right')
+              );
             });
-          });
-        }
-        
-        // Filter by selected situations
-        if (state.selectedSituations.length > 0) {
-          filtered = filtered.filter(function(strategy) {
-            return state.selectedSituations.some(function(situation) {
-              return strategy.responseType.includes(situation);
-            });
-          });
-        }
-        
-        // Calculate scores and rank strategies
-        var ranked = filtered.map(function(strategy) {
-          var totalScore = 0;
-          var totalWeight = 0;
-          var matches = [];
-          var nonMatches = [];
-          
-          // Calculate match for each preference
-          function calculateMatch(preference, prefValue, strategyValue) {
-            if (prefValue === 0) return { score: 0, weight: 0 };
-            
-            var config = preferenceConfigs[preference];
-            var values = config.options.map(function(opt) { 
-              return Math.abs(opt.value); 
-            });
-            var maxValue = Math.max.apply(null, values);
-            
-            if (prefValue > 0) {
-              var expectedValue = (prefValue / maxValue) * 10;
-              var score = Math.max(0, 10 - Math.abs(expectedValue - strategyValue));
-              var weight = Math.abs(prefValue) / maxValue;
-              
-              return { score: score, weight: weight, isMatch: score > 5 };
-            } else {
-              var score = Math.max(0, 10 - strategyValue);
-              var weight = Math.abs(prefValue) / maxValue;
-              
-              return { score: score, weight: weight, isMatch: score > 5 };
+          }
+
+          if (state.selectedSituations.length > 0) {
+            filtered = filtered.filter(strategy =>
+              state.selectedSituations.some(situation =>
+                strategy.responseType.includes(situation)
+              )
+            );
+          }
+
+          state.filteredStrategies = filtered.map(strategy => {
+            let totalScore = 0;
+            let totalWeight = 0;
+
+            function calculateMatch(prefKey, userValue, strategyValue) {
+              if (userValue === 0) return { score: 0, weight: 0 };
+              const config = preferenceConfigs[prefKey];
+              const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
+              const weight = Math.abs(userValue) / max;
+              const expected = (userValue > 0 ? userValue / max * 10 : 0);
+              const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
+              return { score, weight };
             }
+
+            ['timeCommitment', 'investment', 'commercialAgreements', 'thirdPartyServices', 'legalAction'].forEach(key => {
+              const { score, weight } = calculateMatch(key, state.preferences[key], strategy.scores[key]);
+              totalScore += score * weight;
+              totalWeight += weight;
+            });
+
+            const matchScore = totalWeight > 0 ? (totalScore / (totalWeight * 10)) * 100 : 100;
+            return { ...strategy, matchScore };
+          }).sort((a, b) => b.matchScore - a.matchScore);
+        }
+
+        function render() {
+          localStorage.setItem('ipStrategyState', JSON.stringify({
+            accordions: state.accordions,
+            selectedRights: state.selectedRights,
+            selectedSituations: state.selectedSituations,
+            preferences: state.preferences,
+            otherFactors: state.otherFactors
+          }));
+          function renderActiveFilters() {
+            const filterContainer = document.createElement('div');
+            filterContainer.className = 'active-filters';
+
+            state.selectedRights.forEach(right => {
+              const pill = document.createElement('div');
+              pill.className = 'filter-pill';
+              pill.textContent = right;
+              const remove = document.createElement('span');
+              remove.className = 'filter-remove';
+              remove.textContent = '×';
+              remove.onclick = () => {
+                state.selectedRights = state.selectedRights.filter(r => r !== right);
+                filterAndRankStrategies();
+                render();
+              };
+              pill.appendChild(remove);
+              filterContainer.appendChild(pill);
+            });
+
+            state.selectedSituations.forEach(situation => {
+              const pill = document.createElement('div');
+              pill.className = 'filter-pill situation';
+              pill.textContent = situation;
+              const remove = document.createElement('span');
+              remove.className = 'filter-remove';
+              remove.textContent = '×';
+              remove.onclick = () => {
+                state.selectedSituations = state.selectedSituations.filter(s => s !== situation);
+                filterAndRankStrategies();
+                render();
+              };
+              pill.appendChild(remove);
+              filterContainer.appendChild(pill);
+            });
+
+            Object.entries(state.preferences).forEach(([key, value]) => {
+              if (value !== 0) {
+                const config = preferenceConfigs[key];
+                const opt = config.options.find(o => o.value === value);
+                const pill = document.createElement('div');
+                pill.className = 'filter-pill';
+                pill.textContent = `${config.label}: ${opt.label}`;
+                const remove = document.createElement('span');
+                remove.className = 'filter-remove';
+                remove.textContent = '×';
+                remove.onclick = () => {
+                  state.preferences[key] = 0;
+                  filterAndRankStrategies();
+                  render();
+                };
+                pill.appendChild(remove);
+                filterContainer.appendChild(pill);
+              }
+            });
+
+            Object.entries(state.otherFactors).forEach(([key, value]) => {
+              if (value !== 'neutral') {
+                const labelMap = {
+                  onlineMarkets: 'Online marketplaces',
+                  domainName: 'Domain name issues',
+                  importingGoods: 'Importing goods',
+                  identifyParty: 'Identify party'
+                };
+                const pill = document.createElement('div');
+                pill.className = 'filter-pill';
+                pill.textContent = `${labelMap[key]}: ${value}`;
+                const remove = document.createElement('span');
+                remove.className = 'filter-remove';
+                remove.textContent = '×';
+                remove.onclick = () => {
+                  state.otherFactors[key] = 'neutral';
+                  filterAndRankStrategies();
+                  render();
+                };
+                pill.appendChild(remove);
+                filterContainer.appendChild(pill);
+              }
+            });
+
+            return filterContainer;
           }
-          
-          // Calculate matches for each preference
-          var timeMatch = calculateMatch('timeCommitment', 
-            state.preferences.timeCommitment, 
-            strategy.scores.timeCommitment);
-          
-          var investMatch = calculateMatch('investment', 
-            state.preferences.investment, 
-            strategy.scores.investment);
-          
-          var agreementMatch = calculateMatch('commercialAgreements', 
-            state.preferences.commercialAgreements, 
-            strategy.scores.commercialAgreements);
-          
-          var serviceMatch = calculateMatch('thirdPartyServices', 
-            state.preferences.thirdPartyServices, 
-            strategy.scores.thirdPartyServices);
-          
-          var legalMatch = calculateMatch('legalAction', 
-            state.preferences.legalAction, 
-            strategy.scores.legalAction);
-          
-          // Add matches to lists
-          if (timeMatch.weight > 0) {
-            if (timeMatch.isMatch) matches.push('Time commitment');
-            else nonMatches.push('Time commitment');
-          }
-          
-          if (investMatch.weight > 0) {
-            if (investMatch.isMatch) matches.push('Investment level');
-            else nonMatches.push('Investment level');
-          }
-          
-          if (agreementMatch.weight > 0) {
-            if (agreementMatch.isMatch) matches.push('Commercial agreements');
-            else nonMatches.push('Commercial agreements');
-          }
-          
-          if (serviceMatch.weight > 0) {
-            if (serviceMatch.isMatch) matches.push('Third-party services');
-            else nonMatches.push('Third-party services');
-          }
-          
-          if (legalMatch.weight > 0) {
-            if (legalMatch.isMatch) matches.push('Legal action');
-            else nonMatches.push('Legal action');
-          }
-          
-          // Calculate weighted scores
-          totalScore += timeMatch.score * timeMatch.weight;
-          totalScore += investMatch.score * investMatch.weight;
-          totalScore += agreementMatch.score * agreementMatch.weight;
-          totalScore += serviceMatch.score * serviceMatch.weight;
-          totalScore += legalMatch.score * legalMatch.weight;
-          
-          totalWeight += timeMatch.weight;
-          totalWeight += investMatch.weight;
-          totalWeight += agreementMatch.weight;
-          totalWeight += serviceMatch.weight;
-          totalWeight += legalMatch.weight;
-          
-          // Calculate final match score
-          var matchScore = totalWeight > 0 
-            ? (totalScore / (totalWeight * 10)) * 100 
-            : 100;
-          
-          // Return the strategy with its score
-          return {
-            id: strategy.id,
-            overtitle: strategy.overtitle,
-            title: strategy.title,
-            description: strategy.description,
-            responseType: strategy.responseType,
-            right: strategy.right,
-            scores: strategy.scores,
-            matchScore: matchScore,
-            matches: matches,
-            nonMatches: nonMatches
+          const app = document.getElementById('app');
+          app.innerHTML = '';
+
+          const container = document.createElement('div');
+          container.className = 'grid';
+
+          const leftCol = document.createElement('div');
+          leftCol.appendChild(renderPreferencesAccordion());
+          leftCol.appendChild(renderOtherFactorsAccordion());
+          container.appendChild(leftCol);
+
+          const rightCol = document.createElement('div');
+          rightCol.appendChild(renderActiveFilters());
+          rightCol.appendChild(renderStrategyCards());
+          container.appendChild(rightCol);
+
+          app.appendChild(container);
+        }
+
+        function renderPreferencesAccordion() {
+          const wrapper = document.createElement('div');
+
+          const toggle = document.createElement('div');
+          toggle.className = 'accordion-header';
+          toggle.style.cursor = 'pointer';
+          toggle.style.transition = 'all 0.3s ease';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
+          toggle.onclick = () => {
+            state.accordions.preferences = !state.accordions.preferences;
+            render();
           };
-        });
-        
-        // Sort by match score (highest first)
-        ranked.sort(function(a, b) {
-          return b.matchScore - a.matchScore;
-        });
-        
-        state.filteredStrategies = ranked;
-      }
+          wrapper.appendChild(toggle);
 
-      // Helper functions
-      function getSituationLabel(situationId) {
-        var situation = situationOptions.find(function(opt) {
-          return opt.id === situationId;
-        });
-        return situation ? situation.label : situationId;
-      }
-      
-      function getRightColor(rightId) {
-        var right = ipRightsOptions.find(function(opt) {
-          return opt.id === rightId;
-        });
-        return right ? right.color : 'any';
-      }
-      
-      function getPreferenceText(preference, value) {
-        if (value === 0) return '';
-        
-        var config = preferenceConfigs[preference];
-        var option = config.options.find(function(opt) {
-          return opt.value === value;
-        });
-        
-        return option ? option.label : '';
-      }
-      
-      function getRelevancyLevel(score) {
-        if (score >= 90) return { level: 'very-high', text: 'Very High' };
-        if (score >= 75) return { level: 'high', text: 'High' };
-        if (score >= 50) return { level: 'medium', text: 'Medium' };
-        if (score >= 25) return { level: 'low', text: 'Low' };
-        return { level: 'very-low', text: 'Very Low' };
-      }
+          if (!state.accordions.preferences) return wrapper;
 
-      // Event handlers
-      function toggleAccordion(section) {
-        state.accordions[section] = !state.accordions[section];
-        render();
-      }
-      
-      function togglePreference(preference, value) {
-        if (state.preferences[preference] === value) {
-          state.preferences[preference] = 0;
-        } else {
-          state.preferences[preference] = value;
-        }
-        
-        filterAndRankStrategies();
-        render();
-      }
-      
-      function toggleFactor(factor, value) {
-        state.otherFactors[factor] = value;
-        
-        filterAndRankStrategies();
-        render();
-      }
-      
-      function removeRightFilter(rightId) {
-        state.selectedRights = state.selectedRights.filter(function(id) {
-          return id !== rightId;
-        });
-        
-        filterAndRankStrategies();
-        render();
-      }
-      
-      function removeSituationFilter(situationId) {
-        state.selectedSituations = state.selectedSituations.filter(function(id) {
-          return id !== situationId;
-        });
-        
-        filterAndRankStrategies();
-        render();
-      }
-      
-      function removePreferenceFilter(preference) {
-        state.preferences[preference] = 0;
-        
-        filterAndRankStrategies();
-        render();
-      }
+          const accordion = document.createElement('div');
+          accordion.className = 'accordion';
+          const accordion = document.createElement('div');
+          accordion.className = 'accordion';
 
-      // Rendering functions
-      function render() {
-        var appElement = document.getElementById('app');
-        appElement.innerHTML = '';
-        
-        if (state.loading) {
-          appElement.innerHTML = '<div class="text-center py-12"><div class="text-xl">Loading IP strategies...</div></div>';
-          return;
-        }
-        
-        var mainContainer = document.createElement('div');
-        
-        // Title
-        var title = document.createElement('h1');
-        title.className = 'page-title';
-        title.textContent = 'IP Strategy Finder';
-        mainContainer.appendChild(title);
-        
-        // Active filters
-        mainContainer.appendChild(renderFilterPills());
-        
-        // Main grid
-        var grid = document.createElement('div');
-        grid.className = 'grid';
-        
-        // Left column - User selections
-        var leftCol = document.createElement('div');
-        leftCol.appendChild(renderPreferencesAccordion());
-        leftCol.appendChild(renderOtherFactorsAccordion());
-        
-        // Right column - Results
-        var rightCol = document.createElement('div');
-        rightCol.appendChild(renderStrategies());
-        
-        grid.appendChild(leftCol);
-        grid.appendChild(rightCol);
-        mainContainer.appendChild(grid);
-        
-        appElement.appendChild(mainContainer);
-      }
-      
-      function renderFilterPills() {
-        var container = document.createElement('div');
-        container.className = 'active-filters';
-        
-        // Render selected rights pills
-        state.selectedRights.forEach(function(rightId) {
-          var pill = document.createElement('div');
-          pill.className = 'filter-pill right-' + getRightColor(rightId);
-          pill.onclick = function() { removeRightFilter(rightId); };
-          
-          var label = ipRightsOptions.find(function(opt) {
-            return opt.id === rightId;
-          });
-          pill.textContent = label ? label.label : rightId;
-          
-          var removeBtn = document.createElement('span');
-          removeBtn.className = 'filter-remove';
-          removeBtn.textContent = '×';
-          pill.appendChild(removeBtn);
-          
-          container.appendChild(pill);
-        });
-        
-        // Render selected situations pills
-        state.selectedSituations.forEach(function(situationId) {
-          var pill = document.createElement('div');
-          pill.className = 'filter-pill situation';
-          pill.onclick = function() { removeSituationFilter(situationId); };
-          
-          pill.textContent = getSituationLabel(situationId);
-          
-          var removeBtn = document.createElement('span');
-          removeBtn.className = 'filter-remove';
-          removeBtn.textContent = '×';
-          pill.appendChild(removeBtn);
-          
-          container.appendChild(pill);
-        });
-        
-        // Render preference pills
-        Object.entries(state.preferences).forEach(function([key, value]) {
-          if (value !== 0) {
-            var pill = document.createElement('div');
-            pill.className = 'filter-pill';
-            pill.onclick = function() { toggleFactor(key, 'neutral'); };
-            
-            var label = '';
-            if (key === 'onlineMarkets') label = 'Online marketplaces';
-            else if (key === 'domainName') label = 'Domain name issues';
-            else if (key === 'importingGoods') label = 'Importing goods';
-            else label = 'Identify party';
-            
-            var valueText = '';
-            if (value === 'yes') valueText = 'Yes';
-            else if (value === 'no') valueText = 'No';
-            else valueText = 'Unsure';
-            
-            pill.textContent = label + ': ' + valueText;
-            
-            var removeBtn = document.createElement('span');
-            removeBtn.className = 'filter-remove';
-            removeBtn.textContent = '×';
-            pill.appendChild(removeBtn);
-            
-            container.appendChild(pill);
-          }
-        });
-        
-        return container;
-      }
-      
-      function renderPreferencesAccordion() {
-        var accordion = document.createElement('div');
-        accordion.className = 'accordion mb-6';
-        
-        // Accordion header
-        var header = document.createElement('div');
-        header.className = 'accordion-header';
-        header.onclick = function() { toggleAccordion('preferences'); };
-        
-        var title = document.createElement('div');
-        title.className = 'accordion-title';
-        
-        var icon = document.createElement('span');
-        icon.className = 'accordion-icon';
-        icon.textContent = state.accordions.preferences ? '▲' : '▼';
-        title.appendChild(icon);
-        
-        var titleText = document.createTextNode('Your Preferences');
-        title.appendChild(titleText);
-        header.appendChild(title);
-        
-        var statusDiv = document.createElement('div');
-        var hasPreferences = Object.values(state.preferences).some(function(v) { return v !== 0; });
-        if (hasPreferences) {
-          var status = document.createElement('span');
-          status.style.fontSize = '14px';
-          status.style.color = '#667085';
-          status.textContent = 'Preferences set';
-          statusDiv.appendChild(status);
-        }
-        header.appendChild(statusDiv);
-        
-        accordion.appendChild(header);
-        
-        // Accordion content (only if open)
-        if (state.accordions.preferences) {
-          var content = document.createElement('div');
-          content.className = 'accordion-content';
-          
-          var description = document.createElement('p');
-          description.style.marginBottom = '16px';
-          description.textContent = 'The following are possible considerations which might be relevant:';
-          content.appendChild(description);
-          
-          // Render each preference group
-          Object.entries(preferenceConfigs).forEach(function([prefKey, config]) {
-            var group = document.createElement('div');
+          Object.entries(preferenceConfigs).forEach(([key, config]) => {
+            const group = document.createElement('div');
             group.className = 'preference-group';
-            
-            var label = document.createElement('label');
+
+            const label = document.createElement('label');
             label.className = 'preference-label';
             label.textContent = config.label;
             group.appendChild(label);
-            
-            var radioGroup = document.createElement('div');
+
+            const radioGroup = document.createElement('div');
             radioGroup.className = 'radio-group';
-            
-            // Render each option
-            config.options.forEach(function(option) {
-              var radio = document.createElement('label');
+            config.options.forEach(opt => {
+              const radio = document.createElement('label');
               radio.className = 'radio-button';
-              if (state.preferences[prefKey] === option.value) {
-                radio.className += ' radio-selected';
+              if (state.preferences[key] === opt.value) {
+                radio.classList.add('radio-selected');
               }
-              
-              radio.textContent = option.label;
-              radio.onclick = function() { togglePreference(prefKey, option.value); };
-              
+              radio.textContent = opt.label;
+              radio.onclick = () => {
+                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+                filterAndRankStrategies();
+                render();
+              };
               radioGroup.appendChild(radio);
             });
-            
             group.appendChild(radioGroup);
-            content.appendChild(group);
+            accordion.appendChild(group);
           });
-          
-          accordion.appendChild(content);
+
+          wrapper.appendChild(accordion);
+          return wrapper;
         }
-        
-        return accordion;
-      }
-      
-      function renderOtherFactorsAccordion() {
-        var accordion = document.createElement('div');
-        accordion.className = 'accordion mb-6';
-        
-        // Accordion header
-        var header = document.createElement('div');
-        header.className = 'accordion-header';
-        header.onclick = function() { toggleAccordion('otherFactors'); };
-        
-        var title = document.createElement('div');
-        title.className = 'accordion-title';
-        
-        var icon = document.createElement('span');
-        icon.className = 'accordion-icon';
-        icon.textContent = state.accordions.otherFactors ? '▲' : '▼';
-        title.appendChild(icon);
-        
-        var titleText = document.createTextNode('Other Factors');
-        title.appendChild(titleText);
-        header.appendChild(title);
-        
-        var statusDiv = document.createElement('div');
-        var hasFactors = Object.values(state.otherFactors).some(function(v) { return v !== 'neutral'; });
-        if (hasFactors) {
-          var status = document.createElement('span');
-          status.style.fontSize = '14px';
-          status.style.color = '#667085';
-          status.textContent = 'Factors selected';
-          statusDiv.appendChild(status);
-        }
-        header.appendChild(statusDiv);
-        
-        accordion.appendChild(header);
-        
-        // Accordion content (only if open)
-        if (state.accordions.otherFactors) {
-          var content = document.createElement('div');
-          content.className = 'accordion-content';
-          
-          var description = document.createElement('p');
-          description.style.marginBottom = '16px';
-          description.textContent = 'Does the issue involve:';
-          content.appendChild(description);
-          
-          // Render factor options
-          var factors = [
-            { key: 'onlineMarkets', label: 'Online market places or advertising' },
+
+        function renderOtherFactorsAccordion() {
+          const wrapper = document.createElement('div');
+
+          const toggle = document.createElement('div');
+          toggle.className = 'accordion-header';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
+          toggle.onclick = () => {
+            state.accordions.otherFactors = !state.accordions.otherFactors;
+            render();
+          };
+          wrapper.appendChild(toggle);
+
+          if (!state.accordions.otherFactors) return wrapper;
+
+          const factors = [
+            { key: 'onlineMarkets', label: 'Online marketplaces' },
             { key: 'domainName', label: 'Domain name issues' },
-            { key: 'importingGoods', label: 'Importing goods to Australia' },
-            { key: 'identifyParty', label: 'Difficulty identifying the other party?' }
+            { key: 'importingGoods', label: 'Importing goods' },
+            { key: 'identifyParty', label: 'Identify party' }
           ];
-          
-          factors.forEach(function(factor) {
-            var group = document.createElement('div');
+
+          factors.forEach(({ key, label }) => {
+            const group = document.createElement('div');
             group.className = 'preference-group';
-            group.style.marginBottom = '12px';
-            
-            var label = document.createElement('label');
-            label.className = 'preference-label';
-            label.textContent = factor.label;
-            group.appendChild(label);
-            
-            var radioGroup = document.createElement('div');
+
+            const groupLabel = document.createElement('label');
+            groupLabel.className = 'preference-label';
+            groupLabel.textContent = label;
+            group.appendChild(groupLabel);
+
+            const radioGroup = document.createElement('div');
             radioGroup.className = 'radio-group';
-            
-            // Yes option
-            var yesBtn = document.createElement('label');
-            yesBtn.className = 'radio-button';
-            if (state.otherFactors[factor.key] === 'yes') {
-              yesBtn.className += ' radio-selected';
-            }
-            yesBtn.textContent = 'Yes';
-            yesBtn.onclick = function() {
-              toggleFactor(factor.key, state.otherFactors[factor.key] === 'yes' ? 'neutral' : 'yes');
-            };
-            radioGroup.appendChild(yesBtn);
-            
-            // No option
-            var noBtn = document.createElement('label');
-            noBtn.className = 'radio-button';
-            if (state.otherFactors[factor.key] === 'no') {
-              noBtn.className += ' radio-selected';
-            }
-            noBtn.textContent = 'No';
-            noBtn.onclick = function() {
-              toggleFactor(factor.key, state.otherFactors[factor.key] === 'no' ? 'neutral' : 'no');
-            };
-            radioGroup.appendChild(noBtn);
-            
-            // Unsure option
-            var unsureBtn = document.createElement('label');
-            unsureBtn.className = 'radio-button';
-            if (state.otherFactors[factor.key] === 'unsure') {
-              unsureBtn.className += ' radio-selected';
-            }
-            unsureBtn.textContent = 'Unsure';
-            unsureBtn.onclick = function() {
-              toggleFactor(factor.key, state.otherFactors[factor.key] === 'unsure' ? 'neutral' : 'unsure');
-            };
-            radioGroup.appendChild(unsureBtn);
-            
+
+            ['yes', 'no', 'unsure'].forEach(option => {
+              const radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.otherFactors[key] === option) {
+                radio.classList.add('radio-selected');
+              }
+              radio.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+              radio.onclick = () => {
+                state.otherFactors[key] = state.otherFactors[key] === option ? 'neutral' : option;
+                filterAndRankStrategies();
+                render();
+              };
+              radioGroup.appendChild(radio);
+            });
+
             group.appendChild(radioGroup);
-            content.appendChild(group);
+            wrapper.appendChild(group);
           });
-          
-          accordion.appendChild(content);
+
+          return wrapper;
         }
-        
-        return accordion;
-      }
-      
-      function renderStrategies() {
-        var container = document.createElement('div');
-        container.className = 'card';
-        
-        var title = document.createElement('h2');
-        title.style.fontSize = '20px';
-        title.style.fontWeight = 'bold';
-        title.style.marginBottom = '16px';
-        title.style.color = 'var(--teal)';
-        
-        if (state.filteredStrategies.length > 0) {
-          title.textContent = 'Potential IP Strategies';
-        } else {
-          title.textContent = 'Select criteria to see potential strategies';
-        }
-        
-        container.appendChild(title);
-        
-        if (state.filteredStrategies.length === 0) {
-          var emptyState = document.createElement('div');
-          emptyState.className = 'empty-state';
-          
-          var message = document.createElement('p');
-          message.className = 'empty-message';
-          
-          if (state.selectedRights.length > 0 || state.selectedSituations.length > 0) {
-            message.textContent = 'No options match your current criteria. Try adjusting your selections.';
-          } else {
-            message.textContent = 'Select your IP rights and situation to see options to consider.';
-          }
-          
-          emptyState.appendChild(message);
-          container.appendChild(emptyState);
-        } else {
-          var strategyGrid = document.createElement('div');
-          strategyGrid.className = 'strategy-grid';
-          
-          state.filteredStrategies.forEach(function(strategy, index) {
-            var wrapper = document.createElement('div');
-            wrapper.className = 'strategy-wrapper';
-            
-            var card = document.createElement('div');
+
+        function renderStrategyCards() {
+          const list = document.createElement('div');
+          list.className = 'strategy-grid';
+
+          state.filteredStrategies.forEach(strategy => {
+            const card = document.createElement('div');
             card.className = 'strategy-card';
-            
-            // Get the right border color
-            var rights = strategy.right.split('; ');
-            var mainRight = rights[0];
-            card.className += ' border-' + getRightColor(mainRight);
-            
-            // Relevancy indicator
-            var relevancy = document.createElement('div');
-            relevancy.className = 'relevancy';
-            
-            var relevancyLabel = document.createElement('span');
-            relevancyLabel.className = 'relevancy-label';
-            relevancyLabel.textContent = 'Likely Applicability:';
-            relevancy.appendChild(relevancyLabel);
-            
-            var relevancyScore = getRelevancyLevel(strategy.matchScore);
-            var relevancyBadge = document.createElement('span');
-            relevancyBadge.className = 'relevancy-badge ' + relevancyScore.level;
-            relevancyBadge.textContent = relevancyScore.text;
-            relevancy.appendChild(relevancyBadge);
-            
-            card.appendChild(relevancy);
-            
-            // Strategy details
-            var overtitle = document.createElement('div');
-            overtitle.className = 'strategy-overtitle';
-            overtitle.textContent = strategy.overtitle;
-            card.appendChild(overtitle);
-            
-            var title = document.createElement('h3');
-            title.className = 'strategy-title';
-            title.textContent = strategy.title;
-            card.appendChild(title);
-            
-            var description = document.createElement('p');
-            description.className = 'strategy-description';
-            description.textContent = strategy.description;
-            card.appendChild(description);
-            
-            // Strategy metadata
-            var metadata = document.createElement('div');
-            metadata.className = 'strategy-metadata';
-            
-            // Time commitment
-            var timeRow = document.createElement('div');
-            timeRow.className = 'metadata-row';
-            
-            var timeLabel = document.createElement('span');
-            timeLabel.textContent = 'Time Commitment:';
-            timeRow.appendChild(timeLabel);
-            
-            var timeValue = document.createElement('span');
-            timeValue.className = 'tag';
-            
-            if (strategy.scores.timeCommitment <= 2) {
-              timeValue.textContent = 'Days';
-            } else if (strategy.scores.timeCommitment <= 4) {
-              timeValue.textContent = 'Weeks';
-            } else if (strategy.scores.timeCommitment <= 7) {
-              timeValue.textContent = '1-12 Months';
-            } else {
-              timeValue.textContent = '12+ Months';
-            }
-            
-            timeRow.appendChild(timeValue);
-            metadata.appendChild(timeRow);
-            
-            // Investment
-            var investRow = document.createElement('div');
-            investRow.className = 'metadata-row';
-            
-            var investLabel = document.createElement('span');
-            investLabel.textContent = 'Investment:';
-            investRow.appendChild(investLabel);
-            
-            var investValue = document.createElement('span');
-            investValue.className = 'tag';
-            
-            if (strategy.scores.investment <= 2) {
-              investValue.textContent = 'Under $1,000';
-            } else if (strategy.scores.investment <= 4) {
-              investValue.textContent = 'Under $5,000';
-            } else if (strategy.scores.investment <= 6) {
-              investValue.textContent = 'Under $10,000';
-            } else if (strategy.scores.investment <= 8) {
-              investValue.textContent = 'Under $25,000';
-            } else {
-              investValue.textContent = '$25,000+';
-            }
-            
-            investRow.appendChild(investValue);
-            metadata.appendChild(investRow);
-            
-            // IP Type
-            var ipRow = document.createElement('div');
-            ipRow.className = 'metadata-row';
-            
-            var ipLabel = document.createElement('span');
-            ipLabel.textContent = 'IP Type:';
-            ipRow.appendChild(ipLabel);
-            
-            var ipValue = document.createElement('span');
-            ipValue.className = 'tag';
-            ipValue.textContent = strategy.right;
-            ipRow.appendChild(ipValue);
-            metadata.appendChild(ipRow);
-            
-            card.appendChild(metadata);
-            wrapper.appendChild(card);
-            strategyGrid.appendChild(wrapper);
+            card.innerHTML = `
+              <div class="strategy-overtitle">${strategy.overtitle}</div>
+              <h3 class="strategy-title">${strategy.title}</h3>
+              <p class="strategy-description">${strategy.description}</p>
+              <div class="relevancy-badge">${Math.round(strategy.matchScore)}% match</div>
+            `;
+            list.appendChild(card);
           });
-          
-          container.appendChild(strategyGrid);
+
+          return list;
         }
-        
-        return container;
-      }
 
-      // Initialize the application
-      init();
-      
-      // Return public API
-      return {
-        init: init
-      };
-    }
-
-
-           document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', init);
       }
 
       IPStrategyFinder();
-    })
-    .catch(err => {
+    }).catch(err => {
       console.error('Error loading data:', err);
       document.getElementById('app').textContent = 'Failed to load data.';
     });
   </script>
 </body>
 </html>
-
-
-  
