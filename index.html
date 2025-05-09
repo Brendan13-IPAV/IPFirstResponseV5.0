@@ -347,24 +347,60 @@
           return wrapper;
         }
 
-        function renderStrategyCards() {
-          const list = document.createElement('div');
-          list.className = 'strategy-grid';
+    function renderStrategyCards() {
+  const list = document.createElement('div');
+  list.className = 'strategy-grid';
 
-          state.filteredStrategies.forEach(strategy => {
-            const card = document.createElement('div');
-            card.className = 'strategy-card';
-            card.innerHTML = `
-              <div class="strategy-overtitle">${strategy.overtitle}</div>
-              <h3 class="strategy-title">${strategy.title}</h3>
-              <p class="strategy-description">${strategy.description}</p>
-              <div class="relevancy-badge">${Math.round(strategy.matchScore)}% match</div>
-            `;
-            list.appendChild(card);
-          });
+  state.filteredStrategies.forEach(strategy => {
+    const card = document.createElement('div');
+    card.className = 'strategy-card';
 
-          return list;
-        }
+    // Get color class based on first IP right
+    const mainRight = strategy.right.split('; ')[0];
+    const rightColorClass = `border-${mainRight.toLowerCase().replace(/\s/g, '')}`;
+
+    // Relevancy class
+    let relevanceClass = '';
+    let relevanceLabel = '';
+    const score = strategy.matchScore;
+    if (score >= 90) { relevanceClass = 'very-high'; relevanceLabel = 'Very High'; }
+    else if (score >= 75) { relevanceClass = 'high'; relevanceLabel = 'High'; }
+    else if (score >= 50) { relevanceClass = 'medium'; relevanceLabel = 'Medium'; }
+    else if (score >= 25) { relevanceClass = 'low'; relevanceLabel = 'Low'; }
+    else { relevanceClass = 'very-low'; relevanceLabel = 'Very Low'; }
+
+    card.classList.add(`border-${mainRight.toLowerCase().replace(/\s/g, '')}`);
+
+    card.innerHTML = `
+      <div class="relevancy">
+        <span class="relevancy-label">Likely Applicability:</span>
+        <span class="relevancy-badge ${relevanceClass}">${relevanceLabel}</span>
+      </div>
+      <div class="strategy-overtitle">${strategy.overtitle}</div>
+      <h3 class="strategy-title">${strategy.title}</h3>
+      <p class="strategy-description">${strategy.description}</p>
+
+      <div class="strategy-metadata">
+        <div class="metadata-row">
+          <span>Time Commitment:</span>
+          <span class="tag">${getTagValue('timeCommitment', strategy.scores.timeCommitment)}</span>
+        </div>
+        <div class="metadata-row">
+          <span>Investment:</span>
+          <span class="tag">${getTagValue('investment', strategy.scores.investment)}</span>
+        </div>
+        <div class="metadata-row">
+          <span>IP Type:</span>
+          <span class="tag">${strategy.right}</span>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  return list;
+}
+
 
         return { init };
       }
