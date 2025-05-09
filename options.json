@@ -1,0 +1,32 @@
+[
+  {
+    "id": 7,
+    "overtitle": "Court - Trade Mark",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Escalate a wide range of trade mark matters to court",
+    "responseType": ["Enforcement", "Accused", "Professional"],
+    "right": "Trade mark",
+    "scores": {
+      "timeCommitment": 9,
+      "investment": 10,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 9,
+      "legalAction": 10
+    }
+  },
+  {
+    "id": 14,
+    "overtitle": "Letter of demand",
+    "title": "Demand the other party stops infringing",
+    "description": "Send a letter to the infringing party notifying them of potential infringement.",
+    "responseType": ["Enforcement", "Professional"],
+    "right": "Any",
+    "scores": {
+      "timeCommitment": 3,
+      "investment": 2,
+      "commercialAgreements": 4,
+      "thirdPartyServices": 5,
+      "legalAction": 3
+    }
+  }
+]
