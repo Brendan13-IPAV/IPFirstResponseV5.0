@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP Strategy Finder</title>
 
-  <!-- CSS now loaded separately -->
+  <!-- External CSS -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- (Optional) React if you're using it -->
+  <!-- Optional: React (only needed if you're using it) -->
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 </head>
@@ -35,15 +35,14 @@
     </div>
   </footer>
 
-  <!-- Main App Logic -->
+  <!-- Application Logic -->
   <script>
-    // Load data first
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
       fetch('preferences.json').then(res => res.json())
     ])
     .then(([strategiesData, preferenceConfigs]) => {
-      // Static UI options
+
       const ipRightsOptions = [
         { id: 'Patent', label: 'Patents', color: 'patent' },
         { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
@@ -59,6 +58,41 @@
         { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
         { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
       ];
+
+      function IPStrategyFinder() {
+        const state = {
+          loading: true,
+          strategies: strategiesData,
+          filteredStrategies: [],
+          accordions: { preferences: false, otherFactors: false },
+          selectedRights: ['Trade mark'],
+          selectedSituations: ['Enforcement'],
+          preferences: {
+            timeCommitment: 0,
+            investment: 0,
+            commercialAgreements: 0,
+            thirdPartyServices: 0,
+            legalAction: 0
+          },
+          otherFactors: {
+            onlineMarkets: 'neutral',
+            domainName: 'neutral',
+            importingGoods: 'neutral',
+            identifyParty: 'neutral'
+          }
+        };
+
+                // Your original functions like init(), filterAndRankStrategies(), render(), etc. go here.
+        // All uses of "strategiesData" and "preferenceConfigs" inside your logic will now just work
+        // because they're captured from the .then() scope
+
+        function init() {
+          state.loading = false;
+          filterAndRankStrategies();
+          render();
+        }
+
+        
 
     // Main application code
     function IPStrategyFinder() {
@@ -803,28 +837,19 @@
       };
     }
 
-    // Start the application when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      var app = IPStrategyFinder();
+
+           document.addEventListener('DOMContentLoaded', init);
+      }
+
+      IPStrategyFinder();
+    })
+    .catch(err => {
+      console.error('Error loading data:', err);
+      document.getElementById('app').textContent = 'Failed to load data.';
     });
   </script>
 </body>
-</html> = 'filter-pill';
-            pill.onclick = function() { removePreferenceFilter(key); };
-            
-            pill.textContent = preferenceConfigs[key].label + ': ' + getPreferenceText(key, value);
-            
-            var removeBtn = document.createElement('span');
-            removeBtn.className = 'filter-remove';
-            removeBtn.textContent = '×';
-            pill.appendChild(removeBtn);
-            
-            container.appendChild(pill);
-          }
-        });
-        
-        // Render other factors pills
-        Object.entries(state.otherFactors).forEach(function([key, value]) {
-          if (value !== 'neutral') {
-            var pill = document.createElement('div');
-            pill.className
+</html>
+
+
+  
