@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP Strategy Finder</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <!-- Load React and ReactDOM first -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+  <!-- Load Babel for JSX transpilation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.18.12/babel.min.js"></script>
   <style>
     /* Base styles */
     body {
@@ -413,7 +415,101 @@
     </div>
   </footer>
 
-  <script type="text/babel">
+  <script type="text/babel" data-type="module">
+    // Sample strategy data
+    const strategiesData = [
+      {
+        id: 4,
+        overtitle: "Trade mark opposition",
+        title: "Challenge the registration of a trade mark",
+        description: "Initiate a trade mark opposition process against a new trademark with IP Australia",
+        responseType: ["Enforcement", "Professional"],
+        right: "Trade mark",
+        scores: {
+          timeCommitment: 6,
+          investment: 6,
+          commercialAgreements: 2,
+          thirdPartyServices: 7,
+          legalAction: 7
+        }
+      },
+      {
+        id: 7,
+        overtitle: "Court - Trade Mark",
+        title: "Seek binding, authoritative decisions",
+        description: "Escalate a wide range of trade mark matters to court",
+        responseType: ["Enforcement", "Accused", "Professional"],
+        right: "Trade mark",
+        scores: {
+          timeCommitment: 9,
+          investment: 10,
+          commercialAgreements: 4,
+          thirdPartyServices: 9,
+          legalAction: 10
+        }
+      },
+      {
+        id: 14,
+        overtitle: "Letter of demand",
+        title: "Demand the other party stops infringing",
+        description: "Send a letter to the infringing party notifying them of potential infringement.",
+        responseType: ["Enforcement", "Professional"],
+        right: "Any",
+        scores: {
+          timeCommitment: 3,
+          investment: 2,
+          commercialAgreements: 4,
+          thirdPartyServices: 5,
+          legalAction: 3
+        }
+      },
+      {
+        id: 18,
+        overtitle: "Takedown request",
+        title: "Stop infringement facilitated online",
+        description: "Request infringing material is removed from online marketplaces and platforms.",
+        responseType: ["Enforcement"],
+        right: "Trade mark; Copyright",
+        scores: {
+          timeCommitment: 3,
+          investment: 2,
+          commercialAgreements: 2,
+          thirdPartyServices: 3,
+          legalAction: 2
+        }
+      },
+      {
+        id: 26,
+        overtitle: "Domain Name Dispute (auDRP)",
+        title: "Dispute a domain name that infringes your trade mark",
+        description: "Dispute an .au domain name that may infringe an IP right",
+        responseType: ["Enforcement", "Professional"],
+        right: "Trade mark",
+        scores: {
+          timeCommitment: 5,
+          investment: 6,
+          commercialAgreements: 3,
+          thirdPartyServices: 7,
+          legalAction: 6
+        }
+      },
+      {
+        id: 28,
+        overtitle: "Apply for a trade mark",
+        title: "Register your trade mark",
+        description: "Strengthen your position as the registered owner of your trade mark in Australia",
+        responseType: ["Proactive", "Enforcement", "Professional"],
+        right: "Trade mark",
+        scores: {
+          timeCommitment: 4,
+          investment: 5,
+          commercialAgreements: 5,
+          thirdPartyServices: 6,
+          legalAction: 2
+        }
+      }
+    ];
+    
     const IPStrategyFinder = () => {
       // State for app data
       const [strategies, setStrategies] = React.useState([]);
@@ -517,100 +613,7 @@
       
       // Initialize data
       React.useEffect(() => {
-        // Load strategies from the JSON data
-        const strategiesData = [
-          {
-            id: 4,
-            overtitle: "Trade mark opposition",
-            title: "Challenge the registration of a trade mark",
-            description: "Initiate a trade mark opposition process against a new trademark with IP Australia",
-            responseType: ["Enforcement", "Professional"],
-            right: "Trade mark",
-            scores: {
-              timeCommitment: 6,
-              investment: 6,
-              commercialAgreements: 2,
-              thirdPartyServices: 7,
-              legalAction: 7
-            }
-          },
-          {
-            id: 7,
-            overtitle: "Court - Trade Mark",
-            title: "Seek binding, authoritative decisions",
-            description: "Escalate a wide range of trade mark matters to court",
-            responseType: ["Enforcement", "Accused", "Professional"],
-            right: "Trade mark",
-            scores: {
-              timeCommitment: 9,
-              investment: 10,
-              commercialAgreements: 4,
-              thirdPartyServices: 9,
-              legalAction: 10
-            }
-          },
-          {
-            id: 14,
-            overtitle: "Letter of demand",
-            title: "Demand the other party stops infringing",
-            description: "Send a letter to the infringing party notifying them of potential infringement.",
-            responseType: ["Enforcement", "Professional"],
-            right: "Any",
-            scores: {
-              timeCommitment: 3,
-              investment: 2,
-              commercialAgreements: 4,
-              thirdPartyServices: 5,
-              legalAction: 3
-            }
-          },
-          {
-            id: 18,
-            overtitle: "Takedown request",
-            title: "Stop infringement facilitated online",
-            description: "Request infringing material is removed from online marketplaces and platforms.",
-            responseType: ["Enforcement"],
-            right: "Trade mark; Copyright",
-            scores: {
-              timeCommitment: 3,
-              investment: 2,
-              commercialAgreements: 2,
-              thirdPartyServices: 3,
-              legalAction: 2
-            }
-          },
-          {
-            id: 26,
-            overtitle: "Domain Name Dispute (auDRP)",
-            title: "Dispute a domain name that infringes your trade mark",
-            description: "Dispute an .au domain name that may infringe an IP right",
-            responseType: ["Enforcement", "Professional"],
-            right: "Trade mark",
-            scores: {
-              timeCommitment: 5,
-              investment: 6,
-              commercialAgreements: 3,
-              thirdPartyServices: 7,
-              legalAction: 6
-            }
-          },
-          {
-            id: 28,
-            overtitle: "Apply for a trade mark",
-            title: "Register your trade mark",
-            description: "Strengthen your position as the registered owner of your trade mark in Australia",
-            responseType: ["Proactive", "Enforcement", "Professional"],
-            right: "Trade mark",
-            scores: {
-              timeCommitment: 4,
-              investment: 5,
-              commercialAgreements: 5,
-              thirdPartyServices: 6,
-              legalAction: 2
-            }
-          }
-        ];
-        
+        // Use the pre-defined data
         setStrategies(strategiesData);
         setLoading(false);
       }, []);
@@ -897,7 +900,8 @@
         );
       }
 
-      return(
+      // Render main component
+      return (
         <div>
           <h1 className="text-3xl font-bold mb-6" style={{ color: 'var(--teal)' }}>IP Strategy Finder</h1>
           
@@ -1218,8 +1222,6 @@
                             <div className="text-sm text-gray-500 mb-1">{strategy.overtitle}</div>
                             <h3 className="text-lg font-semibold mb-2">{strategy.title}</h3>
                             <p className="text-gray-700 mb-4">{strategy.description}</p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                            </div>
                             
                             {/* Time commitment, investment, and IP type info */}
                             <div style={{ fontSize: '11px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
