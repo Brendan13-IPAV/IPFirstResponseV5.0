@@ -441,47 +441,47 @@
   font-weight: 500;
 }
 
-/* IP Type pill colors */
+/* IP Type pill colors - updated to maintain pill appearance */
 .primary-filter-pill.right-trademark {
-  background-color: rgba(222, 67, 38, 0.2);
-  border: 2px solid var(--trademark-color);
+  background-color: rgba(222, 67, 38, 0.1);
+  border-color: var(--trademark-color);
   color: var(--trademark-color);
 }
 
 .primary-filter-pill.right-patent {
-  background-color: rgba(29, 167, 175, 0.2);
-  border: 2px solid var(--patent-color);
+  background-color: rgba(29, 167, 175, 0.1);
+  border-color: var(--patent-color);
   color: var(--patent-color);
 }
 
 .primary-filter-pill.right-design {
-  background-color: rgba(132, 201, 143, 0.2);
-  border: 2px solid var(--design-color);
+  background-color: rgba(132, 201, 143, 0.1);
+  border-color: var(--design-color);
   color: var(--design-color);
 }
 
 .primary-filter-pill.right-pbr {
-  background-color: rgba(241, 172, 30, 0.2);
-  border: 2px solid var(--pbr-color);
+  background-color: rgba(241, 172, 30, 0.1);
+  border-color: var(--pbr-color);
   color: var(--pbr-color);
 }
 
 .primary-filter-pill.right-copyright {
-  background-color: rgba(120, 122, 187, 0.2);
-  border: 2px solid var(--copyright-color);
+  background-color: rgba(120, 122, 187, 0.1);
+  border-color: var(--copyright-color);
   color: var(--copyright-color);
 }
 
 .primary-filter-pill.right-any {
-  background-color: rgba(102, 112, 133, 0.2);
-  border: 2px solid var(--any-color);
+  background-color: rgba(102, 112, 133, 0.1);
+  border-color: var(--any-color);
   color: var(--any-color);
 }
 
 /* Situation pill */
 .primary-filter-pill.situation {
-  background-color: rgba(85, 171, 201, 0.2);
-  border: 2px solid var(--teal);
+  background-color: rgba(85, 171, 201, 0.1);
+  border-color: var(--teal);
   color: var(--teal);
 }
 
