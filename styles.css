@@ -399,4 +399,28 @@
   transform: translateY(35%);
 }
 
+/* Add these below your existing relevancy badge classes */
+.border-very-high {
+  border-left: 3px solid rgba(34, 197, 94, 1);
+}
+
+.border-high {
+  border-left: 3px solid rgba(34, 197, 94, 0.8);
+}
+
+.border-medium {
+  border-left: 3px solid rgba(34, 197, 94, 0.6);
+}
+
+.border-low {
+  border-left: 3px solid rgba(34, 197, 94, 0.4);
+}
+
+.border-very-low {
+  border-left: 3px solid rgba(34, 197, 94, 0.2);
+}
+
+.border-unknown {
+  border-left: 3px solid #d1d5db;
+}
 
