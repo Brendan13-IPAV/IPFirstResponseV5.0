@@ -217,49 +217,50 @@
         }
 
         // Render Commercial Agreements and Legal Action outside accordion
-        function renderTopPreferences() {
-          const topPrefs = document.createElement('div');
-          topPrefs.className = 'top-preferences';
-          topPrefs.style.marginBottom = '20px';
-          
-          // Add key preferences outside accordion
-          const keysToInclude = ['commercialAgreements', 'legalAction'];
-          
-          keysToInclude.forEach(key => {
-            const config = preferenceConfigs[key];
-            
-            const group = document.createElement('div');
-            group.className = 'preference-group';
+function renderTopPreferences() {
+  const topPrefs = document.createElement('div');
+  topPrefs.className = 'top-preferences';
+  topPrefs.style.marginBottom = '20px';
+  
+  // Add key preferences outside accordion
+  const keysToInclude = ['commercialAgreements', 'legalAction'];
+  
+  keysToInclude.forEach(key => {
+    const config = preferenceConfigs.filters[key]; // Use the nested structure
+    
+    const group = document.createElement('div');
+    group.className = 'preference-group';
 
-            const label = document.createElement('label');
-            label.className = 'preference-label';
-            label.textContent = config.label;
-            group.appendChild(label);
+    const label = document.createElement('label');
+    label.className = 'preference-label';
+    label.textContent = config.label;
+    group.appendChild(label);
 
-            const radioGroup = document.createElement('div');
-            radioGroup.className = 'radio-group';
-            
-            config.options.forEach(opt => {
-              const radio = document.createElement('label');
-              radio.className = 'radio-button';
-              if (state.preferences[key] === opt.value) {
-                radio.classList.add('radio-selected');
-              }
-              radio.textContent = opt.label;
-              radio.onclick = () => {
-                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-                filterAndRankStrategies();
-                render();
-              };
-              radioGroup.appendChild(radio);
-            });
-            
-            group.appendChild(radioGroup);
-            topPrefs.appendChild(group);
-          });
-          
-          return topPrefs;
-        }
+    const radioGroup = document.createElement('div');
+    radioGroup.className = 'radio-group';
+    
+    config.options.forEach(opt => {
+      const radio = document.createElement('label');
+      radio.className = 'radio-button';
+      if (state.preferences[key] === opt.value) {
+        radio.classList.add('radio-selected');
+      }
+      radio.textContent = opt.label;
+      radio.onclick = () => {
+        state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+        filterAndRankStrategies();
+        render();
+      };
+      radioGroup.appendChild(radio);
+    });
+    
+    group.appendChild(radioGroup);
+    topPrefs.appendChild(group);
+  });
+  
+  return topPrefs;
+}
+        
 
                     // Replace the existing renderActiveFilters function with this improved version
 function renderActiveFilters() {
@@ -807,15 +808,15 @@ function filterAndRankStrategies() {
     let totalScore = 0;
     let totalWeight = 0;
 
-    function calculateMatch(prefKey, userValue, strategyValue) {
-      if (userValue === 0) return { score: 0, weight: 0 };
-      const config = preferenceConfigs.filters[prefKey];
-      const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
-      const weight = Math.abs(userValue) / max;
-      const expected = (userValue > 0 ? userValue / max * 10 : 0);
-      const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
-      return { score, weight };
-    }
+  function calculateMatch(prefKey, userValue, strategyValue) {
+    if (userValue === 0) return { score: 0, weight: 0 };
+    const config = preferenceConfigs.filters[prefKey]; // Use the nested structure
+    const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
+    const weight = Math.abs(userValue) / max;
+    const expected = (userValue > 0 ? userValue / max * 10 : 0);
+    const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
+    return { score, weight };
+  }
 
     ['timeCommitment', 'investment', 'commercialAgreements', 'thirdPartyServices', 'legalAction'].forEach(key => {
       const { score, weight } = calculateMatch(key, state.preferences[key], strategy.scores[key]);
@@ -828,118 +829,66 @@ function filterAndRankStrategies() {
   }).sort((a, b) => b.matchScore - a.matchScore);
 }
 
-        function renderPreferencesAccordion() {
-          const wrapper = document.createElement('div');
+                  function renderPreferencesAccordion() {
+  const wrapper = document.createElement('div');
 
-          const toggle = document.createElement('div');
-          toggle.className = 'accordion-header';
-          toggle.style.cursor = 'pointer';
-          toggle.style.transition = 'all 0.3s ease';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
-          toggle.onclick = () => {
-            state.accordions.preferences = !state.accordions.preferences;
-            render();
-          };
-          wrapper.appendChild(toggle);
+  const toggle = document.createElement('div');
+  toggle.className = 'accordion-header';
+  toggle.style.cursor = 'pointer';
+  toggle.style.transition = 'all 0.3s ease';
+  toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
+  toggle.onclick = () => {
+    state.accordions.preferences = !state.accordions.preferences;
+    render();
+  };
+  wrapper.appendChild(toggle);
 
-          if (!state.accordions.preferences) return wrapper;
+  if (!state.accordions.preferences) return wrapper;
 
-          const accordion = document.createElement('div');
-          accordion.className = 'accordion';
+  const accordion = document.createElement('div');
+  accordion.className = 'accordion';
 
-          // Only show preferences that aren't already shown in top section
-          const keysToSkip = ['commercialAgreements', 'legalAction'];
-          
-          Object.entries(preferenceConfigs).forEach(([key, config]) => {
-            // Skip keys that are already shown in the top section
-            if (keysToSkip.includes(key)) return;
-            
-            const group = document.createElement('div');
-            group.className = 'preference-group';
+  // Only show preferences that aren't already shown in top section
+  const keysToSkip = ['commercialAgreements', 'legalAction'];
+  
+  // Iterate through the filters in the new structure
+  Object.entries(preferenceConfigs.filters).forEach(([key, config]) => {
+    // Skip keys that are already shown in the top section
+    if (keysToSkip.includes(key)) return;
+    
+    const group = document.createElement('div');
+    group.className = 'preference-group';
 
-            const label = document.createElement('label');
-            label.className = 'preference-label';
-            label.textContent = config.label;
-            group.appendChild(label);
+    const label = document.createElement('label');
+    label.className = 'preference-label';
+    label.textContent = config.label;
+    group.appendChild(label);
 
-            const radioGroup = document.createElement('div');
-            radioGroup.className = 'radio-group';
-            config.options.forEach(opt => {
-              const radio = document.createElement('label');
-              radio.className = 'radio-button';
-              if (state.preferences[key] === opt.value) {
-                radio.classList.add('radio-selected');
-              }
-              radio.textContent = opt.label;
-              radio.onclick = () => {
-                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-                filterAndRankStrategies();
-                render();
-              };
-              radioGroup.appendChild(radio);
-            });
-            group.appendChild(radioGroup);
-            accordion.appendChild(group);
-          });
+    const radioGroup = document.createElement('div');
+    radioGroup.className = 'radio-group';
+    config.options.forEach(opt => {
+      const radio = document.createElement('label');
+      radio.className = 'radio-button';
+      if (state.preferences[key] === opt.value) {
+        radio.classList.add('radio-selected');
+      }
+      radio.textContent = opt.label;
+      radio.onclick = () => {
+        state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+        filterAndRankStrategies();
+        render();
+      };
+      radioGroup.appendChild(radio);
+    });
+    group.appendChild(radioGroup);
+    accordion.appendChild(group);
+  });
 
-          wrapper.appendChild(accordion);
-          return wrapper;
-        }
+  wrapper.appendChild(accordion);
+  return wrapper;
+}
 
-        function renderOtherFactorsAccordion() {
-          const wrapper = document.createElement('div');
 
-          const toggle = document.createElement('div');
-          toggle.className = 'accordion-header';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
-          toggle.onclick = () => {
-            state.accordions.otherFactors = !state.accordions.otherFactors;
-            render();
-          };
-          wrapper.appendChild(toggle);
-
-          if (!state.accordions.otherFactors) return wrapper;
-
-          const factors = [
-            { key: 'onlineMarkets', label: 'Online marketplaces' },
-            { key: 'domainName', label: 'Domain name issues' },
-            { key: 'importingGoods', label: 'Importing goods' },
-            { key: 'identifyParty', label: 'Identify party' }
-          ];
-
-          factors.forEach(({ key, label }) => {
-            const group = document.createElement('div');
-            group.className = 'preference-group';
-
-            const groupLabel = document.createElement('label');
-            groupLabel.className = 'preference-label';
-            groupLabel.textContent = label;
-            group.appendChild(groupLabel);
-
-            const radioGroup = document.createElement('div');
-            radioGroup.className = 'radio-group';
-
-            ['yes', 'no', 'unsure'].forEach(option => {
-              const radio = document.createElement('label');
-              radio.className = 'radio-button';
-              if (state.otherFactors[key] === option) {
-                radio.classList.add('radio-selected');
-              }
-              radio.textContent = option.charAt(0).toUpperCase() + option.slice(1);
-              radio.onclick = () => {
-                state.otherFactors[key] = state.otherFactors[key] === option ? 'neutral' : option;
-                filterAndRankStrategies();
-                render();
-              };
-              radioGroup.appendChild(radio);
-            });
-
-            group.appendChild(radioGroup);
-            wrapper.appendChild(group);
-          });
-
-          return wrapper;
-        }
 
         function renderStrategyCards() {
           const list = document.createElement('div');
