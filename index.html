@@ -1,378 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Options</title>
-    <style>
-        :root {
-            --dark-blue: #1D2939;
-            --teal: #55ABC9;
-            --light-mint: #F6FAFC;
-            --border-color: #E4E7EC;
-            --text-primary: #1D2939;
-            --text-secondary: #667085;
-            --highlight: #787ABB;
-            
-            /* IP Rights Colors */
-            --patents-color: #1DA7AF;
-            --trademarks-color: #DE4326;
-            --designs-color: #84C98F;
-            --pbr-color: #F1AC1E;
-            --copyright-color: #787ABB;
-            --any-color: #667085;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP First Response 2.0</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-primary);
-            background-color: var(--light-mint);
-            line-height: 1.5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header {
-            background-color: var(--dark-blue);
-            color: white;
-            padding: 15px 0;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .main-content {
-            padding: 40px 0;
-        }
-
-        .title-section {
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--teal);
-        }
-
-        h2 {
-            font-size: 22px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            margin-top: 30px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1);
-            padding: 24px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--teal);
-        }
-
-        .option-group {
-            margin-bottom: 30px;
-        }
-
-        .options-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        .option-btn {
-            background-color: white;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 12px 18px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 5px;
-            min-width: 150px;
-            user-select: none;
-        }
-
-        .option-btn:active {
-            transform: scale(0.98);
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .option-btn:hover {
-            background-color: #F9FAFB;
-        }
-
-        .option-btn.selected {
-            background-color: var(--teal);
-            color: white;
-            border-color: var(--teal);
-        }
-
-        /* IP Rights specific colors */
-        .option-btn[data-type="patents"].selected {
-            background-color: var(--patents-color);
-            border-color: var(--patents-color);
-        }
-
-        .option-btn[data-type="trademarks"].selected {
-            background-color: var(--trademarks-color);
-            border-color: var(--trademarks-color);
-        }
-
-        .option-btn[data-type="designs"].selected {
-            background-color: var(--designs-color);
-            border-color: var(--designs-color);
-        }
-
-        .option-btn[data-type="pbr"].selected {
-            background-color: var(--pbr-color);
-            border-color: var(--pbr-color);
-        }
-
-        .option-btn[data-type="copyright"].selected {
-            background-color: var(--copyright-color);
-            border-color: var(--copyright-color);
-        }
-
-        .option-btn[data-type="any"].selected {
-            background-color: var(--any-color);
-            border-color: var(--any-color);
-        }
-        
-        .option-btn[data-type="unregistered-tm"].selected {
-            background-color: #DE4326; /* Same as trademarks */
-            border-color: #DE4326;
-            opacity: 0.8; /* Slightly different to indicate unregistered */
-        }
-        
-        .option-btn[data-type="uncertain"].selected {
-            background-color: #A0A0A0;
-            border-color: #A0A0A0;
-        }
-        
-        h3 {
-            margin-top: 25px;
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text-primary);
-            text-align: center;
-        }
-        
-        .infringement-101 {
-            background-color: #F8F9FA;
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--teal);
-            padding: 15px;
-            border-radius: 6px;
-            margin: 25px 0;
-            text-align: center;
-        }
-        
-        .infringement-101-link {
-            color: var(--teal);
-            text-decoration: underline;
-            font-weight: 500;
-        }
-
-        .option-checkbox {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .btn-primary {
-            background-color: var(--teal);
-            color: white;
-            padding: 16px 24px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
-            font-size: 18px;
-            width: 100%;
-            max-width: 400px;
-            margin: 40px auto;
-            display: block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .btn-primary:hover {
-            background-color: #4799B5;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-        }
-
-        .btn-primary:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 768px) {
-            .options-container {
-                flex-direction: column;
-            }
-            
-            .option-btn {
-                width: 100%;
-            }
-        }
-    </style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">IP Options Finder</div>
-            </div>
-        </div>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">IP First Response 2.0</div>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="#">About</a>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <div class="main-content">
-        <div class="container">
-            <div class="title-section">
-                <h1>I believe my IP rights have been infringed</h1>
-                <p><strong>If you suspect that your IP rights have been infringed, this navigator tool (currently in pilot stage) is designed to provide clear and accessible information, giving you the confidence to take the next step.</strong></p>
-                
-                <p>IP First Response uses a flexible set of filters to help you explore your options. With over 60 possible pathways, you can apply as many or as few filters as you like—none are required. As you adjust the filters, the system organises and highlights the options most likely to be applicable to your situation.</p>
-                
-                <p>IP First Response provides you with details about the considerations involved with the different pathways you could choose to pursue – but the decision on what best suits your situation remains yours. Please note that IP rights can be complex and nuanced, so there will not be one clear option, but several to consider and maybe even use in combination.</p>
-                
-                <p><strong>This tool does not provide professional advice</strong></p>
-                
-                <p>This IP First Response website has been designed to help IP rights holders navigate IP infringement and enforcement by making it visible, accessible, and to provide information about the factors involved in pursuing different options. It does not provide legal, business or other professional advice, and none of the content should be regarded as recommending a specific course of action.</p>
-            </div>
+  <div class="container main-content">
+    <div id="app">Loading... Please wait while we prepare your options</div>
+  </div>
 
-            <div class="card">
-                <form id="ip-options-form">
-                    <div class="option-group">
-                        <h2>Select the IP rights you're concerned about:</h2>
-                        
-                        <h3>Registered Rights</h3>
-                        <div class="options-container">
-                            <label class="option-btn" data-type="trademarks">
-                                <input type="checkbox" name="ip-rights" value="trademarks" class="option-checkbox">
-                                Trade marks
-                            </label>
-                            <label class="option-btn" data-type="patents">
-                                <input type="checkbox" name="ip-rights" value="patents" class="option-checkbox">
-                                Patents
-                            </label>
-                            <label class="option-btn" data-type="designs">
-                                <input type="checkbox" name="ip-rights" value="designs" class="option-checkbox">
-                                Design rights
-                            </label>
-                            <label class="option-btn" data-type="pbr">
-                                <input type="checkbox" name="ip-rights" value="pbr" class="option-checkbox">
-                                Plant breeder's rights
-                            </label>
-                        </div>
-                        
-                        <h3>Other Rights</h3>
-                        <div class="options-container">
-                            <label class="option-btn" data-type="copyright">
-                                <input type="checkbox" name="ip-rights" value="copyright" class="option-checkbox">
-                                Copyright
-                            </label>
-                            <label class="option-btn" data-type="unregistered-tm">
-                                <input type="checkbox" name="ip-rights" value="unregistered-tm" class="option-checkbox">
-                                Unregistered trade mark
-                            </label>
-                            <label class="option-btn" data-type="any">
-                                <input type="checkbox" name="ip-rights" value="any" class="option-checkbox">
-                                Other rights
-                            </label>
-                            <label class="option-btn" data-type="uncertain">
-                                <input type="checkbox" name="ip-rights" value="uncertain" class="option-checkbox">
-                                Uncertain
-                            </label>
-                        </div>
-                        
-                        <div id="infringement-101-container" class="infringement-101" style="display: none;">
-                            <p>We recommend you check out our <a href="#" class="infringement-101-link">Infringement 101</a> section before proceeding</p>
-                        </div>
-
-                    </div>
-
-                    <button type="button" id="see-options-btn" class="btn-primary">See applicable options</button>
-                </form>
-            </div>
-        </div>
+  <footer class="footer">
+    <div class="container">
+      <p style="text-align: center; font-size: 14px;">&copy; 2025 IP Strategy Finder</p>
     </div>
+  </footer>
 
-    <script>
-        // Handle option button selection for checkboxes (multi-select)
-        document.querySelectorAll('.option-btn').forEach(button => {
-            // Make the entire button clickable
-            button.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default checkbox behavior
-                
-                // Toggle the selected class on the clicked button
-                this.classList.toggle('selected');
-                
-                // Also toggle the checkbox
-                const checkbox = this.querySelector('.option-checkbox');
-                checkbox.checked = !checkbox.checked;
-                
-                // Check if "Uncertain" is selected
-                checkUncertainSelected();
-            });
-            
-            // Also handle the actual checkbox clicks
-            const checkbox = button.querySelector('.option-checkbox');
-            checkbox.addEventListener('change', function(e) {
-                e.stopPropagation(); // Stop event from bubbling
-                // Toggle the selected class based on checkbox state
-                if (this.checked) {
-                    button.classList.add('selected');
-                } else {
-                    button.classList.remove('selected');
-                }
-                
-                // Check if "Uncertain" is selected
-                checkUncertainSelected();
-            });
-        });
+  <script>
+    Promise.all([
+      fetch('strategies.json').then(res => res.json()),
+      fetch('preferences.json').then(res => res.json())
+    ]).then(([strategiesData, preferenceConfigs]) => {
+
+      const ipRightsOptions = [
+        { id: 'Patent', label: 'Patents', color: 'patent' },
+        { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
+        { id: 'Design', label: 'Design rights', color: 'design' },
+        { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
+        { id: 'Copyright', label: 'Copyright', color: 'copyright' },
+        { id: 'Any', label: 'Any IP right', color: 'any' }
+      ];
+
+      const situationOptions = [
+        { id: 'Accused', label: 'I\'ve been accused of infringing' },
+        { id: 'Enforcement', label: 'I believe my IP has been infringed' },
+        { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
+        { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
+      ];
+
+      function IPStrategyFinder() {
+        // Get only the primary filters from localStorage (rights and situations)
+        const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
         
-        // Function to check if "Uncertain" is selected and show/hide infringement-101
-        function checkUncertainSelected() {
-            const uncertainCheckbox = document.querySelector('input[value="uncertain"]');
-            const infringement101Container = document.getElementById('infringement-101-container');
-            
-            if (uncertainCheckbox && uncertainCheckbox.checked) {
-                infringement101Container.style.display = 'block';
-            } else {
-                infringement101Container.style.display = 'none';
-            }
+        const state = {
+          loading: true,
+          strategies: strategiesData,
+          filteredStrategies: [],
+          accordions: savedState.accordions || { preferences: true, otherFactors: true },
+          selectedRights: savedState.selectedRights || ['Trade mark'],
+          selectedSituations: savedState.selectedSituations || ['Enforcement'],
+          // Don't load preferences and otherFactors from localStorage - always start fresh
+          preferences: {
+            timeCommitment: 0,
+            investment: 0,
+            commercialAgreements: 0,
+            thirdPartyServices: 0,
+            legalAction: 0
+          },
+          otherFactors: {
+            onlineMarkets: 'neutral',
+            domainName: 'neutral',
+            importingGoods: 'neutral',
+            identifyParty: 'neutral'
+          }
+        };
+
+        function init() {
+          state.loading = false;
+          filterAndRankStrategies();
+          render();
         }
 
-        // Handle the see options button click
-        document.getElementById('see-options-btn').addEventListener('click', function() {
-            window.location.href = 'strategies.html';
-        });
-    </script>
+        function filterAndRankStrategies() {
+          let filtered = state.strategies.slice();
+
+          if (state.selectedRights.length > 0) {
+            filtered = filtered.filter(strategy => {
+              const strategyRights = strategy.right.split('; ');
+              return state.selectedRights.some(right =>
+                strategyRights.includes(right) ||
+                strategyRights.includes('Any') ||
+                strategyRights.includes('Any IP right')
+              );
+            });
+          }
+
+          if (state.selectedSituations.length > 0) {
+            filtered = filtered.filter(strategy =>
+              state.selectedSituations.some(situation =>
+                strategy.responseType.includes(situation)
+              )
+            );
+          }
+
+          state.filteredStrategies = filtered.map(strategy => {
+            let totalScore = 0;
+            let totalWeight = 0;
+
+            function calculateMatch(prefKey, userValue, strategyValue) {
+              if (userValue === 0) return { score: 0, weight: 0 };
+              const config = preferenceConfigs[prefKey];
+              const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
+              const weight = Math.abs(userValue) / max;
+              const expected = (userValue > 0 ? userValue / max * 10 : 0);
+              const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
+              return { score, weight };
+            }
+
+            ['timeCommitment', 'investment', 'commercialAgreements', 'thirdPartyServices', 'legalAction'].forEach(key => {
+              const { score, weight } = calculateMatch(key, state.preferences[key], strategy.scores[key]);
+              totalScore += score * weight;
+              totalWeight += weight;
+            });
+
+            const matchScore = totalWeight > 0 ? (totalScore / (totalWeight * 10)) * 100 : 100;
+            return { ...strategy, matchScore };
+          }).sort((a, b) => b.matchScore - a.matchScore);
+        }
+
+        // Create a dynamic title based on selected situation and IP right
+        function createDynamicTitle() {
+          const situationMap = {
+            'Enforcement': 'enforce',
+            'Accused': 'respond to accusations about',
+            'Proactive': 'proactively protect',
+            'Professional': 'seek professional support for'
+          };
+          
+          let action = 'manage'; // Default
+          if (state.selectedSituations.length === 1) {
+            action = situationMap[state.selectedSituations[0]];
+          }
+          
+          let right = 'intellectual property';
+          if (state.selectedRights.length === 1) {
+            right = `a ${state.selectedRights[0].toLowerCase()}`;
+          } else if (state.selectedRights.length > 1) {
+            right = 'multiple IP rights';
+          }
+          
+          return `Strategies to ${action} ${right}`;
+        }
+
+        function render() {
+          // Only save primary filters to localStorage
+          localStorage.setItem('ipStrategyState', JSON.stringify({
+            accordions: state.accordions,
+            selectedRights: state.selectedRights,
+            selectedSituations: state.selectedSituations
+            // Do not save preferences or otherFactors
+          }));
+
+          const app = document.getElementById('app');
+          app.innerHTML = '';
+
+          const container = document.createElement('div');
+          container.className = 'grid';
+
+          const leftCol = document.createElement('div');
+          leftCol.appendChild(renderTopFilters()); // Add top filters outside accordions
+          leftCol.appendChild(renderPreferencesAccordion());
+          leftCol.appendChild(renderOtherFactorsAccordion());
+          container.appendChild(leftCol);
+
+          const rightCol = document.createElement('div');
+          rightCol.appendChild(renderActiveFilters()); // Contains title and clear button
+          rightCol.appendChild(renderStrategyCards());
+          container.appendChild(rightCol);
+
+          app.appendChild(container);
+        }
+
+        // New top filters section outside of accordions
+        function renderTopFilters() {
+          const topFilters = document.createElement('div');
+          topFilters.className = 'top-filters';
+          topFilters.style.marginBottom = '20px';
+          
+          // Add filter title
+          const title = document.createElement('div');
+          title.className = 'filters-section-title';
+          title.textContent = 'Quick Filters';
+          topFilters.appendChild(title);
+          
+          // Create quick filter options
+          const options = [
+            { label: 'Low Cost', action: () => { state.preferences.investment = -2; } },
+            { label: 'Quick Resolution', action: () => { state.preferences.timeCommitment = -2; } },
+            { label: 'Avoid Legal Action', action: () => { state.preferences.legalAction = -2; } },
+            { label: 'Self Managed', action: () => { state.preferences.thirdPartyServices = -2; } }
+          ];
+          
+          const buttonsContainer = document.createElement('div');
+          buttonsContainer.className = 'radio-group';
+          buttonsContainer.style.marginBottom = '16px';
+          
+          options.forEach(option => {
+            const button = document.createElement('button');
+            button.className = 'radio-button';
+            button.textContent = option.label;
+            button.onclick = () => {
+              option.action();
+              filterAndRankStrategies();
+              render();
+            };
+            buttonsContainer.appendChild(button);
+          });
+          
+          topFilters.appendChild(buttonsContainer);
+          return topFilters;
+        }
+
+        function renderActiveFilters() {
+          const filtersWrapper = document.createElement('div');
+          
+          // Create dynamic title and clear button container
+          const titleContainer = document.createElement('div');
+          titleContainer.style.display = 'flex';
+          titleContainer.style.justifyContent = 'space-between';
+          titleContainer.style.alignItems = 'center';
+          titleContainer.style.marginBottom = '20px';
+          
+          // Create title based on selected rights and situation
+          const titleElement = document.createElement('h2');
+          titleElement.className = 'page-title';
+          titleElement.textContent = createDynamicTitle();
+          titleContainer.appendChild(titleElement);
+          
+          // Add Clear All Filters button
+          const resetBtn = document.createElement('button');
+          resetBtn.textContent = 'Clear All Filters';
+          resetBtn.className = 'reset-button';
+          resetBtn.onclick = () => {
+            // Reset all non-primary filters
+            state.preferences = {
+              timeCommitment: 0,
+              investment: 0,
+              commercialAgreements: 0,
+              thirdPartyServices: 0,
+              legalAction: 0
+            };
+            state.otherFactors = {
+              onlineMarkets: 'neutral',
+              domainName: 'neutral',
+              importingGoods: 'neutral',
+              identifyParty: 'neutral'
+            };
+            filterAndRankStrategies();
+            render();
+          };
+          titleContainer.appendChild(resetBtn);
+          
+          filtersWrapper.appendChild(titleContainer);
+          
+          // Create secondary filters section (if any exist)
+          const hasSecondaryFilters = Object.values(state.preferences).some(v => v !== 0) || 
+                                    Object.values(state.otherFactors).some(v => v !== 'neutral');
+          
+          if (hasSecondaryFilters) {
+            const secondaryFiltersTitle = document.createElement('div');
+            secondaryFiltersTitle.className = 'filters-section-title';
+            secondaryFiltersTitle.textContent = 'Active Filters';
+            filtersWrapper.appendChild(secondaryFiltersTitle);
+            
+            const secondaryFiltersContainer = document.createElement('div');
+            secondaryFiltersContainer.className = 'active-filters';
+            
+            // Add preference filters
+            Object.entries(state.preferences).forEach(([key, value]) => {
+              if (value !== 0) {
+                const config = preferenceConfigs[key];
+                const opt = config.options.find(o => o.value === value);
+                const pill = document.createElement('div');
+                pill.className = 'filter-pill';
+                pill.textContent = `${config.label}: ${opt.label}`;
+                const remove = document.createElement('span');
+                remove.className = 'filter-remove';
+                remove.textContent = '×';
+                remove.onclick = () => {
+                  state.preferences[key] = 0;
+                  filterAndRankStrategies();
+                  render();
+                };
+                pill.appendChild(remove);
+                secondaryFiltersContainer.appendChild(pill);
+              }
+            });
+            
+            // Add other factors filters
+            Object.entries(state.otherFactors).forEach(([key, value]) => {
+              if (value !== 'neutral') {
+                const labelMap = {
+                  onlineMarkets: 'Online marketplaces',
+                  domainName: 'Domain name issues',
+                  importingGoods: 'Importing goods',
+                  identifyParty: 'Identify party'
+                };
+                const pill = document.createElement('div');
+                pill.className = 'filter-pill';
+                pill.textContent = `${labelMap[key]}: ${value}`;
+                const remove = document.createElement('span');
+                remove.className = 'filter-remove';
+                remove.textContent = '×';
+                remove.onclick = () => {
+                  state.otherFactors[key] = 'neutral';
+                  filterAndRankStrategies();
+                  render();
+                };
+                pill.appendChild(remove);
+                secondaryFiltersContainer.appendChild(pill);
+              }
+            });
+            
+            filtersWrapper.appendChild(secondaryFiltersContainer);
+          }
+          
+          return filtersWrapper;
+        }
+
+        function renderPreferencesAccordion() {
+          const wrapper = document.createElement('div');
+
+          const toggle = document.createElement('div');
+          toggle.className = 'accordion-header';
+          toggle.style.cursor = 'pointer';
+          toggle.style.transition = 'all 0.3s ease';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
+          toggle.onclick = () => {
+            state.accordions.preferences = !state.accordions.preferences;
+            render();
+          };
+          wrapper.appendChild(toggle);
+
+          if (!state.accordions.preferences) return wrapper;
+
+          const accordion = document.createElement('div');
+          accordion.className = 'accordion';
+
+          Object.entries(preferenceConfigs).forEach(([key, config]) => {
+            const group = document.createElement('div');
+            group.className = 'preference-group';
+
+            const label = document.createElement('label');
+            label.className = 'preference-label';
+            label.textContent = config.label;
+            group.appendChild(label);
+
+            const radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+            config.options.forEach(opt => {
+              const radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.preferences[key] === opt.value) {
+                radio.classList.add('radio-selected');
+              }
+              radio.textContent = opt.label;
+              radio.onclick = () => {
+                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+                filterAndRankStrategies();
+                render();
+              };
+              radioGroup.appendChild(radio);
+            });
+            group.appendChild(radioGroup);
+            accordion.appendChild(group);
+          });
+
+          wrapper.appendChild(accordion);
+          return wrapper;
+        }
+
+        function renderOtherFactorsAccordion() {
+          const wrapper = document.createElement('div');
+
+          const toggle = document.createElement('div');
+          toggle.className = 'accordion-header';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
+          toggle.onclick = () => {
+            state.accordions.otherFactors = !state.accordions.otherFactors;
+            render();
+          };
+          wrapper.appendChild(toggle);
+
+          if (!state.accordions.otherFactors) return wrapper;
+
+          const factors = [
+            { key: 'onlineMarkets', label: 'Online marketplaces' },
+            { key: 'domainName', label: 'Domain name issues' },
+            { key: 'importingGoods', label: 'Importing goods' },
+            { key: 'identifyParty', label: 'Identify party' }
+          ];
+
+          factors.forEach(({ key, label }) => {
+            const group = document.createElement('div');
+            group.className = 'preference-group';
+
+            const groupLabel = document.createElement('label');
+            groupLabel.className = 'preference-label';
+            groupLabel.textContent = label;
+            group.appendChild(groupLabel);
+
+            const radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+
+            ['yes', 'no', 'unsure'].forEach(option => {
+              const radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.otherFactors[key] === option) {
+                radio.classList.add('radio-selected');
+              }
+              radio.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+              radio.onclick = () => {
+                state.otherFactors[key] = state.otherFactors[key] === option ? 'neutral' : option;
+                filterAndRankStrategies();
+                render();
+              };
+              radioGroup.appendChild(radio);
+            });
+
+            group.appendChild(radioGroup);
+            wrapper.appendChild(group);
+          });
+
+          return wrapper;
+        }
+
+        function renderStrategyCards() {
+          const list = document.createElement('div');
+          list.className = 'card-grid';
+
+          const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
+          const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
+          const showUnknown = (activePrefs + activeFactors) < 2;
+
+          state.filteredStrategies.forEach((strategy, index) => {
+            const card = document.createElement('div');
+            card.className = 'strategy-card';
+            card.style.opacity = '0';
+            card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+            setTimeout(() => { card.style.opacity = '1'; }, 50);
+
+            // Change default relevancy from "Unknown" to "Possibly"
+            let matchLabel = 'Possibly';
+            let relevanceClass = 'medium'; // mid-green
+            const score = strategy.matchScore;
+            
+            if (!showUnknown) {
+              if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
+              else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
+              else if (score >= 50) { matchLabel = 'Possibly'; relevanceClass = 'medium'; }
+              else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
+              else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
+            }
+            
+            // Apply the relevancy border color
+            card.classList.add(`border-${relevanceClass}`);
+
+            // Include description but hide time and cost tags (still used for filtering)
+            card.innerHTML = `
+              <div class="relevancy">
+                <span class="relevancy-label">Applicability:</span>
+                <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
+              </div>
+              <div class="strategy-overtitle">${strategy.overtitle}</div>
+              <h3 class="strategy-title">${strategy.title}</h3>
+              <p class="strategy-description">${strategy.description}</p>
+              <div class="strategy-metadata">
+                <div class="metadata-row">
+                  <span>IP Type:</span>
+                  <div>
+                    ${strategy.right.split('; ').map(right => {
+                      const rightClass = right.toLowerCase().replace(/\s/g, '');
+                      return `<span class="tag tag-${rightClass}">${right}</span>`;
+                    }).join(' ')}
+                  </div>
+                </div>
+              </div>
+            `;
+            list.appendChild(card);
+          });
+
+          return list;
+        }
+
+        return { init };
+      }
+
+      const app = IPStrategyFinder();
+      app.init();
+
+      // Add "Change IP Rights" link
+      const changeIPRightsLink = document.createElement('a');
+      changeIPRightsLink.href = 'index.html';
+      changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
+      changeIPRightsLink.style.color = 'var(--text-secondary)';
+      changeIPRightsLink.style.textDecoration = 'none';
+      changeIPRightsLink.style.fontSize = '14px';
+      changeIPRightsLink.style.display = 'inline-block';
+      changeIPRightsLink.style.marginTop = '20px';
+      changeIPRightsLink.style.marginBottom = '20px';
+
+      // Add to page above the app
+      document.getElementById('app').before(changeIPRightsLink);
+      
+    }).catch(err => {
+      console.error('Error loading data:', err);
+      document.getElementById('app').textContent = 'Failed to load data.';
+    });
+  </script>
 </body>
 </html>
