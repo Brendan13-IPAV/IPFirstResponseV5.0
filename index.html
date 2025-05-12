@@ -430,10 +430,41 @@ function checkSpecialOptionsSelected() {
     }
 }
 
-        // Handle the see options button click
-        document.getElementById('see-options-btn').addEventListener('click', function() {
-            window.location.href = 'strategies.html';
-        });
+                // Handle the see options button click
+                            document.getElementById('see-options-btn').addEventListener('click', function() {
+                                // Get all checked checkboxes
+                                const selectedCheckboxes = document.querySelectorAll('input[name="ip-rights"]:checked');
+                                
+                                // Convert checkbox values to the format expected by strategies.html
+                                const selectedRights = Array.from(selectedCheckboxes).map(checkbox => {
+                                    // Map from checkbox values to the actual right names used in strategies.json
+                                    const valueToRightMap = {
+                                        'patents': 'Patent',
+                                        'trademarks': 'Trade mark',
+                                        'designs': 'Design',
+                                        'pbr': 'PBR',
+                                        'copyright': 'Copyright',
+                                        'unregistered-tm': 'Trade mark',  // Map to same as regular TM
+                                        'unregistered-ip': 'Any',         // Map to "Any"
+                                        'any': 'Any',
+                                        'uncertain': 'Any'                // If uncertain, show all
+                                    };
+                                    
+                                    return valueToRightMap[checkbox.value] || checkbox.value;
+                                });
+                                
+                                // Save to localStorage for strategies.html to read
+                                localStorage.setItem('ipSelectedRights', JSON.stringify(selectedRights));
+                                
+                                // If nothing selected, default to showing all
+                                if (selectedRights.length === 0) {
+                                    localStorage.setItem('ipSelectedRights', JSON.stringify(['Trade mark']));
+                                }
+                                
+                                // Navigate to strategies page
+                                window.location.href = 'strategies.html';
+                            });
+
     </script>
 </body>
 </html>
