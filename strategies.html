@@ -370,8 +370,6 @@ function renderStrategyCards() {
     card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
     setTimeout(() => { card.style.opacity = '1'; }, 50);
 
-// Apply the relevancy border color instead of the IP right color
-card.classList.add(`border-${relevanceClass}`);
 
     let matchLabel = 'Unknown';
     let relevanceClass = 'unknown';
@@ -383,6 +381,10 @@ card.classList.add(`border-${relevanceClass}`);
       else if (score >= 25) { matchLabel = 'Low'; relevanceClass = 'low'; }
       else { matchLabel = 'Very Low'; relevanceClass = 'very-low'; }
     }
+
+    
+// Apply the relevancy border color instead of the IP right color
+card.classList.add(`border-${relevanceClass}`);
 
     card.innerHTML = `
       <div class="relevancy">
