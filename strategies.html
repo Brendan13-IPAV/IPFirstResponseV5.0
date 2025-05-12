@@ -7,6 +7,26 @@
 
   <!-- External CSS -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Additional styles for cost and effort display */
+    .card-metrics {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .metric-row {
+      margin-bottom: 4px;
+    }
+    
+    .metric-label {
+      font-weight: 500;
+    }
+    
+    .metric-value {
+      color: var(--text-primary);
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -154,7 +174,7 @@
             right = 'multiple IP rights';
           }
           
-          return `Strategies to ${action} ${right}`;
+          return `Showing: Strategies to ${action} ${right}`;
         }
 
         function render() {
@@ -482,7 +502,13 @@
             // Apply the relevancy border color
             card.classList.add(`border-${relevanceClass}`);
 
-            // Include description but hide time and cost tags (still used for filtering)
+            // Get cost, effort and resolution text directly from the JSON
+            // Fallback to placeholders if not present in the JSON
+            const costText = strategy.costText || "Cost varies based on complexity";
+            const effortText = strategy.effortText || "Time requirement varies";
+            const resolutionText = strategy.resolutionText || "Success rate varies by case";
+
+            // Include description with cost and effort tags like the image
             card.innerHTML = `
               <div class="relevancy">
                 <span class="relevancy-label">Applicability:</span>
@@ -500,6 +526,20 @@
                       return `<span class="tag tag-${rightClass}">${right}</span>`;
                     }).join(' ')}
                   </div>
+                </div>
+              </div>
+              <div class="card-metrics">
+                <div class="metric-row">
+                  <span class="metric-label">Estimated cost:</span>
+                  <span class="metric-value">${costText}</span>
+                </div>
+                <div class="metric-row">
+                  <span class="metric-label">Estimated effort:</span>
+                  <span class="metric-value">${effortText}</span>
+                </div>
+                <div class="metric-row">
+                  <span class="metric-label">Rate of resolution:</span>
+                  <span class="metric-value">${resolutionText}</span>
                 </div>
               </div>
             `;
