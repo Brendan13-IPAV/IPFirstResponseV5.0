@@ -528,15 +528,25 @@
               <h3 class="strategy-title">${strategy.title}</h3>
               <p class="strategy-description">${strategy.description}</p>
               <div class="strategy-metadata">
-                <div class="metadata-row">
-                  <span>IP Type:</span>
-                  <div>
-                    ${strategy.right.split('; ').map(right => {
-                      const rightClass = right.toLowerCase().replace(/\s/g, '');
-                      return `<span class="tag tag-${rightClass}">${right}</span>`;
-                    }).join(' ')}
-                  </div>
-                </div>
+
+                      <div class="metadata-row">
+                        <span>IP Type:</span>
+                        <div>
+                          ${strategy.right.split('; ').map(right => {
+                            // Create a standardized class name
+                            let rightClass = right.toLowerCase().replace(/\s/g, '');
+                            
+                            // Special handling for specific rights to ensure class consistency
+                            if (rightClass === 'pbr') rightClass = 'pbr';
+                            if (rightClass === 'design' || rightClass === 'designs') rightClass = 'design';
+                            if (rightClass === 'trademark' || rightClass === 'trademarks') rightClass = 'trademark';
+                            if (rightClass === 'patent' || rightClass === 'patents') rightClass = 'patent';
+                            
+                            return `<span class="tag tag-${rightClass}">${right}</span>`;
+                          }).join(' ')}
+                        </div>
+                      </div>
+              
               </div>
               <div class="card-metrics">
                 <div class="metric-row">
