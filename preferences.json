@@ -1,45 +1,185 @@
 {
-  "timeCommitment": {
-    "label": "Time Commitment",
-    "options": [
-      { "value": -2, "label": "Days" },
-      { "value": -1, "label": "Weeks" },
-      { "value": 1, "label": "1–12 Months" },
-      { "value": 2, "label": "12+ Months" }
-    ]
+  "filters": {
+    "timeCommitment": {
+      "label": "Time Commitment",
+      "pillTemplate": "Time: {optionLabel}",
+      "options": [
+        { "value": -2, "label": "Days", "pillLabel": "Immediate options (days)" },
+        { "value": -1, "label": "Weeks", "pillLabel": "Medium (weeks)" },
+        { "value": 1, "label": "1–12 Months", "pillLabel": "Longer options (1-12 months)" },
+        { "value": 2, "label": "12+ Months", "pillLabel": "Extended (12+ months)" }
+      ]
+    },
+    "investment": {
+      "label": "Costs",
+      "pillTemplate": "Costs: {optionLabel}",
+      "options": [
+        { "value": -2, "label": "Under $1,000", "pillLabel": "Under $1,000" },
+        { "value": -1, "label": "Under $5,000", "pillLabel": "Under $5,000" },
+        { "value": 1, "label": "Under $25,000", "pillLabel": "Under $25,000" },
+        { "value": 2, "label": "$25,000+", "pillLabel": "$25,000+" }
+      ]
+    },
+    "commercialAgreements": {
+      "label": "Open to commercial agreements",
+      "pillTemplate": "{optionLabel} commercial agreements",
+      "options": [
+        { "value": -1, "label": "Avoid agreements", "pillLabel": "Avoiding" },
+        { "value": 1, "label": "Open to agreements", "pillLabel": "Willing to consider" }
+      ]
+    },
+    "thirdPartyServices": {
+      "label": "Third-Party Services",
+      "pillTemplate": "{optionLabel}",
+      "options": [
+        { "value": -2, "label": "Self-managed only", "pillLabel": "No support needed (self-managed)" },
+        { "value": -1, "label": "Minimal assistance", "pillLabel": "Some support from profesisonal" },
+        { "value": 1, "label": "Professional support", "pillLabel": "Workign with professional" },
+        { "value": 2, "label": "Full service solution", "pillLabel": "Comprehensive" }
+      ]
+    },
+    "legalAction": {
+      "label": "Legal Action",
+      "pillTemplate": "Legal action: {optionLabel}",
+      "options": [
+        { "value": -2, "label": "Strongly avoid", "pillLabel": "Not considering" },
+        { "value": -1, "label": "Prefer to avoid", "pillLabel": "Last resort only" },
+        { "value": 1, "label": "Open to consider", "pillLabel": "Willing to consider" },
+        { "value": 2, "label": "Willing to use", "pillLabel": "Ready to pursue" }
+      ]
+    }
   },
-  "investment": {
-    "label": "Investment",
-    "options": [
-      { "value": -2, "label": "Under $1,000" },
-      { "value": -1, "label": "Under $5,000" },
-      { "value": 1, "label": "Under $25,000" },
-      { "value": 2, "label": "$25,000+" }
-    ]
+  "otherFactors": {
+    "onlineMarkets": {
+      "label": "Online marketplaces",
+      "pillTemplate": "Online marketplace issues: {optionLabel}",
+      "options": [
+        { "value": "yes", "label": "Yes", "pillLabel": "Relevant" },
+        { "value": "no", "label": "No", "pillLabel": "Not relevant" },
+        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly relevant" }
+      ],
+      "showFor": ["Trade mark", "Copyright"]
+    },
+    "domainName": {
+      "label": "Domain name issues",
+      "pillTemplate": "Domain name disputes: {optionLabel}",
+      "options": [
+        { "value": "yes", "label": "Yes", "pillLabel": "Involved" },
+        { "value": "no", "label": "No", "pillLabel": "Not involved" },
+        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly involved" }
+      ],
+      "showFor": ["Trade mark"]
+    },
+    "importingGoods": {
+      "label": "Importing goods",
+      "pillTemplate": "Import/export: {optionLabel}",
+      "options": [
+        { "value": "yes", "label": "Yes", "pillLabel": "Involved" },
+        { "value": "no", "label": "No", "pillLabel": "Not involved" },
+        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly involved" }
+      ],
+      "showFor": ["Trade mark", "Patent", "Design"]
+    },
+    "identifyParty": {
+      "label": "Identify infringing party",
+      "pillTemplate": "Party identification: {optionLabel}",
+      "options": [
+        { "value": "yes", "label": "Yes", "pillLabel": "Known" },
+        { "value": "no", "label": "No", "pillLabel": "Unknown" },
+        { "value": "unsure", "label": "Unsure", "pillLabel": "Uncertain" }
+      ],
+      "showFor": ["Any"]
+    }
   },
-  "commercialAgreements": {
-    "label": "Commercial Agreements",
-    "options": [
-      { "value": -1, "label": "Avoid agreements" },
-      { "value": 1, "label": "Open to agreements" }
-    ]
+  "situationSpecific": {
+    "Enforcement": {
+      "infringementType": {
+        "label": "Infringement type",
+        "pillTemplate": "Infringement type: {optionLabel}",
+        "options": [
+          { "value": "direct", "label": "Direct copying", "pillLabel": "Direct copying" },
+          { "value": "similar", "label": "Similar product/mark", "pillLabel": "Similar product/mark" },
+          { "value": "online", "label": "Online only", "pillLabel": "Online only" }
+        ],
+        "showFor": ["Any"]
+      },
+      "jurisdiction": {
+        "label": "Jurisdiction",
+        "pillTemplate": "Location: {optionLabel}",
+        "options": [
+          { "value": "australia", "label": "Australia", "pillLabel": "Australia" },
+          { "value": "international", "label": "International", "pillLabel": "International" },
+          { "value": "both", "label": "Both", "pillLabel": "Australia & International" }
+        ],
+        "showFor": ["Any"]
+      }
+    },
+    "Accused": {
+      "letterReceived": {
+        "label": "Stage of process",
+        "pillTemplate": "Current stage: {optionLabel}",
+        "options": [
+          { "value": "initial", "label": "Just received notice", "pillLabel": "Initial notice" },
+          { "value": "responded", "label": "Already responded", "pillLabel": "In discussion" },
+          { "value": "legal", "label": "Legal action commenced", "pillLabel": "Legal proceedings" }
+        ],
+        "showFor": ["Any"]
+      }
+    },
+    "Proactive": {
+      "businessStage": {
+        "label": "Business stage",
+        "pillTemplate": "Business stage: {optionLabel}",
+        "options": [
+          { "value": "startup", "label": "Startup/new", "pillLabel": "Early stage" },
+          { "value": "growth", "label": "Growing business", "pillLabel": "Growth phase" },
+          { "value": "established", "label": "Established", "pillLabel": "Established" }
+        ],
+        "showFor": ["Any"]
+      }
+    }
   },
-  "thirdPartyServices": {
-    "label": "Third-Party Services",
-    "options": [
-      { "value": -2, "label": "Self-managed only" },
-      { "value": -1, "label": "Minimal assistance" },
-      { "value": 1, "label": "Professional support" },
-      { "value": 2, "label": "Full service solution" }
-    ]
-  },
-  "legalAction": {
-    "label": "Legal Action",
-    "options": [
-      { "value": -2, "label": "Strongly avoid" },
-      { "value": -1, "label": "Prefer to avoid" },
-      { "value": 1, "label": "Open to consider" },
-      { "value": 2, "label": "Willing to use" }
-    ]
+  "ipTypeSpecific": {
+    "Patent": {
+      "patentAge": {
+        "label": "Patent age",
+        "pillTemplate": "Patent age: {optionLabel}",
+        "options": [
+          { "value": "new", "label": "Recently filed/granted", "pillLabel": "New (≤18 months)" },
+          { "value": "established", "label": "Established patent", "pillLabel": "Established (>18 months)" }
+        ]
+      }
+    },
+    "Trade mark": {
+      "markRegistration": {
+        "label": "Registration status",
+        "pillTemplate": "Mark status: {optionLabel}",
+        "options": [
+          { "value": "registered", "label": "Registered", "pillLabel": "Registered" },
+          { "value": "pending", "label": "Application pending", "pillLabel": "Pending registration" },
+          { "value": "unregistered", "label": "Unregistered rights", "pillLabel": "Unregistered rights" }
+        ]
+      }
+    },
+    "Design": {
+      "designCertification": {
+        "label": "Design certification",
+        "pillTemplate": "Certification: {optionLabel}",
+        "options": [
+          { "value": "certified", "label": "Certified", "pillLabel": "Certified design" },
+          { "value": "uncertified", "label": "Uncertified", "pillLabel": "Uncertified design" }
+        ]
+      }
+    },
+    "PBR": {
+      "pbrStage": {
+        "label": "PBR stage",
+        "pillTemplate": "PBR stage: {optionLabel}",
+        "options": [
+          { "value": "provisional", "label": "Provisional protection", "pillLabel": "Provisional protection" },
+          { "value": "granted", "label": "Granted", "pillLabel": "Granted PBR" }
+        ]
+      }
+    }
   }
 }
