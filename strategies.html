@@ -173,7 +173,7 @@
           container.className = 'grid';
 
           const leftCol = document.createElement('div');
-          leftCol.appendChild(renderTopFilters()); // Add top filters outside accordions
+          leftCol.appendChild(renderTopPreferences()); // Move specific preferences outside accordion
           leftCol.appendChild(renderPreferencesAccordion());
           leftCol.appendChild(renderOtherFactorsAccordion());
           container.appendChild(leftCol);
@@ -186,44 +186,49 @@
           app.appendChild(container);
         }
 
-        // New top filters section outside of accordions
-        function renderTopFilters() {
-          const topFilters = document.createElement('div');
-          topFilters.className = 'top-filters';
-          topFilters.style.marginBottom = '20px';
+        // Render Commercial Agreements and Legal Action outside accordion
+        function renderTopPreferences() {
+          const topPrefs = document.createElement('div');
+          topPrefs.className = 'top-preferences';
+          topPrefs.style.marginBottom = '20px';
           
-          // Add filter title
-          const title = document.createElement('div');
-          title.className = 'filters-section-title';
-          title.textContent = 'Quick Filters';
-          topFilters.appendChild(title);
+          // Add key preferences outside accordion
+          const keysToInclude = ['commercialAgreements', 'legalAction'];
           
-          // Create quick filter options
-          const options = [
-            { label: 'Low Cost', action: () => { state.preferences.investment = -2; } },
-            { label: 'Quick Resolution', action: () => { state.preferences.timeCommitment = -2; } },
-            { label: 'Avoid Legal Action', action: () => { state.preferences.legalAction = -2; } },
-            { label: 'Self Managed', action: () => { state.preferences.thirdPartyServices = -2; } }
-          ];
-          
-          const buttonsContainer = document.createElement('div');
-          buttonsContainer.className = 'radio-group';
-          buttonsContainer.style.marginBottom = '16px';
-          
-          options.forEach(option => {
-            const button = document.createElement('button');
-            button.className = 'radio-button';
-            button.textContent = option.label;
-            button.onclick = () => {
-              option.action();
-              filterAndRankStrategies();
-              render();
-            };
-            buttonsContainer.appendChild(button);
+          keysToInclude.forEach(key => {
+            const config = preferenceConfigs[key];
+            
+            const group = document.createElement('div');
+            group.className = 'preference-group';
+
+            const label = document.createElement('label');
+            label.className = 'preference-label';
+            label.textContent = config.label;
+            group.appendChild(label);
+
+            const radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+            
+            config.options.forEach(opt => {
+              const radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.preferences[key] === opt.value) {
+                radio.classList.add('radio-selected');
+              }
+              radio.textContent = opt.label;
+              radio.onclick = () => {
+                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+                filterAndRankStrategies();
+                render();
+              };
+              radioGroup.appendChild(radio);
+            });
+            
+            group.appendChild(radioGroup);
+            topPrefs.appendChild(group);
           });
           
-          topFilters.appendChild(buttonsContainer);
-          return topFilters;
+          return topPrefs;
         }
 
         function renderActiveFilters() {
@@ -352,7 +357,13 @@
           const accordion = document.createElement('div');
           accordion.className = 'accordion';
 
+          // Only show preferences that aren't already shown in top section
+          const keysToSkip = ['commercialAgreements', 'legalAction'];
+          
           Object.entries(preferenceConfigs).forEach(([key, config]) => {
+            // Skip keys that are already shown in the top section
+            if (keysToSkip.includes(key)) return;
+            
             const group = document.createElement('div');
             group.className = 'preference-group';
 
