@@ -387,7 +387,7 @@ function renderStrategyCards() {
 
     card.innerHTML = `
       <div class="relevancy">
-        <span class="relevancy-label">Likely Applicability:</span>
+        <span class="relevancy-label">Applicability:</span>
         <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
       </div>
       <div class="strategy-overtitle">${strategy.overtitle}</div>
@@ -395,7 +395,7 @@ function renderStrategyCards() {
       <p class="strategy-description">${strategy.description}</p>
       <div class="strategy-metadata">
         <div class="metadata-row">
-          <span>Time Commitment:</span>
+          <span>Estimated Time:</span>
           <span class="tag">${getTagValue('timeCommitment', strategy.scores.timeCommitment)}</span>
         </div>
         <div class="metadata-row">
@@ -403,7 +403,7 @@ function renderStrategyCards() {
           <span class="tag">${getTagValue('investment', strategy.scores.investment)}</span>
         </div>
         <div class="metadata-row">
-          <span>IP Type:</span>
+          <span>IP Types:</span>
           <span class="tag tag-${strategy.right.toLowerCase().replace(/\s/g, '')}">${strategy.right}</span>
         </div>
       </div>
