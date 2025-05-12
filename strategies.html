@@ -917,15 +917,15 @@ function renderStrategyCards() {
     card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
     setTimeout(() => { card.style.opacity = '1'; }, 50);
 
-    // Change default relevancy from "Unknown" to "Possibly"
-    let matchLabel = 'Possibly';
+    // Change default relevancy from "Unknown" to "Possible"
+    let matchLabel = 'Possible';
     let relevanceClass = 'medium'; // mid-green
     const score = strategy.matchScore;
     
     if (!showUnknown) {
       if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
       else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
-      else if (score >= 50) { matchLabel = 'Possibly'; relevanceClass = 'medium'; }
+      else if (score >= 50) { matchLabel = 'Possible'; relevanceClass = 'medium'; }
       else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
       else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
     }
