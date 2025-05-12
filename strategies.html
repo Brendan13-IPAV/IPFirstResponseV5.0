@@ -163,29 +163,43 @@
           }).sort((a, b) => b.matchScore - a.matchScore);
         }
 
-        // Create a dynamic title based on selected situation and IP right
-        function createDynamicTitle() {
-          const situationMap = {
-            'Enforcement': 'enforce',
-            'Accused': 'respond to accusations about',
-            'Proactive': 'proactively protect',
-            'Professional': 'seek professional support for'
-          };
-          
-          let action = 'manage'; // Default
-          if (state.selectedSituations.length === 1) {
-            action = situationMap[state.selectedSituations[0]];
-          }
-          
-          let right = 'intellectual property';
-          if (state.selectedRights.length === 1) {
-            right = `a ${state.selectedRights[0].toLowerCase()}`;
-          } else if (state.selectedRights.length > 1) {
-            right = 'multiple IP rights';
-          }
-          
-          return `Showing: Strategies to ${action} ${right}`;
-        }
+                    // Create a dynamic title based on selected situation and IP right
+                    function createDynamicTitle() {
+                      const situationMap = {
+                        'Enforcement': 'enforce',
+                        'Accused': 'respond to accusations about',
+                        'Proactive': 'proactively protect',
+                        'Professional': 'seek professional support for'
+                      };
+                      
+                      let action = 'manage'; // Default
+                      if (state.selectedSituations.length === 1) {
+                        action = situationMap[state.selectedSituations[0]];
+                      }
+                      
+                      let rightText = 'intellectual property';
+                      
+                      if (state.selectedRights.length === 1) {
+                        // Just one right selected
+                        rightText = `a ${state.selectedRights[0].toLowerCase()}`;
+                      } else if (state.selectedRights.length > 1) {
+                        // Multiple rights selected - format them more naturally
+                        if (state.selectedRights.length === 2) {
+                          // Two rights - use "and" between them
+                          rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
+                        } else if (state.selectedRights.length <= 4) {
+                          // 3-4 rights - list with commas and "and"
+                          const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
+                          const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
+                          rightText = `${otherRights.join(', ')} and ${lastRight}`;
+                        } else {
+                          // More than 4 rights - keep it simple
+                          rightText = 'multiple IP rights';
+                        }
+                      }
+                      
+                      return `Showing: Strategies to ${action} ${rightText}`;
+                    }
 
         function render() {
           // Only save primary filters to localStorage
