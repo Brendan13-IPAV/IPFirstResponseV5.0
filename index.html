@@ -269,7 +269,7 @@
             <div class="card">
                 <form id="ip-options-form">
                     <div class="option-group">
-                        <h2>Select the IP rights you're concerned about:</h2>
+                        <h2>Select the rights involved:</h2>
                         
                         <h3>Registered Rights</h3>
                         <div class="options-container">
@@ -291,28 +291,47 @@
                             </label>
                         </div>
                         
-                        <h3>Other Rights</h3>
-                        <div class="options-container">
-                            <label class="option-btn" data-type="copyright">
-                                <input type="checkbox" name="ip-rights" value="copyright" class="option-checkbox">
-                                Copyright
-                            </label>
-                            <label class="option-btn" data-type="unregistered-tm">
-                                <input type="checkbox" name="ip-rights" value="unregistered-tm" class="option-checkbox">
-                                Unregistered trade mark
-                            </label>
-                            <label class="option-btn" data-type="any">
-                                <input type="checkbox" name="ip-rights" value="any" class="option-checkbox">
-                                Other rights
-                            </label>
-                            <label class="option-btn" data-type="uncertain">
-                                <input type="checkbox" name="ip-rights" value="uncertain" class="option-checkbox">
-                                Uncertain
-                            </label>
-                        </div>
+<h3>Other Rights</h3>
+<div class="options-container">
+    <label class="option-btn" data-type="copyright">
+        <input type="checkbox" name="ip-rights" value="copyright" class="option-checkbox">
+        Copyright
+    </label>
+    <label class="option-btn" data-type="unregistered-tm">
+        <input type="checkbox" name="ip-rights" value="unregistered-tm" class="option-checkbox">
+        Unregistered trade mark
+    </label>
+    <label class="option-btn" data-type="unregistered-ip">
+        <input type="checkbox" name="ip-rights" value="unregistered-ip" class="option-checkbox">
+        Unregistered IP rights
+    </label>
+    <label class="option-btn" data-type="any">
+        <input type="checkbox" name="ip-rights" value="any" class="option-checkbox">
+        Other rights
+    </label>
+    <label class="option-btn" data-type="uncertain">
+        <input type="checkbox" name="ip-rights" value="uncertain" class="option-checkbox">
+        Uncertain - See all rights
+    </label>
+</div>
                         
                         <div id="infringement-101-container" class="infringement-101" style="display: none;">
                             <p>We recommend you check out our <a href="#" class="infringement-101-link">Infringement 101</a> section before proceeding</p>
+                        </div>
+                        <div id="copyright-info-container" class="infringement-101" style="display: none;">
+                            <p>This tool does not provide specific suggestions for this IP type, but will include general or common options which apply to any right. <a href="#" class="infringement-101-link">Learn more about Copyright</a></p>
+                        </div>
+
+                        <div id="unregistered-tm-info-container" class="infringement-101" style="display: none;">
+                            <p>Select this if you have been using a trade mark to identify your products (such as a brand name or logo) but it is not registered with IP Australia or another IP office. Unregistered trade marks may be protected through common law passing off or the Australian Consumer Law. <a href="#" class="infringement-101-link">Learn about unregistered marks</a></p>
+                        </div>
+
+                        <div id="other-rights-info-container" class="infringement-101" style="display: none;">
+                            <p>Other IP rights can include trade secrets, confidential information, and circuit layout rights. <a href="#" class="infringement-101-link">Explore other IP rights</a></p>
+                        </div>
+
+                        <div id="unregistered-ip-info-container" class="infringement-101" style="display: none;">
+                            <p>Some other placholde rinfo <a href="#" class="infringement-101-link">Learn about unregistered IP</a></p>
                         </div>
 
                     </div>
@@ -338,7 +357,7 @@
                 checkbox.checked = !checkbox.checked;
                 
                 // Check if "Uncertain" is selected
-                checkUncertainSelected();
+                checkSpecialOptionsSelected();
             });
             
             // Also handle the actual checkbox clicks
@@ -353,21 +372,63 @@
                 }
                 
                 // Check if "Uncertain" is selected
-                checkUncertainSelected();
+                checkSpecialOptionsSelected();
             });
         });
         
         // Function to check if "Uncertain" is selected and show/hide infringement-101
-        function checkUncertainSelected() {
-            const uncertainCheckbox = document.querySelector('input[value="uncertain"]');
-            const infringement101Container = document.getElementById('infringement-101-container');
-            
-            if (uncertainCheckbox && uncertainCheckbox.checked) {
-                infringement101Container.style.display = 'block';
-            } else {
-                infringement101Container.style.display = 'none';
-            }
-        }
+// Function to check if special options are selected and show/hide info containers
+function checkSpecialOptionsSelected() {
+    // Check Uncertain option
+    const uncertainCheckbox = document.querySelector('input[value="uncertain"]');
+    const infringement101Container = document.getElementById('infringement-101-container');
+    
+    if (uncertainCheckbox && uncertainCheckbox.checked) {
+        infringement101Container.style.display = 'block';
+    } else {
+        infringement101Container.style.display = 'none';
+    }
+    
+    // Check Copyright option
+    const copyrightCheckbox = document.querySelector('input[value="copyright"]');
+    const copyrightInfoContainer = document.getElementById('copyright-info-container');
+    
+    if (copyrightCheckbox && copyrightCheckbox.checked) {
+        copyrightInfoContainer.style.display = 'block';
+    } else {
+        copyrightInfoContainer.style.display = 'none';
+    }
+    
+    // Check Unregistered TM option
+    const unregisteredTmCheckbox = document.querySelector('input[value="unregistered-tm"]');
+    const unregisteredTmInfoContainer = document.getElementById('unregistered-tm-info-container');
+    
+    if (unregisteredTmCheckbox && unregisteredTmCheckbox.checked) {
+        unregisteredTmInfoContainer.style.display = 'block';
+    } else {
+        unregisteredTmInfoContainer.style.display = 'none';
+    }
+    
+    // Check Other Rights option
+    const anyCheckbox = document.querySelector('input[value="any"]');
+    const otherRightsInfoContainer = document.getElementById('other-rights-info-container');
+    
+    if (anyCheckbox && anyCheckbox.checked) {
+        otherRightsInfoContainer.style.display = 'block';
+    } else {
+        otherRightsInfoContainer.style.display = 'none';
+    }
+    
+    // Check Unregistered IP option
+    const unregisteredIpCheckbox = document.querySelector('input[value="unregistered-ip"]');
+    const unregisteredIpInfoContainer = document.getElementById('unregistered-ip-info-container');
+    
+    if (unregisteredIpCheckbox && unregisteredIpCheckbox.checked) {
+        unregisteredIpInfoContainer.style.display = 'block';
+    } else {
+        unregisteredIpInfoContainer.style.display = 'none';
+    }
+}
 
         // Handle the see options button click
         document.getElementById('see-options-btn').addEventListener('click', function() {
