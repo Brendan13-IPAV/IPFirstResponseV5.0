@@ -437,7 +437,7 @@
     "title": "Coverage against potential future infringement",
     "description": "Protect yourself from certain costs involved in IP disputes",
     "responseType": ["Proactive"],
-    "right": "Patents; Trade mark; Copyright",
+    "right": "Patent; Trade mark; Copyright",
     "scores": {
       "timeCommitment": 3,
       "investment": 6,
@@ -617,7 +617,7 @@
     "title": "Monitor for infringement",
     "description": "Get alerts when others offer similar designs for sale.",
     "responseType": ["Proactive"],
-    "right": "Designs",
+    "right": "Design",
     "scores": {
       "timeCommitment": 2,
       "investment": 4,
@@ -995,7 +995,7 @@
     "title": "Resolve ownership conflicts",
     "description": "Negotiate solutions to IP ownership disputes with professional guidance.",
     "responseType": ["Proactive", "Accused", "Enforcement"],
-    "right": "Patents; Designs",
+    "right": "Patent; Design",
     "scores": {
       "timeCommitment": 7,
       "investment": 7,
@@ -1067,7 +1067,7 @@
     "title": "Certify your registered design",
     "description": "Make sure your registered design is fully protected against infringement",
     "responseType": ["Proactive", "Enforcement"],
-    "right": "Designs",
+    "right": "Design",
     "scores": {
       "timeCommitment": 4,
       "investment": 5,
@@ -1085,7 +1085,7 @@
     "title": "Request examination of a registered design",
     "description": "Ask IP Australia to assess someone's registered design for validity ",
     "responseType": ["Proactive", "Accused"],
-    "right": "Designs",
+    "right": "Design",
     "scores": {
       "timeCommitment": 4,
       "investment": 5,
@@ -1193,7 +1193,7 @@
     "title": "Seek binding, authoritative decisions",
     "description": "Enforce your certified designs right through the court system",
     "responseType": ["Enforcement"],
-    "right": "Designs",
+    "right": "Design",
     "scores": {
       "timeCommitment": 9,
       "investment": 10,
