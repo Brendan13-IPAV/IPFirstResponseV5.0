@@ -138,88 +138,121 @@
             preferences: state.preferences,
             otherFactors: state.otherFactors
           }));
-          function renderActiveFilters() {
-            const filterContainer = document.createElement('div');
-            filterContainer.className = 'active-filters';
 
-            state.selectedRights.forEach(right => {
-              const pill = document.createElement('div');
-              pill.className = 'filter-pill';
-              pill.textContent = right;
-              const remove = document.createElement('span');
-              remove.className = 'filter-remove';
-              remove.textContent = '×';
-              remove.onclick = () => {
-                state.selectedRights = state.selectedRights.filter(r => r !== right);
-                filterAndRankStrategies();
-                render();
-              };
-              pill.appendChild(remove);
-              filterContainer.appendChild(pill);
-            });
-
-            state.selectedSituations.forEach(situation => {
-              const pill = document.createElement('div');
-              pill.className = 'filter-pill situation';
-              pill.textContent = situation;
-              const remove = document.createElement('span');
-              remove.className = 'filter-remove';
-              remove.textContent = '×';
-              remove.onclick = () => {
-                state.selectedSituations = state.selectedSituations.filter(s => s !== situation);
-                filterAndRankStrategies();
-                render();
-              };
-              pill.appendChild(remove);
-              filterContainer.appendChild(pill);
-            });
-
-            Object.entries(state.preferences).forEach(([key, value]) => {
-              if (value !== 0) {
-                const config = preferenceConfigs[key];
-                const opt = config.options.find(o => o.value === value);
-                const pill = document.createElement('div');
-                pill.className = 'filter-pill';
-                pill.textContent = `${config.label}: ${opt.label}`;
-                const remove = document.createElement('span');
-                remove.className = 'filter-remove';
-                remove.textContent = '×';
-                remove.onclick = () => {
-                  state.preferences[key] = 0;
-                  filterAndRankStrategies();
-                  render();
-                };
-                pill.appendChild(remove);
-                filterContainer.appendChild(pill);
-              }
-            });
-
-            Object.entries(state.otherFactors).forEach(([key, value]) => {
-              if (value !== 'neutral') {
-                const labelMap = {
-                  onlineMarkets: 'Online marketplaces',
-                  domainName: 'Domain name issues',
-                  importingGoods: 'Importing goods',
-                  identifyParty: 'Identify party'
-                };
-                const pill = document.createElement('div');
-                pill.className = 'filter-pill';
-                pill.textContent = `${labelMap[key]}: ${value}`;
-                const remove = document.createElement('span');
-                remove.className = 'filter-remove';
-                remove.textContent = '×';
-                remove.onclick = () => {
-                  state.otherFactors[key] = 'neutral';
-                  filterAndRankStrategies();
-                  render();
-                };
-                pill.appendChild(remove);
-                filterContainer.appendChild(pill);
-              }
-            });
-
-            return filterContainer;
-          }
+                      function renderActiveFilters() {
+  const filtersWrapper = document.createElement('div');
+  
+  // Create primary filters section
+  const primaryFiltersTitle = document.createElement('div');
+  primaryFiltersTitle.className = 'filters-section-title';
+  primaryFiltersTitle.textContent = 'Primary Filters';
+  filtersWrapper.appendChild(primaryFiltersTitle);
+  
+  const primaryFiltersContainer = document.createElement('div');
+  primaryFiltersContainer.className = 'primary-filters';
+  
+  // Add IP rights as primary filters
+  state.selectedRights.forEach(right => {
+    const pill = document.createElement('div');
+    const rightClass = right.toLowerCase().replace(/\s/g, '');
+    pill.className = `primary-filter-pill right-${rightClass}`;
+    pill.textContent = right;
+    const remove = document.createElement('span');
+    remove.className = 'filter-remove';
+    remove.textContent = '×';
+    remove.onclick = () => {
+      state.selectedRights = state.selectedRights.filter(r => r !== right);
+      filterAndRankStrategies();
+      render();
+    };
+    pill.appendChild(remove);
+    primaryFiltersContainer.appendChild(pill);
+  });
+  
+  // Add situations as primary filters
+  state.selectedSituations.forEach(situation => {
+    const pill = document.createElement('div');
+    pill.className = 'primary-filter-pill situation';
+    pill.textContent = situation;
+    const remove = document.createElement('span');
+    remove.className = 'filter-remove';
+    remove.textContent = '×';
+    remove.onclick = () => {
+      state.selectedSituations = state.selectedSituations.filter(s => s !== situation);
+      filterAndRankStrategies();
+      render();
+    };
+    pill.appendChild(remove);
+    primaryFiltersContainer.appendChild(pill);
+  });
+  
+  filtersWrapper.appendChild(primaryFiltersContainer);
+  
+  // Create secondary filters section (if any exist)
+  const hasSecondaryFilters = Object.values(state.preferences).some(v => v !== 0) || 
+                             Object.values(state.otherFactors).some(v => v !== 'neutral');
+  
+  if (hasSecondaryFilters) {
+    const secondaryFiltersTitle = document.createElement('div');
+    secondaryFiltersTitle.className = 'filters-section-title';
+    secondaryFiltersTitle.textContent = 'Additional Filters';
+    filtersWrapper.appendChild(secondaryFiltersTitle);
+    
+    const secondaryFiltersContainer = document.createElement('div');
+    secondaryFiltersContainer.className = 'active-filters';
+    
+    // Add preference filters
+    Object.entries(state.preferences).forEach(([key, value]) => {
+      if (value !== 0) {
+        const config = preferenceConfigs[key];
+        const opt = config.options.find(o => o.value === value);
+        const pill = document.createElement('div');
+        pill.className = 'filter-pill';
+        pill.textContent = `${config.label}: ${opt.label}`;
+        const remove = document.createElement('span');
+        remove.className = 'filter-remove';
+        remove.textContent = '×';
+        remove.onclick = () => {
+          state.preferences[key] = 0;
+          filterAndRankStrategies();
+          render();
+        };
+        pill.appendChild(remove);
+        secondaryFiltersContainer.appendChild(pill);
+      }
+    });
+    
+    // Add other factors filters
+    Object.entries(state.otherFactors).forEach(([key, value]) => {
+      if (value !== 'neutral') {
+        const labelMap = {
+          onlineMarkets: 'Online marketplaces',
+          domainName: 'Domain name issues',
+          importingGoods: 'Importing goods',
+          identifyParty: 'Identify party'
+        };
+        const pill = document.createElement('div');
+        pill.className = 'filter-pill';
+        pill.textContent = `${labelMap[key]}: ${value}`;
+        const remove = document.createElement('span');
+        remove.className = 'filter-remove';
+        remove.textContent = '×';
+        remove.onclick = () => {
+          state.otherFactors[key] = 'neutral';
+          filterAndRankStrategies();
+          render();
+        };
+        pill.appendChild(remove);
+        secondaryFiltersContainer.appendChild(pill);
+      }
+    });
+    
+    filtersWrapper.appendChild(secondaryFiltersContainer);
+  }
+  
+  return filtersWrapper;
+}
+          
           const app = document.getElementById('app');
           app.innerHTML = '';
 
