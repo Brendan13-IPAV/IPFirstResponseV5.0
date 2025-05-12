@@ -13,9 +13,9 @@
       "thirdPartyServices": 7,
       "legalAction": 7
     },
-        "costText": "$5,000+ plus legal fees",
-        "effortText": "Weeks to months",
-        "resolutionText": "Varies depending on complexity"
+    "costText": "$5,000+ plus legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "Varies depending on complexity"
   },
   {
     "id": 2,
@@ -31,7 +31,7 @@
       "thirdPartyServices": 8,
       "legalAction": 7
     },
-        "costText": "$3,000+ plus legal fees",
+    "costText": "$3,000+ plus legal fees",
     "effortText": "Weeks to months",
     "resolutionText": "Varies by case"
   },
@@ -49,9 +49,9 @@
       "thirdPartyServices": 9,
       "legalAction": 10
     },
-        "costText": "$250+ per class",
-    "effortText": "Applying - hours",
-    "resolutionText": "5-7 months for registration"
+    "costText": "$15,000-$100,000+ plus legal fees",
+    "effortText": "6-12+ months",
+    "resolutionText": "Varies depending on court and case complexity"
   },
   {
     "id": 4,
@@ -67,9 +67,9 @@
       "thirdPartyServices": 7,
       "legalAction": 7
     },
-    "costText": "$250+ per class",
-    "effortText": "Applying - hours",
-    "resolutionText": "5-7 months for registration"
+    "costText": "$1,500-$3,000 plus legal fees",
+    "effortText": "3-4 months",
+    "resolutionText": "Success depends on grounds of opposition"
   },
   {
     "id": 5,
@@ -84,7 +84,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 6,
       "legalAction": 7
-    }
+    },
+    "costText": "-",
+    "effortText": "Weeks to months",
+    "resolutionText": "-"
   },
   {
     "id": 6,
@@ -99,7 +102,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 6,
       "legalAction": 6
-    }
+    },
+    "costText": "$650+ plus any legal fees",
+    "effortText": "-",
+    "resolutionText": "High success rate for marks unused for 3+ years"
   },
   {
     "id": 7,
@@ -114,7 +120,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 9,
       "legalAction": 10
-    }
+    },
+    "costText": "$25,000+ plus legal fees",
+    "effortText": "12+ months",
+    "resolutionText": "-"
   },
   {
     "id": 8,
@@ -129,7 +138,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 8,
       "legalAction": 10
-    }
+    },
+    "costText": "$15,000+ plus legal fees",
+    "effortText": "Days to weeks for interim relief",
+    "resolutionText": "Requires later formal proceedings"
   },
   {
     "id": 9,
@@ -144,7 +156,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 8,
       "legalAction": 7
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Varies by dispute type and complexity"
   },
   {
     "id": 10,
@@ -159,7 +174,10 @@
       "commercialAgreements": 6,
       "thirdPartyServices": 7,
       "legalAction": 4
-    }
+    },
+    "costText": "$1,500-$5,000 depending on mediator fees",
+    "effortText": "Weeks",
+    "resolutionText": "60-80% resolution rate"
   },
   {
     "id": 11,
@@ -174,7 +192,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 7,
       "legalAction": 3
-    }
+    },
+    "costText": "No fee for initial assistance",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 12,
@@ -189,7 +210,10 @@
       "commercialAgreements": 7,
       "thirdPartyServices": 8,
       "legalAction": 3
-    }
+    },
+    "costText": "$2,000-$5,000 depending on mediator",
+    "effortText": "1-2 days for mediation session",
+    "resolutionText": "70% success rate for willing parties"
   },
   {
     "id": 13,
@@ -204,7 +228,10 @@
       "commercialAgreements": 7,
       "thirdPartyServices": 9,
       "legalAction": 5
-    }
+    },
+    "costText": "-",
+    "effortText": "1-3 months",
+    "resolutionText": "Binding on both parties"
   },
   {
     "id": 14,
@@ -219,7 +246,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 4,
       "legalAction": 4
-    }
+    },
+    "costText": "$500-$1,500 for legal drafting",
+    "effortText": "Hours to draft",
+    "resolutionText": "25-40% resolution rate without further action"
   },
   {
     "id": 15,
@@ -234,7 +264,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 1,
       "legalAction": 2
-    }
+    },
+    "costText": "Minimal or no cost",
+    "effortText": "Hours",
+    "resolutionText": "-"
   },
   {
     "id": 16,
@@ -249,7 +282,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 1,
       "legalAction": 2
-    }
+    },
+    "costText": "-",
+    "effortText": "Hours",
+    "resolutionText": "Varies depending on circumstances"
   },
   {
     "id": 17,
@@ -264,7 +300,10 @@
       "commercialAgreements": 9,
       "thirdPartyServices": 6,
       "legalAction": 2
-    }
+    },
+    "costText": "$1,000-$3,000 for professional assistance",
+    "effortText": "Weeks",
+    "resolutionText": "-"
   },
   {
     "id": 18,
@@ -279,7 +318,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 4,
       "legalAction": 3
-    }
+    },
+    "costText": "Usually free to submit",
+    "effortText": "Hours to prepare request",
+    "resolutionText": "72 hours to 2 weeks for processing"
   },
   {
     "id": 19,
@@ -294,7 +336,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 5,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Depends on government prioritization"
   },
   {
     "id": 20,
@@ -309,7 +354,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 7,
       "legalAction": 5
-    }
+    },
+    "costText": "No government fee",
+    "effortText": "2-3 hours to prepare documentation",
+    "resolutionText": "2-year validity period"
   },
   {
     "id": 21,
@@ -324,7 +372,10 @@
       "commercialAgreements": 5,
       "thirdPartyServices": 9,
       "legalAction": 6
-    }
+    },
+    "costText": "$350-$600 per hour",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 22,
@@ -339,7 +390,10 @@
       "commercialAgreements": 6,
       "thirdPartyServices": 8,
       "legalAction": 7
-    }
+    },
+    "costText": "Varies widely by country",
+    "effortText": "Months to years",
+    "resolutionText": "Depends on jurisdiction"
   },
   {
     "id": 23,
@@ -354,7 +408,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 2,
       "legalAction": 1
-    }
+    },
+    "costText": "No immediate cost",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 24,
@@ -369,7 +426,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 5,
       "legalAction": 1
-    }
+    },
+    "costText": "$5,000-$50,000+ depending on size",
+    "effortText": "3-6 months",
+    "resolutionText": "-"
   },
   {
     "id": 25,
@@ -384,7 +444,10 @@
       "commercialAgreements": 7,
       "thirdPartyServices": 8,
       "legalAction": 2
-    }
+    },
+    "costText": "-",
+    "effortText": "Ongoing premium payments",
+    "resolutionText": "Varies by policy terms"
   },
   {
     "id": 26,
@@ -410,7 +473,7 @@
     "title": "Challenge the use of international domain name",
     "description": "Dispute an international domain name that may infringe an IP right",
     "responseType": ["Enforcement"],
-    "right": "Trade mark", "Any"
+    "right": "Trade mark; Any",
     "scores": {
       "timeCommitment": 6,
       "investment": 7,
@@ -435,7 +498,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 7,
       "legalAction": 1
-    }
+    },
+    "costText": "$250+ per class",
+    "effortText": "Applying - hours",
+    "resolutionText": "5-7 months for registration"
   },
   {
     "id": 29,
@@ -450,7 +516,10 @@
       "commercialAgreements": 7,
       "thirdPartyServices": 4,
       "legalAction": 1
-    }
+    },
+    "costText": "-",
+    "effortText": "Ongoing relationship management",
+    "resolutionText": "-"
   },
   {
     "id": 30,
@@ -465,7 +534,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 8,
       "legalAction": 1
-    }
+    },
+    "costText": "$1,500-$10,000 depending on portfolio size",
+    "effortText": "2-4 weeks",
+    "resolutionText": "-"
   },
   {
     "id": 31,
@@ -480,7 +552,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 7,
       "legalAction": 1
-    }
+    },
+    "costText": "$250+ per class",
+    "effortText": "-",
+    "resolutionText": "5-7 months for registration"
   },
   {
     "id": 32,
@@ -495,7 +570,10 @@
       "commercialAgreements": 10,
       "thirdPartyServices": 7,
       "legalAction": 2
-    }
+    },
+    "costText": "$2,000-$5,000 for agreement drafting",
+    "effortText": "Weeks to negotiate terms",
+    "resolutionText": "Ongoing revenue stream potential"
   },
   {
     "id": 33,
@@ -510,7 +588,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 5,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 34,
@@ -525,7 +606,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 8,
       "legalAction": 1
-    }
+    },
+    "costText": "$300-$1,000 per year",
+    "effortText": "Minimal - reviewing alerts",
+    "resolutionText": "Ongoing monitoring"
   },
   {
     "id": 35,
@@ -540,7 +624,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 8,
       "legalAction": 1
-    }
+    },
+    "costText": "$500-$2,000 per year",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 36,
@@ -555,7 +642,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 9,
       "legalAction": 3
-    }
+    },
+    "costText": "$1,500-$3,000 per inspection",
+    "effortText": "Periodic inspections",
+    "resolutionText": "Varies by region and plant type"
   },
   {
     "id": 37,
@@ -570,7 +660,10 @@
       "commercialAgreements": 5,
       "thirdPartyServices": 3,
       "legalAction": 4
-    }
+    },
+    "costText": "$80,000-$150,000+ annual salary",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 38,
@@ -585,7 +678,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 4,
       "legalAction": 1
-    }
+    },
+    "costText": "Varies based on campaign scope",
+    "effortText": "Ongoing effort",
+    "resolutionText": "-"
   },
   {
     "id": 39,
@@ -600,7 +696,10 @@
       "commercialAgreements": 6,
       "thirdPartyServices": 5,
       "legalAction": 2
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Reduces counterfeit risks by 30-50%"
   },
   {
     "id": 40,
@@ -615,7 +714,10 @@
       "commercialAgreements": 5,
       "thirdPartyServices": 6,
       "legalAction": 7
-    }
+    },
+    "costText": "$5,000-$20,000 for strategy development",
+    "effortText": "1-3 months to develop",
+    "resolutionText": "-"
   },
   {
     "id": 41,
@@ -630,7 +732,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 5,
       "legalAction": 1
-    }
+    },
+    "costText": "-",
+    "effortText": "Weeks to implement",
+    "resolutionText": "Reduces litigation risk"
   },
   {
     "id": 42,
@@ -645,7 +750,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 3,
       "legalAction": 1
-    }
+    },
+    "costText": "Varies by marketing strategy",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 43,
@@ -660,7 +768,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 6,
       "legalAction": 1
-    }
+    },
+    "costText": "Free with registered trademark",
+    "effortText": "1-2 hours to register",
+    "resolutionText": "Access to brand protection tools"
   },
   {
     "id": 44,
@@ -675,7 +786,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 6,
       "legalAction": 2
-    }
+    },
+    "costText": "$2,000-$5,000",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 45,
@@ -690,7 +804,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 7,
       "legalAction": 1
-    }
+    },
+    "costText": "$300-$800 per year",
+    "effortText": "Minimal - reviewing alerts",
+    "resolutionText": "-"
   },
   {
     "id": 46,
@@ -705,7 +822,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "2-4 weeks for thorough analysis",
+    "resolutionText": "Informs risk management strategy"
   },
   {
     "id": 47,
@@ -720,7 +840,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 6,
       "legalAction": 1
-    }
+    },
+    "costText": "$500-$2,500 depending on scope",
+    "effortText": "1-2 weeks",
+    "resolutionText": "-"
   },
   {
     "id": 48,
@@ -735,7 +858,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 7,
       "legalAction": 1
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Strengthens overall IP position"
   },
   {
     "id": 49,
@@ -750,7 +876,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 8,
       "legalAction": 2
-    }
+    },
+    "costText": "$2,500-$10,000 depending on complexity",
+    "effortText": "2-4 weeks",
+    "resolutionText": "Identifies potential infringement risks"
   },
   {
     "id": 50,
@@ -765,7 +894,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 9,
       "legalAction": 2
-    }
+    },
+    "costText": "$3,000-$15,000 depending on portfolio size",
+    "effortText": "1-2 months",
+    "resolutionText": "-"
   },
   {
     "id": 51,
@@ -780,7 +912,10 @@
       "commercialAgreements": 9,
       "thirdPartyServices": 7,
       "legalAction": 2
-    }
+    },
+    "costText": "-",
+    "effortText": "3-6 months to develop strategy",
+    "resolutionText": "Revenue potential varies by asset"
   },
   {
     "id": 52,
@@ -795,7 +930,10 @@
       "commercialAgreements": 8,
       "thirdPartyServices": 6,
       "legalAction": 2
-    }
+    },
+    "costText": "$1,000-$5,000 for professional support",
+    "effortText": "-",
+    "resolutionText": "Varies by negotiation"
   },
   {
     "id": 53,
@@ -810,7 +948,10 @@
       "commercialAgreements": 5,
       "thirdPartyServices": 9,
       "legalAction": 3
-    }
+    },
+    "costText": "$3,000-$20,000 depending on complexity",
+    "effortText": "2-4 weeks",
+    "resolutionText": "-"
   },
   {
     "id": 54,
@@ -825,7 +966,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 8,
       "legalAction": 2
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Informs strategic decision-making"
   },
   {
     "id": 55,
@@ -840,7 +984,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 8,
       "legalAction": 3
-    }
+    },
+    "costText": "Initial consultation often free",
+    "effortText": "2-3 hours preparation",
+    "resolutionText": "-"
   },
   {
     "id": 56,
@@ -855,7 +1002,10 @@
       "commercialAgreements": 7,
       "thirdPartyServices": 8,
       "legalAction": 7
-    }
+    },
+    "costText": "$5,000-$20,000+ depending on complexity",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 57,
@@ -870,7 +1020,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 1,
       "legalAction": 1
-    }
+    },
+    "costText": "No cost",
+    "effortText": "Minutes to hours",
+    "resolutionText": "Many scam letters can be identified"
   },
   {
     "id": 58,
@@ -885,7 +1038,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 7,
       "legalAction": 9
-    }
+    },
+    "costText": "-",
+    "effortText": "Months",
+    "resolutionText": "-"
   },
   {
     "id": 59,
@@ -900,7 +1056,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 6,
       "legalAction": 3
-    }
+    },
+    "costText": "$1,000-$3,000 for professional review",
+    "effortText": "1-2 weeks",
+    "resolutionText": "May identify invalidity issues"
   },
   {
     "id": 60,
@@ -915,7 +1074,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "Required before enforcement action"
   },
   {
     "id": 61,
@@ -930,7 +1092,10 @@
       "commercialAgreements": 1,
       "thirdPartyServices": 7,
       "legalAction": 4
-    }
+    },
+    "costText": "$420 government fee",
+    "effortText": "1-2 hours to prepare request",
+    "resolutionText": "2-4 months for examination report"
   },
   {
     "id": 62,
@@ -945,7 +1110,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 9,
       "legalAction": 10
-    }
+    },
+    "costText": "-",
+    "effortText": "12+ months",
+    "resolutionText": "-"
   },
   {
     "id": 63,
@@ -960,7 +1128,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 5,
       "legalAction": 3
-    }
+    },
+    "costText": "$500-$1,500 for professional advice",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 64,
@@ -975,7 +1146,10 @@
       "commercialAgreements": 9,
       "thirdPartyServices": 5,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "Hours to days",
+    "resolutionText": "May identify compliance issues"
   },
   {
     "id": 65,
@@ -990,7 +1164,10 @@
       "commercialAgreements": 9,
       "thirdPartyServices": 7,
       "legalAction": 2
-    }
+    },
+    "costText": "$2,500-$6,000 for contract development",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 66,
@@ -1005,7 +1182,10 @@
       "commercialAgreements": 4,
       "thirdPartyServices": 8,
       "legalAction": 5
-    }
+    },
+    "costText": "-",
+    "effortText": "Months",
+    "resolutionText": "Extends protection scope"
   },
   {
     "id": 67,
@@ -1020,7 +1200,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 9,
       "legalAction": 10
-    }
+    },
+    "costText": "$25,000-$100,000+ plus legal fees",
+    "effortText": "12+ months",
+    "resolutionText": "-"
   },
   {
     "id": 68,
@@ -1035,7 +1218,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 6
-    }
+    },
+    "costText": "-",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 69,
@@ -1050,7 +1236,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 8,
       "legalAction": 10
-    }
+    },
+    "costText": "$10,000-$50,000+ plus legal fees",
+    "effortText": "6-12+ months",
+    "resolutionText": "May result in damages award"
   },
   {
     "id": 70,
@@ -1065,7 +1254,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 2,
       "legalAction": 1
-    }
+    },
+    "costText": "Costs of removing infringing elements",
+    "effortText": "-",
+    "resolutionText": "-"
   },
   {
     "id": 71,
@@ -1080,6 +1272,9 @@
       "commercialAgreements": 6,
       "thirdPartyServices": 5,
       "legalAction": 3
-    }
+    },
+    "costText": "-",
+    "effortText": "Hours to days",
+    "resolutionText": "Varies by cooperation level"
   }
 ]
