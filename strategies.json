@@ -12,7 +12,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 7
-    }
+    },
+        "costText": "$5,000+ plus legal fees",
+        "effortText": "Weeks to months",
+        "resolutionText": "Varies depending on complexity"
   },
   {
     "id": 2,
@@ -27,7 +30,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 8,
       "legalAction": 7
-    }
+    },
+        "costText": "$3,000+ plus legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "Varies by case"
   },
   {
     "id": 3,
@@ -42,7 +48,10 @@
       "commercialAgreements": 3,
       "thirdPartyServices": 9,
       "legalAction": 10
-    }
+    },
+        "costText": "$250+ per class",
+    "effortText": "Applying - hours",
+    "resolutionText": "5-7 months for registration"
   },
   {
     "id": 4,
@@ -57,7 +66,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 7
-    }
+    },
+    "costText": "$250+ per class",
+    "effortText": "Applying - hours",
+    "resolutionText": "5-7 months for registration"
   },
   {
     "id": 5,
@@ -387,7 +399,10 @@
       "commercialAgreements": 2,
       "thirdPartyServices": 7,
       "legalAction": 5
-    }
+    },
+    "costText": "$2,000+ per domain, plus any legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "40-50% of cases end in licence transfer"
   },
   {
     "id": 27,
@@ -395,14 +410,17 @@
     "title": "Challenge the use of international domain name",
     "description": "Dispute an international domain name that may infringe an IP right",
     "responseType": ["Enforcement"],
-    "right": "Trade mark",
+    "right": "Trade mark", "Any"
     "scores": {
       "timeCommitment": 6,
       "investment": 7,
       "commercialAgreements": 2,
       "thirdPartyServices": 8,
       "legalAction": 6
-    }
+    },
+    "costText": "US$1,500+ per domain, plus any legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "60-70% success rate for clear cases"
   },
   {
     "id": 28,
