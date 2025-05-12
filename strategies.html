@@ -401,10 +401,18 @@ card.classList.add(`border-${relevanceClass}`);
           <span>Investment:</span>
           <span class="tag">${getTagValue('investment', strategy.scores.investment)}</span>
         </div>
-        <div class="metadata-row">
-          <span>IP Types:</span>
-          <span class="tag tag-${strategy.right.toLowerCase().replace(/\s/g, '')}">${strategy.right}</span>
-        </div>
+
+<div class="metadata-row">
+  <span>IP Type:</span>
+  <div>
+    ${strategy.right.split('; ').map(right => {
+      const rightClass = right.toLowerCase().replace(/\s/g, '');
+      return `<span class="tag tag-${rightClass}">${right}</span>`;
+    }).join(' ')}
+  </div>
+</div>
+
+       
       </div>
     `;
     list.appendChild(card);
