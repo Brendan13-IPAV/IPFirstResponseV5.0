@@ -479,14 +479,30 @@ card.classList.add(`border-${relevanceClass}`);
 const actionButtons = document.createElement('div');
 actionButtons.className = 'action-buttons';
 
-// Add reset filters button
+// Add reset filters button as part of the app initialization
 const resetBtn = document.createElement('button');
 resetBtn.textContent = 'Clear All Filters';
+resetBtn.style.margin = '20px 0';
 resetBtn.className = 'reset-button';
+resetBtn.id = 'reset-filters-btn'; // Add an ID so we can check if it exists
 resetBtn.onclick = () => {
   localStorage.removeItem('ipStrategyState');
   location.reload();
 };
+
+// Always ensure the button is present
+function ensureResetButton() {
+  if (!document.getElementById('reset-filters-btn')) {
+    document.getElementById('app').prepend(resetBtn);
+  }
+}
+
+// Call on initial load
+ensureResetButton();
+
+// Call again whenever filters might change
+app.init();
+ensureResetButton();
 
 // Add "Change IP Rights" link
 const changeIPRightsLink = document.createElement('a');
