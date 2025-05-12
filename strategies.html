@@ -74,31 +74,41 @@
       ];
 
       function IPStrategyFinder() {
-        // Get only the primary filters from localStorage (rights and situations)
-        const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
-        
-        const state = {
-          loading: true,
-          strategies: strategiesData,
-          filteredStrategies: [],
-          accordions: savedState.accordions || { preferences: true, otherFactors: true },
-          selectedRights: savedState.selectedRights || ['Trade mark'],
-          selectedSituations: savedState.selectedSituations || ['Enforcement'],
-          // Don't load preferences and otherFactors from localStorage - always start fresh
-          preferences: {
-            timeCommitment: 0,
-            investment: 0,
-            commercialAgreements: 0,
-            thirdPartyServices: 0,
-            legalAction: 0
-          },
-          otherFactors: {
-            onlineMarkets: 'neutral',
-            domainName: 'neutral',
-            importingGoods: 'neutral',
-            identifyParty: 'neutral'
-          }
-        };
+  // Get only the primary filters from localStorage (rights and situations)
+  const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
+  
+  // Check if coming from index page with new selections
+  const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
+  
+  // Define all possible rights for use as default
+  const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
+  
+  const state = {
+    loading: true,
+    strategies: strategiesData,
+    filteredStrategies: [],
+    accordions: savedState.accordions || { preferences: true, otherFactors: true },
+    // Use selections from index.html if available, otherwise use saved state or ALL rights
+    selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
+    selectedSituations: savedState.selectedSituations || ['Enforcement'],
+    // Don't load preferences and otherFactors from localStorage - always start fresh
+    preferences: {
+      timeCommitment: 0,
+      investment: 0,
+      commercialAgreements: 0,
+      thirdPartyServices: 0,
+      legalAction: 0
+    },
+    otherFactors: {
+      onlineMarkets: 'neutral',
+      domainName: 'neutral',
+      importingGoods: 'neutral',
+      identifyParty: 'neutral'
+    }
+  };
+  
+  // Clear the selection from localStorage to avoid affecting future visits
+  localStorage.removeItem('ipSelectedRights');
 
         function init() {
           state.loading = false;
