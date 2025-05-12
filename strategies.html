@@ -902,95 +902,75 @@ function filterAndRankStrategies() {
   return wrapper;
 }
 
+function renderStrategyCards() {
+  const list = document.createElement('div');
+  list.className = 'card-grid';
+
+  const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
+  const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
+  const showUnknown = (activePrefs + activeFactors) < 2;
+
+  state.filteredStrategies.forEach((strategy, index) => {
+    const card = document.createElement('div');
+    card.className = 'strategy-card';
+    card.style.opacity = '0';
+    card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+    setTimeout(() => { card.style.opacity = '1'; }, 50);
+
+    // Change default relevancy from "Unknown" to "Possibly"
+    let matchLabel = 'Possibly';
+    let relevanceClass = 'medium'; // mid-green
+    const score = strategy.matchScore;
+    
+    if (!showUnknown) {
+      if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
+      else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
+      else if (score >= 50) { matchLabel = 'Possibly'; relevanceClass = 'medium'; }
+      else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
+      else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
+    }
+    
+    // Apply the relevancy border color
+    card.classList.add(`border-${relevanceClass}`);
+
+    // Get cost, effort and resolution text directly from the JSON
+    // Fallback to placeholders if not present in the JSON
+    const costText = strategy.costText || "Cost varies based on complexity";
+    const effortText = strategy.effortText || "Time requirement varies";
+    const resolutionText = strategy.resolutionText || "Success rate varies by case";
+
+    // Include description with cost and effort tags but WITHOUT the IP type tags
+    card.innerHTML = `
+      <div class="relevancy">
+        <span class="relevancy-label">Applicability:</span>
+        <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
+      </div>
+      <div class="strategy-overtitle">${strategy.overtitle}</div>
+      <h3 class="strategy-title">${strategy.title}</h3>
+      <p class="strategy-description">${strategy.description}</p>
+      
+      <div class="card-metrics">
+        <div class="metric-row">
+          <span class="metric-label">Estimated cost:</span>
+          <span class="metric-value">${costText}</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Estimated effort:</span>
+          <span class="metric-value">${effortText}</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Rate of resolution:</span>
+          <span class="metric-value">${resolutionText}</span>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  return list;
+}
 
 
-        function renderStrategyCards() {
-          const list = document.createElement('div');
-          list.className = 'card-grid';
-
-          const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
-          const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
-          const showUnknown = (activePrefs + activeFactors) < 2;
-
-          state.filteredStrategies.forEach((strategy, index) => {
-            const card = document.createElement('div');
-            card.className = 'strategy-card';
-            card.style.opacity = '0';
-            card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
-            setTimeout(() => { card.style.opacity = '1'; }, 50);
-
-            // Change default relevancy from "Unknown" to "Possibly"
-            let matchLabel = 'Possibly';
-            let relevanceClass = 'medium'; // mid-green
-            const score = strategy.matchScore;
-            
-            if (!showUnknown) {
-              if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
-              else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
-              else if (score >= 50) { matchLabel = 'Possibly'; relevanceClass = 'medium'; }
-              else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
-              else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
-            }
-            
-            // Apply the relevancy border color
-            card.classList.add(`border-${relevanceClass}`);
-
-            // Get cost, effort and resolution text directly from the JSON
-            // Fallback to placeholders if not present in the JSON
-            const costText = strategy.costText || "Cost varies based on complexity";
-            const effortText = strategy.effortText || "Time requirement varies";
-            const resolutionText = strategy.resolutionText || "Success rate varies by case";
-
-            // Include description with cost and effort tags like the image
-            card.innerHTML = `
-              <div class="relevancy">
-                <span class="relevancy-label">Applicability:</span>
-                <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
-              </div>
-              <div class="strategy-overtitle">${strategy.overtitle}</div>
-              <h3 class="strategy-title">${strategy.title}</h3>
-              <p class="strategy-description">${strategy.description}</p>
-              <div class="strategy-metadata">
-
-                      <div class="metadata-row">
-                        <span>IP Type:</span>
-                        <div>
-                          ${strategy.right.split('; ').map(right => {
-                            // Create a standardized class name
-                            let rightClass = right.toLowerCase().replace(/\s/g, '');
-                            
-                            // Special handling for specific rights to ensure class consistency
-                            if (rightClass === 'pbr') rightClass = 'pbr';
-                            if (rightClass === 'design' || rightClass === 'designs') rightClass = 'design';
-                            if (rightClass === 'trademark' || rightClass === 'trademarks') rightClass = 'trademark';
-                            if (rightClass === 'patent' || rightClass === 'patents') rightClass = 'patent';
-                            
-                            return `<span class="tag tag-${rightClass}">${right}</span>`;
-                          }).join(' ')}
-                        </div>
-                      </div>
-              
-              </div>
-              <div class="card-metrics">
-                <div class="metric-row">
-                  <span class="metric-label">Estimated cost:</span>
-                  <span class="metric-value">${costText}</span>
-                </div>
-                <div class="metric-row">
-                  <span class="metric-label">Estimated effort:</span>
-                  <span class="metric-value">${effortText}</span>
-                </div>
-                <div class="metric-row">
-                  <span class="metric-label">Rate of resolution:</span>
-                  <span class="metric-value">${resolutionText}</span>
-                </div>
-              </div>
-            `;
-            list.appendChild(card);
-          });
-
-          return list;
-        }
 
         return { init };
       }
