@@ -147,7 +147,16 @@
   primaryFiltersTitle.className = 'filters-section-title';
   primaryFiltersTitle.textContent = 'Primary Filters';
   filtersWrapper.appendChild(primaryFiltersTitle);
-  
+
+  // Add note about changing primary filters
+const primaryFiltersNote = document.createElement('small');
+primaryFiltersNote.style.display = 'block';
+primaryFiltersNote.style.color = 'var(--text-secondary)';
+primaryFiltersNote.style.fontSize = '12px';
+primaryFiltersNote.style.marginBottom = '12px';
+primaryFiltersNote.textContent = 'To change your IP rights selection completely, use the "Start Over" link at the top';
+filtersWrapper.appendChild(primaryFiltersNote);                   
+                        
   const primaryFiltersContainer = document.createElement('div');
   primaryFiltersContainer.className = 'primary-filters';
   
@@ -466,15 +475,37 @@ card.classList.add(`border-${relevanceClass}`);
       app.init();
 
       // Add reset filters button
-      const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'Clear All Filters';
-      resetBtn.style.margin = '20px 0';
-      resetBtn.className = 'reset-button';
-      resetBtn.onclick = () => {
-        localStorage.removeItem('ipStrategyState');
-        location.reload();
-      };
-      document.getElementById('app').prepend(resetBtn);
+// Create action buttons container
+const actionButtons = document.createElement('div');
+actionButtons.className = 'action-buttons';
+
+// Add reset filters button
+const resetBtn = document.createElement('button');
+resetBtn.textContent = 'Clear All Filters';
+resetBtn.className = 'reset-button';
+resetBtn.onclick = () => {
+  localStorage.removeItem('ipStrategyState');
+  location.reload();
+};
+
+// Add "Change IP Rights" link
+const changeIPRightsLink = document.createElement('a');
+changeIPRightsLink.href = 'index.html';
+changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
+changeIPRightsLink.style.color = 'var(--text-secondary)';
+changeIPRightsLink.style.textDecoration = 'none';
+changeIPRightsLink.style.fontSize = '14px';
+changeIPRightsLink.style.display = 'inline-block';
+changeIPRightsLink.style.marginLeft = 'auto';
+
+// Add buttons to container
+actionButtons.appendChild(resetBtn);
+actionButtons.appendChild(changeIPRightsLink);
+
+// Add to page
+document.getElementById('app').prepend(actionButtons);
+      
+      
     }).catch(err => {
       console.error('Error loading data:', err);
       document.getElementById('app').textContent = 'Failed to load data.';
