@@ -4,19 +4,19 @@
       "label": "Filter Type 1",
       "pillTemplate": "Filter 1: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Filter 1 Option A", "pillLabel": "Filter 1-A" },
+        { "value": -2, "label": "Option A", "pillLabel": "Filter 1-A" },
         { "value": -1, "label": "Filter 1 Option B", "pillLabel": "Filter 1-B" },
-        { "value": 1, "label": "Filter 1 Option C", "pillLabel": "Filter 1-C" },
-        { "value": 2, "label": "Filter 1 Option D", "pillLabel": "Filter 1-D" }
+        { "value": 1, "label": "Filter 1 - Option C", "pillLabel": "Filter 1-C" },
+        { "value": 2, "label": "Filter 1, maybe Option D", "pillLabel": "Filter 1-D" }
       ]
     },
     "investment": {
       "label": "Filter Type 2",
       "pillTemplate": "Filter 2: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Filter 2 Option A", "pillLabel": "Filter 2-A" },
-        { "value": -1, "label": "Filter 2 Option B", "pillLabel": "Filter 2-B" },
-        { "value": 1, "label": "Filter 2 Option C", "pillLabel": "Filter 2-C" },
+        { "value": -2, "label": "Option A", "pillLabel": "Filter 2-A" },
+        { "value": -1, "label": "Filter2 Option B", "pillLabel": "Filter 2-B" },
+        { "value": 1, "label": "Option C", "pillLabel": "Filter 2-C" },
         { "value": 2, "label": "Filter 2 Option D", "pillLabel": "Filter 2-D" }
       ]
     },
@@ -54,9 +54,9 @@
       "label": "Other Factor Type 1",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": "yes", "label": "Factor 1 Option A", "pillLabel": "Factor 1-A" },
-        { "value": "no", "label": "Factor 1 Option B", "pillLabel": "Factor 1-B" },
-        { "value": "unsure", "label": "Factor 1 Option C", "pillLabel": "Factor 1-C" }
+        { "value": "yes", "label": "Option A", "pillLabel": "Factor 1-A" },
+        { "value": "no", "label": "Option B", "pillLabel": "Factor 1-B" },
+        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 1-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
@@ -64,9 +64,9 @@
       "label": "Other Factor Type 2",
       "pillTemplate": "Factor 2: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Factor 2 Option A", "pillLabel": "Factor 2-A" },
-        { "value": "no", "label": "Factor 2 Option B", "pillLabel": "Factor 2-B" },
-        { "value": "unsure", "label": "Factor 2 Option C", "pillLabel": "Factor 2-C" }
+        { "value": "yes", "label": "Option A", "pillLabel": "Factor 2-A" },
+        { "value": "no", "label": "Option B", "pillLabel": "Factor 2-B" },
+        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 2-C" }
       ],
       "showFor": ["Trade mark"]
     },
@@ -74,9 +74,9 @@
       "label": "Other Factor Type 3",
       "pillTemplate": "Factor 3: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Factor 3 Option A", "pillLabel": "Factor 3-A" },
-        { "value": "no", "label": "Factor 3 Option B", "pillLabel": "Factor 3-B" },
-        { "value": "unsure", "label": "Factor 3 Option C", "pillLabel": "Factor 3-C" }
+        { "value": "yes", "label": "Option A", "pillLabel": "Factor 3-A" },
+        { "value": "no", "label": "Option B", "pillLabel": "Factor 3-B" },
+        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 3-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
@@ -84,9 +84,9 @@
       "label": "Other Factor Type 4",
       "pillTemplate": "Factor 4: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Factor 4 Option A", "pillLabel": "Factor 4-A" },
-        { "value": "no", "label": "Factor 4 Option B", "pillLabel": "Factor 4-B" },
-        { "value": "unsure", "label": "Factor 4 Option C", "pillLabel": "Factor 4-C" }
+        { "value": "yes", "label": "Option A", "pillLabel": "Factor 4-A" },
+        { "value": "no", "label": "Option B", "pillLabel": "Factor 4-B" },
+        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 4-C" }
       ],
       "showFor": ["Any"]
     }
