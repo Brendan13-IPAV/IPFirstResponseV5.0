@@ -52,11 +52,11 @@
   "otherFactors": {
     "onlineMarkets": {
       "label": "Online marketplaces",
-      "pillTemplate": "Online marketplace issues: {optionLabel}",
+      "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": "yes", "label": "Yes", "pillLabel": "Relevant" },
-        { "value": "no", "label": "No", "pillLabel": "Not relevant" },
-        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly relevant" }
+        { "value": "yes", "label": "Yes", "pillLabel": "Online" },
+        { "value": "no", "label": "No", "pillLabel": "Not online" },
+        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly relevant to online" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
@@ -78,7 +78,7 @@
         { "value": "no", "label": "No", "pillLabel": "Not involved" },
         { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly involved" }
       ],
-      "showFor": ["Trade mark", "Patent", "Design"]
+      "showFor": ["Trade mark", "Copyright"]
     },
     "identifyParty": {
       "label": "Identify infringing party",
