@@ -1,92 +1,92 @@
 {
   "filters": {
     "timeCommitment": {
-      "label": "Time Commitment",
-      "pillTemplate": "Time: {optionLabel}",
+      "label": "Filter Type 1",
+      "pillTemplate": "Filter 1: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Days", "pillLabel": "Immediate options (days)" },
-        { "value": -1, "label": "Weeks", "pillLabel": "Medium (weeks)" },
-        { "value": 1, "label": "1–12 Months", "pillLabel": "Longer options (1-12 months)" },
-        { "value": 2, "label": "12+ Months", "pillLabel": "Extended (12+ months)" }
+        { "value": -2, "label": "Filter 1 Option A", "pillLabel": "Filter 1-A" },
+        { "value": -1, "label": "Filter 1 Option B", "pillLabel": "Filter 1-B" },
+        { "value": 1, "label": "Filter 1 Option C", "pillLabel": "Filter 1-C" },
+        { "value": 2, "label": "Filter 1 Option D", "pillLabel": "Filter 1-D" }
       ]
     },
     "investment": {
-      "label": "Costs",
-      "pillTemplate": "Costs: {optionLabel}",
+      "label": "Filter Type 2",
+      "pillTemplate": "Filter 2: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Under $1,000", "pillLabel": "Under $1,000" },
-        { "value": -1, "label": "Under $5,000", "pillLabel": "Under $5,000" },
-        { "value": 1, "label": "Under $25,000", "pillLabel": "Under $25,000" },
-        { "value": 2, "label": "$25,000+", "pillLabel": "$25,000+" }
+        { "value": -2, "label": "Filter 2 Option A", "pillLabel": "Filter 2-A" },
+        { "value": -1, "label": "Filter 2 Option B", "pillLabel": "Filter 2-B" },
+        { "value": 1, "label": "Filter 2 Option C", "pillLabel": "Filter 2-C" },
+        { "value": 2, "label": "Filter 2 Option D", "pillLabel": "Filter 2-D" }
       ]
     },
     "commercialAgreements": {
-      "label": "Open to commercial agreements",
-      "pillTemplate": "{optionLabel} commercial agreements",
+      "label": "Filter Type 3",
+      "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": -1, "label": "Avoid agreements", "pillLabel": "Avoiding" },
-        { "value": 1, "label": "Open to agreements", "pillLabel": "Willing to consider" }
+        { "value": -1, "label": "Filter 3 Option A", "pillLabel": "Filter 3-A" },
+        { "value": 1, "label": "Filter 3 Option B", "pillLabel": "Filter 3-B" }
       ]
     },
     "thirdPartyServices": {
-      "label": "Third-Party Services",
+      "label": "Filter Type 4",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": -2, "label": "Self-managed only", "pillLabel": "No support needed (self-managed)" },
-        { "value": -1, "label": "Minimal assistance", "pillLabel": "Some support from profesisonal" },
-        { "value": 1, "label": "Professional support", "pillLabel": "Workign with professional" },
-        { "value": 2, "label": "Full service solution", "pillLabel": "Comprehensive" }
+        { "value": -2, "label": "Filter 4 Option A", "pillLabel": "Filter 4-A" },
+        { "value": -1, "label": "Filter 4 Option B", "pillLabel": "Filter 4-B" },
+        { "value": 1, "label": "Filter 4 Option C", "pillLabel": "Filter 4-C" },
+        { "value": 2, "label": "Filter 4 Option D", "pillLabel": "Filter 4-D" }
       ]
     },
     "legalAction": {
-      "label": "Legal Action",
-      "pillTemplate": "Legal action: {optionLabel}",
+      "label": "Filter Type 5",
+      "pillTemplate": "Filter 5: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Strongly avoid", "pillLabel": "Not considering" },
-        { "value": -1, "label": "Prefer to avoid", "pillLabel": "Last resort only" },
-        { "value": 1, "label": "Open to consider", "pillLabel": "Willing to consider" },
-        { "value": 2, "label": "Willing to use", "pillLabel": "Ready to pursue" }
+        { "value": -2, "label": "Filter 5 Option A", "pillLabel": "Filter 5-A" },
+        { "value": -1, "label": "Filter 5 Option B", "pillLabel": "Filter 5-B" },
+        { "value": 1, "label": "Filter 5 Option C", "pillLabel": "Filter 5-C" },
+        { "value": 2, "label": "Filter 5 Option D", "pillLabel": "Filter 5-D" }
       ]
     }
   },
   "otherFactors": {
     "onlineMarkets": {
-      "label": "Online marketplaces",
+      "label": "Other Factor Type 1",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": "yes", "label": "Yes", "pillLabel": "Online" },
-        { "value": "no", "label": "No", "pillLabel": "Not online" },
-        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly relevant to online" }
+        { "value": "yes", "label": "Factor 1 Option A", "pillLabel": "Factor 1-A" },
+        { "value": "no", "label": "Factor 1 Option B", "pillLabel": "Factor 1-B" },
+        { "value": "unsure", "label": "Factor 1 Option C", "pillLabel": "Factor 1-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
     "domainName": {
-      "label": "Domain name issues",
-      "pillTemplate": "Domain name disputes: {optionLabel}",
+      "label": "Other Factor Type 2",
+      "pillTemplate": "Factor 2: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Yes", "pillLabel": "Involved" },
-        { "value": "no", "label": "No", "pillLabel": "Not involved" },
-        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly involved" }
+        { "value": "yes", "label": "Factor 2 Option A", "pillLabel": "Factor 2-A" },
+        { "value": "no", "label": "Factor 2 Option B", "pillLabel": "Factor 2-B" },
+        { "value": "unsure", "label": "Factor 2 Option C", "pillLabel": "Factor 2-C" }
       ],
       "showFor": ["Trade mark"]
     },
     "importingGoods": {
-      "label": "Importing goods",
-      "pillTemplate": "Import/export: {optionLabel}",
+      "label": "Other Factor Type 3",
+      "pillTemplate": "Factor 3: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Yes", "pillLabel": "Involved" },
-        { "value": "no", "label": "No", "pillLabel": "Not involved" },
-        { "value": "unsure", "label": "Unsure", "pillLabel": "Possibly involved" }
+        { "value": "yes", "label": "Factor 3 Option A", "pillLabel": "Factor 3-A" },
+        { "value": "no", "label": "Factor 3 Option B", "pillLabel": "Factor 3-B" },
+        { "value": "unsure", "label": "Factor 3 Option C", "pillLabel": "Factor 3-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
     "identifyParty": {
-      "label": "Identify infringing party",
-      "pillTemplate": "Party identification: {optionLabel}",
+      "label": "Other Factor Type 4",
+      "pillTemplate": "Factor 4: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Yes", "pillLabel": "Known" },
-        { "value": "no", "label": "No", "pillLabel": "Unknown" },
-        { "value": "unsure", "label": "Unsure", "pillLabel": "Uncertain" }
+        { "value": "yes", "label": "Factor 4 Option A", "pillLabel": "Factor 4-A" },
+        { "value": "no", "label": "Factor 4 Option B", "pillLabel": "Factor 4-B" },
+        { "value": "unsure", "label": "Factor 4 Option C", "pillLabel": "Factor 4-C" }
       ],
       "showFor": ["Any"]
     }
@@ -94,46 +94,46 @@
   "situationSpecific": {
     "Enforcement": {
       "infringementType": {
-        "label": "Infringement type",
-        "pillTemplate": "Infringement type: {optionLabel}",
+        "label": "Situation 1 Filter Type 1",
+        "pillTemplate": "S1-F1: {optionLabel}",
         "options": [
-          { "value": "direct", "label": "Direct copying", "pillLabel": "Direct copying" },
-          { "value": "similar", "label": "Similar product/mark", "pillLabel": "Similar product/mark" },
-          { "value": "online", "label": "Online only", "pillLabel": "Online only" }
+          { "value": "direct", "label": "S1-F1 Option A", "pillLabel": "S1-F1-A" },
+          { "value": "similar", "label": "S1-F1 Option B", "pillLabel": "S1-F1-B" },
+          { "value": "online", "label": "S1-F1 Option C", "pillLabel": "S1-F1-C" }
         ],
         "showFor": ["Any"]
       },
       "jurisdiction": {
-        "label": "Jurisdiction",
-        "pillTemplate": "Location: {optionLabel}",
+        "label": "Situation 1 Filter Type 2",
+        "pillTemplate": "S1-F2: {optionLabel}",
         "options": [
-          { "value": "australia", "label": "Australia", "pillLabel": "Australia" },
-          { "value": "international", "label": "International", "pillLabel": "International" },
-          { "value": "both", "label": "Both", "pillLabel": "Australia & International" }
+          { "value": "australia", "label": "S1-F2 Option A", "pillLabel": "S1-F2-A" },
+          { "value": "international", "label": "S1-F2 Option B", "pillLabel": "S1-F2-B" },
+          { "value": "both", "label": "S1-F2 Option C", "pillLabel": "S1-F2-C" }
         ],
         "showFor": ["Any"]
       }
     },
     "Accused": {
       "letterReceived": {
-        "label": "Stage of process",
-        "pillTemplate": "Current stage: {optionLabel}",
+        "label": "Situation 2 Filter Type 1",
+        "pillTemplate": "S2-F1: {optionLabel}",
         "options": [
-          { "value": "initial", "label": "Just received notice", "pillLabel": "Initial notice" },
-          { "value": "responded", "label": "Already responded", "pillLabel": "In discussion" },
-          { "value": "legal", "label": "Legal action commenced", "pillLabel": "Legal proceedings" }
+          { "value": "initial", "label": "S2-F1 Option A", "pillLabel": "S2-F1-A" },
+          { "value": "responded", "label": "S2-F1 Option B", "pillLabel": "S2-F1-B" },
+          { "value": "legal", "label": "S2-F1 Option C", "pillLabel": "S2-F1-C" }
         ],
         "showFor": ["Any"]
       }
     },
     "Proactive": {
       "businessStage": {
-        "label": "Business stage",
-        "pillTemplate": "Business stage: {optionLabel}",
+        "label": "Situation 3 Filter Type 1",
+        "pillTemplate": "S3-F1: {optionLabel}",
         "options": [
-          { "value": "startup", "label": "Startup/new", "pillLabel": "Early stage" },
-          { "value": "growth", "label": "Growing business", "pillLabel": "Growth phase" },
-          { "value": "established", "label": "Established", "pillLabel": "Established" }
+          { "value": "startup", "label": "S3-F1 Option A", "pillLabel": "S3-F1-A" },
+          { "value": "growth", "label": "S3-F1 Option B", "pillLabel": "S3-F1-B" },
+          { "value": "established", "label": "S3-F1 Option C", "pillLabel": "S3-F1-C" }
         ],
         "showFor": ["Any"]
       }
@@ -142,42 +142,42 @@
   "ipTypeSpecific": {
     "Patent": {
       "patentAge": {
-        "label": "Patent age",
-        "pillTemplate": "Patent age: {optionLabel}",
+        "label": "Category 1 Filter Type 1",
+        "pillTemplate": "C1-F1: {optionLabel}",
         "options": [
-          { "value": "new", "label": "Recently filed/granted", "pillLabel": "New (≤18 months)" },
-          { "value": "established", "label": "Established patent", "pillLabel": "Established (>18 months)" }
+          { "value": "new", "label": "C1-F1 Option A", "pillLabel": "C1-F1-A" },
+          { "value": "established", "label": "C1-F1 Option B", "pillLabel": "C1-F1-B" }
         ]
       }
     },
     "Trade mark": {
       "markRegistration": {
-        "label": "Registration status",
-        "pillTemplate": "Mark status: {optionLabel}",
+        "label": "Category 2 Filter Type 1",
+        "pillTemplate": "C2-F1: {optionLabel}",
         "options": [
-          { "value": "registered", "label": "Registered", "pillLabel": "Registered" },
-          { "value": "pending", "label": "Application pending", "pillLabel": "Pending registration" },
-          { "value": "unregistered", "label": "Unregistered rights", "pillLabel": "Unregistered rights" }
+          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
+          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
+          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
         ]
       }
     },
     "Design": {
       "designCertification": {
-        "label": "Design certification",
-        "pillTemplate": "Certification: {optionLabel}",
+        "label": "Category 3 Filter Type 1",
+        "pillTemplate": "C3-F1: {optionLabel}",
         "options": [
-          { "value": "certified", "label": "Certified", "pillLabel": "Certified design" },
-          { "value": "uncertified", "label": "Uncertified", "pillLabel": "Uncertified design" }
+          { "value": "certified", "label": "C3-F1 Option A", "pillLabel": "C3-F1-A" },
+          { "value": "uncertified", "label": "C3-F1 Option B", "pillLabel": "C3-F1-B" }
         ]
       }
     },
     "PBR": {
       "pbrStage": {
-        "label": "PBR stage",
-        "pillTemplate": "PBR stage: {optionLabel}",
+        "label": "Category 4 Filter Type 1",
+        "pillTemplate": "C4-F1: {optionLabel}",
         "options": [
-          { "value": "provisional", "label": "Provisional protection", "pillLabel": "Provisional protection" },
-          { "value": "granted", "label": "Granted", "pillLabel": "Granted PBR" }
+          { "value": "provisional", "label": "C4-F1 Option A", "pillLabel": "C4-F1-A" },
+          { "value": "granted", "label": "C4-F1 Option B", "pillLabel": "C4-F1-B" }
         ]
       }
     }
