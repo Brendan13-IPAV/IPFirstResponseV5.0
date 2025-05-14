@@ -54,8 +54,9 @@
   <script>
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
-      fetch('preferences.json').then(res => res.json())
-    ]).then(([strategiesData, preferenceConfigs]) => {
+      fetch('preferences.json').then(res => res.json()),
+        fetch('multiplier-matrix.json').then(res => res.json())
+    ]).then(([strategiesData, preferenceConfigs, multiplierMatrix]) => {
 
       const ipRightsOptions = [
         { id: 'Patent', label: 'Patents', color: 'patent' },
@@ -116,52 +117,120 @@
           render();
         }
 
-        function filterAndRankStrategies() {
-          let filtered = state.strategies.slice();
+   function filterAndRankStrategies() {
+  let filtered = state.strategies.slice();
 
-          if (state.selectedRights.length > 0) {
-            filtered = filtered.filter(strategy => {
-              const strategyRights = strategy.right.split('; ');
-              return state.selectedRights.some(right =>
-                strategyRights.includes(right) ||
-                strategyRights.includes('Any') ||
-                strategyRights.includes('Any IP right')
-              );
-            });
-          }
+  // Filter by IP rights (unchanged)
+  if (state.selectedRights.length > 0) {
+    filtered = filtered.filter(strategy => {
+      const strategyRights = strategy.right.split('; ');
+      return state.selectedRights.some(right =>
+        strategyRights.includes(right) ||
+        strategyRights.includes('Any') ||
+        strategyRights.includes('Any IP right')
+      );
+    });
+  }
 
-          if (state.selectedSituations.length > 0) {
-            filtered = filtered.filter(strategy =>
-              state.selectedSituations.some(situation =>
-                strategy.responseType.includes(situation)
-              )
-            );
-          }
+  // Filter by situations (unchanged)
+  if (state.selectedSituations.length > 0) {
+    filtered = filtered.filter(strategy =>
+      state.selectedSituations.some(situation =>
+        strategy.responseType.includes(situation)
+      )
+    );
+  }
 
-          state.filteredStrategies = filtered.map(strategy => {
-            let totalScore = 0;
-            let totalWeight = 0;
-
-            function calculateMatch(prefKey, userValue, strategyValue) {
-              if (userValue === 0) return { score: 0, weight: 0 };
-              const config = preferenceConfigs[prefKey];
-              const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
-              const weight = Math.abs(userValue) / max;
-              const expected = (userValue > 0 ? userValue / max * 10 : 0);
-              const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
-              return { score, weight };
+  // Apply scoring using multiplier matrix
+  state.filteredStrategies = filtered.map(strategy => {
+    // Get base score for this strategy (or use default)
+    const baseScore = multiplierMatrix.baseScores[strategy.id] || 
+                      multiplierMatrix.baseScores.default || 100;
+    
+    let currentScore = baseScore;
+    let hasZeroMultiplier = false;
+    
+    // Check for zero multipliers first
+    const zeroMultipliers = multiplierMatrix.zeroMultipliers;
+    for (const [condition, affectedTags] of Object.entries(zeroMultipliers)) {
+      // Parse the condition (e.g., "legalAction_strong_negative")
+      const [key, strength, direction] = condition.split('_');
+      
+      // Check if the user has selected this preference with sufficient strength
+      let matches = false;
+      if (key in state.preferences) {
+        const value = state.preferences[key];
+        if (direction === 'negative' && value < -5) matches = true;
+        if (direction === 'positive' && value > 5) matches = true;
+      }
+      
+      // Check if any of the affected tags applies to this strategy
+      if (matches && strategy.approachTags.some(tag => affectedTags.includes(tag))) {
+        hasZeroMultiplier = true;
+        break;
+      }
+    }
+    
+    // If no zero multiplier applies, calculate score using approach multipliers
+    if (!hasZeroMultiplier) {
+      // Apply multipliers from preferences based on approach tags
+      Object.entries(state.preferences).forEach(([key, value]) => {
+        if (value !== 0) {
+          // Determine direction
+          const direction = value > 0 ? 'positive' : 'negative';
+          
+          // For each approach tag on the strategy
+          strategy.approachTags.forEach(approach => {
+            if (multiplierMatrix.approachMultipliers[approach]) {
+              const multiplierKey = `${key}_${direction}`;
+              const multiplier = multiplierMatrix.approachMultipliers[approach][multiplierKey];
+              if (multiplier) {
+                currentScore *= multiplier;
+              }
             }
-
-            ['timeCommitment', 'investment', 'commercialAgreements', 'thirdPartyServices', 'legalAction'].forEach(key => {
-              const { score, weight } = calculateMatch(key, state.preferences[key], strategy.scores[key]);
-              totalScore += score * weight;
-              totalWeight += weight;
-            });
-
-            const matchScore = totalWeight > 0 ? (totalScore / (totalWeight * 10)) * 100 : 100;
-            return { ...strategy, matchScore };
-          }).sort((a, b) => b.matchScore - a.matchScore);
+          });
         }
+      });
+      
+      // Apply multipliers from IP type
+      strategy.ipTypeTags.forEach(ipType => {
+        if (multiplierMatrix.ipTypeMultipliers[ipType]) {
+          Object.entries(state.otherFactors).forEach(([key, value]) => {
+            if (value !== 'neutral') {
+              const multiplierKey = `${key}_${value}`;
+              const multiplier = multiplierMatrix.ipTypeMultipliers[ipType][multiplierKey];
+              if (multiplier) {
+                currentScore *= multiplier;
+              }
+            }
+          });
+        }
+      });
+      
+      // Apply strategy-specific multipliers for other factors
+      Object.entries(state.otherFactors).forEach(([key, value]) => {
+        if (value !== 'neutral') {
+          const factorKey = `${key}_${value}`;
+          if (multiplierMatrix.otherFactorMultipliers[factorKey] && 
+              multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id]) {
+            currentScore *= multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id];
+          }
+        }
+      });
+    }
+    
+    // Calculate final score
+    let matchScore;
+    if (hasZeroMultiplier) {
+      matchScore = 0;
+    } else {
+      // Ensure score is in 1-100 range
+      matchScore = Math.min(100, Math.max(1, currentScore));
+    }
+    
+    return { ...strategy, matchScore };
+  }).sort((a, b) => b.matchScore - a.matchScore);
+}
 
                     // Create a dynamic title based on selected situation and IP right
                     function createDynamicTitle() {
