@@ -1,8 +1,6 @@
 export function calculateStrategyScores(strategies, state, scoringMatrix) {
   const idIndexMap = scoringMatrix.ID_Index_Map;
 
-  console.log("Selected IP rights:", state.selectedRights);
-
   // First, pre-filter strategies by selected IP rights and situations
   const filteredByRightType = strategies.filter(strategy => {
     // Check if strategy matches any of the selected IP rights
@@ -40,29 +38,23 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     // Include the strategy only if it matches both IP rights and situations
     return matchesSelectedRights && matchesSelectedSituations;
   });
-  
-  console.log(`Pre-filtered from ${strategies.length} to ${filteredByRightType.length} strategies based on IP rights and situation`);
 
-  // Calculate raw scores for all strategies
+  // Now calculate raw scores for pre-filtered strategies
   const scoredStrategies = filteredByRightType.map(strategy => {
     const index = idIndexMap.indexOf(parseInt(strategy.id, 10));
     if (index === -1) {
-      console.error(`Strategy ID ${strategy.id} not found in scoring matrix`);
       return { ...strategy, rawScore: 0, isApplicable: false };
     }
 
     let finalMultiplier = 1.0;
     let isApplicable = true;
     const baseScore = strategy.baseScore || 100;
-
-    // Collect all active filters
     const activeFilterKeys = [];
     
     // Get preference filters
     if (state.preferences) {
       Object.entries(state.preferences).forEach(([key, value]) => {
         if (value !== 0) {
-          // Find the corresponding filter in the preferences config
           const preferenceConfig = window.preferenceConfigs?.filters?.[key];
           if (preferenceConfig) {
             const option = preferenceConfig.options.find(opt => opt.value === value);
@@ -93,7 +85,6 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     if (state.situationSpecificFilters) {
       Object.entries(state.situationSpecificFilters).forEach(([key, value]) => {
         if (value) {
-          // Find which situation contains this filter
           for (const situation of state.selectedSituations || []) {
             const situationConfig = window.preferenceConfigs?.situationSpecific?.[situation]?.[key];
             if (situationConfig) {
@@ -112,7 +103,6 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     if (state.ipTypeSpecificFilters) {
       Object.entries(state.ipTypeSpecificFilters).forEach(([key, value]) => {
         if (value) {
-          // Find which IP type contains this filter
           for (const ipType of state.selectedRights || []) {
             const ipTypeConfig = window.preferenceConfigs?.ipTypeSpecific?.[ipType]?.[key];
             if (ipTypeConfig) {
@@ -143,51 +133,52 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       }
     });
 
-    // Calculate raw score - but preserve the base score if no filters are applied
-    const rawScore = activeFilterKeys.length > 0 ? baseScore * finalMultiplier : baseScore;
-
+    // Calculate raw score
+    const rawScore = baseScore * finalMultiplier;
     return {
       ...strategy,
-      rawScore: isApplicable ? rawScore : 0,
+      rawScore,
       isApplicable,
-      // Store count of filters for adaptive categorization
-      filterCount: activeFilterKeys.length
+      hasFilters: activeFilterKeys.length > 0
     };
   });
 
-  // Separate applicable and non-applicable strategies
+  // Split into applicable and non-applicable for separate processing
   const applicableStrategies = scoredStrategies.filter(s => s.isApplicable);
   const nonApplicableStrategies = scoredStrategies.filter(s => !s.isApplicable);
   
-  // Determine if we need normalization - only normalize if filters are applied
-  const hasActiveFilters = applicableStrategies.some(s => s.filterCount > 0);
+  // Basic check - do we have any filters applied?
+  const hasFilters = applicableStrategies.some(s => s.hasFilters);
   
-  // Calculate final scores based on whether normalization is needed
   let finalStrategies = [];
   
-  if (hasActiveFilters && applicableStrategies.length > 1) {
-    // Find min and max scores for normalization (only for applicable strategies)
+  if (hasFilters && applicableStrategies.length > 0) {
+    // We have filters and applicable strategies - do proper ranking
+    
+    // Find min and max for scaling (but ensure a reasonable range)
     let minScore = Math.min(...applicableStrategies.map(s => s.rawScore));
     let maxScore = Math.max(...applicableStrategies.map(s => s.rawScore));
     
-    // Avoid division by zero
-    const scoreRange = maxScore - minScore;
-    const hasRange = scoreRange > 0;
+    // Avoid identical min/max
+    if (minScore === maxScore) {
+      // If only one score, put it in the middle (75)
+      minScore = maxScore * 0.5;
+    }
     
-    console.log(`Score normalization: min=${minScore}, max=${maxScore}, range=${scoreRange}`);
-    
-    // Normalize applicable strategies
-    const normalizedApplicable = applicableStrategies.map(strategy => {
-      let matchScore = 0;
+    // Apply scaling to maintain ranking order
+    const scaledApplicable = applicableStrategies.map(strategy => {
+      let normalizedScore;
       
-      if (hasRange) {
-        // Map the raw score to 0-100 range
-        matchScore = Math.round(((strategy.rawScore - minScore) / scoreRange) * 100);
+      if (maxScore === minScore) {
+        normalizedScore = 75; // Middle of scale if all are equal
       } else {
-        // If all applicable strategies have the same score, give them 75
-        // This creates a middle tier when all strategies are equally matched
-        matchScore = 75;
+        // Scale to 25-95 range to maintain significant differences
+        // but avoid too many at the extreme high end
+        normalizedScore = 25 + ((strategy.rawScore - minScore) / (maxScore - minScore)) * 70;
       }
+      
+      // Round to whole number
+      const matchScore = Math.round(normalizedScore);
       
       return {
         ...strategy,
@@ -195,29 +186,26 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       };
     });
     
-    // Add non-applicable strategies with score 0
-    finalStrategies = [
-      ...normalizedApplicable,
-      ...nonApplicableStrategies.map(strategy => ({ ...strategy, matchScore: 0 }))
-    ];
+    // Non-applicable always get 0
+    const scoredNonApplicable = nonApplicableStrategies.map(strategy => ({
+      ...strategy,
+      matchScore: 0
+    }));
+    
+    finalStrategies = [...scaledApplicable, ...scoredNonApplicable];
   } else {
-    // Without active filters or with only one applicable strategy,
-    // use a different categorization approach
-    finalStrategies = scoredStrategies.map(strategy => {
-      // If applicable, assign a fixed high score (but not 100)
-      // This prevents everything showing as "Highly Likely" when no filters are applied
-      return {
-        ...strategy,
-        matchScore: strategy.isApplicable ? 75 : 0
-      };
-    });
+    // If no filters are applied, give all applicable strategies a default score
+    finalStrategies = scoredStrategies.map(strategy => ({
+      ...strategy,
+      matchScore: strategy.isApplicable ? 65 : 0
+    }));
   }
-  
-  // Sort the final strategies
+
+  // Sort the strategies
   return finalStrategies.sort((a, b) => {
-    // First sort by applicability (applicable strategies first)
+    // First sort by applicability
     if (a.isApplicable !== b.isApplicable) return a.isApplicable ? -1 : 1;
-    // Then sort by match score (higher scores first)
+    // Then by match score
     return b.matchScore - a.matchScore;
   });
 }
