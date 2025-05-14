@@ -680,7 +680,7 @@
     "overtitle": "IP valuation",
     "title": "Determine the value of IP",
     "description": "Get professional assessment of the financial worth of specific intellectual property.",
-    "responseType": ["Accused", "Enforcement"],
+    "responseType": ["Accused", "Proactive"],
     "right": "All types",
     "costText": "$3,000-$20,000 depending on complexity",
     "effortText": "2-4 weeks",
