@@ -1,0 +1,309 @@
+{
+  "preferences": {
+    "timeCommitment": {
+      "description": "User preference for time investment",
+      "multipliers": [
+        {
+          "prefValue": 5,
+          "tags": ["Quick", "Fast", "Immediate"],
+          "value": 1.5,
+          "description": "Boost strategies tagged as quick when user prefers quick options"
+        },
+        {
+          "prefValue": 5,
+          "tags": ["Long-term", "Extended"],
+          "value": 0.5,
+          "description": "Reduce relevance of long-term strategies when user prefers quick options"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Quick", "Fast", "Immediate"],
+          "value": 0.5,
+          "description": "Reduce relevance of quick strategies when user prefers thorough options"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Long-term", "Extended", "Thorough"],
+          "value": 1.5,
+          "description": "Boost strategies tagged as thorough when user prefers thorough options"
+        }
+      ]
+    },
+    "investment": {
+      "description": "User preference for monetary investment",
+      "multipliers": [
+        {
+          "prefValue": 5,
+          "tags": ["Low-cost", "Budget", "Affordable"],
+          "value": 1.5,
+          "description": "Boost low-cost strategies when user prefers affordability"
+        },
+        {
+          "prefValue": 5,
+          "tags": ["Premium", "High-cost"],
+          "value": 0.3,
+          "description": "Significantly reduce relevance of high-cost strategies when user prefers affordability"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Low-cost", "Budget", "DIY"],
+          "value": 0.6,
+          "description": "Reduce relevance of budget strategies when user is willing to invest"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Premium", "High-cost", "Professional"],
+          "value": 1.3,
+          "description": "Boost premium strategies when user is willing to invest"
+        }
+      ]
+    },
+    "commercialAgreements": {
+      "description": "User preference for commercial agreements",
+      "multipliers": [
+        {
+          "prefValue": 5,
+          "tags": ["Agreement", "Settlement", "Negotiation"],
+          "value": 1.8,
+          "description": "Significantly boost negotiation strategies when user prefers agreements"
+        },
+        {
+          "prefValue": 5,
+          "tags": ["Litigation", "Court", "Challenge"],
+          "value": 0.4,
+          "description": "Reduce relevance of litigation strategies when user prefers agreements"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Agreement", "Settlement", "Negotiation"],
+          "value": 0.4,
+          "description": "Reduce relevance of negotiation strategies when user wants to avoid agreements"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["DIY", "Self-managed", "Non-contract"],
+          "value": 1.5,
+          "description": "Boost self-managed strategies when user wants to avoid agreements"
+        }
+      ]
+    },
+    "thirdPartyServices": {
+      "description": "User preference for third-party services",
+      "multipliers": [
+        {
+          "prefValue": 5,
+          "tags": ["Consultant", "Expert", "Service"],
+          "value": 1.5,
+          "description": "Boost service-oriented strategies when user prefers third-party help"
+        },
+        {
+          "prefValue": 5,
+          "tags": ["DIY", "Self-managed"],
+          "value": 0.5,
+          "description": "Reduce relevance of DIY strategies when user prefers third-party help"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Consultant", "Expert", "Service"],
+          "value": 0.3,
+          "description": "Significantly reduce service strategies when user prefers to avoid third parties"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["DIY", "Self-managed", "In-house"],
+          "value": 1.7,
+          "description": "Significantly boost DIY strategies when user prefers to avoid third parties"
+        }
+      ]
+    },
+    "legalAction": {
+      "description": "User preference for legal action",
+      "multipliers": [
+        {
+          "prefValue": 5,
+          "tags": ["Litigation", "Court", "Legal", "Challenge"],
+          "value": 2.0,
+          "description": "Significantly boost litigation strategies when user prefers legal action"
+        },
+        {
+          "prefValue": 5,
+          "tags": ["Settlement", "Negotiation", "Alternative"],
+          "value": 0.2,
+          "description": "Severely reduce settlement strategies when user prefers legal action"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Litigation", "Court", "Challenge"],
+          "value": 0,
+          "description": "Make litigation strategies not applicable when user wants to avoid legal action"
+        },
+        {
+          "prefValue": -5,
+          "tags": ["Settlement", "Negotiation", "Alternative", "Informal"],
+          "value": 1.8,
+          "description": "Significantly boost alternative strategies when user wants to avoid legal action"
+        }
+      ]
+    }
+  },
+  "otherFactors": {
+    "onlineMarkets": {
+      "description": "Factors related to online marketplaces",
+      "multipliers": [
+        {
+          "factorValue": "yes",
+          "tags": ["Online", "Digital", "E-commerce", "Takedown"],
+          "value": 1.8,
+          "description": "Significantly boost online-related strategies when user has online presence"
+        },
+        {
+          "factorValue": "no",
+          "tags": ["Online", "Digital", "E-commerce", "Takedown"],
+          "value": 0.4,
+          "description": "Reduce relevance of online strategies when user doesn't have online presence"
+        }
+      ]
+    },
+    "domainName": {
+      "description": "Factors related to domain names",
+      "multipliers": [
+        {
+          "factorValue": "yes",
+          "tags": ["Domain", "UDRP", "Website"],
+          "value": 1.7,
+          "description": "Boost domain-related strategies when user has domain concerns"
+        },
+        {
+          "factorValue": "no",
+          "tags": ["Domain", "UDRP", "Website"],
+          "value": 0.3,
+          "description": "Reduce domain strategies when user doesn't have domain concerns"
+        }
+      ]
+    },
+    "importingGoods": {
+      "description": "Factors related to importing goods",
+      "multipliers": [
+        {
+          "factorValue": "yes",
+          "tags": ["Import", "Customs", "Border"],
+          "value": 2.0,
+          "description": "Significantly boost customs-related strategies when user is importing"
+        },
+        {
+          "factorValue": "yes",
+          "tags": ["Domestic", "Local-only"],
+          "value": 0.6,
+          "description": "Reduce domestic-only strategies when user is importing"
+        },
+        {
+          "factorValue": "no",
+          "tags": ["Import", "Customs", "Border"],
+          "value": 0,
+          "description": "Make customs strategies not applicable when user isn't importing"
+        }
+      ]
+    },
+    "identifyParty": {
+      "description": "Whether user can identify the infringing party",
+      "multipliers": [
+        {
+          "factorValue": "unknown",
+          "tags": ["Investigation", "Identification", "Unknown-party"],
+          "value": 1.9,
+          "description": "Significantly boost investigation strategies when infringer is unknown"
+        },
+        {
+          "factorValue": "unknown",
+          "tags": ["Direct-contact", "Cease-desist"],
+          "value": 0,
+          "description": "Make direct contact strategies not applicable when infringer is unknown"
+        },
+        {
+          "factorValue": "known",
+          "tags": ["Investigation", "Identification"],
+          "value": 0.3,
+          "description": "Significantly reduce investigation strategies when infringer is known"
+        },
+        {
+          "factorValue": "known",
+          "tags": ["Direct-contact", "Cease-desist", "Negotiation"],
+          "value": 1.5,
+          "description": "Boost direct contact strategies when infringer is known"
+        }
+      ]
+    }
+  },
+  "situationSpecific": {
+    "Enforcement": {
+      "description": "Multipliers specific to enforcement situations",
+      "multipliers": [
+        {
+          "factorValue": "first_occurrence",
+          "tags": ["Warning", "Education", "First-time"],
+          "value": 1.5,
+          "description": "Boost warning strategies for first-time infringements"
+        },
+        {
+          "factorValue": "repeat_offender",
+          "tags": ["Escalation", "Aggressive", "Severe"],
+          "value": 1.8,
+          "description": "Boost aggressive strategies for repeat offenders"
+        }
+      ]
+    },
+    "Accused": {
+      "description": "Multipliers specific to accused situations",
+      "multipliers": [
+        {
+          "factorValue": "clear_rights",
+          "tags": ["Challenge", "Counter", "Defend"],
+          "value": 1.6,
+          "description": "Boost defense strategies when user has clear rights"
+        },
+        {
+          "factorValue": "uncertain",
+          "tags": ["Settlement", "Redesign", "Alternative"],
+          "value": 1.7,
+          "description": "Boost settlement strategies when rights are uncertain"
+        }
+      ]
+    }
+  },
+  "ipTypeSpecific": {
+    "Patent": {
+      "description": "Multipliers specific to patent strategies",
+      "multipliers": [
+        {
+          "factorValue": "technical",
+          "tags": ["Technical", "Expert-witness", "Engineer"],
+          "value": 1.5,
+          "description": "Boost technical strategies for technical patents"
+        },
+        {
+          "factorValue": "design",
+          "tags": ["Design", "Appearance", "Visual"],
+          "value": 1.5,
+          "description": "Boost design-focused strategies for design patents"
+        }
+      ]
+    },
+    "Trade mark": {
+      "description": "Multipliers specific to trademark strategies",
+      "multipliers": [
+        {
+          "factorValue": "established",
+          "tags": ["Well-known", "Famous", "Reputation"],
+          "value": 1.7,
+          "description": "Boost reputation strategies for established marks"
+        },
+        {
+          "factorValue": "new",
+          "tags": ["Registration", "Build-evidence", "Documentation"],
+          "value": 1.6,
+          "description": "Boost evidence-building strategies for new marks"
+        }
+      ]
+    }
+  }
+}
