@@ -55,7 +55,7 @@
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
       fetch('preferences.json').then(res => res.json()),
-        fetch('multiplier-matrix.json').then(res => res.json())
+        fetch('multipliermatrix.json').then(res => res.json())
     ]).then(([strategiesData, preferenceConfigs, multiplierMatrix]) => {
 
       const ipRightsOptions = [
