@@ -673,3 +673,12 @@
   background-color: #e8eaf6;
   color: #3949ab;
 }
+
+/* Add to your existing CSS in the style tag or in styles.css */
+.not-applicable {
+  background-color: #9e9e9e; /* Gray color */
+}
+
+.border-not-applicable {
+  border-left: 3px solid #9e9e9e;
+}
