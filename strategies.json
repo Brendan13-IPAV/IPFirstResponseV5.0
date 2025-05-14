@@ -6,16 +6,11 @@
     "description": "Initiate a challenge to the validity of a new patent with IP Australia",
     "responseType": ["Enforcement", "Accused"],
     "right": "Patent",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 8,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 7
-    },
     "costText": "$5,000+ plus legal fees",
     "effortText": "Weeks to months",
-    "resolutionText": "Varies depending on complexity"
+    "resolutionText": "Varies depending on complexity",
+    "ipTypeTags": ["Patent"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 2,
@@ -24,16 +19,11 @@
     "description": "Request a re-examination with IP Australia, to revoke or amend a granted patent",
     "responseType": ["Enforcement", "Accused"],
     "right": "Patent",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 7,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 8,
-      "legalAction": 7
-    },
     "costText": "$3,000+ plus legal fees",
     "effortText": "Weeks to months",
-    "resolutionText": "Varies by case"
+    "resolutionText": "Varies by case",
+    "ipTypeTags": ["Patent"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 3,
@@ -42,16 +32,11 @@
     "description": "Escalate a wide range of patent matters to court",
     "responseType": ["Enforcement", "Accused"],
     "right": "Patent",
-    "scores": {
-      "timeCommitment": 9,
-      "investment": 10,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 9,
-      "legalAction": 10
-    },
     "costText": "$15,000-$100,000+ plus legal fees",
     "effortText": "6-12+ months",
-    "resolutionText": "Varies depending on court and case complexity"
+    "resolutionText": "Varies depending on court and case complexity",
+    "ipTypeTags": ["Patent"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 4,
@@ -60,16 +45,11 @@
     "description": "Initiate a trade mark opposition process against a new trademark with IP Australia",
     "responseType": ["Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 6,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 7
-    },
     "costText": "$1,500-$3,000 plus legal fees",
     "effortText": "3-4 months",
-    "resolutionText": "Success depends on grounds of opposition"
+    "resolutionText": "Success depends on grounds of opposition",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 5,
@@ -78,16 +58,11 @@
     "description": "Let IP Australia know a recently registered trade mark should not have been registered",
     "responseType": ["Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 6,
-      "legalAction": 7
-    },
     "costText": "-",
     "effortText": "Weeks to months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 6,
@@ -96,16 +71,11 @@
     "description": "Request IP Australia removes a trade mark from the register for non-use",
     "responseType": ["Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 5,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 6,
-      "legalAction": 6
-    },
     "costText": "$650+ plus any legal fees",
     "effortText": "-",
-    "resolutionText": "High success rate for marks unused for 3+ years"
+    "resolutionText": "High success rate for marks unused for 3+ years",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 7,
@@ -114,16 +84,11 @@
     "description": "Escalate a wide range of trade mark matters to court",
     "responseType": ["Enforcement", "Accused"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 9,
-      "investment": 10,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 9,
-      "legalAction": 10
-    },
     "costText": "$25,000+ plus legal fees",
     "effortText": "12+ months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 8,
@@ -132,16 +97,11 @@
     "description": "Lodge an interim injunction order through court",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 8,
-      "investment": 9,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 8,
-      "legalAction": 10
-    },
     "costText": "$15,000+ plus legal fees",
     "effortText": "Days to weeks for interim relief",
-    "resolutionText": "Requires later formal proceedings"
+    "resolutionText": "Requires later formal proceedings",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Comply"]
   },
   {
     "id": 9,
@@ -150,16 +110,11 @@
     "description": "Seek dispute resolution through the WIPO Arbitration and Mediation Center",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 7,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 8,
-      "legalAction": 7
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Varies by dispute type and complexity"
+    "resolutionText": "Varies by dispute type and complexity",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 10,
@@ -168,16 +123,11 @@
     "description": "Understand more about the options in the ADR space.",
     "responseType": ["Enforcement", "Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 5,
-      "commercialAgreements": 6,
-      "thirdPartyServices": 7,
-      "legalAction": 4
-    },
     "costText": "$1,500-$5,000 depending on mediator fees",
     "effortText": "Weeks",
-    "resolutionText": "60-80% resolution rate"
+    "resolutionText": "60-80% resolution rate",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Service"]
   },
   {
     "id": 11,
@@ -186,16 +136,11 @@
     "description": "Australia Small Business & Family Enterprise Ombudsman (ASBFEO).",
     "responseType": ["Enforcement", "Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 3,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 7,
-      "legalAction": 3
-    },
     "costText": "No fee for initial assistance",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Service", "Negotiate"]
   },
   {
     "id": 12,
@@ -204,16 +149,11 @@
     "description": "Invite the other party to enter into mediation to agree to mutually acceptable agreement.",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 5,
-      "commercialAgreements": 7,
-      "thirdPartyServices": 8,
-      "legalAction": 3
-    },
     "costText": "$2,000-$5,000 depending on mediator",
     "effortText": "1-2 days for mediation session",
-    "resolutionText": "70% success rate for willing parties"
+    "resolutionText": "70% success rate for willing parties",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Service"]
   },
   {
     "id": 13,
@@ -222,16 +162,11 @@
     "description": "Agree to be bound by the decision of a highly qualified third party assessment.",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 6,
-      "commercialAgreements": 7,
-      "thirdPartyServices": 9,
-      "legalAction": 5
-    },
     "costText": "-",
     "effortText": "1-3 months",
-    "resolutionText": "Binding on both parties"
+    "resolutionText": "Binding on both parties",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 14,
@@ -240,16 +175,11 @@
     "description": "Send a letter to the infringing party notifying them of potential infringement.",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 3,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 4,
-      "legalAction": 4
-    },
     "costText": "$500-$1,500 for legal drafting",
     "effortText": "Hours to draft",
-    "resolutionText": "25-40% resolution rate without further action"
+    "resolutionText": "25-40% resolution rate without further action",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Comply"]
   },
   {
     "id": 15,
@@ -258,16 +188,11 @@
     "description": "Alert the alleged infringer of your registered rights to allow them to stop infringing.",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 1,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 1,
-      "legalAction": 2
-    },
     "costText": "Minimal or no cost",
     "effortText": "Hours",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Comply"]
   },
   {
     "id": 16,
@@ -276,16 +201,11 @@
     "description": "Let the accuser know about your circumstances.",
     "responseType": ["Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 1,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 1,
-      "legalAction": 2
-    },
     "costText": "-",
     "effortText": "Hours",
-    "resolutionText": "Varies depending on circumstances"
+    "resolutionText": "Varies depending on circumstances",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Assess"]
   },
   {
     "id": 17,
@@ -294,16 +214,11 @@
     "description": "Work with an IP professional to come to an agreement with another party.",
     "responseType": ["Enforcement", "Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 4,
-      "commercialAgreements": 9,
-      "thirdPartyServices": 6,
-      "legalAction": 2
-    },
     "costText": "$1,000-$3,000 for professional assistance",
     "effortText": "Weeks",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Commercial"]
   },
   {
     "id": 18,
@@ -312,16 +227,11 @@
     "description": "Request infringing material is removed from online marketplaces and platforms.",
     "responseType": ["Enforcement"],
     "right": "Trade mark; Copyright",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 2,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 4,
-      "legalAction": 3
-    },
     "costText": "Usually free to submit",
     "effortText": "Hours to prepare request",
-    "resolutionText": "72 hours to 2 weeks for processing"
+    "resolutionText": "72 hours to 2 weeks for processing",
+    "ipTypeTags": ["Trade mark", "Copyright"],
+    "approachTags": ["Comply", "Service"]
   },
   {
     "id": 19,
@@ -330,16 +240,11 @@
     "description": "Inform Government about risks to public health, crime, counterfeiting, frauds & scams.",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 2,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 5,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Depends on government prioritization"
+    "resolutionText": "Depends on government prioritization",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Service", "Comply"]
   },
   {
     "id": 20,
@@ -348,16 +253,11 @@
     "description": "Lodge a notice of objection with the Australian Border Force.",
     "responseType": ["Enforcement", "Proactive"],
     "right": "Trade mark; Copyright",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 7,
-      "legalAction": 5
-    },
     "costText": "No government fee",
     "effortText": "2-3 hours to prepare documentation",
-    "resolutionText": "2-year validity period"
+    "resolutionText": "2-year validity period",
+    "ipTypeTags": ["Trade mark", "Copyright"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 21,
@@ -366,16 +266,11 @@
     "description": "Seek a qualified & experienced professional to provide specific, tailored advice.",
     "responseType": ["Enforcement", "Proactive", "Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 7,
-      "commercialAgreements": 5,
-      "thirdPartyServices": 9,
-      "legalAction": 6
-    },
     "costText": "$350-$600 per hour",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Service", "Assess"]
   },
   {
     "id": 22,
@@ -384,16 +279,11 @@
     "description": "Understand options relating to enforcing your IP overseas. ",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 8,
-      "commercialAgreements": 6,
-      "thirdPartyServices": 8,
-      "legalAction": 7
-    },
     "costText": "Varies widely by country",
     "effortText": "Months to years",
-    "resolutionText": "Depends on jurisdiction"
+    "resolutionText": "Depends on jurisdiction",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Educate"]
   },
   {
     "id": 23,
@@ -402,16 +292,11 @@
     "description": "Strategically enforce your IP only when worthwhile.",
     "responseType": ["Enforcement", "Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 1,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 2,
-      "legalAction": 1
-    },
     "costText": "No immediate cost",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Monitor", "Indirect"]
   },
   {
     "id": 24,
@@ -420,16 +305,11 @@
     "description": "Strategically rebrand your business to avoid disputes.",
     "responseType": ["Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 8,
-      "investment": 9,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 5,
-      "legalAction": 1
-    },
     "costText": "$5,000-$50,000+ depending on size",
     "effortText": "3-6 months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Indirect", "Prevent"]
   },
   {
     "id": 25,
@@ -438,16 +318,11 @@
     "description": "Protect yourself from certain costs involved in IP disputes",
     "responseType": ["Proactive"],
     "right": "Patent; Trade mark; Copyright",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 6,
-      "commercialAgreements": 7,
-      "thirdPartyServices": 8,
-      "legalAction": 2
-    },
     "costText": "-",
     "effortText": "Ongoing premium payments",
-    "resolutionText": "Varies by policy terms"
+    "resolutionText": "Varies by policy terms",
+    "ipTypeTags": ["Patent", "Trade mark", "Copyright"],
+    "approachTags": ["Protect", "Prevent"]
   },
   {
     "id": 26,
@@ -456,16 +331,11 @@
     "description": "Dispute an .au domain name that may infringe an IP right",
     "responseType": ["Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 5
-    },
     "costText": "$2,000+ per domain, plus any legal fees",
     "effortText": "Weeks to months",
-    "resolutionText": "40-50% of cases end in licence transfer"
+    "resolutionText": "40-50% of cases end in licence transfer",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 27,
@@ -474,16 +344,11 @@
     "description": "Dispute an international domain name that may infringe an IP right",
     "responseType": ["Enforcement"],
     "right": "Trade mark; Any",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 7,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 8,
-      "legalAction": 6
-    },
     "costText": "US$1,500+ per domain, plus any legal fees",
     "effortText": "Weeks to months",
-    "resolutionText": "60-70% success rate for clear cases"
+    "resolutionText": "60-70% success rate for clear cases",
+    "ipTypeTags": ["Trade mark", "Any dispute"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 28,
@@ -492,16 +357,11 @@
     "description": "Strengthen your position as the registered owner of your trade mark in Australia",
     "responseType": ["Proactive", "Enforcement"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 7,
-      "legalAction": 1
-    },
     "costText": "$250+ per class",
     "effortText": "Applying - hours",
-    "resolutionText": "5-7 months for registration"
+    "resolutionText": "5-7 months for registration",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 29,
@@ -510,16 +370,11 @@
     "description": "Establish and maintain connections with suppliers, manufacturers, and resellers of your goods.",
     "responseType": ["Proactive", "Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 3,
-      "commercialAgreements": 7,
-      "thirdPartyServices": 4,
-      "legalAction": 1
-    },
     "costText": "-",
     "effortText": "Ongoing relationship management",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Prevent"]
   },
   {
     "id": 30,
@@ -528,16 +383,11 @@
     "description": "Understand and assess the health and enforceability of your IP.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 8,
-      "legalAction": 1
-    },
     "costText": "$1,500-$10,000 depending on portfolio size",
     "effortText": "2-4 weeks",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 31,
@@ -546,16 +396,11 @@
     "description": "Apply to register your trade mark with IP Australia.",
     "responseType": ["Proactive", "Enforcement", "Accused"],
     "right": "Trade marks",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 7,
-      "legalAction": 1
-    },
     "costText": "$250+ per class",
     "effortText": "-",
-    "resolutionText": "5-7 months for registration"
+    "resolutionText": "5-7 months for registration",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 32,
@@ -564,16 +409,11 @@
     "description": "Let others use your trade mark under agreed terms.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 4,
-      "commercialAgreements": 10,
-      "thirdPartyServices": 7,
-      "legalAction": 2
-    },
     "costText": "$2,000-$5,000 for agreement drafting",
     "effortText": "Weeks to negotiate terms",
-    "resolutionText": "Ongoing revenue stream potential"
+    "resolutionText": "Ongoing revenue stream potential",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Commercial", "Negotiate"]
   },
   {
     "id": 33,
@@ -582,16 +422,11 @@
     "description": "Review the laws that protect and govern your trade mark rights.",
     "responseType": ["Proactive"],
     "right": "Trade marks",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 2,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 5,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Educate", "Assess"]
   },
   {
     "id": 34,
@@ -600,16 +435,11 @@
     "description": "Get alerts when others use similar trade marks.",
     "responseType": ["Proactive"],
     "right": "Trade marks",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 4,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 8,
-      "legalAction": 1
-    },
     "costText": "$300-$1,000 per year",
     "effortText": "Minimal - reviewing alerts",
-    "resolutionText": "Ongoing monitoring"
+    "resolutionText": "Ongoing monitoring",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Monitor", "Service"]
   },
   {
     "id": 35,
@@ -618,16 +448,11 @@
     "description": "Get alerts when others offer similar designs for sale.",
     "responseType": ["Proactive"],
     "right": "Design",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 4,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 8,
-      "legalAction": 1
-    },
     "costText": "$500-$2,000 per year",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Design"],
+    "approachTags": ["Monitor", "Service"]
   },
   {
     "id": 36,
@@ -636,16 +461,11 @@
     "description": "Get alerts when others are growing your plant varieties without compensation",
     "responseType": ["Proactive"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 6,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 9,
-      "legalAction": 3
-    },
     "costText": "$1,500-$3,000 per inspection",
     "effortText": "Periodic inspections",
-    "resolutionText": "Varies by region and plant type"
+    "resolutionText": "Varies by region and plant type",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Monitor", "Service"]
   },
   {
     "id": 37,
@@ -654,16 +474,11 @@
     "description": "Hire specialists to manage your business IP matters.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 9,
-      "commercialAgreements": 5,
-      "thirdPartyServices": 3,
-      "legalAction": 4
-    },
     "costText": "$80,000-$150,000+ annual salary",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Service", "Protect"]
   },
   {
     "id": 38,
@@ -672,16 +487,11 @@
     "description": "Help customers recognise and choose your brand above others.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 5,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 4,
-      "legalAction": 1
-    },
     "costText": "Varies based on campaign scope",
     "effortText": "Ongoing effort",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Educate", "Indirect"]
   },
   {
     "id": 39,
@@ -690,16 +500,11 @@
     "description": "Identify key stakeholders in your product's supply chain to protect your interests.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 5,
-      "commercialAgreements": 6,
-      "thirdPartyServices": 5,
-      "legalAction": 2
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Reduces counterfeit risks by 30-50%"
+    "resolutionText": "Reduces counterfeit risks by 30-50%",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Monitor", "Protect"]
   },
   {
     "id": 40,
@@ -708,16 +513,11 @@
     "description": "Implement proactive measures to protect your IP, including legal actions.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 7,
-      "commercialAgreements": 5,
-      "thirdPartyServices": 6,
-      "legalAction": 7
-    },
     "costText": "$5,000-$20,000 for strategy development",
     "effortText": "1-3 months to develop",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Prevent", "Protect"]
   },
   {
     "id": 41,
@@ -726,16 +526,11 @@
     "description": "Identify ways to protect your business without commencing legal action.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 4,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 5,
-      "legalAction": 1
-    },
     "costText": "-",
     "effortText": "Weeks to implement",
-    "resolutionText": "Reduces litigation risk"
+    "resolutionText": "Reduces litigation risk",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Protect", "Prevent"]
   },
   {
     "id": 42,
@@ -744,16 +539,11 @@
     "description": "Ensure your IP is actively used in the market to maintain rights.",
     "responseType": ["Proactive"],
     "right": "Trade marks",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 5,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 3,
-      "legalAction": 1
-    },
     "costText": "Varies by marketing strategy",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Protect", "Indirect"]
   },
   {
     "id": 43,
@@ -762,16 +552,11 @@
     "description": "Strengthen your standing in online marketplaces like Amazon Brand Registry.",
     "responseType": ["Proactive"],
     "right": "Trade marks",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 2,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 6,
-      "legalAction": 1
-    },
     "costText": "Free with registered trademark",
     "effortText": "1-2 hours to register",
-    "resolutionText": "Access to brand protection tools"
+    "resolutionText": "Access to brand protection tools",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 44,
@@ -780,16 +565,11 @@
     "description": "Determine likely areas of IP infringement to strengthen your response plan.",
     "responseType": ["Proactive"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 4,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 6,
-      "legalAction": 2
-    },
     "costText": "$2,000-$5,000",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Prevent"]
   },
   {
     "id": 45,
@@ -798,16 +578,11 @@
     "description": "Set up alerts when others try to register similar trade marks.",
     "responseType": ["Proactive"],
     "right": "Trade mark",
-    "scores": {
-      "timeCommitment": 2,
-      "investment": 3,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 7,
-      "legalAction": 1
-    },
     "costText": "$300-$800 per year",
     "effortText": "Minimal - reviewing alerts",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Trade mark"],
+    "approachTags": ["Monitor", "Service"]
   },
   {
     "id": 46,
@@ -816,16 +591,11 @@
     "description": "Evaluate similarities and differences between patent claims to assess scope and potential infringement.",
     "responseType": ["Proactive"],
     "right": "Patent",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 5,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "2-4 weeks for thorough analysis",
-    "resolutionText": "Informs risk management strategy"
+    "resolutionText": "Informs risk management strategy",
+    "ipTypeTags": ["Patent"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 47,
@@ -834,16 +604,11 @@
     "description": "Discover existing IP rights that may impact your business decisions.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 3,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 6,
-      "legalAction": 1
-    },
     "costText": "$500-$2,500 depending on scope",
     "effortText": "1-2 weeks",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 48,
@@ -852,16 +617,11 @@
     "description": "Extend your IP protection by securing additional rights in relevant categories.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 7,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 7,
-      "legalAction": 1
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Strengthens overall IP position"
+    "resolutionText": "Strengthens overall IP position",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 49,
@@ -870,16 +630,11 @@
     "description": "Determine if your product or service might infringe on existing IP rights.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 8,
-      "legalAction": 2
-    },
     "costText": "$2,500-$10,000 depending on complexity",
     "effortText": "2-4 weeks",
-    "resolutionText": "Identifies potential infringement risks"
+    "resolutionText": "Identifies potential infringement risks",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 50,
@@ -888,16 +643,11 @@
     "description": "Obtain a comprehensive assessment of your existing IP assets and protections.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 9,
-      "legalAction": 2
-    },
     "costText": "$3,000-$15,000 depending on portfolio size",
     "effortText": "1-2 months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 51,
@@ -906,16 +656,11 @@
     "description": "Create an integrated plan to leverage your IP assets for business growth.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 6,
-      "commercialAgreements": 9,
-      "thirdPartyServices": 7,
-      "legalAction": 2
-    },
     "costText": "-",
     "effortText": "3-6 months to develop strategy",
-    "resolutionText": "Revenue potential varies by asset"
+    "resolutionText": "Revenue potential varies by asset",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Commercial", "Service"]
   },
   {
     "id": 52,
@@ -924,16 +669,11 @@
     "description": "Make mutually beneficial deals with other IP rights owners.",
     "responseType": ["Accused"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 4,
-      "commercialAgreements": 8,
-      "thirdPartyServices": 6,
-      "legalAction": 2
-    },
     "costText": "$1,000-$5,000 for professional support",
     "effortText": "-",
-    "resolutionText": "Varies by negotiation"
+    "resolutionText": "Varies by negotiation",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Service"]
   },
   {
     "id": 53,
@@ -942,16 +682,11 @@
     "description": "Get professional assessment of the financial worth of specific intellectual property.",
     "responseType": ["Accused", "Enforcement"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 6,
-      "commercialAgreements": 5,
-      "thirdPartyServices": 9,
-      "legalAction": 3
-    },
     "costText": "$3,000-$20,000 depending on complexity",
     "effortText": "2-4 weeks",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Commercial"]
   },
   {
     "id": 54,
@@ -960,16 +695,11 @@
     "description": "Obtain expert insights about your specific IP situation and options.",
     "responseType": ["Proactive"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 8,
-      "legalAction": 2
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Informs strategic decision-making"
+    "resolutionText": "Informs strategic decision-making",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 55,
@@ -978,16 +708,11 @@
     "description": "Make the most of initial meetings with IP professionals through proper preparation.",
     "responseType": ["Proactive", "Accused", "Enforcement"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 2,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 8,
-      "legalAction": 3
-    },
     "costText": "Initial consultation often free",
     "effortText": "2-3 hours preparation",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Service", "Assess"]
   },
   {
     "id": 56,
@@ -996,16 +721,11 @@
     "description": "Negotiate solutions to IP ownership disputes with professional guidance.",
     "responseType": ["Proactive", "Accused", "Enforcement"],
     "right": "Patent; Design",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 7,
-      "commercialAgreements": 7,
-      "thirdPartyServices": 8,
-      "legalAction": 7
-    },
     "costText": "$5,000-$20,000+ depending on complexity",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Patent", "Design"],
+    "approachTags": ["Negotiate", "Challenge"]
   },
   {
     "id": 57,
@@ -1014,16 +734,11 @@
     "description": "Consider their allegations and whether their contact letter seems legitimate",
     "responseType": ["Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 1,
-      "investment": 1,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 1,
-      "legalAction": 1
-    },
     "costText": "No cost",
     "effortText": "Minutes to hours",
-    "resolutionText": "Many scam letters can be identified"
+    "resolutionText": "Many scam letters can be identified",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Indirect"]
   },
   {
     "id": 58,
@@ -1032,16 +747,11 @@
     "description": "Consider if it's appropriate to take infringement action against the other party",
     "responseType": ["Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 7,
-      "investment": 7,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 7,
-      "legalAction": 9
-    },
     "costText": "-",
     "effortText": "Months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 59,
@@ -1050,16 +760,11 @@
     "description": "Make sure they have valid IP and raise any issues with these",
     "responseType": ["Proactive", "Accused"],
     "right": "All types",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 3,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 6,
-      "legalAction": 3
-    },
     "costText": "$1,000-$3,000 for professional review",
     "effortText": "1-2 weeks",
-    "resolutionText": "May identify invalidity issues"
+    "resolutionText": "May identify invalidity issues",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 60,
@@ -1068,16 +773,11 @@
     "description": "Make sure your registered design is fully protected against infringement",
     "responseType": ["Proactive", "Enforcement"],
     "right": "Design",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "Required before enforcement action"
+    "resolutionText": "Required before enforcement action",
+    "ipTypeTags": ["Design"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 61,
@@ -1086,16 +786,11 @@
     "description": "Ask IP Australia to assess someone's registered design for validity ",
     "responseType": ["Proactive", "Accused"],
     "right": "Design",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 5,
-      "commercialAgreements": 1,
-      "thirdPartyServices": 7,
-      "legalAction": 4
-    },
     "costText": "$420 government fee",
     "effortText": "1-2 hours to prepare request",
-    "resolutionText": "2-4 months for examination report"
+    "resolutionText": "2-4 months for examination report",
+    "ipTypeTags": ["Design"],
+    "approachTags": ["Assess", "Challenge"]
   },
   {
     "id": 62,
@@ -1104,16 +799,11 @@
     "description": "Take PBR infringement or violation of licensing terms to court",
     "responseType": ["Enforcement"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 9,
-      "investment": 10,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 9,
-      "legalAction": 10
-    },
     "costText": "-",
     "effortText": "12+ months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 63,
@@ -1122,16 +812,11 @@
     "description": "Check if you qualify for an exemption for items propagated on your farm",
     "responseType": ["Accused"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 2,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 5,
-      "legalAction": 3
-    },
     "costText": "$500-$1,500 for professional advice",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Assess", "Service"]
   },
   {
     "id": 64,
@@ -1140,16 +825,11 @@
     "description": "Check any existing licencing agreements to ensure you're complying",
     "responseType": ["Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 3,
-      "commercialAgreements": 9,
-      "thirdPartyServices": 5,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "Hours to days",
-    "resolutionText": "May identify compliance issues"
+    "resolutionText": "May identify compliance issues",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Assess", "Comply"]
   },
   {
     "id": 65,
@@ -1158,16 +838,11 @@
     "description": "Set up licencing terms for customers which assign royalties to propagation or non-propagation arrangments",
     "responseType": ["Proactive"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 9,
-      "thirdPartyServices": 7,
-      "legalAction": 2
-    },
     "costText": "$2,500-$6,000 for contract development",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Commercial", "Service"]
   },
   {
     "id": 66,
@@ -1176,16 +851,11 @@
     "description": "Claim further PBR rights over certain harvested materials, dependent and essentially derived varieties",
     "responseType": ["Enforcement"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 6,
-      "investment": 7,
-      "commercialAgreements": 4,
-      "thirdPartyServices": 8,
-      "legalAction": 5
-    },
     "costText": "-",
     "effortText": "Months",
-    "resolutionText": "Extends protection scope"
+    "resolutionText": "Extends protection scope",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Protect", "Service"]
   },
   {
     "id": 67,
@@ -1194,16 +864,11 @@
     "description": "Enforce your certified designs right through the court system",
     "responseType": ["Enforcement"],
     "right": "Design",
-    "scores": {
-      "timeCommitment": 9,
-      "investment": 10,
-      "commercialAgreements": 3,
-      "thirdPartyServices": 9,
-      "legalAction": 10
-    },
     "costText": "$25,000-$100,000+ plus legal fees",
     "effortText": "12+ months",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Design"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 68,
@@ -1212,16 +877,11 @@
     "description": "Object to the granting of a PBR with IP Australia",
     "responseType": ["Enforcement"],
     "right": "PBR",
-    "scores": {
-      "timeCommitment": 5,
-      "investment": 6,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 7,
-      "legalAction": 6
-    },
     "costText": "-",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["PBR"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 69,
@@ -1230,16 +890,11 @@
     "description": "Take another party to court for making ungrounded accusions of infringement",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 8,
-      "investment": 9,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 8,
-      "legalAction": 10
-    },
     "costText": "$10,000-$50,000+ plus legal fees",
     "effortText": "6-12+ months",
-    "resolutionText": "May result in damages award"
+    "resolutionText": "May result in damages award",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Challenge", "Service"]
   },
   {
     "id": 70,
@@ -1248,16 +903,11 @@
     "description": "Stop using the IP you're accused of infringing ",
     "responseType": ["Accused"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 3,
-      "investment": 4,
-      "commercialAgreements": 2,
-      "thirdPartyServices": 2,
-      "legalAction": 1
-    },
     "costText": "Costs of removing infringing elements",
     "effortText": "-",
-    "resolutionText": "-"
+    "resolutionText": "-",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Comply", "Indirect"]
   },
   {
     "id": 71,
@@ -1266,15 +916,11 @@
     "description": "Ask intermediaries to cease enabling infringement",
     "responseType": ["Enforcement"],
     "right": "Any",
-    "scores": {
-      "timeCommitment": 4,
-      "investment": 3,
-      "commercialAgreements": 6,
-      "thirdPartyServices": 5,
-      "legalAction": 3
-    },
     "costText": "-",
     "effortText": "Hours to days",
-    "resolutionText": "Varies by cooperation level"
+    "resolutionText": "Varies by cooperation level",
+    "ipTypeTags": ["Any dispute"],
+    "approachTags": ["Negotiate", "Indirect"]
   }
 ]
+  
