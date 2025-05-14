@@ -923,13 +923,25 @@ function filterAndRankStrategies() {
                                                           let relevanceClass = 'medium'; // mid-green
                                                           const score = strategy.matchScore;
                                                           
-                                                          if (!showUnknown) {
-                                                            if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
-                                                            else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
-                                                            else if (score >= 50) { matchLabel = 'Possible'; relevanceClass = 'medium'; }
-                                                            else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
-                                                            else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
-                                                          }
+                                                                        if (score === 0) {
+                                                                          matchLabel = 'Not Applicable';
+                                                                          relevanceClass = 'not-applicable';
+                                                                        } else if (score >= 90) {
+                                                                          matchLabel = 'Highly Likely'; 
+                                                                          relevanceClass = 'very-high';
+                                                                        } else if (score >= 75) {
+                                                                          matchLabel = 'Likely'; 
+                                                                          relevanceClass = 'high';
+                                                                        } else if (score >= 50) {
+                                                                          matchLabel = 'Possible'; 
+                                                                          relevanceClass = 'medium';
+                                                                        } else if (score >= 25) {
+                                                                          matchLabel = 'Unlikely'; 
+                                                                          relevanceClass = 'low';
+                                                                        } else {
+                                                                          matchLabel = 'Probably Not-Applicable'; 
+                                                                          relevanceClass = 'very-low';
+                                                                        }
                                                           
                                                           // Apply the relevancy border color
                                                           card.classList.add(`border-${relevanceClass}`);
