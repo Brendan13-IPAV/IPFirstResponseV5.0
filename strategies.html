@@ -18,7 +18,7 @@
     .metric-row {
       margin-bottom: 4px;
       display: flex;
-      align-items: center; /* Changed from flex-start to center for better alignment */
+      align-items: center;
     }
     
     .metric-label {
@@ -30,6 +30,23 @@
     .metric-value {
       color: var(--text-primary);
       flex: 1;
+    }
+
+    /* Tag sections wrapper */
+    .tag-sections {
+      margin-top: 12px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+    }
+
+    /* Tighter spacing for tag rows */
+    .tag-row {
+      margin-bottom: 2px;
+    }
+    
+    /* Last tag row has no margin */
+    .tag-row:last-child {
+      margin-bottom: 0;
     }
 
     /* New styles for IP type and approach tags */
@@ -224,10 +241,10 @@
 
           // Apply matrix-based scoring logic
           state.filteredStrategies = filtered.map(strategy => {
-            // Get strategy tags
+            // Get strategy tags from the ipTypeTags and approachTags fields in the JSON
             const strategyTags = {
-              ipTypes: strategy.right ? strategy.right.split('; ') : [],
-              approaches: strategy.approaches ? strategy.approaches.split('; ') : [],
+              ipTypes: strategy.ipTypeTags || [],
+              approaches: strategy.approachTags || [],
               // Include any other tag types from the strategy
               features: strategy.features ? strategy.features.split('; ') : []
             };
@@ -934,7 +951,7 @@
           return wrapper;
         }
 
-        // Updated renderStrategyCards function to display IP Type and Approach tags
+                    // Updated renderStrategyCards function to display IP Type and Approach tags
         function renderStrategyCards() {
           const list = document.createElement('div');
           list.className = 'card-grid';
@@ -990,58 +1007,7 @@
               <div class="strategy-overtitle">${strategy.overtitle}</div>
               <h3 class="strategy-title">${strategy.title}</h3>
               <p class="strategy-description">${strategy.description}</p>
-            `;
-            
-            // Add tags section if strategy has IP types or approaches
-            const hasIpTypes = strategy.strategyTags && strategy.strategyTags.ipTypes && strategy.strategyTags.ipTypes.length > 0;
-            const hasApproaches = strategy.strategyTags && strategy.strategyTags.approaches && strategy.strategyTags.approaches.length > 0;
-            
-            // Add IP type section
-            if (hasIpTypes) {
-              // Check if "Any" or "Any IP right" is included
-              const hasAny = strategy.strategyTags.ipTypes.some(ipType => 
-                ipType === 'Any' || ipType === 'Any IP right'
-              );
               
-              // Filter specific IP types (excluding "Any" or "Any IP right")
-              const specificIpTypes = strategy.strategyTags.ipTypes.filter(ipType => 
-                ipType !== 'Any' && ipType !== 'Any IP right'
-              );
-              
-              htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
-              htmlContent += '<span class="metric-label">Specific to:</span>';
-              htmlContent += '<div class="strategy-tags">';
-              
-              if (hasAny) {
-                // Add "Any dispute" tag
-                htmlContent += '<span class="strategy-tag tag-ip-any">Any dispute</span>';
-              }
-              
-              // Add specific IP type tags with different colors
-              specificIpTypes.forEach(ipType => {
-                // Convert ipType to a class-friendly format (lowercase, no spaces)
-                const ipClass = ipType.toLowerCase().replace(/\s+/g, '');
-                htmlContent += `<span class="strategy-tag tag-ip-${ipClass}">${ipType}</span>`;
-              });
-              
-              htmlContent += '</div></div>';
-            }
-            
-            // Add approach section
-            if (hasApproaches && strategy.strategyTags.approaches.length > 0) {
-              htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
-              htmlContent += '<span class="metric-label">Approach:</span>';
-              htmlContent += '<div class="strategy-tags">';
-              
-              strategy.strategyTags.approaches.forEach(approach => {
-                htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
-              });
-              
-              htmlContent += '</div></div>';
-            }
-            
-            // Add metrics section
-            htmlContent += `
               <div class="card-metrics">
                 <div class="metric-row">
                   <span class="metric-label">Estimated cost:</span>
@@ -1055,8 +1021,65 @@
                   <span class="metric-label">Rate of resolution:</span>
                   <span class="metric-value">${resolutionText}</span>
                 </div>
-              </div>
             `;
+            
+            // Add tag sections underneath the metrics
+            const hasIpTypes = strategy.ipTypeTags && strategy.ipTypeTags.length > 0;
+            const hasApproaches = strategy.approachTags && strategy.approachTags.length > 0;
+            
+            // Create tag sections wrapper
+            if (hasIpTypes || hasApproaches) {
+              htmlContent += '<div class="tag-sections">';
+              
+              // Add IP type section
+              if (hasIpTypes) {
+                // Check if "Any" or "Any IP right" or "Any dispute" is included
+                const hasAny = strategy.ipTypeTags.some(ipType => 
+                  ipType === 'Any' || ipType === 'Any IP right' || ipType === 'Any dispute'
+                );
+                
+                // Filter specific IP types (excluding "Any" or "Any IP right" or "Any dispute")
+                const specificIpTypes = strategy.ipTypeTags.filter(ipType => 
+                  ipType !== 'Any' && ipType !== 'Any IP right' && ipType !== 'Any dispute'
+                );
+                
+                htmlContent += '<div class="metric-row tag-row">';
+                htmlContent += '<span class="metric-label">Specific to:</span>';
+                htmlContent += '<div class="strategy-tags">';
+                
+                if (hasAny) {
+                  // Add "Any dispute" tag
+                  htmlContent += '<span class="strategy-tag tag-ip-any">Any dispute</span>';
+                }
+                
+                // Add specific IP type tags with different colors
+                specificIpTypes.forEach(ipType => {
+                  // Convert ipType to a class-friendly format (lowercase, no spaces)
+                  const ipClass = ipType.toLowerCase().replace(/\s+/g, '');
+                  htmlContent += `<span class="strategy-tag tag-ip-${ipClass}">${ipType}</span>`;
+                });
+                
+                htmlContent += '</div></div>';
+              }
+              
+              // Add approach section
+              if (hasApproaches && strategy.approachTags.length > 0) {
+                htmlContent += '<div class="metric-row tag-row">';
+                htmlContent += '<span class="metric-label">Approach:</span>';
+                htmlContent += '<div class="strategy-tags">';
+                
+                strategy.approachTags.forEach(approach => {
+                  htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
+                });
+                
+                htmlContent += '</div></div>';
+              }
+              
+              htmlContent += '</div>'; // Close tag-sections
+            }
+            
+            // Close card-metrics
+            htmlContent += '</div>';
             
             // Set the HTML content
             card.innerHTML = htmlContent;
