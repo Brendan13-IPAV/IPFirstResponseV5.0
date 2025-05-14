@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP First Response 2.0</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .strategy-card { border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; border-radius: 6px; transition: 0.3s; }
+    .strategy-card h3 { margin-top: 0; }
+    .badge { display: inline-block; padding: 2px 6px; font-size: 12px; border-radius: 4px; background-color: #eee; margin-left: 8px; }
+    .score-high { background-color: #d4edda; color: #155724; }
+    .score-low { background-color: #f8d7da; color: #721c24; }
+    .not-applicable { opacity: 0.6; font-style: italic; }
+  </style>
 </head>
 <body>
-  <div id="app">Loading...</div>
+  <div class="container">
+    <h1>IP Strategy Options</h1>
+    <div id="app">Loading strategies...</div>
+  </div>
 
   <script type="module">
     import { calculateStrategyScores } from './scoring.js';
@@ -26,12 +37,6 @@
         loading: true,
         strategies: strategiesData,
         filteredStrategies: [],
-        accordions: savedState.accordions || { 
-          preferences: true, 
-          otherFactors: true, 
-          situationFilters: true, 
-          ipTypeFilters: true 
-        },
         selectedRights: savedState.selectedRights || allRights,
         selectedSituations: savedState.selectedSituations || ['Enforcement'],
         preferences: {
@@ -86,14 +91,34 @@
         const app = document.getElementById('app');
         app.innerHTML = '';
 
-        const ul = document.createElement('ul');
-        state.filteredStrategies.forEach(strategy => {
-          const li = document.createElement('li');
-          li.textContent = `${strategy.title} — Score: ${strategy.matchScore} — ${strategy.isApplicable ? 'Applicable' : 'Not Applicable'}`;
-          ul.appendChild(li);
-        });
+        if (state.filteredStrategies.length === 0) {
+          app.textContent = 'No strategies found.';
+          return;
+        }
 
-        app.appendChild(ul);
+        state.filteredStrategies.forEach(strategy => {
+          const card = document.createElement('div');
+          card.className = 'strategy-card';
+          if (!strategy.isApplicable) card.classList.add('not-applicable');
+
+          const title = document.createElement('h3');
+          title.textContent = strategy.title;
+
+          const desc = document.createElement('p');
+          desc.textContent = strategy.description || '(No description provided)';
+
+          const score = document.createElement('div');
+          const badge = document.createElement('span');
+          badge.className = 'badge ' + (strategy.matchScore >= 75 ? 'score-high' : 'score-low');
+          badge.textContent = strategy.isApplicable ? `Score: ${strategy.matchScore}` : 'Not Applicable';
+          score.appendChild(badge);
+
+          card.appendChild(title);
+          card.appendChild(desc);
+          card.appendChild(score);
+
+          app.appendChild(card);
+        });
       }
 
       return { init };
