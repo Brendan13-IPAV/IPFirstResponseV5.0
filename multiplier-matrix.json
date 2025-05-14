@@ -1,0 +1,75 @@
+{
+  "baseScores": {
+    "default": 100,
+    "1": 100,
+    "2": 100,
+    "3": 95,
+    "4": 105
+  },
+  "approachMultipliers": {
+    "Challenge": {
+      "legalAction_positive": 1.3,
+      "legalAction_negative": 0.7,
+      "timeCommitment_positive": 1.2,
+      "timeCommitment_negative": 0.8,
+      "investment_positive": 1.3,
+      "investment_negative": 0.7
+    },
+    "Negotiate": {
+      "commercialAgreements_positive": 1.4,
+      "commercialAgreements_negative": 0.6,
+      "legalAction_positive": 0.8,
+      "legalAction_negative": 1.2
+    },
+    "Service": {
+      "thirdPartyServices_positive": 1.4,
+      "thirdPartyServices_negative": 0.5,
+      "investment_positive": 1.2,
+      "investment_negative": 0.8
+    },
+    "Indirect": {
+      "legalAction_positive": 0.7,
+      "legalAction_negative": 1.3,
+      "investment_positive": 0.7,
+      "investment_negative": 1.3
+    },
+    "Monitor": {
+      "timeCommitment_positive": 0.8,
+      "timeCommitment_negative": 1.2
+    },
+    "Assess": {
+      "timeCommitment_positive": 0.8,
+      "timeCommitment_negative": 1.2
+    },
+    "Commercial": {
+      "commercialAgreements_positive": 1.5,
+      "commercialAgreements_negative": 0.5
+    }
+  },
+  "ipTypeMultipliers": {
+    "Trade mark": {
+      "domainName_yes": 1.3,
+      "onlineMarkets_yes": 1.2
+    },
+    "Copyright": {
+      "onlineMarkets_yes": 1.2
+    },
+    "Patent": {
+      "investment_positive": 1.2
+    }
+  },
+  "otherFactorMultipliers": {
+    "domainName_yes": {
+      "26": 1.5,
+      "27": 1.5
+    },
+    "importingGoods_yes": {
+      "20": 1.5
+    }
+  },
+  "zeroMultipliers": {
+    "legalAction_strong_negative": ["Challenge", "Court"],
+    "thirdPartyServices_strong_negative": ["Service"],
+    "commercialAgreements_strong_negative": ["Commercial", "Negotiate"]
+  }
+}
