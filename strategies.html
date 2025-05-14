@@ -263,7 +263,7 @@
             // Apply multipliers from preferences
             Object.entries(state.preferences).forEach(([prefKey, prefValue]) => {
               if (prefValue !== 0) { // Only process active preferences
-                const prefMatrix = scoringMatrix.preferences[prefKey];
+                const prefMatrix = scoringMatrix.filters[prefKey];
                 if (prefMatrix) {
                   // Find the multiplier based on the selected preference value
                   const multiplierConfig = prefMatrix.multipliers.find(m => m.prefValue === prefValue);
