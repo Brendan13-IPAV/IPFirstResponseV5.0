@@ -5,20 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP First Response 2.0</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .strategy-card { border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; border-radius: 6px; transition: 0.3s; }
-    .strategy-card h3 { margin-top: 0; }
-    .badge { display: inline-block; padding: 2px 6px; font-size: 12px; border-radius: 4px; background-color: #eee; margin-left: 8px; }
-    .score-high { background-color: #d4edda; color: #155724; }
-    .score-low { background-color: #f8d7da; color: #721c24; }
-    .not-applicable { opacity: 0.6; font-style: italic; }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>IP Strategy Options</h1>
-    <div id="app">Loading strategies...</div>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">IP First Response 2.0</div>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="#">About</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container main-content">
+    <div id="app">Loading... Please wait while we prepare your options</div>
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="text-align: center; font-size: 14px;">&copy; 2025 IP Strategy Finder</p>
+    </div>
+  </footer>
 
   <script type="module">
     import { calculateStrategyScores } from './scoring.js';
@@ -37,6 +46,12 @@
         loading: true,
         strategies: strategiesData,
         filteredStrategies: [],
+        accordions: savedState.accordions || {
+          preferences: true,
+          otherFactors: true,
+          situationFilters: true,
+          ipTypeFilters: true
+        },
         selectedRights: savedState.selectedRights || allRights,
         selectedSituations: savedState.selectedSituations || ['Enforcement'],
         preferences: {
@@ -91,31 +106,47 @@
         const app = document.getElementById('app');
         app.innerHTML = '';
 
-        if (state.filteredStrategies.length === 0) {
-          app.textContent = 'No strategies found.';
-          return;
-        }
-
-        state.filteredStrategies.forEach(strategy => {
+        state.filteredStrategies.forEach((strategy, index) => {
           const card = document.createElement('div');
           card.className = 'strategy-card';
           if (!strategy.isApplicable) card.classList.add('not-applicable');
 
-          const title = document.createElement('h3');
-          title.textContent = strategy.title;
+          let matchLabel = 'Possible';
+          const score = strategy.matchScore;
 
-          const desc = document.createElement('p');
-          desc.textContent = strategy.description || '(No description provided)';
+          if (!strategy.isApplicable) {
+            matchLabel = 'Not Applicable';
+          } else {
+            if (score >= 90) matchLabel = 'Highly Likely';
+            else if (score >= 75) matchLabel = 'Likely';
+            else if (score >= 50) matchLabel = 'Possible';
+            else if (score >= 25) matchLabel = 'Unlikely';
+            else matchLabel = 'Probably Not-Applicable';
+          }
 
-          const score = document.createElement('div');
-          const badge = document.createElement('span');
-          badge.className = 'badge ' + (strategy.matchScore >= 75 ? 'score-high' : 'score-low');
-          badge.textContent = strategy.isApplicable ? `Score: ${strategy.matchScore}` : 'Not Applicable';
-          score.appendChild(badge);
-
-          card.appendChild(title);
-          card.appendChild(desc);
-          card.appendChild(score);
+          card.innerHTML = `
+            <div class="relevancy">
+              <span class="relevancy-label">Applicability:</span>
+              <span class="relevancy-badge">${matchLabel}</span>
+            </div>
+            <div class="strategy-overtitle">${strategy.overtitle || ''}</div>
+            <h3 class="strategy-title">${strategy.title}</h3>
+            <p class="strategy-description">${strategy.description || ''}</p>
+            <div class="card-metrics">
+              <div class="metric-row">
+                <span class="metric-label">Estimated cost:</span>
+                <span class="metric-value">${strategy.costText || 'Cost varies based on complexity'}</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Estimated effort:</span>
+                <span class="metric-value">${strategy.effortText || 'Time requirement varies'}</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-label">Rate of resolution:</span>
+                <span class="metric-value">${strategy.resolutionText || 'Success rate varies by case'}</span>
+              </div>
+            </div>
+          `;
 
           app.appendChild(card);
         });
