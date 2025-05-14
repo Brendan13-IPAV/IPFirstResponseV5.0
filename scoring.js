@@ -84,23 +84,37 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       });
     }
 
+    // For debugging
+    if (activeFilterKeys.length > 0) {
+      console.log(`Active filters for strategy ${strategy.id}:`, activeFilterKeys);
+    }
+
     // Apply filter multipliers
     activeFilterKeys.forEach(key => {
       const filterObj = scoringMatrix.Filters.find(f => f.FilterKey === key);
       if (filterObj && index < filterObj.Values.length) {
         const multiplier = filterObj.Values[index];
-        finalMultiplier *= multiplier;
-        
-        // If multiplier is 0, mark strategy as not applicable
-        if (multiplier === 0) {
-          isApplicable = false;
+        if (multiplier !== undefined) {
+          finalMultiplier *= multiplier;
+          
+          // If multiplier is 0, mark strategy as not applicable
+          if (multiplier === 0) {
+            isApplicable = false;
+          }
         }
+      } else {
+        console.warn(`Filter key "${key}" not found in scoring matrix or index out of bounds for strategy ${strategy.id}`);
       }
     });
 
     // Calculate final score
     const rawScore = baseScore * finalMultiplier;
     const matchScore = isApplicable ? Math.min(100, Math.max(0, rawScore)) : 0;
+
+    // For debugging
+    if (finalMultiplier !== 1.0) {
+      console.log(`Strategy ${strategy.id}: final multiplier = ${finalMultiplier}, match score = ${matchScore}`);
+    }
 
     return {
       ...strategy,
