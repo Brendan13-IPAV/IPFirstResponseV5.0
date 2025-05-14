@@ -519,3 +519,157 @@
   align-items: center;
   margin-bottom: 20px;
 }
+
+/* CSS for tags */
+.strategy-tags {
+  margin: 15px 0;
+}
+
+.tag-category {
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-category-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+/* General tag styles */
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: 0 5px 5px 0;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* IP Type tag styles */
+.ip-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.patent-tag {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.design-tag {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.trademark-tag, .trade-mark-tag {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.copyright-tag {
+  background-color: #fbe9e7;
+  color: #d84315;
+}
+
+.pbr-tag {
+  background-color: #e8eaf6;
+  color: #3f51b5;
+}
+
+.any-dispute-tag {
+  background-color: #f5f5f5;
+  color: #616161;
+}
+
+/* Approach tag styles */
+.approach-tag {
+  background-color: #f5f5f5;
+  color: #616161;
+}
+
+.challenge-tag {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.assess-tag {
+  background-color: #e0f7fa;
+  color: #00838f;
+}
+
+.negotiate-tag {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.service-tag {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.indirect-tag {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.prevent-tag {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.monitor-tag {
+  background-color: #e8eaf6;
+  color: #3949ab;
+}
+
+.protect-tag {
+  background-color: #e1f5fe;
+  color: #0277bd;
+}
+
+.educate-tag {
+  background-color: #f9fbe7;
+  color: #827717;
+}
+
+.comply-tag {
+  background-color: #efebe9;
+  color: #4e342e;
+}
+
+.commercial-tag {
+  background-color: #ede7f6;
+  color: #4527a0;
+}
+
+/* Response Type tag styles */
+.response-tag {
+  background-color: #f5f5f5;
+  color: #616161;
+}
+
+.enforcement-tag {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.accused-tag {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.proactive-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.professional-tag {
+  background-color: #e8eaf6;
+  color: #3949ab;
+}
