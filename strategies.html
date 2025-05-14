@@ -224,10 +224,10 @@
 
           // Apply matrix-based scoring logic
           state.filteredStrategies = filtered.map(strategy => {
-            // Get strategy tags
+            // Get strategy tags from the ipTypeTags and approachTags fields in the JSON
             const strategyTags = {
-              ipTypes: strategy.right ? strategy.right.split('; ') : [],
-              approaches: strategy.approaches ? strategy.approaches.split('; ') : [],
+              ipTypes: strategy.ipTypeTags || [],
+              approaches: strategy.approachTags || [],
               // Include any other tag types from the strategy
               features: strategy.features ? strategy.features.split('; ') : []
             };
@@ -993,19 +993,19 @@
             `;
             
             // Add tags section if strategy has IP types or approaches
-            const hasIpTypes = strategy.strategyTags && strategy.strategyTags.ipTypes && strategy.strategyTags.ipTypes.length > 0;
-            const hasApproaches = strategy.strategyTags && strategy.strategyTags.approaches && strategy.strategyTags.approaches.length > 0;
+            const hasIpTypes = strategy.ipTypeTags && strategy.ipTypeTags.length > 0;
+            const hasApproaches = strategy.approachTags && strategy.approachTags.length > 0;
             
             // Add IP type section
             if (hasIpTypes) {
-              // Check if "Any" or "Any IP right" is included
-              const hasAny = strategy.strategyTags.ipTypes.some(ipType => 
-                ipType === 'Any' || ipType === 'Any IP right'
+              // Check if "Any" or "Any IP right" or "Any dispute" is included
+              const hasAny = strategy.ipTypeTags.some(ipType => 
+                ipType === 'Any' || ipType === 'Any IP right' || ipType === 'Any dispute'
               );
               
-              // Filter specific IP types (excluding "Any" or "Any IP right")
-              const specificIpTypes = strategy.strategyTags.ipTypes.filter(ipType => 
-                ipType !== 'Any' && ipType !== 'Any IP right'
+              // Filter specific IP types (excluding "Any" or "Any IP right" or "Any dispute")
+              const specificIpTypes = strategy.ipTypeTags.filter(ipType => 
+                ipType !== 'Any' && ipType !== 'Any IP right' && ipType !== 'Any dispute'
               );
               
               htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
@@ -1028,12 +1028,12 @@
             }
             
             // Add approach section
-            if (hasApproaches && strategy.strategyTags.approaches.length > 0) {
+            if (hasApproaches && strategy.approachTags.length > 0) {
               htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
               htmlContent += '<span class="metric-label">Approach:</span>';
               htmlContent += '<div class="strategy-tags">';
               
-              strategy.strategyTags.approaches.forEach(approach => {
+              strategy.approachTags.forEach(approach => {
                 htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
               });
               
