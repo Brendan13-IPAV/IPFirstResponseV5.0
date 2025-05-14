@@ -17,23 +17,27 @@
     
     .metric-row {
       margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
     }
     
     .metric-label {
       font-weight: 500;
+      margin-right: 8px;
+      min-width: 100px;
     }
     
     .metric-value {
       color: var(--text-primary);
+      flex: 1;
     }
 
     /* New styles for IP type and approach tags */
     .strategy-tags {
-      margin-top: 12px;
-      margin-bottom: 12px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      flex: 1;
     }
 
     .strategy-tag {
@@ -967,26 +971,37 @@
             const hasIpTypes = strategy.strategyTags && strategy.strategyTags.ipTypes && strategy.strategyTags.ipTypes.length > 0;
             const hasApproaches = strategy.strategyTags && strategy.strategyTags.approaches && strategy.strategyTags.approaches.length > 0;
             
-            if (hasIpTypes || hasApproaches) {
+            // Add IP type section
+            if (hasIpTypes) {
+              // Filter out "Any" or "Any IP right"
+              const specificIpTypes = strategy.strategyTags.ipTypes.filter(ipType => 
+                ipType !== 'Any' && ipType !== 'Any IP right'
+              );
+              
+              if (specificIpTypes.length > 0) {
+                htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
+                htmlContent += '<span class="metric-label">Specific to:</span>';
+                htmlContent += '<div class="strategy-tags">';
+                
+                specificIpTypes.forEach(ipType => {
+                  htmlContent += `<span class="strategy-tag tag-ip">${ipType}</span>`;
+                });
+                
+                htmlContent += '</div></div>';
+              }
+            }
+            
+            // Add approach section
+            if (hasApproaches) {
+              htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
+              htmlContent += '<span class="metric-label">Approach:</span>';
               htmlContent += '<div class="strategy-tags">';
               
-              // Add IP type tags (excluding "Any" or "Any IP right")
-              if (hasIpTypes) {
-                strategy.strategyTags.ipTypes.forEach(ipType => {
-                  if (ipType !== 'Any' && ipType !== 'Any IP right') {
-                    htmlContent += `<span class="strategy-tag tag-ip">Specific to: ${ipType}</span>`;
-                  }
-                });
-              }
+              strategy.strategyTags.approaches.forEach(approach => {
+                htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
+              });
               
-              // Add approach tags
-              if (hasApproaches) {
-                strategy.strategyTags.approaches.forEach(approach => {
-                  htmlContent += `<span class="strategy-tag tag-approach">Approach: ${approach}</span>`;
-                });
-              }
-              
-              htmlContent += '</div>';
+              htmlContent += '</div></div>';
             }
             
             // Add metrics section
