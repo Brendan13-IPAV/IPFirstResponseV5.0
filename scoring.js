@@ -143,42 +143,55 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     };
   });
 
-  // Split into applicable and non-applicable for separate processing
+  // Split into applicable and non-applicable
   const applicableStrategies = scoredStrategies.filter(s => s.isApplicable);
   const nonApplicableStrategies = scoredStrategies.filter(s => !s.isApplicable);
   
-  // Basic check - do we have any filters applied?
+  // Check if we have any filters applied
   const hasFilters = applicableStrategies.some(s => s.hasFilters);
   
   let finalStrategies = [];
   
   if (hasFilters && applicableStrategies.length > 0) {
-    // We have filters and applicable strategies - do proper ranking
+    // Sort applicable strategies by raw score (descending)
+    const sortedApplicable = [...applicableStrategies].sort((a, b) => b.rawScore - a.rawScore);
     
-    // Find min and max for scaling (but ensure a reasonable range)
-    let minScore = Math.min(...applicableStrategies.map(s => s.rawScore));
-    let maxScore = Math.max(...applicableStrategies.map(s => s.rawScore));
+    // We'll use a relative ranking approach for a more balanced distribution
+    // This gives a better spread regardless of how many strategies we have
     
-    // Avoid identical min/max
-    if (minScore === maxScore) {
-      // If only one score, put it in the middle (75)
-      minScore = maxScore * 0.5;
-    }
+    const totalApplicable = sortedApplicable.length;
     
-    // Apply scaling to maintain ranking order
-    const scaledApplicable = applicableStrategies.map(strategy => {
-      let normalizedScore;
+    // Adaptive thresholds based on total number of strategies
+    // This ensures we have reasonable numbers in each category
+    const veryHighThreshold = Math.max(1, Math.ceil(totalApplicable * 0.15)); // ~15% in very high
+    const highThreshold = Math.max(2, Math.ceil(totalApplicable * 0.30));     // ~30% in high
+    const mediumThreshold = Math.max(3, Math.ceil(totalApplicable * 0.50));   // ~50% in medium
+    // Remainder will be in low category
+    
+    const scoredApplicable = sortedApplicable.map((strategy, index) => {
+      let matchScore;
       
-      if (maxScore === minScore) {
-        normalizedScore = 75; // Middle of scale if all are equal
+      // Assign scores based on relative position
+      if (index < veryHighThreshold) {
+        // Very high category (90-100)
+        // Spread evenly within this category
+        const position = index / veryHighThreshold;
+        matchScore = Math.round(100 - (position * 10));
+      } else if (index < highThreshold) {
+        // High category (75-89)
+        const positionInCategory = (index - veryHighThreshold) / (highThreshold - veryHighThreshold);
+        matchScore = Math.round(89 - (positionInCategory * 14));
+      } else if (index < mediumThreshold) {
+        // Medium category (50-74)
+        const positionInCategory = (index - highThreshold) / (mediumThreshold - highThreshold);
+        matchScore = Math.round(74 - (positionInCategory * 24));
       } else {
-        // Scale to 25-95 range to maintain significant differences
-        // but avoid too many at the extreme high end
-        normalizedScore = 25 + ((strategy.rawScore - minScore) / (maxScore - minScore)) * 70;
+        // Low category (25-49)
+        const positionInCategory = (index - mediumThreshold) / (totalApplicable - mediumThreshold);
+        matchScore = Math.round(49 - (positionInCategory * 24));
+        // Ensure no applicable strategy gets below 25
+        matchScore = Math.max(25, matchScore);
       }
-      
-      // Round to whole number
-      const matchScore = Math.round(normalizedScore);
       
       return {
         ...strategy,
@@ -192,20 +205,15 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       matchScore: 0
     }));
     
-    finalStrategies = [...scaledApplicable, ...scoredNonApplicable];
+    finalStrategies = [...scoredApplicable, ...scoredNonApplicable];
   } else {
-    // If no filters are applied, give all applicable strategies a default score
+    // If no filters are applied, give all applicable strategies a default medium score
     finalStrategies = scoredStrategies.map(strategy => ({
       ...strategy,
       matchScore: strategy.isApplicable ? 65 : 0
     }));
   }
 
-  // Sort the strategies
-  return finalStrategies.sort((a, b) => {
-    // First sort by applicability
-    if (a.isApplicable !== b.isApplicable) return a.isApplicable ? -1 : 1;
-    // Then by match score
-    return b.matchScore - a.matchScore;
-  });
+  // Sort the strategies - first by match score since we've already done our ranking
+  return finalStrategies.sort((a, b) => b.matchScore - a.matchScore);
 }
