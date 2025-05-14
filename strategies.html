@@ -973,26 +973,35 @@
             
             // Add IP type section
             if (hasIpTypes) {
-              // Filter out "Any" or "Any IP right"
+              // Check if "Any" or "Any IP right" is included
+              const hasAny = strategy.strategyTags.ipTypes.some(ipType => 
+                ipType === 'Any' || ipType === 'Any IP right'
+              );
+              
+              // Filter specific IP types (excluding "Any" or "Any IP right")
               const specificIpTypes = strategy.strategyTags.ipTypes.filter(ipType => 
                 ipType !== 'Any' && ipType !== 'Any IP right'
               );
               
-              if (specificIpTypes.length > 0) {
-                htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
-                htmlContent += '<span class="metric-label">Specific to:</span>';
-                htmlContent += '<div class="strategy-tags">';
-                
-                specificIpTypes.forEach(ipType => {
-                  htmlContent += `<span class="strategy-tag tag-ip">${ipType}</span>`;
-                });
-                
-                htmlContent += '</div></div>';
+              htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
+              htmlContent += '<span class="metric-label">Specific to:</span>';
+              htmlContent += '<div class="strategy-tags">';
+              
+              if (hasAny) {
+                // Add "Any dispute" tag
+                htmlContent += '<span class="strategy-tag tag-ip">Any dispute</span>';
               }
+              
+              // Add specific IP type tags
+              specificIpTypes.forEach(ipType => {
+                htmlContent += `<span class="strategy-tag tag-ip">${ipType}</span>`;
+              });
+              
+              htmlContent += '</div></div>';
             }
             
             // Add approach section
-            if (hasApproaches) {
+            if (hasApproaches && strategy.strategyTags.approaches.length > 0) {
               htmlContent += '<div class="metric-row" style="margin-top: 12px;">';
               htmlContent += '<span class="metric-label">Approach:</span>';
               htmlContent += '<div class="strategy-tags">';
