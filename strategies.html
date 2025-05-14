@@ -52,540 +52,275 @@
   </footer>
 
   <script>
-    Promise.all([
-      fetch('strategies.json').then(res => res.json()),
-      fetch('preferences.json').then(res => res.json()),
-        fetch('multipliermatrix.json').then(res => res.json())
-    ]).then(([strategiesData, preferenceConfigs, multiplierMatrix]) => {
+// In the main JavaScript section of strategies.html
 
-      const ipRightsOptions = [
-        { id: 'Patent', label: 'Patents', color: 'patent' },
-        { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
-        { id: 'Design', label: 'Design rights', color: 'design' },
-        { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
-        { id: 'Copyright', label: 'Copyright', color: 'copyright' },
-        { id: 'Any', label: 'Any IP right', color: 'any' }
-      ];
+Promise.all([
+  fetch('strategies.json').then(res => res.json()),
+  fetch('preferences.json').then(res => res.json()),
+  fetch('multipliermatrix.json').then(res => res.json())
+]).then(([strategiesData, preferenceConfigs, multiplierMatrix]) => {
 
-      const situationOptions = [
-        { id: 'Accused', label: 'I\'ve been accused of infringing' },
-        { id: 'Enforcement', label: 'I believe my IP has been infringed' },
-        { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
-        { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
-      ];
+  const ipRightsOptions = [
+    { id: 'Patent', label: 'Patents', color: 'patent' },
+    { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
+    { id: 'Design', label: 'Design rights', color: 'design' },
+    { id: 'PBR', label: 'Plant breeder\'s rights', color: 'pbr' },
+    { id: 'Copyright', label: 'Copyright', color: 'copyright' },
+    { id: 'Any', label: 'Any IP right', color: 'any' }
+  ];
 
-      function IPStrategyFinder() {
-  // Get only the primary filters from localStorage (rights and situations)
-  const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
-  
-  // Check if coming from index page with new selections
-  const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
-  
-  // Define all possible rights for use as default
-  const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
-  
-  const state = {
-    loading: true,
-    strategies: strategiesData,
-    filteredStrategies: [],
-    accordions: savedState.accordions || { preferences: true, otherFactors: true },
-    // Use selections from index.html if available, otherwise use saved state or ALL rights
-    selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
-    selectedSituations: savedState.selectedSituations || ['Enforcement'],
-    // Don't load preferences and otherFactors from localStorage - always start fresh
-    preferences: {
-      timeCommitment: 0,
-      investment: 0,
-      commercialAgreements: 0,
-      thirdPartyServices: 0,
-      legalAction: 0
-    },
-    otherFactors: {
-      onlineMarkets: 'neutral',
-      domainName: 'neutral',
-      importingGoods: 'neutral',
-      identifyParty: 'neutral'
+  const situationOptions = [
+    { id: 'Accused', label: 'I\'ve been accused of infringing' },
+    { id: 'Enforcement', label: 'I believe my IP has been infringed' },
+    { id: 'Proactive', label: 'I\'m proactively protecting my IP' },
+    { id: 'Professional', label: 'I\'m seeking support of an IP professional' }
+  ];
+
+  function IPStrategyFinder() {
+    // Get only the primary filters from localStorage (rights and situations)
+    const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
+    
+    // Check if coming from index page with new selections
+    const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
+    
+    // Define all possible rights for use as default
+    const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
+    
+    const state = {
+      loading: true,
+      strategies: strategiesData,
+      filteredStrategies: [],
+      accordions: savedState.accordions || { 
+        preferences: true, 
+        otherFactors: true, 
+        situationFilters: true, 
+        ipTypeFilters: true 
+      },
+      // Use selections from index.html if available, otherwise use saved state or ALL rights
+      selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
+      selectedSituations: savedState.selectedSituations || ['Enforcement'],
+      // Don't load preferences and otherFactors from localStorage - always start fresh
+      preferences: {
+        timeCommitment: 0,
+        investment: 0,
+        commercialAgreements: 0,
+        thirdPartyServices: 0,
+        legalAction: 0
+      },
+      otherFactors: {
+        onlineMarkets: 'neutral',
+        domainName: 'neutral',
+        importingGoods: 'neutral',
+        identifyParty: 'neutral'
+      },
+      // New properties for situation and IP specific filters
+      situationSpecificFilters: {},
+      ipTypeSpecificFilters: {}
+    };
+    
+    // Clear the selection from localStorage to avoid affecting future visits
+    localStorage.removeItem('ipSelectedRights');
+
+    function init() {
+      state.loading = false;
+      filterAndRankStrategies();
+      render();
     }
-  };
-  
-  // Clear the selection from localStorage to avoid affecting future visits
-  localStorage.removeItem('ipSelectedRights');
 
-        function init() {
-          state.loading = false;
-          filterAndRankStrategies();
-          render();
-        }
+    function filterAndRankStrategies() {
+      let filtered = state.strategies.slice();
 
-   function filterAndRankStrategies() {
-  let filtered = state.strategies.slice();
-
-  // Filter by IP rights (unchanged)
-  if (state.selectedRights.length > 0) {
-    filtered = filtered.filter(strategy => {
-      const strategyRights = strategy.right.split('; ');
-      return state.selectedRights.some(right =>
-        strategyRights.includes(right) ||
-        strategyRights.includes('Any') ||
-        strategyRights.includes('Any IP right')
-      );
-    });
-  }
-
-  // Filter by situations (unchanged)
-  if (state.selectedSituations.length > 0) {
-    filtered = filtered.filter(strategy =>
-      state.selectedSituations.some(situation =>
-        strategy.responseType.includes(situation)
-      )
-    );
-  }
-
-  // Apply scoring using multiplier matrix
-  state.filteredStrategies = filtered.map(strategy => {
-    // Get base score for this strategy (or use default)
-    const baseScore = multiplierMatrix.baseScores[strategy.id] || 
-                      multiplierMatrix.baseScores.default || 100;
-    
-    let currentScore = baseScore;
-    let hasZeroMultiplier = false;
-    
-    // Check for zero multipliers first
-    const zeroMultipliers = multiplierMatrix.zeroMultipliers;
-    for (const [condition, affectedTags] of Object.entries(zeroMultipliers)) {
-      // Parse the condition (e.g., "legalAction_strong_negative")
-      const [key, strength, direction] = condition.split('_');
-      
-      // Check if the user has selected this preference with sufficient strength
-      let matches = false;
-      if (key in state.preferences) {
-        const value = state.preferences[key];
-        if (direction === 'negative' && value < -5) matches = true;
-        if (direction === 'positive' && value > 5) matches = true;
+      // Filter by IP rights
+      if (state.selectedRights.length > 0) {
+        filtered = filtered.filter(strategy => {
+          const strategyRights = strategy.right.split('; ');
+          return state.selectedRights.some(right =>
+            strategyRights.includes(right) ||
+            strategyRights.includes('Any') ||
+            strategyRights.includes('Any IP right')
+          );
+        });
       }
-      
-      // Check if any of the affected tags applies to this strategy
-      if (matches && strategy.approachTags.some(tag => affectedTags.includes(tag))) {
-        hasZeroMultiplier = true;
-        break;
+
+      // Filter by situations
+      if (state.selectedSituations.length > 0) {
+        filtered = filtered.filter(strategy =>
+          state.selectedSituations.some(situation =>
+            strategy.responseType.includes(situation)
+          )
+        );
       }
-    }
-    
-    // If no zero multiplier applies, calculate score using approach multipliers
-    if (!hasZeroMultiplier) {
-      // Apply multipliers from preferences based on approach tags
-      Object.entries(state.preferences).forEach(([key, value]) => {
-        if (value !== 0) {
-          // Determine direction
-          const direction = value > 0 ? 'positive' : 'negative';
+
+      // Apply scoring using multiplier matrix
+      state.filteredStrategies = filtered.map(strategy => {
+        // Get base score for this strategy (or use default)
+        const baseScore = multiplierMatrix.baseScores[strategy.id] || 
+                          multiplierMatrix.baseScores.default || 100;
+        
+        let currentScore = baseScore;
+        let hasZeroMultiplier = false;
+        
+        // Check for zero multipliers first
+        const zeroMultipliers = multiplierMatrix.zeroMultipliers;
+        for (const [condition, affectedTags] of Object.entries(zeroMultipliers)) {
+          // Parse the condition (e.g., "legalAction_strong_negative")
+          const [key, strength, direction] = condition.split('_');
           
-          // For each approach tag on the strategy
-          strategy.approachTags.forEach(approach => {
-            if (multiplierMatrix.approachMultipliers[approach]) {
-              const multiplierKey = `${key}_${direction}`;
-              const multiplier = multiplierMatrix.approachMultipliers[approach][multiplierKey];
-              if (multiplier) {
-                currentScore *= multiplier;
-              }
+          // Check if the user has selected this preference with sufficient strength
+          let matches = false;
+          if (key in state.preferences) {
+            const value = state.preferences[key];
+            if (direction === 'negative' && value < -1) matches = true;
+            if (direction === 'positive' && value > 1) matches = true;
+          }
+          
+          // Check if any of the affected tags applies to this strategy
+          if (matches && strategy.approachTags.some(tag => affectedTags.includes(tag))) {
+            hasZeroMultiplier = true;
+            break;
+          }
+        }
+        
+        // If no zero multiplier applies, calculate score using approach multipliers
+        if (!hasZeroMultiplier) {
+          // Apply multipliers from preferences based on approach tags
+          Object.entries(state.preferences).forEach(([key, value]) => {
+            if (value !== 0) {
+              // Determine direction
+              const direction = value > 0 ? 'positive' : 'negative';
+              
+              // For each approach tag on the strategy
+              strategy.approachTags.forEach(approach => {
+                if (multiplierMatrix.approachMultipliers[approach]) {
+                  const multiplierKey = `${key}_${direction}`;
+                  const multiplier = multiplierMatrix.approachMultipliers[approach][multiplierKey];
+                  if (multiplier) {
+                    currentScore *= multiplier;
+                  }
+                }
+              });
             }
           });
-        }
-      });
-      
-      // Apply multipliers from IP type
-      strategy.ipTypeTags.forEach(ipType => {
-        if (multiplierMatrix.ipTypeMultipliers[ipType]) {
+          
+          // Apply multipliers from IP type
+          strategy.ipTypeTags.forEach(ipType => {
+            if (multiplierMatrix.ipTypeMultipliers[ipType]) {
+              Object.entries(state.otherFactors).forEach(([key, value]) => {
+                if (value !== 'neutral') {
+                  const multiplierKey = `${key}_${value}`;
+                  const multiplier = multiplierMatrix.ipTypeMultipliers[ipType][multiplierKey];
+                  if (multiplier) {
+                    currentScore *= multiplier;
+                  }
+                }
+              });
+            }
+          });
+          
+          // Apply strategy-specific multipliers for other factors
           Object.entries(state.otherFactors).forEach(([key, value]) => {
             if (value !== 'neutral') {
-              const multiplierKey = `${key}_${value}`;
-              const multiplier = multiplierMatrix.ipTypeMultipliers[ipType][multiplierKey];
-              if (multiplier) {
-                currentScore *= multiplier;
+              const factorKey = `${key}_${value}`;
+              if (multiplierMatrix.otherFactorMultipliers[factorKey] && 
+                  multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id]) {
+                currentScore *= multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id];
               }
             }
           });
         }
-      });
-      
-      // Apply strategy-specific multipliers for other factors
-      Object.entries(state.otherFactors).forEach(([key, value]) => {
-        if (value !== 'neutral') {
-          const factorKey = `${key}_${value}`;
-          if (multiplierMatrix.otherFactorMultipliers[factorKey] && 
-              multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id]) {
-            currentScore *= multiplierMatrix.otherFactorMultipliers[factorKey][strategy.id];
-          }
+        
+        // Calculate final score
+        let matchScore;
+        if (hasZeroMultiplier) {
+          matchScore = 0;
+        } else {
+          // Ensure score is in 1-100 range
+          matchScore = Math.min(100, Math.max(1, currentScore));
         }
-      });
+        
+        return { ...strategy, matchScore };
+      }).sort((a, b) => b.matchScore - a.matchScore);
     }
-    
-    // Calculate final score
-    let matchScore;
-    if (hasZeroMultiplier) {
-      matchScore = 0;
-    } else {
-      // Ensure score is in 1-100 range
-      matchScore = Math.min(100, Math.max(1, currentScore));
-    }
-    
-    return { ...strategy, matchScore };
-  }).sort((a, b) => b.matchScore - a.matchScore);
-}
 
-                    // Create a dynamic title based on selected situation and IP right
-                    function createDynamicTitle() {
-                      const situationMap = {
-                        'Enforcement': 'enforce',
-                        'Accused': 'respond to accusations about',
-                        'Proactive': 'proactively protect',
-                        'Professional': 'seek professional support for'
-                      };
-                      
-                      let action = 'manage'; // Default
-                      if (state.selectedSituations.length === 1) {
-                        action = situationMap[state.selectedSituations[0]];
-                      }
-                      
-                      let rightText = 'intellectual property';
-                      
-                      if (state.selectedRights.length === 1) {
-                        // Just one right selected
-                        rightText = `a ${state.selectedRights[0].toLowerCase()}`;
-                      } else if (state.selectedRights.length > 1) {
-                        // Multiple rights selected - format them more naturally
-                        if (state.selectedRights.length === 2) {
-                          // Two rights - use "and" between them
-                          rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
-                        } else if (state.selectedRights.length <= 4) {
-                          // 3-4 rights - list with commas and "and"
-                          const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
-                          const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
-                          rightText = `${otherRights.join(', ')} and ${lastRight}`;
-                        } else {
-                          // More than 4 rights - keep it simple
-                          rightText = 'multiple IP rights';
-                        }
-                      }
-                      
-                      return `Showing: Strategies to ${action} ${rightText}`;
-                    }
-
-        function render() {
-          // Only save primary filters to localStorage
-          localStorage.setItem('ipStrategyState', JSON.stringify({
-            accordions: state.accordions,
-            selectedRights: state.selectedRights,
-            selectedSituations: state.selectedSituations
-            // Do not save preferences or otherFactors
-          }));
-
-          const app = document.getElementById('app');
-          app.innerHTML = '';
-
-          const container = document.createElement('div');
-          container.className = 'grid';
-
-          const leftCol = document.createElement('div');
-          leftCol.appendChild(renderTopPreferences()); // Move specific preferences outside accordion
-          leftCol.appendChild(renderPreferencesAccordion());
-          leftCol.appendChild(renderOtherFactorsAccordion());
-          container.appendChild(leftCol);
-
-          const rightCol = document.createElement('div');
-          rightCol.appendChild(renderActiveFilters()); // Contains title and clear button
-          rightCol.appendChild(renderStrategyCards());
-          container.appendChild(rightCol);
-
-          app.appendChild(container);
-        }
-
-        // Render Commercial Agreements and Legal Action outside accordion
-function renderTopPreferences() {
-  const topPrefs = document.createElement('div');
-  topPrefs.className = 'top-preferences';
-  topPrefs.style.marginBottom = '20px';
-  
-  // Add key preferences outside accordion
-  const keysToInclude = ['commercialAgreements', 'legalAction'];
-  
-  keysToInclude.forEach(key => {
-    const config = preferenceConfigs.filters[key]; // Use the nested structure
-    
-    const group = document.createElement('div');
-    group.className = 'preference-group';
-
-    const label = document.createElement('label');
-    label.className = 'preference-label';
-    label.textContent = config.label;
-    group.appendChild(label);
-
-    const radioGroup = document.createElement('div');
-    radioGroup.className = 'radio-group';
-    
-    config.options.forEach(opt => {
-      const radio = document.createElement('label');
-      radio.className = 'radio-button';
-      if (state.preferences[key] === opt.value) {
-        radio.classList.add('radio-selected');
-      }
-      radio.textContent = opt.label;
-      radio.onclick = () => {
-        state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-        filterAndRankStrategies();
-        render();
+    function createDynamicTitle() {
+      const situationMap = {
+        'Enforcement': 'enforce',
+        'Accused': 'respond to accusations about',
+        'Proactive': 'proactively protect',
+        'Professional': 'seek professional support for'
       };
-      radioGroup.appendChild(radio);
-    });
-    
-    group.appendChild(radioGroup);
-    topPrefs.appendChild(group);
-  });
-  
-  return topPrefs;
-}
-        
-
-                    // Replace the existing renderActiveFilters function with this improved version
-function renderActiveFilters() {
-  const filtersWrapper = document.createElement('div');
-  
-  // Create dynamic title and clear button container
-  const titleContainer = document.createElement('div');
-  titleContainer.style.display = 'flex';
-  titleContainer.style.justifyContent = 'space-between';
-  titleContainer.style.alignItems = 'center';
-  titleContainer.style.marginBottom = '20px';
-  
-  // Create title based on selected rights and situation
-  const titleElement = document.createElement('h2');
-  titleElement.className = 'page-title';
-  titleElement.textContent = createDynamicTitle();
-  titleContainer.appendChild(titleElement);
-  
-  // Add Clear All Filters button
-  const resetBtn = document.createElement('button');
-  resetBtn.textContent = 'Clear All Filters';
-  resetBtn.className = 'reset-button';
-  resetBtn.onclick = () => {
-    // Reset all non-primary filters
-    state.preferences = {
-      timeCommitment: 0,
-      investment: 0,
-      commercialAgreements: 0,
-      thirdPartyServices: 0,
-      legalAction: 0
-    };
-    state.otherFactors = {
-      onlineMarkets: 'neutral',
-      domainName: 'neutral',
-      importingGoods: 'neutral',
-      identifyParty: 'neutral'
-    };
-    // Also reset situation-specific and IP-type specific filters if you've added them
-    filterAndRankStrategies();
-    render();
-  };
-  titleContainer.appendChild(resetBtn);
-  
-  filtersWrapper.appendChild(titleContainer);
-  
-  // Create secondary filters section (if any exist)
-  const hasSecondaryFilters = Object.values(state.preferences).some(v => v !== 0) || 
-                            Object.values(state.otherFactors).some(v => v !== 'neutral');
-  
-  if (hasSecondaryFilters) {
-    const secondaryFiltersTitle = document.createElement('div');
-    secondaryFiltersTitle.className = 'filters-section-title';
-    secondaryFiltersTitle.textContent = 'Active Filters';
-    filtersWrapper.appendChild(secondaryFiltersTitle);
-    
-    const secondaryFiltersContainer = document.createElement('div');
-    secondaryFiltersContainer.className = 'active-filters';
-    
-    // Add preference filters
-    Object.entries(state.preferences).forEach(([key, value]) => {
-      if (value !== 0) {
-        const config = preferenceConfigs.filters[key];
-        const opt = config.options.find(o => o.value === value);
-        
-        // Use pillTemplate and pillLabel for better display
-        let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
-        pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
-        
-        const pill = document.createElement('div');
-        pill.className = 'filter-pill';
-        pill.textContent = pillText;
-        
-        const remove = document.createElement('span');
-        remove.className = 'filter-remove';
-        remove.textContent = '×';
-        remove.onclick = () => {
-          state.preferences[key] = 0;
-          filterAndRankStrategies();
-          render();
-        };
-        pill.appendChild(remove);
-        secondaryFiltersContainer.appendChild(pill);
-      }
-    });
-    
-    // Add other factors filters
-    Object.entries(state.otherFactors).forEach(([key, value]) => {
-      if (value !== 'neutral') {
-        const config = preferenceConfigs.otherFactors[key];
-        const opt = config.options.find(o => o.value === value);
-        
-        // Use pillTemplate and pillLabel for better display
-        let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
-        pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
-        
-        const pill = document.createElement('div');
-        pill.className = 'filter-pill';
-        pill.textContent = pillText;
-        
-        const remove = document.createElement('span');
-        remove.className = 'filter-remove';
-        remove.textContent = '×';
-        remove.onclick = () => {
-          state.otherFactors[key] = 'neutral';
-          filterAndRankStrategies();
-          render();
-        };
-        pill.appendChild(remove);
-        secondaryFiltersContainer.appendChild(pill);
-      }
-    });
-    
-    // Add situation-specific filters
-    if (state.situationSpecificFilters) {
-      Object.entries(state.situationSpecificFilters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          // Find which situation this belongs to
-          let situationFound = false;
-          
-          // Check all situations until we find the one containing this filter
-          for (const situation of state.selectedSituations) {
-            if (preferenceConfigs.situationSpecific[situation] && 
-                preferenceConfigs.situationSpecific[situation][key]) {
-              
-              const config = preferenceConfigs.situationSpecific[situation][key];
-              const opt = config.options.find(o => o.value === value);
-              
-              // Use pillTemplate and pillLabel for better display
-              let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
-              pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
-              
-              const pill = document.createElement('div');
-              pill.className = 'filter-pill';
-              pill.textContent = pillText;
-              
-              const remove = document.createElement('span');
-              remove.className = 'filter-remove';
-              remove.textContent = '×';
-              remove.onclick = () => {
-                delete state.situationSpecificFilters[key];
-                filterAndRankStrategies();
-                render();
-              };
-              pill.appendChild(remove);
-              secondaryFiltersContainer.appendChild(pill);
-              
-              situationFound = true;
-              break;
-            }
-          }
-        }
-      });
-    }
-    
-    // Add IP-specific filters
-    if (state.ipTypeSpecificFilters) {
-      Object.entries(state.ipTypeSpecificFilters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          // Find which IP type this belongs to
-          let ipTypeFound = false;
-          
-          // Check all IP types until we find the one containing this filter
-          for (const ipType of state.selectedRights) {
-            if (preferenceConfigs.ipTypeSpecific[ipType] && 
-                preferenceConfigs.ipTypeSpecific[ipType][key]) {
-              
-              const config = preferenceConfigs.ipTypeSpecific[ipType][key];
-              const opt = config.options.find(o => o.value === value);
-              
-              // Use pillTemplate and pillLabel for better display
-              let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
-              pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
-              
-              const pill = document.createElement('div');
-              pill.className = 'filter-pill';
-              pill.textContent = pillText;
-              
-              const remove = document.createElement('span');
-              remove.className = 'filter-remove';
-              remove.textContent = '×';
-              remove.onclick = () => {
-                delete state.ipTypeSpecificFilters[key];
-                filterAndRankStrategies();
-                render();
-              };
-              pill.appendChild(remove);
-              secondaryFiltersContainer.appendChild(pill);
-              
-              ipTypeFound = true;
-              break;
-            }
-          }
-        }
-      });
-    }
-    
-    filtersWrapper.appendChild(secondaryFiltersContainer);
-  }
-  
-  return filtersWrapper;
-}
-
-// New function to render IP type specific filters
-function renderIPTypeSpecificFilters() {
-  const wrapper = document.createElement('div');
-
-  // Only show this section if IP types are selected
-  if (state.selectedRights.length === 0) {
-    return wrapper;
-  }
-  
-  const toggle = document.createElement('div');
-  toggle.className = 'accordion-header';
-  toggle.style.cursor = 'pointer';
-  toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.ipTypeFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> IP Type Specific Options';
-  toggle.onclick = () => {
-    state.accordions.ipTypeFilters = !state.accordions.ipTypeFilters;
-    render();
-  };
-  wrapper.appendChild(toggle);
-
-  if (!state.accordions.ipTypeFilters) return wrapper;
-
-  // Initialize state.ipTypeSpecificFilters if it doesn't exist
-  if (!state.ipTypeSpecificFilters) {
-    state.ipTypeSpecificFilters = {};
-  }
-
-  const accordion = document.createElement('div');
-  accordion.className = 'accordion';
-
-  // For each selected IP type, show relevant filters
-  state.selectedRights.forEach(ipType => {
-    if (preferenceConfigs.ipTypeSpecific[ipType]) {
-      // Add a subheading for the IP type
-      const ipTypeHeading = document.createElement('div');
-      ipTypeHeading.className = 'preference-group';
-      ipTypeHeading.innerHTML = `<h4 style="margin-top: 15px; margin-bottom: 10px;">${ipType}-specific options</h4>`;
-      accordion.appendChild(ipTypeHeading);
       
-      // Add filters for this IP type
-      Object.entries(preferenceConfigs.ipTypeSpecific[ipType]).forEach(([filterKey, config]) => {
+      let action = 'manage'; // Default
+      if (state.selectedSituations.length === 1) {
+        action = situationMap[state.selectedSituations[0]];
+      }
+      
+      let rightText = 'intellectual property';
+      
+      if (state.selectedRights.length === 1) {
+        // Just one right selected
+        rightText = `a ${state.selectedRights[0].toLowerCase()}`;
+      } else if (state.selectedRights.length > 1) {
+        // Multiple rights selected - format them more naturally
+        if (state.selectedRights.length === 2) {
+          // Two rights - use "and" between them
+          rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
+        } else if (state.selectedRights.length <= 4) {
+          // 3-4 rights - list with commas and "and"
+          const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
+          const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
+          rightText = `${otherRights.join(', ')} and ${lastRight}`;
+        } else {
+          // More than 4 rights - keep it simple
+          rightText = 'multiple IP rights';
+        }
+      }
+      
+      return `Showing: Strategies to ${action} ${rightText}`;
+    }
+
+    function render() {
+      // Only save primary filters to localStorage
+      localStorage.setItem('ipStrategyState', JSON.stringify({
+        accordions: state.accordions,
+        selectedRights: state.selectedRights,
+        selectedSituations: state.selectedSituations
+        // Do not save preferences or otherFactors
+      }));
+
+      const app = document.getElementById('app');
+      app.innerHTML = '';
+
+      const container = document.createElement('div');
+      container.className = 'grid';
+
+      const leftCol = document.createElement('div');
+      leftCol.appendChild(renderTopPreferences()); // Top preferences
+      leftCol.appendChild(renderPreferencesAccordion()); // Regular preferences
+      leftCol.appendChild(renderSituationSpecificFilters()); // New situation filters
+      leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
+      leftCol.appendChild(renderOtherFactorsAccordion()); // Other factors
+      container.appendChild(leftCol);
+
+      const rightCol = document.createElement('div');
+      rightCol.appendChild(renderActiveFilters()); // Contains title and clear button
+      rightCol.appendChild(renderStrategyCards());
+      container.appendChild(rightCol);
+
+      app.appendChild(container);
+    }
+
+    function renderTopPreferences() {
+      const topPrefs = document.createElement('div');
+      topPrefs.className = 'top-preferences';
+      topPrefs.style.marginBottom = '20px';
+      
+      // Add key preferences outside accordion
+      const keysToInclude = ['commercialAgreements', 'legalAction'];
+      
+      keysToInclude.forEach(key => {
+        const config = preferenceConfigs.filters[key]; // Use the nested structure
+        
         const group = document.createElement('div');
         group.className = 'preference-group';
 
@@ -600,18 +335,12 @@ function renderIPTypeSpecificFilters() {
         config.options.forEach(opt => {
           const radio = document.createElement('label');
           radio.className = 'radio-button';
-          if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
+          if (state.preferences[key] === opt.value) {
             radio.classList.add('radio-selected');
           }
           radio.textContent = opt.label;
           radio.onclick = () => {
-            if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
-              // If clicked again, deselect
-              delete state.ipTypeSpecificFilters[filterKey];
-            } else {
-              // Otherwise select
-              state.ipTypeSpecificFilters[filterKey] = opt.value;
-            }
+            state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
             filterAndRankStrategies();
             render();
           };
@@ -619,56 +348,576 @@ function renderIPTypeSpecificFilters() {
         });
         
         group.appendChild(radioGroup);
+        topPrefs.appendChild(group);
+      });
+      
+      return topPrefs;
+    }
+
+    function renderActiveFilters() {
+      const filtersWrapper = document.createElement('div');
+      
+      // Create dynamic title and clear button container
+      const titleContainer = document.createElement('div');
+      titleContainer.style.display = 'flex';
+      titleContainer.style.justifyContent = 'space-between';
+      titleContainer.style.alignItems = 'center';
+      titleContainer.style.marginBottom = '20px';
+      
+      // Create title based on selected rights and situation
+      const titleElement = document.createElement('h2');
+      titleElement.className = 'page-title';
+      titleElement.textContent = createDynamicTitle();
+      titleContainer.appendChild(titleElement);
+      
+      // Add Clear All Filters button
+      const resetBtn = document.createElement('button');
+      resetBtn.textContent = 'Clear All Filters';
+      resetBtn.className = 'reset-button';
+      resetBtn.onclick = () => {
+        // Reset all non-primary filters
+        state.preferences = {
+          timeCommitment: 0,
+          investment: 0,
+          commercialAgreements: 0,
+          thirdPartyServices: 0,
+          legalAction: 0
+        };
+        state.otherFactors = {
+          onlineMarkets: 'neutral',
+          domainName: 'neutral',
+          importingGoods: 'neutral',
+          identifyParty: 'neutral'
+        };
+        // Also reset situation-specific and IP-type specific filters if you've added them
+        state.situationSpecificFilters = {};
+        state.ipTypeSpecificFilters = {};
+        filterAndRankStrategies();
+        render();
+      };
+      titleContainer.appendChild(resetBtn);
+      
+      filtersWrapper.appendChild(titleContainer);
+      
+      // Create secondary filters section (if any exist)
+      const hasSecondaryFilters = Object.values(state.preferences).some(v => v !== 0) || 
+                                Object.values(state.otherFactors).some(v => v !== 'neutral');
+      
+      if (hasSecondaryFilters) {
+        const secondaryFiltersTitle = document.createElement('div');
+        secondaryFiltersTitle.className = 'filters-section-title';
+        secondaryFiltersTitle.textContent = 'Active Filters';
+        filtersWrapper.appendChild(secondaryFiltersTitle);
+        
+        const secondaryFiltersContainer = document.createElement('div');
+        secondaryFiltersContainer.className = 'active-filters';
+        
+        // Add preference filters
+        Object.entries(state.preferences).forEach(([key, value]) => {
+          if (value !== 0) {
+            const config = preferenceConfigs.filters[key];
+            const opt = config.options.find(o => o.value === value);
+            
+            // Use pillTemplate and pillLabel for better display
+            let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
+            pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+            
+            const pill = document.createElement('div');
+            pill.className = 'filter-pill';
+            pill.textContent = pillText;
+            
+            const remove = document.createElement('span');
+            remove.className = 'filter-remove';
+            remove.textContent = '×';
+            remove.onclick = () => {
+              state.preferences[key] = 0;
+              filterAndRankStrategies();
+              render();
+            };
+            pill.appendChild(remove);
+            secondaryFiltersContainer.appendChild(pill);
+          }
+        });
+        
+        // Add other factors filters
+        Object.entries(state.otherFactors).forEach(([key, value]) => {
+          if (value !== 'neutral') {
+            const config = preferenceConfigs.otherFactors[key];
+            const opt = config.options.find(o => o.value === value);
+            
+            // Use pillTemplate and pillLabel for better display
+            let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
+            pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+            
+            const pill = document.createElement('div');
+            pill.className = 'filter-pill';
+            pill.textContent = pillText;
+            
+            const remove = document.createElement('span');
+            remove.className = 'filter-remove';
+            remove.textContent = '×';
+            remove.onclick = () => {
+              state.otherFactors[key] = 'neutral';
+              filterAndRankStrategies();
+              render();
+            };
+            pill.appendChild(remove);
+            secondaryFiltersContainer.appendChild(pill);
+          }
+        });
+        
+        // Add situation-specific filters
+        if (state.situationSpecificFilters) {
+          Object.entries(state.situationSpecificFilters).forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+              // Find which situation this belongs to
+              let situationFound = false;
+              
+              // Check all situations until we find the one containing this filter
+              for (const situation of state.selectedSituations) {
+                if (preferenceConfigs.situationSpecific[situation] && 
+                    preferenceConfigs.situationSpecific[situation][key]) {
+                  
+                  const config = preferenceConfigs.situationSpecific[situation][key];
+                  const opt = config.options.find(o => o.value === value);
+                  
+                  // Use pillTemplate and pillLabel for better display
+                  let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
+                  pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+                  
+                  const pill = document.createElement('div');
+                  pill.className = 'filter-pill';
+                  pill.textContent = pillText;
+                  
+                  const remove = document.createElement('span');
+                  remove.className = 'filter-remove';
+                  remove.textContent = '×';
+                  remove.onclick = () => {
+                    delete state.situationSpecificFilters[key];
+                    filterAndRankStrategies();
+                    render();
+                  };
+                  pill.appendChild(remove);
+                  secondaryFiltersContainer.appendChild(pill);
+                  
+                  situationFound = true;
+                  break;
+                }
+              }
+            }
+          });
+        }
+        
+        // Add IP-specific filters
+        if (state.ipTypeSpecificFilters) {
+          Object.entries(state.ipTypeSpecificFilters).forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+              // Find which IP type this belongs to
+              let ipTypeFound = false;
+              
+              // Check all IP types until we find the one containing this filter
+              for (const ipType of state.selectedRights) {
+                if (preferenceConfigs.ipTypeSpecific[ipType] && 
+                    preferenceConfigs.ipTypeSpecific[ipType][key]) {
+                  
+                  const config = preferenceConfigs.ipTypeSpecific[ipType][key];
+                  const opt = config.options.find(o => o.value === value);
+                  
+                  // Use pillTemplate and pillLabel for better display
+                  let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
+                  pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+                  
+                  const pill = document.createElement('div');
+                  pill.className = 'filter-pill';
+                  pill.textContent = pillText;
+                  
+                  const remove = document.createElement('span');
+                  remove.className = 'filter-remove';
+                  remove.textContent = '×';
+                  remove.onclick = () => {
+                    delete state.ipTypeSpecificFilters[key];
+                    filterAndRankStrategies();
+                    render();
+                  };
+                  pill.appendChild(remove);
+                  secondaryFiltersContainer.appendChild(pill);
+                  
+                  ipTypeFound = true;
+                  break;
+                }
+              }
+            }
+          });
+        }
+        
+        filtersWrapper.appendChild(secondaryFiltersContainer);
+      }
+      
+      return filtersWrapper;
+    }
+
+    function renderIPTypeSpecificFilters() {
+      const wrapper = document.createElement('div');
+
+      // Only show this section if IP types are selected
+      if (state.selectedRights.length === 0) {
+        return wrapper;
+      }
+      
+      const toggle = document.createElement('div');
+      toggle.className = 'accordion-header';
+      toggle.style.cursor = 'pointer';
+      toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.ipTypeFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> IP Type Specific Options';
+      toggle.onclick = () => {
+        state.accordions.ipTypeFilters = !state.accordions.ipTypeFilters;
+        render();
+      };
+      wrapper.appendChild(toggle);
+
+      if (!state.accordions.ipTypeFilters) return wrapper;
+
+      // Initialize state.ipTypeSpecificFilters if it doesn't exist
+      if (!state.ipTypeSpecificFilters) {
+        state.ipTypeSpecificFilters = {};
+      }
+
+      const accordion = document.createElement('div');
+      accordion.className = 'accordion';
+
+      // Only show preferences that aren't already shown in top section
+      const keysToSkip = ['commercialAgreements', 'legalAction'];
+      
+      // Iterate through the filters in the new structure
+      Object.entries(preferenceConfigs.filters).forEach(([key, config]) => {
+        // Skip keys that are already shown in the top section
+        if (keysToSkip.includes(key)) return;
+        
+        const group = document.createElement('div');
+        group.className = 'preference-group';
+
+        const label = document.createElement('label');
+        label.className = 'preference-label';
+        label.textContent = config.label;
+        group.appendChild(label);
+
+        const radioGroup = document.createElement('div');
+        radioGroup.className = 'radio-group';
+        config.options.forEach(opt => {
+          const radio = document.createElement('label');
+          radio.className = 'radio-button';
+          if (state.preferences[key] === opt.value) {
+            radio.classList.add('radio-selected');
+          }
+          radio.textContent = opt.label;
+          radio.onclick = () => {
+            state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
+            filterAndRankStrategies();
+            render();
+          };
+          radioGroup.appendChild(radio);
+        });
+        group.appendChild(radioGroup);
         accordion.appendChild(group);
       });
+
+      wrapper.appendChild(accordion);
+      return wrapper;
     }
-  });
 
-  wrapper.appendChild(accordion);
-  return wrapper;
-}
+    function renderStrategyCards() {
+      const list = document.createElement('div');
+      list.className = 'card-grid';
+    
+      const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
+      const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
+      const showUnknown = (activePrefs + activeFactors) < 2;
+    
+      state.filteredStrategies.forEach((strategy, index) => {
+        const card = document.createElement('div');
+        card.className = 'strategy-card';
+        card.style.opacity = '0';
+        card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+        setTimeout(() => { card.style.opacity = '1'; }, 50);
+    
+        // Change default relevancy from "Unknown" to "Possible"
+        let matchLabel = 'Possible';
+        let relevanceClass = 'medium'; // mid-green
+        const score = strategy.matchScore;
+        
+        if (score === 0) {
+          matchLabel = 'Not Applicable';
+          relevanceClass = 'not-applicable';
+        } else if (score >= 90) {
+          matchLabel = 'Highly Likely'; 
+          relevanceClass = 'very-high';
+        } else if (score >= 75) {
+          matchLabel = 'Likely'; 
+          relevanceClass = 'high';
+        } else if (score >= 50) {
+          matchLabel = 'Possible'; 
+          relevanceClass = 'medium';
+        } else if (score >= 25) {
+          matchLabel = 'Unlikely'; 
+          relevanceClass = 'low';
+        } else {
+          matchLabel = 'Probably Not-Applicable'; 
+          relevanceClass = 'very-low';
+        }
+        
+        // Apply the relevancy border color
+        card.classList.add(`border-${relevanceClass}`);
+    
+        // Create tag HTML
+        let tagHtml = '';
+        
+        // 1. IP Type Tags
+        if (strategy.ipTypeTags && strategy.ipTypeTags.length > 0) {
+          tagHtml += '<div class="tag-category"><span class="tag-category-label">Specific to:</span>';
+          strategy.ipTypeTags.forEach(tag => {
+            const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
+            tagHtml += `<span class="tag ip-tag ${tagClass}-tag">${tag}</span>`;
+          });
+          tagHtml += '</div>';
+        }
+        
+        // 2. Approach Tags
+        if (strategy.approachTags && strategy.approachTags.length > 0) {
+          tagHtml += '<div class="tag-category"><span class="tag-category-label">Approach:</span>';
+          strategy.approachTags.forEach(tag => {
+            const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
+            tagHtml += `<span class="tag approach-tag ${tagClass}-tag">${tag}</span>`;
+          });
+          tagHtml += '</div>';
+        }
+        
+        // Response Type Tags are removed as requested
+    
+        // Get cost, effort and resolution text directly from the JSON
+        // Fallback to placeholders if not present in the JSON
+        const costText = strategy.costText || "Cost varies based on complexity";
+        const effortText = strategy.effortText || "Time requirement varies";
+        const resolutionText = strategy.resolutionText || "Success rate varies by case";
+    
+        // Include description with cost and effort tags WITH the new tag categories
+        card.innerHTML = `
+          <div class="relevancy">
+            <span class="relevancy-label">Applicability:</span>
+            <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
+          </div>
+          <div class="strategy-overtitle">${strategy.overtitle}</div>
+          <h3 class="strategy-title">${strategy.title}</h3>
+          <p class="strategy-description">${strategy.description}</p>
+          
+          <div class="strategy-tags">
+            ${tagHtml}
+          </div>
+          
+          <div class="card-metrics">
+            <div class="metric-row">
+              <span class="metric-label">Estimated cost:</span>
+              <span class="metric-value">${costText}</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">Estimated effort:</span>
+              <span class="metric-value">${effortText}</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">Rate of resolution:</span>
+              <span class="metric-value">${resolutionText}</span>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    
+      return list;
+    }
 
-// New function to render situation specific filters
-function renderSituationSpecificFilters() {
-  const wrapper = document.createElement('div');
-
-  // Only show this section if situations are selected
-  if (state.selectedSituations.length === 0) {
-    return wrapper;
+    return { init };
   }
+
+  const app = IPStrategyFinder();
+  app.init();
+
+  // Add "Change IP Rights" link
+  const changeIPRightsLink = document.createElement('a');
+  changeIPRightsLink.href = 'index.html';
+  changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
+  changeIPRightsLink.style.color = 'var(--text-secondary)';
+  changeIPRightsLink.style.textDecoration = 'none';
+  changeIPRightsLink.style.fontSize = '14px';
+  changeIPRightsLink.style.display = 'inline-block';
+  changeIPRightsLink.style.marginTop = '20px';
+  changeIPRightsLink.style.marginBottom = '20px';
+
+  // Add to page above the app
+  document.getElementById('app').before(changeIPRightsLink);
   
-  const toggle = document.createElement('div');
-  toggle.className = 'accordion-header';
-  toggle.style.cursor = 'pointer';
-  toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.situationFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Situation Specific Options';
-  toggle.onclick = () => {
-    state.accordions.situationFilters = !state.accordions.situationFilters;
-    render();
-  };
-  wrapper.appendChild(toggle);
+}).catch(err => {
+  console.error('Error loading data:', err);
+  document.getElementById('app').textContent = 'Failed to load data.';
+});
+      accordion.className = 'accordion';
 
-  if (!state.accordions.situationFilters) return wrapper;
+      // For each selected IP type, show relevant filters
+      state.selectedRights.forEach(ipType => {
+        if (preferenceConfigs.ipTypeSpecific[ipType]) {
+          // Add a subheading for the IP type
+          const ipTypeHeading = document.createElement('div');
+          ipTypeHeading.className = 'preference-group';
+          ipTypeHeading.innerHTML = `<h4 style="margin-top: 15px; margin-bottom: 10px;">${ipType}-specific options</h4>`;
+          accordion.appendChild(ipTypeHeading);
+          
+          // Add filters for this IP type
+          Object.entries(preferenceConfigs.ipTypeSpecific[ipType]).forEach(([filterKey, config]) => {
+            const group = document.createElement('div');
+            group.className = 'preference-group';
 
-  // Initialize state.situationSpecificFilters if it doesn't exist
-  if (!state.situationSpecificFilters) {
-    state.situationSpecificFilters = {};
-  }
+            const label = document.createElement('label');
+            label.className = 'preference-label';
+            label.textContent = config.label;
+            group.appendChild(label);
 
-  const accordion = document.createElement('div');
-  accordion.className = 'accordion';
+            const radioGroup = document.createElement('div');
+            radioGroup.className = 'radio-group';
+            
+            config.options.forEach(opt => {
+              const radio = document.createElement('label');
+              radio.className = 'radio-button';
+              if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
+                radio.classList.add('radio-selected');
+              }
+              radio.textContent = opt.label;
+              radio.onclick = () => {
+                if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
+                  // If clicked again, deselect
+                  delete state.ipTypeSpecificFilters[filterKey];
+                } else {
+                  // Otherwise select
+                  state.ipTypeSpecificFilters[filterKey] = opt.value;
+                }
+                filterAndRankStrategies();
+                render();
+              };
+              radioGroup.appendChild(radio);
+            });
+            
+            group.appendChild(radioGroup);
+            accordion.appendChild(group);
+          });
+        }
+      });
 
-  // For each selected situation, show relevant filters
-  state.selectedSituations.forEach(situation => {
-    if (preferenceConfigs.situationSpecific[situation]) {
-      // Add a subheading for the situation
-      const situationHeading = document.createElement('div');
-      situationHeading.className = 'preference-group';
-      situationHeading.innerHTML = `<h4 style="margin-top: 15px; margin-bottom: 10px;">${situation}-specific options</h4>`;
-      accordion.appendChild(situationHeading);
+      wrapper.appendChild(accordion);
+      return wrapper;
+    }
+
+    function renderSituationSpecificFilters() {
+      const wrapper = document.createElement('div');
+
+      // Only show this section if situations are selected
+      if (state.selectedSituations.length === 0) {
+        return wrapper;
+      }
       
-      // Add filters for this situation
-      Object.entries(preferenceConfigs.situationSpecific[situation]).forEach(([filterKey, config]) => {
-        // Check if this filter should be shown for the selected IP rights
+      const toggle = document.createElement('div');
+      toggle.className = 'accordion-header';
+      toggle.style.cursor = 'pointer';
+      toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.situationFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Situation Specific Options';
+      toggle.onclick = () => {
+        state.accordions.situationFilters = !state.accordions.situationFilters;
+        render();
+      };
+      wrapper.appendChild(toggle);
+
+      if (!state.accordions.situationFilters) return wrapper;
+
+      // Initialize state.situationSpecificFilters if it doesn't exist
+      if (!state.situationSpecificFilters) {
+        state.situationSpecificFilters = {};
+      }
+
+      const accordion = document.createElement('div');
+      accordion.className = 'accordion';
+
+      // For each selected situation, show relevant filters
+      state.selectedSituations.forEach(situation => {
+        if (preferenceConfigs.situationSpecific[situation]) {
+          // Add a subheading for the situation
+          const situationHeading = document.createElement('div');
+          situationHeading.className = 'preference-group';
+          situationHeading.innerHTML = `<h4 style="margin-top: 15px; margin-bottom: 10px;">${situation}-specific options</h4>`;
+          accordion.appendChild(situationHeading);
+          
+          // Add filters for this situation
+          Object.entries(preferenceConfigs.situationSpecific[situation]).forEach(([filterKey, config]) => {
+            // Check if this filter should be shown for the selected IP rights
+            const shouldShow = !config.showFor || 
+                              state.selectedRights.some(right => config.showFor.includes(right) || config.showFor.includes('Any'));
+            
+            if (shouldShow) {
+              const group = document.createElement('div');
+              group.className = 'preference-group';
+
+              const label = document.createElement('label');
+              label.className = 'preference-label';
+              label.textContent = config.label;
+              group.appendChild(label);
+
+              const radioGroup = document.createElement('div');
+              radioGroup.className = 'radio-group';
+              
+              config.options.forEach(opt => {
+                const radio = document.createElement('label');
+                radio.className = 'radio-button';
+                if (state.situationSpecificFilters[filterKey] === opt.value) {
+                  radio.classList.add('radio-selected');
+                }
+                radio.textContent = opt.label;
+                radio.onclick = () => {
+                  if (state.situationSpecificFilters[filterKey] === opt.value) {
+                    // If clicked again, deselect
+                    delete state.situationSpecificFilters[filterKey];
+                  } else {
+                    // Otherwise select
+                    state.situationSpecificFilters[filterKey] = opt.value;
+                  }
+                  filterAndRankStrategies();
+                  render();
+                };
+                radioGroup.appendChild(radio);
+              });
+              
+              group.appendChild(radioGroup);
+              accordion.appendChild(group);
+            }
+          });
+        }
+      });
+
+      wrapper.appendChild(accordion);
+      return wrapper;
+    }
+
+    function renderOtherFactorsAccordion() {
+      const wrapper = document.createElement('div');
+
+      const toggle = document.createElement('div');
+      toggle.className = 'accordion-header';
+      toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
+      toggle.onclick = () => {
+        state.accordions.otherFactors = !state.accordions.otherFactors;
+        render();
+      };
+      wrapper.appendChild(toggle);
+
+      if (!state.accordions.otherFactors) return wrapper;
+
+      // Get the list of other factors from the updated preferences
+      const factors = Object.entries(preferenceConfigs.otherFactors);
+
+      factors.forEach(([key, config]) => {
+        // Check if this factor should be shown for the selected IP rights
         const shouldShow = !config.showFor || 
                           state.selectedRights.some(right => config.showFor.includes(right) || config.showFor.includes('Any'));
         
@@ -676,437 +925,54 @@ function renderSituationSpecificFilters() {
           const group = document.createElement('div');
           group.className = 'preference-group';
 
-          const label = document.createElement('label');
-          label.className = 'preference-label';
-          label.textContent = config.label;
-          group.appendChild(label);
+          const groupLabel = document.createElement('label');
+          groupLabel.className = 'preference-label';
+          groupLabel.textContent = config.label;
+          group.appendChild(groupLabel);
 
           const radioGroup = document.createElement('div');
           radioGroup.className = 'radio-group';
-          
+
           config.options.forEach(opt => {
             const radio = document.createElement('label');
             radio.className = 'radio-button';
-            if (state.situationSpecificFilters[filterKey] === opt.value) {
+            if (state.otherFactors[key] === opt.value) {
               radio.classList.add('radio-selected');
             }
             radio.textContent = opt.label;
             radio.onclick = () => {
-              if (state.situationSpecificFilters[filterKey] === opt.value) {
-                // If clicked again, deselect
-                delete state.situationSpecificFilters[filterKey];
-              } else {
-                // Otherwise select
-                state.situationSpecificFilters[filterKey] = opt.value;
-              }
+              state.otherFactors[key] = state.otherFactors[key] === opt.value ? 'neutral' : opt.value;
               filterAndRankStrategies();
               render();
             };
             radioGroup.appendChild(radio);
           });
-          
+
           group.appendChild(radioGroup);
-          accordion.appendChild(group);
+          wrapper.appendChild(group);
         }
       });
+
+      return wrapper;
     }
-  });
 
-  wrapper.appendChild(accordion);
-  return wrapper;
-}
+    function renderPreferencesAccordion() {
+      const wrapper = document.createElement('div');
 
-// Modification to the renderOtherFactorsAccordion function to support the updated preferences.json
-function renderOtherFactorsAccordion() {
-  const wrapper = document.createElement('div');
-
-  const toggle = document.createElement('div');
-  toggle.className = 'accordion-header';
-  toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
-  toggle.onclick = () => {
-    state.accordions.otherFactors = !state.accordions.otherFactors;
-    render();
-  };
-  wrapper.appendChild(toggle);
-
-  if (!state.accordions.otherFactors) return wrapper;
-
-  // Get the list of other factors from the updated preferences
-  const factors = Object.entries(preferenceConfigs.otherFactors);
-
-  factors.forEach(([key, config]) => {
-    // Check if this factor should be shown for the selected IP rights
-    const shouldShow = !config.showFor || 
-                      state.selectedRights.some(right => config.showFor.includes(right) || config.showFor.includes('Any'));
-    
-    if (shouldShow) {
-      const group = document.createElement('div');
-      group.className = 'preference-group';
-
-      const groupLabel = document.createElement('label');
-      groupLabel.className = 'preference-label';
-      groupLabel.textContent = config.label;
-      group.appendChild(groupLabel);
-
-      const radioGroup = document.createElement('div');
-      radioGroup.className = 'radio-group';
-
-      config.options.forEach(opt => {
-        const radio = document.createElement('label');
-        radio.className = 'radio-button';
-        if (state.otherFactors[key] === opt.value) {
-          radio.classList.add('radio-selected');
-        }
-        radio.textContent = opt.label;
-        radio.onclick = () => {
-          state.otherFactors[key] = state.otherFactors[key] === opt.value ? 'neutral' : opt.value;
-          filterAndRankStrategies();
-          render();
-        };
-        radioGroup.appendChild(radio);
-      });
-
-      group.appendChild(radioGroup);
-      wrapper.appendChild(group);
-    }
-  });
-
-  return wrapper;
-}
-
-// Update the main render function to include the new sections
-function render() {
-  // Only save primary filters to localStorage
-  localStorage.setItem('ipStrategyState', JSON.stringify({
-    accordions: state.accordions,
-    selectedRights: state.selectedRights,
-    selectedSituations: state.selectedSituations
-    // Do not save preferences or otherFactors
-  }));
-
-  const app = document.getElementById('app');
-  app.innerHTML = '';
-
-  const container = document.createElement('div');
-  container.className = 'grid';
-
-  const leftCol = document.createElement('div');
-  leftCol.appendChild(renderTopPreferences()); // Top preferences
-  leftCol.appendChild(renderPreferencesAccordion()); // Regular preferences
-  leftCol.appendChild(renderSituationSpecificFilters()); // New situation filters
-  leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
-  leftCol.appendChild(renderOtherFactorsAccordion()); // Other factors
-  container.appendChild(leftCol);
-
-  const rightCol = document.createElement('div');
-  rightCol.appendChild(renderActiveFilters()); // Contains title and clear button
-  rightCol.appendChild(renderStrategyCards());
-  container.appendChild(rightCol);
-
-  app.appendChild(container);
-}
-
-// Update the IPStrategyFinder function to initialize new state properties
-function IPStrategyFinder() {
-  // Get only the primary filters from localStorage (rights and situations)
-  const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
-  
-  // Check if coming from index page with new selections
-  const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
-  
-  // Define all possible rights for use as default
-  const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
-  
-  const state = {
-    loading: true,
-    strategies: strategiesData,
-    filteredStrategies: [],
-    accordions: savedState.accordions || { 
-      preferences: true, 
-      otherFactors: true, 
-      situationFilters: true, 
-      ipTypeFilters: true 
-    },
-    // Use selections from index.html if available, otherwise use saved state or ALL rights
-    selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
-    selectedSituations: savedState.selectedSituations || ['Enforcement'],
-    // Don't load preferences and otherFactors from localStorage - always start fresh
-    preferences: {
-      timeCommitment: 0,
-      investment: 0,
-      commercialAgreements: 0,
-      thirdPartyServices: 0,
-      legalAction: 0
-    },
-    otherFactors: {
-      onlineMarkets: 'neutral',
-      domainName: 'neutral',
-      importingGoods: 'neutral',
-      identifyParty: 'neutral'
-    },
-    // New properties for situation and IP specific filters
-    situationSpecificFilters: {},
-    ipTypeSpecificFilters: {}
-  };
-  
-  // Clear the selection from localStorage to avoid affecting future visits
-  localStorage.removeItem('ipSelectedRights');
-  
-  // Rest of the function remains the same...
-  
-  return { init };
-}
-
-// Also update the filterAndRankStrategies function to consider the new filter types
-function filterAndRankStrategies() {
-  let filtered = state.strategies.slice();
-
-  // Filter by IP rights (this stays the same)
-  if (state.selectedRights.length > 0) {
-    filtered = filtered.filter(strategy => {
-      const strategyRights = strategy.right.split('; ');
-      return state.selectedRights.some(right =>
-        strategyRights.includes(right) ||
-        strategyRights.includes('Any') ||
-        strategyRights.includes('Any IP right')
-      );
-    });
-  }
-
-  // Filter by situations (this stays the same)
-  if (state.selectedSituations.length > 0) {
-    filtered = filtered.filter(strategy =>
-      state.selectedSituations.some(situation =>
-        strategy.responseType.includes(situation)
-      )
-    );
-  }
-
-  // Additional filtering can be added here for IP-specific and situation-specific filters
-  // This would need to be customized based on the actual filtering logic you want
-
-  // Rest of the function for ranking/scoring stays the same...
-  
-  state.filteredStrategies = filtered.map(strategy => {
-    let totalScore = 0;
-    let totalWeight = 0;
-
-  function calculateMatch(prefKey, userValue, strategyValue) {
-    if (userValue === 0) return { score: 0, weight: 0 };
-    const config = preferenceConfigs.filters[prefKey]; // Use the nested structure
-    const max = Math.max(...config.options.map(opt => Math.abs(opt.value)));
-    const weight = Math.abs(userValue) / max;
-    const expected = (userValue > 0 ? userValue / max * 10 : 0);
-    const score = userValue > 0 ? Math.max(0, 10 - Math.abs(expected - strategyValue)) : Math.max(0, 10 - strategyValue);
-    return { score, weight };
-  }
-
-    ['timeCommitment', 'investment', 'commercialAgreements', 'thirdPartyServices', 'legalAction'].forEach(key => {
-      const { score, weight } = calculateMatch(key, state.preferences[key], strategy.scores[key]);
-      totalScore += score * weight;
-      totalWeight += weight;
-    });
-
-    const matchScore = totalWeight > 0 ? (totalScore / (totalWeight * 10)) * 100 : 100;
-    return { ...strategy, matchScore };
-  }).sort((a, b) => b.matchScore - a.matchScore);
-}
-
-                  function renderPreferencesAccordion() {
-  const wrapper = document.createElement('div');
-
-  const toggle = document.createElement('div');
-  toggle.className = 'accordion-header';
-  toggle.style.cursor = 'pointer';
-  toggle.style.transition = 'all 0.3s ease';
-  toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
-  toggle.onclick = () => {
-    state.accordions.preferences = !state.accordions.preferences;
-    render();
-  };
-  wrapper.appendChild(toggle);
-
-  if (!state.accordions.preferences) return wrapper;
-
-  const accordion = document.createElement('div');
-  accordion.className = 'accordion';
-
-  // Only show preferences that aren't already shown in top section
-  const keysToSkip = ['commercialAgreements', 'legalAction'];
-  
-  // Iterate through the filters in the new structure
-  Object.entries(preferenceConfigs.filters).forEach(([key, config]) => {
-    // Skip keys that are already shown in the top section
-    if (keysToSkip.includes(key)) return;
-    
-    const group = document.createElement('div');
-    group.className = 'preference-group';
-
-    const label = document.createElement('label');
-    label.className = 'preference-label';
-    label.textContent = config.label;
-    group.appendChild(label);
-
-    const radioGroup = document.createElement('div');
-    radioGroup.className = 'radio-group';
-    config.options.forEach(opt => {
-      const radio = document.createElement('label');
-      radio.className = 'radio-button';
-      if (state.preferences[key] === opt.value) {
-        radio.classList.add('radio-selected');
-      }
-      radio.textContent = opt.label;
-      radio.onclick = () => {
-        state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-        filterAndRankStrategies();
+      const toggle = document.createElement('div');
+      toggle.className = 'accordion-header';
+      toggle.style.cursor = 'pointer';
+      toggle.style.transition = 'all 0.3s ease';
+      toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
+      toggle.onclick = () => {
+        state.accordions.preferences = !state.accordions.preferences;
         render();
       };
-      radioGroup.appendChild(radio);
-    });
-    group.appendChild(radioGroup);
-    accordion.appendChild(group);
-  });
+      wrapper.appendChild(toggle);
 
-  wrapper.appendChild(accordion);
-  return wrapper;
-}
+      if (!state.accordions.preferences) return wrapper;
 
-                                                      // Modified renderStrategyCards function without Response tags
-                                                      function renderStrategyCards() {
-                                                        const list = document.createElement('div');
-                                                        list.className = 'card-grid';
-                                                      
-                                                        const activePrefs = Object.values(state.preferences).filter(v => v !== 0).length;
-                                                        const activeFactors = Object.values(state.otherFactors).filter(v => v !== 'neutral').length;
-                                                        const showUnknown = (activePrefs + activeFactors) < 2;
-                                                      
-                                                        state.filteredStrategies.forEach((strategy, index) => {
-                                                          const card = document.createElement('div');
-                                                          card.className = 'strategy-card';
-                                                          card.style.opacity = '0';
-                                                          card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
-                                                          setTimeout(() => { card.style.opacity = '1'; }, 50);
-                                                      
-                                                          // Change default relevancy from "Unknown" to "Possible"
-                                                          let matchLabel = 'Possible';
-                                                          let relevanceClass = 'medium'; // mid-green
-                                                          const score = strategy.matchScore;
-                                                          
-                                                                        if (score === 0) {
-                                                                          matchLabel = 'Not Applicable';
-                                                                          relevanceClass = 'not-applicable';
-                                                                        } else if (score >= 90) {
-                                                                          matchLabel = 'Highly Likely'; 
-                                                                          relevanceClass = 'very-high';
-                                                                        } else if (score >= 75) {
-                                                                          matchLabel = 'Likely'; 
-                                                                          relevanceClass = 'high';
-                                                                        } else if (score >= 50) {
-                                                                          matchLabel = 'Possible'; 
-                                                                          relevanceClass = 'medium';
-                                                                        } else if (score >= 25) {
-                                                                          matchLabel = 'Unlikely'; 
-                                                                          relevanceClass = 'low';
-                                                                        } else {
-                                                                          matchLabel = 'Probably Not-Applicable'; 
-                                                                          relevanceClass = 'very-low';
-                                                                        }
-                                                          
-                                                          // Apply the relevancy border color
-                                                          card.classList.add(`border-${relevanceClass}`);
-                                                      
-                                                          // Create tag HTML
-                                                          let tagHtml = '';
-                                                          
-                                                          // 1. IP Type Tags
-                                                          if (strategy.ipTypeTags && strategy.ipTypeTags.length > 0) {
-                                                            tagHtml += '<div class="tag-category"><span class="tag-category-label">Specific to:</span>';
-                                                            strategy.ipTypeTags.forEach(tag => {
-                                                              const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
-                                                              tagHtml += `<span class="tag ip-tag ${tagClass}-tag">${tag}</span>`;
-                                                            });
-                                                            tagHtml += '</div>';
-                                                          }
-                                                          
-                                                          // 2. Approach Tags
-                                                          if (strategy.approachTags && strategy.approachTags.length > 0) {
-                                                            tagHtml += '<div class="tag-category"><span class="tag-category-label">Approach:</span>';
-                                                            strategy.approachTags.forEach(tag => {
-                                                              const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
-                                                              tagHtml += `<span class="tag approach-tag ${tagClass}-tag">${tag}</span>`;
-                                                            });
-                                                            tagHtml += '</div>';
-                                                          }
-                                                          
-                                                          // Response Type Tags are removed as requested
-                                                      
-                                                          // Get cost, effort and resolution text directly from the JSON
-                                                          // Fallback to placeholders if not present in the JSON
-                                                          const costText = strategy.costText || "Cost varies based on complexity";
-                                                          const effortText = strategy.effortText || "Time requirement varies";
-                                                          const resolutionText = strategy.resolutionText || "Success rate varies by case";
-                                                      
-                                                          // Include description with cost and effort tags WITH the new tag categories
-                                                          card.innerHTML = `
-                                                            <div class="relevancy">
-                                                              <span class="relevancy-label">Applicability:</span>
-                                                              <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
-                                                            </div>
-                                                            <div class="strategy-overtitle">${strategy.overtitle}</div>
-                                                            <h3 class="strategy-title">${strategy.title}</h3>
-                                                            <p class="strategy-description">${strategy.description}</p>
-                                                            
-                                                            <div class="strategy-tags">
-                                                              ${tagHtml}
-                                                            </div>
-                                                            
-                                                            <div class="card-metrics">
-                                                              <div class="metric-row">
-                                                                <span class="metric-label">Estimated cost:</span>
-                                                                <span class="metric-value">${costText}</span>
-                                                              </div>
-                                                              <div class="metric-row">
-                                                                <span class="metric-label">Estimated effort:</span>
-                                                                <span class="metric-value">${effortText}</span>
-                                                              </div>
-                                                              <div class="metric-row">
-                                                                <span class="metric-label">Rate of resolution:</span>
-                                                                <span class="metric-value">${resolutionText}</span>
-                                                              </div>
-                                                            </div>
-                                                          `;
-                                                          list.appendChild(card);
-                                                        });
-                                                      
-                                                        return list;
-                                                      }
-
-
-
-        return { init };
-      }
-
-      const app = IPStrategyFinder();
-      app.init();
-
-      // Add "Change IP Rights" link
-      const changeIPRightsLink = document.createElement('a');
-      changeIPRightsLink.href = 'index.html';
-      changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
-      changeIPRightsLink.style.color = 'var(--text-secondary)';
-      changeIPRightsLink.style.textDecoration = 'none';
-      changeIPRightsLink.style.fontSize = '14px';
-      changeIPRightsLink.style.display = 'inline-block';
-      changeIPRightsLink.style.marginTop = '20px';
-      changeIPRightsLink.style.marginBottom = '20px';
-
-      // Add to page above the app
-      document.getElementById('app').before(changeIPRightsLink);
-      
-    }).catch(err => {
-      console.error('Error loading data:', err);
-      document.getElementById('app').textContent = 'Failed to load data.';
-    });
+      const accordion = document.createElement('div');
   </script>
 </body>
 </html>
