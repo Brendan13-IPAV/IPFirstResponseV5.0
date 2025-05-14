@@ -1,7 +1,37 @@
 export function calculateStrategyScores(strategies, state, scoringMatrix) {
   const idIndexMap = scoringMatrix.ID_Index_Map;
 
-  return strategies.map(strategy => {
+  // First, pre-filter strategies by selected IP rights
+  const filteredByRightType = strategies.filter(strategy => {
+    // If the strategy is for "Any" IP right, include it
+    if (strategy.right === "Any") {
+      return true;
+    }
+    
+    // If the strategy has ipTypeTags
+    if (strategy.ipTypeTags && strategy.ipTypeTags.length > 0) {
+      // Include if any of the tags is "Any dispute" or "Any IP right" or "Any"
+      if (strategy.ipTypeTags.some(tag => ["Any dispute", "Any IP right", "Any"].includes(tag))) {
+        return true;
+      }
+      
+      // Include if any of the strategy's ipTypeTags match any of the selected rights
+      return strategy.ipTypeTags.some(tag => state.selectedRights.includes(tag));
+    }
+    
+    // If it has a right property, check against selected rights
+    if (strategy.right) {
+      return state.selectedRights.includes(strategy.right);
+    }
+    
+    // If we have no way to determine, include it (fail open)
+    return true;
+  });
+  
+  console.log(`Pre-filtered from ${strategies.length} to ${filteredByRightType.length} strategies based on IP right types`);
+
+  // Now apply scoring to the pre-filtered strategies
+  return filteredByRightType.map(strategy => {
     const index = idIndexMap.indexOf(parseInt(strategy.id, 10));
     if (index === -1) {
       console.error(`Strategy ID ${strategy.id} not found in scoring matrix`);
