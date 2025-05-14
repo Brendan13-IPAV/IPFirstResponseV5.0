@@ -18,7 +18,7 @@
     .metric-row {
       margin-bottom: 4px;
       display: flex;
-      align-items: flex-start;
+      align-items: center; /* Changed from flex-start to center for better alignment */
     }
     
     .metric-label {
@@ -43,21 +43,46 @@
     .strategy-tag {
       font-size: 12px;
       padding: 3px 8px;
-      border-radius: 12px;
-      background-color: #f0f0f0;
-      color: #606060;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
+      font-weight: 500;
     }
 
-    .tag-ip {
-      background-color: #e3f2fd;
-      color: #0d47a1;
+    /* Using the colors from styles.css */
+    .tag-ip-any {
+      background-color: rgba(102, 112, 133, 0.1);
+      color: var(--any-color);
+    }
+    
+    .tag-ip-patent {
+      background-color: rgba(29, 167, 175, 0.1);
+      color: var(--patent-color);
+    }
+    
+    .tag-ip-trademark, .tag-ip-trademarkt {
+      background-color: rgba(222, 67, 38, 0.1);
+      color: var(--trademark-color);
+    }
+    
+    .tag-ip-design {
+      background-color: rgba(132, 201, 143, 0.1);
+      color: var(--design-color);
+    }
+    
+    .tag-ip-copyright {
+      background-color: rgba(120, 122, 187, 0.1);
+      color: var(--copyright-color);
+    }
+    
+    .tag-ip-pbr {
+      background-color: rgba(241, 172, 30, 0.1);
+      color: var(--pbr-color);
     }
 
     .tag-approach {
-      background-color: #e8f5e9;
-      color: #1b5e20;
+      background-color: rgba(85, 171, 201, 0.1);
+      color: var(--teal);
     }
 
     /* Not applicable styling */
@@ -989,12 +1014,14 @@
               
               if (hasAny) {
                 // Add "Any dispute" tag
-                htmlContent += '<span class="strategy-tag tag-ip">Any dispute</span>';
+                htmlContent += '<span class="strategy-tag tag-ip-any">Any dispute</span>';
               }
               
-              // Add specific IP type tags
+              // Add specific IP type tags with different colors
               specificIpTypes.forEach(ipType => {
-                htmlContent += `<span class="strategy-tag tag-ip">${ipType}</span>`;
+                // Convert ipType to a class-friendly format (lowercase, no spaces)
+                const ipClass = ipType.toLowerCase().replace(/\s+/g, '');
+                htmlContent += `<span class="strategy-tag tag-ip-${ipClass}">${ipType}</span>`;
               });
               
               htmlContent += '</div></div>';
