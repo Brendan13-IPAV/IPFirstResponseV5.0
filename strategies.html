@@ -210,142 +210,16 @@
 
         function init() {
           state.loading = false;
-          filterAndRankStrategies();
+   state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
           render();
         }
 
-        // Updated filterAndRankStrategies function with matrix-based scoring
-        function filterAndRankStrategies() {
-          let filtered = state.strategies.slice();
-
-          // Filter by IP rights (this stays the same)
-          if (state.selectedRights.length > 0) {
-            filtered = filtered.filter(strategy => {
-              const strategyRights = strategy.right.split('; ');
-              return state.selectedRights.some(right =>
-                strategyRights.includes(right) ||
-                strategyRights.includes('Any') ||
-                strategyRights.includes('Any IP right')
-              );
-            });
-          }
-
-          // Filter by situations (this stays the same)
-          if (state.selectedSituations.length > 0) {
-            filtered = filtered.filter(strategy =>
-              state.selectedSituations.some(situation =>
-                strategy.responseType.includes(situation)
-              )
-            );
-          }
-
-          // Apply matrix-based scoring logic
-          state.filteredStrategies = filtered.map(strategy => {
-            // Get strategy tags from the ipTypeTags and approachTags fields in the JSON
-            const strategyTags = {
-              ipTypes: strategy.ipTypeTags || [],
-              approaches: strategy.approachTags || [],
-              // Include any other tag types from the strategy
-              features: strategy.features ? strategy.features.split('; ') : []
-            };
-            
-            // Start with the base score for each strategy (default 100)
-            let baseScore = strategy.baseScore || 100;
-            let finalMultiplier = 1.0; // Default multiplier
-            let isApplicable = true; // Assume strategy is applicable by default
-            
-            // Track which preferences have been applied
-            const appliedPreferences = {
-              regular: [],
-              otherFactors: []
-            };
-            
-            // Apply multipliers from preferences
-            Object.entries(state.preferences).forEach(([prefKey, prefValue]) => {
-              if (prefValue !== 0) { // Only process active preferences
-                const prefMatrix = scoringMatrix.filters[prefKey];
-                if (prefMatrix) {
-                  // Find the multiplier based on the selected preference value
-                  const multiplierConfig = prefMatrix.multipliers.find(m => m.prefValue === prefValue);
-                  
-                  if (multiplierConfig) {
-                    // Check if any of the strategy's tags match this multiplier's tags
-                    const matchedTag = Object.entries(strategyTags).some(([tagType, tags]) => {
-                      return tags.some(tag => multiplierConfig.tags.includes(tag));
-                    });
-                    
-                    if (matchedTag) {
-                      // Apply the multiplier
-                      finalMultiplier *= multiplierConfig.value;
-                      appliedPreferences.regular.push(prefKey);
-                      
-                      // Check for zero multiplier (makes strategy not applicable)
-                      if (multiplierConfig.value === 0) {
-                        isApplicable = false;
-                      }
-                    }
-                  }
-                }
-              }
-            });
-            
-            // Apply multipliers from other factors
-            Object.entries(state.otherFactors).forEach(([factorKey, factorValue]) => {
-              if (factorValue !== 'neutral') { // Only process active factors
-                const factorMatrix = scoringMatrix.otherFactors[factorKey];
-                if (factorMatrix) {
-                  // Find the multiplier based on the selected factor value
-                  const multiplierConfig = factorMatrix.multipliers.find(m => m.factorValue === factorValue);
-                  
-                  if (multiplierConfig) {
-                    // Check if any of the strategy's tags match this multiplier's tags
-                    const matchedTag = Object.entries(strategyTags).some(([tagType, tags]) => {
-                      return tags.some(tag => multiplierConfig.tags.includes(tag));
-                    });
-                    
-                    if (matchedTag) {
-                      // Apply the multiplier
-                      finalMultiplier *= multiplierConfig.value;
-                      appliedPreferences.otherFactors.push(factorKey);
-                      
-                      // Check for zero multiplier (makes strategy not applicable)
-                      if (multiplierConfig.value === 0) {
-                        isApplicable = false;
-                      }
-                    }
-                  }
-                }
-              }
-            });
-            
-            // Apply IP-specific and situation-specific filters similarly
-            // (Implementation would follow the same pattern as above)
-            
-            // Calculate final score
-            const rawScore = baseScore * finalMultiplier;
-            
-            // Map to 0-100 scale (or 0 if not applicable)
-            const matchScore = isApplicable ? 
-              // Scale the raw score to be between 0-100
-              Math.min(100, Math.max(0, rawScore)) : 
-              0; // Zero score for not applicable
-            
-            return { 
-              ...strategy, 
-              matchScore, 
-              isApplicable,
-              appliedPreferences,
-              strategyTags
-            };
-          }).sort((a, b) => {
-            // First sort by applicability (applicable strategies first)
-            if (a.isApplicable !== b.isApplicable) {
-              return a.isApplicable ? -1 : 1;
-            }
-            // Then sort by match score
-            return b.matchScore - a.matchScore;
-          });
-        }
+       
 
         // Create a dynamic title based on selected situation and IP right
         function createDynamicTitle() {
@@ -445,12 +319,22 @@
               if (state.preferences[key] === opt.value) {
                 radio.classList.add('radio-selected');
               }
-              radio.textContent = opt.label;
-              radio.onclick = () => {
-                state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-                filterAndRankStrategies();
-                render();
-              };
+radio.classList.add('radio-option');
+radio.onclick = function () {
+  const alreadySelected = state.preferences[key] === opt.value;
+  state.preferences[key] = alreadySelected ? 0 : opt.value;
+
+  // Recalculate using external scoring
+  state.filteredStrategies = calculateStrategyScores(
+    state.strategies,
+    state,
+    scoringMatrix
+  );
+
+  render();
+};
+radio.appendChild(document.createTextNode(opt.label));
+
               radioGroup.appendChild(radio);
             });
             
@@ -500,7 +384,12 @@
             // Also reset situation-specific and IP-type specific filters if you've added them
             state.situationSpecificFilters = {};
             state.ipTypeSpecificFilters = {};
-            filterAndRankStrategies();
+       state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
             render();
           };
           titleContainer.appendChild(resetBtn);
@@ -539,7 +428,12 @@
                 remove.textContent = '×';
                 remove.onclick = () => {
                   state.preferences[key] = 0;
-                  filterAndRankStrategies();
+state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                   render();
                 };
                 pill.appendChild(remove);
@@ -566,7 +460,12 @@
                 remove.textContent = '×';
                 remove.onclick = () => {
                   state.otherFactors[key] = 'neutral';
-                  filterAndRankStrategies();
+state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                   render();
                 };
                 pill.appendChild(remove);
@@ -602,7 +501,12 @@
                       remove.textContent = '×';
                       remove.onclick = () => {
                         delete state.situationSpecificFilters[key];
-                        filterAndRankStrategies();
+state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                         render();
                       };
                       pill.appendChild(remove);
@@ -644,7 +548,12 @@
                       remove.textContent = '×';
                       remove.onclick = () => {
                         delete state.ipTypeSpecificFilters[key];
-                        filterAndRankStrategies();
+        state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                         render();
                       };
                       pill.appendChild(remove);
@@ -730,7 +639,12 @@
                       // Otherwise select
                       state.ipTypeSpecificFilters[filterKey] = opt.value;
                     }
-                    filterAndRankStrategies();
+ state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                     render();
                   };
                   radioGroup.appendChild(radio);
@@ -817,7 +731,12 @@
                         // Otherwise select
                         state.situationSpecificFilters[filterKey] = opt.value;
                       }
-                      filterAndRankStrategies();
+state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                       render();
                     };
                     radioGroup.appendChild(radio);
@@ -878,7 +797,12 @@
                 radio.textContent = opt.label;
                 radio.onclick = () => {
                   state.otherFactors[key] = state.otherFactors[key] === opt.value ? 'neutral' : opt.value;
-                  filterAndRankStrategies();
+  state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                   render();
                 };
                 radioGroup.appendChild(radio);
@@ -938,7 +862,12 @@
               radio.textContent = opt.label;
               radio.onclick = () => {
                 state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-                filterAndRankStrategies();
+   state.filteredStrategies = calculateStrategyScores(
+  state.strategies,
+  state,
+  scoringMatrix
+);
+
                 render();
               };
               radioGroup.appendChild(radio);
@@ -1114,5 +1043,12 @@
       document.getElementById('app').textContent = 'Failed to load data.';
     });
   </script>
+<script type="module">
+  import { calculateStrategyScores } from './scoring.js';
+
+  window.calculateStrategyScores = calculateStrategyScores;
+</script>
+
+  
 </body>
 </html>
