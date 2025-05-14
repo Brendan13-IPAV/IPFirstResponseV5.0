@@ -584,41 +584,54 @@ Promise.all([
       const accordion = document.createElement('div');
       accordion.className = 'accordion';
 
-      // Only show preferences that aren't already shown in top section
-      const keysToSkip = ['commercialAgreements', 'legalAction'];
+   // For each selected IP type, show relevant filters
+state.selectedRights.forEach(ipType => {
+  if (preferenceConfigs.ipTypeSpecific[ipType]) {
+    // Add a subheading for the IP type
+    const ipTypeHeading = document.createElement('div');
+    ipTypeHeading.className = 'preference-group';
+    ipTypeHeading.innerHTML = `<h4 style="margin-top: 15px; margin-bottom: 10px;">${ipType}-specific options</h4>`;
+    accordion.appendChild(ipTypeHeading);
+    
+    // Add filters for this IP type
+    Object.entries(preferenceConfigs.ipTypeSpecific[ipType]).forEach(([filterKey, config]) => {
+      const group = document.createElement('div');
+      group.className = 'preference-group';
+
+      const label = document.createElement('label');
+      label.className = 'preference-label';
+      label.textContent = config.label;
+      group.appendChild(label);
+
+      const radioGroup = document.createElement('div');
+      radioGroup.className = 'radio-group';
       
-      // Iterate through the filters in the new structure
-      Object.entries(preferenceConfigs.filters).forEach(([key, config]) => {
-        // Skip keys that are already shown in the top section
-        if (keysToSkip.includes(key)) return;
-        
-        const group = document.createElement('div');
-        group.className = 'preference-group';
-
-        const label = document.createElement('label');
-        label.className = 'preference-label';
-        label.textContent = config.label;
-        group.appendChild(label);
-
-        const radioGroup = document.createElement('div');
-        radioGroup.className = 'radio-group';
-        config.options.forEach(opt => {
-          const radio = document.createElement('label');
-          radio.className = 'radio-button';
-          if (state.preferences[key] === opt.value) {
-            radio.classList.add('radio-selected');
+      config.options.forEach(opt => {
+        const radio = document.createElement('label');
+        radio.className = 'radio-button';
+        if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
+          radio.classList.add('radio-selected');
+        }
+        radio.textContent = opt.label;
+        radio.onclick = () => {
+          if (state.ipTypeSpecificFilters[filterKey] === opt.value) {
+            // If clicked again, deselect
+            delete state.ipTypeSpecificFilters[filterKey];
+          } else {
+            // Otherwise select
+            state.ipTypeSpecificFilters[filterKey] = opt.value;
           }
-          radio.textContent = opt.label;
-          radio.onclick = () => {
-            state.preferences[key] = state.preferences[key] === opt.value ? 0 : opt.value;
-            filterAndRankStrategies();
-            render();
-          };
-          radioGroup.appendChild(radio);
-        });
-        group.appendChild(radioGroup);
-        accordion.appendChild(group);
+          filterAndRankStrategies();
+          render();
+        };
+        radioGroup.appendChild(radio);
       });
+      
+      group.appendChild(radioGroup);
+      accordion.appendChild(group);
+    });
+  }
+});
 
       wrapper.appendChild(accordion);
       return wrapper;
