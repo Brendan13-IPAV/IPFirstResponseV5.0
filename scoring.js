@@ -20,7 +20,7 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       Object.entries(state.preferences).forEach(([key, value]) => {
         if (value !== 0) {
           // Find the corresponding filter in the preferences config
-          const preferenceConfig = preferenceConfigs?.filters?.[key];
+          const preferenceConfig = window.preferenceConfigs?.filters?.[key];
           if (preferenceConfig) {
             const option = preferenceConfig.options.find(opt => opt.value === value);
             if (option && option.pillLabel) {
@@ -35,7 +35,7 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     if (state.otherFactors) {
       Object.entries(state.otherFactors).forEach(([key, value]) => {
         if (value !== 'neutral') {
-          const factorConfig = preferenceConfigs?.otherFactors?.[key];
+          const factorConfig = window.preferenceConfigs?.otherFactors?.[key];
           if (factorConfig) {
             const option = factorConfig.options.find(opt => opt.value === value);
             if (option && option.pillLabel) {
@@ -52,7 +52,7 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
         if (value) {
           // Find which situation contains this filter
           for (const situation of state.selectedSituations || []) {
-            const situationConfig = preferenceConfigs?.situationSpecific?.[situation]?.[key];
+            const situationConfig = window.preferenceConfigs?.situationSpecific?.[situation]?.[key];
             if (situationConfig) {
               const option = situationConfig.options.find(opt => opt.value === value);
               if (option && option.pillLabel) {
@@ -71,7 +71,7 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
         if (value) {
           // Find which IP type contains this filter
           for (const ipType of state.selectedRights || []) {
-            const ipTypeConfig = preferenceConfigs?.ipTypeSpecific?.[ipType]?.[key];
+            const ipTypeConfig = window.preferenceConfigs?.ipTypeSpecific?.[ipType]?.[key];
             if (ipTypeConfig) {
               const option = ipTypeConfig.options.find(opt => opt.value === value);
               if (option && option.pillLabel) {
