@@ -585,7 +585,7 @@
           const toggle = document.createElement('div');
           toggle.className = 'accordion-header';
           toggle.style.cursor = 'pointer';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.ipTypeFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> IP Type Specific Options';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.ipTypeFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> About the other party';
           toggle.onclick = () => {
             state.accordions.ipTypeFilters = !state.accordions.ipTypeFilters;
             render();
@@ -672,7 +672,7 @@
           const toggle = document.createElement('div');
           toggle.className = 'accordion-header';
           toggle.style.cursor = 'pointer';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.situationFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Situation Specific Options';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.situationFilters ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> About the issue';
           toggle.onclick = () => {
             state.accordions.situationFilters = !state.accordions.situationFilters;
             render();
@@ -760,7 +760,7 @@
 
           const toggle = document.createElement('div');
           toggle.className = 'accordion-header';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Other Factors';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.otherFactors ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Your resolution preferences';
           toggle.onclick = () => {
             state.accordions.otherFactors = !state.accordions.otherFactors;
             render();
@@ -824,7 +824,7 @@
           toggle.className = 'accordion-header';
           toggle.style.cursor = 'pointer';
           toggle.style.transition = 'all 0.3s ease';
-          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> Preferences';
+          toggle.innerHTML = '<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ' + (state.accordions.preferences ? 'rotate(90deg)' : 'rotate(0deg)') + ';">▶</span> About your IP';
           toggle.onclick = () => {
             state.accordions.preferences = !state.accordions.preferences;
             render();
