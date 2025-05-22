@@ -1,13 +1,13 @@
 {
   "filters": {
-    "timeCommitment": {
-      "label": "Filter Type 1",
+    "YourIPRight": {
+      "label": "Your IP right",
       "pillTemplate": "Filter 1: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Option A", "pillLabel": "Filter 1-A" },
-        { "value": -1, "label": "Filter 1 Option B", "pillLabel": "Filter 1-B" },
-        { "value": 1, "label": "Filter 1 - Option C", "pillLabel": "Filter 1-C" },
-        { "value": 2, "label": "Filter 1, maybe Option D", "pillLabel": "Filter 1-D" }
+        { "label": "Trade mark", "pillLabel": "Filter 1-A" },
+        {  "label": "Patent", "pillLabel": "Filter 1-B" },
+        { "label": "Filter 1 - Option C", "pillLabel": "Filter 1-C" },
+        { "label": "Filter 1, maybe Option D", "pillLabel": "Filter 1-D" }
       ]
     },
     "investment": {
