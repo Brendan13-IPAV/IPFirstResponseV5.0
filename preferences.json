@@ -1,31 +1,33 @@
+
+
+
 {
   "filters": {
-    "YourIPRight": {
-      "label": "Your IP right",
-      "pillTemplate": "Filter 1: {optionLabel}",
+    "Juristiction": {    //this is the name of the filter to call in the main code
+      "label": "Focus on right registered with:",    //This is what the user sees as the prompt
+      "pillTemplate": "Filter 1: {optionLabel}",    //This is the generic pill label
       "options": [
-        { "label": "Trade mark", "pillLabel": "Filter 1-A" },
-        {  "label": "Patent", "pillLabel": "Filter 1-B" },
-        { "label": "Filter 1 - Option C", "pillLabel": "Filter 1-C" },
-        { "label": "Filter 1, maybe Option D", "pillLabel": "Filter 1-D" }
+        { "label": "IP Australia", "pillLabel": "Focus on Australian IP" },
+        {  "label": "Foreign IP offices", "pillLabel": "Focus on internationl IP" },
+        { "label": "Both IP Australia and foreign IP offices", "pillLabel": "International and Aussie IP" }
       ]
     },
-    "investment": {
-      "label": "Filter Type 2",
-      "pillTemplate": "Filter 2: {optionLabel}",
+    "YourTMStatus": {
+      "label": "Trade mark status:",
+      "pillTemplate": "Options for {optionLabel}",
       "options": [
-        { "value": -2, "label": "Option A", "pillLabel": "Filter 2-A" },
-        { "value": -1, "label": "Filter2 Option B", "pillLabel": "Filter 2-B" },
-        { "value": 1, "label": "Option C", "pillLabel": "Filter 2-C" },
-        { "value": 2, "label": "Filter 2 Option D", "pillLabel": "Filter 2-D" }
+        {  "label": "Registered", "pillLabel": "Registered TM" },
+        {  "label": "Accepted, being examined, or being challenged", "pillLabel": "yet to be registered TM" },
+        {  "label": "No longer registered", "pillLabel": "Previously registered TM" }
       ]
     },
-    "commercialAgreements": {
-      "label": "Filter Type 3",
-      "pillTemplate": "{optionLabel}",
+    "YourPatStatus": {
+      "label": "Patent satatus:",
+      "pillTemplate": "Options for {optionLabel}",
       "options": [
-        { "value": -1, "label": "Filter 3 Option A", "pillLabel": "Filter 3-A" },
-        { "value": 1, "label": "Filter 3 Option B", "pillLabel": "Filter 3-B" }
+        { "label": "Granted", "pillLabel": "Granted patents" },
+        { "label": "Accepted, being examined, or being challenged", "pillLabel": "ungranted patents" },
+              { "label": "No longer in force", "pillLabel": "expired patents" }
       ]
     },
     "thirdPartyServices": {
