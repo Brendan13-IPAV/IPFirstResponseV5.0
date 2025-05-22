@@ -218,10 +218,10 @@
             scoringMatrix
           );
 const filterGroups = {
-  "Your IP": ["Juristiction", "YourTMStatus", "YourPatStatus"],
-  "Costs": ["investment", "thirdPartyServices"],
-  "Risks": ["legalAction"],
-  "Resolution Preferences": ["domainName", "onlineMarkets", "importingGoods", "identifyParty"]
+  "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
+  "Details": ["Where", "onlineIssues","domainName","importingGoods"],
+  "Other party details": ["theirIPRights", "identifyParty"],
+  "Resolution Preferences": ["desiredOutcome", "preferedApproach", "businessRelationship", "opentToNegotiate"]
 };
 
           render();
@@ -287,10 +287,10 @@ const filterGroups = {
                           // leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
                           // leftCol.appendChild(renderOtherFactorsAccordion());
           // Example of rendering your custom filter groupings
-leftCol.appendChild(renderCustomAccordion("Your trade mark", ["Juristiction", "YourTMStatus"]));
-leftCol.appendChild(renderCustomAccordion("Your patent", ["YourPatStatus", "thirdPartyServices"]));
-leftCol.appendChild(renderCustomAccordion("Risks", ["legalAction"]));
-leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName", "onlineMarkets", "importingGoods", "identifyParty"], 'otherFactors'));
+leftCol.appendChild(renderCustomAccordion("Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"]));
+leftCol.appendChild(renderCustomAccordion(  "Details": ["Where", "onlineIssues","domainName","importingGoods"]));
+leftCol.appendChild(renderCustomAccordion(  "Other party details": ["theirIPRights", "identifyParty"]));
+leftCol.appendChild(renderCustomAccordion(  "Resolution Preferences": ["desiredOutcome", "preferedApproach", "businessRelationship", "opentToNegotiate"]);
 
           //  Heres how you make specific combis base don input
           //if (state.selectedSituations.includes("Enforcement")) {
