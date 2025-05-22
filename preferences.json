@@ -220,17 +220,14 @@
       "pillTemplate": "C2-F1: {optionLabel}",
       "options": [
         {
-          "value": "registered",
           "label": "C2-F1 Option A",
           "pillLabel": "C2-F1-A"
         },
         {
-          "value": "pending",
           "label": "C2-F1 Option B",
           "pillLabel": "C2-F1-B"
         },
         {
-          "value": "unregistered",
           "label": "C2-F1 Option C",
           "pillLabel": "C2-F1-C"
         }
@@ -241,17 +238,14 @@
       "pillTemplate": "C2-F1: {optionLabel}",
       "options": [
         {
-          "value": "registered",
           "label": "C2-F1 Option A",
           "pillLabel": "C2-F1-A"
         },
         {
-          "value": "pending",
           "label": "C2-F1 Option B",
           "pillLabel": "C2-F1-B"
         },
         {
-          "value": "unregistered",
           "label": "C2-F1 Option C",
           "pillLabel": "C2-F1-C"
         }
@@ -262,17 +256,14 @@
       "pillTemplate": "C2-F1: {optionLabel}",
       "options": [
         {
-          "value": "registered",
           "label": "C2-F1 Option A",
           "pillLabel": "C2-F1-A"
         },
         {
-          "value": "pending",
           "label": "C2-F1 Option B",
           "pillLabel": "C2-F1-B"
         },
         {
-          "value": "unregistered",
           "label": "C2-F1 Option C",
           "pillLabel": "C2-F1-C"
         }
