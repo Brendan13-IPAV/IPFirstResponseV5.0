@@ -44,7 +44,7 @@
       "options": [
         { "label": "Mainly Australia (including online sales targeting Aussies)", "pillLabel": "Filter 5-A" },
         { "label": "Both in Australia and outside Australia", "pillLabel": "Filter 5-B" },
-        { "label": "Mainly outside Australia (including online sales targeting non-Australians)", "pillLabel": "Filter 5-C" },
+        { "label": "Mainly outside Australia (including online sales targeting non-Australians)", "pillLabel": "Filter 5-C" }
       ]
     },
     "onlineIssues ": {
