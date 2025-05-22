@@ -25,46 +25,45 @@
       "options": [
         { "label": "Granted", "pillLabel": "Granted patents" },
         { "label": "Accepted, being examined, or being challenged", "pillLabel": "ungranted patents" },
-              { "label": "No longer in force", "pillLabel": "expired patents" }
+        { "label": "No longer in force", "pillLabel": "expired patents" }
       ]
     },
-    "thirdPartyServices": {
+    "BusinessIssue": {
       "label": "Filter Type 4",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": -2, "label": "Filter 4 Option A", "pillLabel": "Filter 4-A" },
-        { "value": -1, "label": "Filter 4 Option B", "pillLabel": "Filter 4-B" },
-        { "value": 1, "label": "Filter 4 Option C", "pillLabel": "Filter 4-C" },
-        { "value": 2, "label": "Filter 4 Option D", "pillLabel": "Filter 4-D" }
+        { "label": "Filter 4 Option A", "pillLabel": "Filter 4-A" },
+        { "label": "Filter 4 Option B", "pillLabel": "Filter 4-B" },
+        { "label": "Filter 4 Option C", "pillLabel": "Filter 4-C" },
+        { "label": "Filter 4 Option D", "pillLabel": "Filter 4-D" }
       ]
     },
-    "legalAction": {
-      "label": "Filter Type 5",
+    "Where": {
+      "label": "Where is the issue taking place?",
       "pillTemplate": "Filter 5: {optionLabel}",
       "options": [
-        { "value": -2, "label": "Filter 5 Option A", "pillLabel": "Filter 5-A" },
-        { "value": -1, "label": "Filter 5 Option B", "pillLabel": "Filter 5-B" },
-        { "value": 1, "label": "Filter 5 Option C", "pillLabel": "Filter 5-C" },
-        { "value": 2, "label": "Filter 5 Option D", "pillLabel": "Filter 5-D" }
+        { "label": "Mainly Australia (including online sales targeting Aussies)", "pillLabel": "Filter 5-A" },
+        { "label": "Both in Australia and outside Australia", "pillLabel": "Filter 5-B" },
+        { "label": "Mainly outside Australia (including online sales targeting non-Australians)", "pillLabel": "Filter 5-C" },
       ]
     },
-    "onlineMarkets": {
+    "onlineIssues ": {
       "label": "Other Factor Type 1",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "value": "yes", "label": "Option A", "pillLabel": "Factor 1-A" },
-        { "value": "no", "label": "Option B", "pillLabel": "Factor 1-B" },
-        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 1-C" }
+        {  "label": "Option A", "pillLabel": "Factor 1-A" },
+        { "label": "Option B", "pillLabel": "Factor 1-B" },
+        { "label": "Option C", "pillLabel": "Factor 1-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
     "domainName": {
-      "label": "Other Factor Type 2",
+      "label": "Domain/website name dispute?",
       "pillTemplate": "Factor 2: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Option A", "pillLabel": "Factor 2-A" },
-        { "value": "no", "label": "Option B", "pillLabel": "Factor 2-B" },
-        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 2-C" }
+        { "label": "Option A", "pillLabel": "Factor 2-A" },
+        { "label": "Option B", "pillLabel": "Factor 2-B" },
+        { "label": "Option C", "pillLabel": "Factor 2-C" }
       ],
       "showFor": ["Trade mark"]
     },
@@ -72,9 +71,9 @@
       "label": "Other Factor Type 3",
       "pillTemplate": "Factor 3: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Option A", "pillLabel": "Factor 3-A" },
-        { "value": "no", "label": "Option B", "pillLabel": "Factor 3-B" },
-        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 3-C" }
+        { "label": "Option A", "pillLabel": "Factor 3-A" },
+        { "label": "Option B", "pillLabel": "Factor 3-B" },
+        { "label": "Option C", "pillLabel": "Factor 3-C" }
       ],
       "showFor": ["Trade mark", "Copyright"]
     },
@@ -82,34 +81,31 @@
       "label": "Other Factor Type 4",
       "pillTemplate": "Factor 4: {optionLabel}",
       "options": [
-        { "value": "yes", "label": "Option A", "pillLabel": "Factor 4-A" },
-        { "value": "no", "label": "Option B", "pillLabel": "Factor 4-B" },
-        { "value": "unsure", "label": "Option C", "pillLabel": "Factor 4-C" }
+        { "label": "Option A", "pillLabel": "Factor 4-A" },
+        { "label": "Option B", "pillLabel": "Factor 4-B" },
+        { "label": "Option C", "pillLabel": "Factor 4-C" }
       ],
       "showFor": ["Any"]
     },
-      "infringementType": {
+      "theirIPRights": {
         "label": "Situation 1 Filter Type 1",
         "pillTemplate": "S1-F1: {optionLabel}",
         "options": [
-          { "value": "direct", "label": "S1-F1 Option A", "pillLabel": "S1-F1-A" },
-          { "value": "similar", "label": "S1-F1 Option B", "pillLabel": "S1-F1-B" },
-          { "value": "online", "label": "S1-F1 Option C", "pillLabel": "S1-F1-C" }
+          { "label": "S1-F1 Option A", "pillLabel": "S1-F1-A" },
+          {  "label": "S1-F1 Option B", "pillLabel": "S1-F1-B" },
+          { "label": "S1-F1 Option C", "pillLabel": "S1-F1-C" }
         ],
         "showFor": ["Any"]
       },
-    "Patent": {
-      "patentAge": {
-        "label": "Category 1 Filter Type 1",
+    "desiredOutcome": {
+           "label": "Category 1 Filter Type 1",
         "pillTemplate": "C1-F1: {optionLabel}",
         "options": [
-          { "value": "new", "label": "C1-F1 Option A", "pillLabel": "C1-F1-A" },
-          { "value": "established", "label": "C1-F1 Option B", "pillLabel": "C1-F1-B" }
+          { "label": "C1-F1 Option A", "pillLabel": "C1-F1-A" },
+          { "label": "C1-F1 Option B", "pillLabel": "C1-F1-B" }
         ]
-      }
-    },
-    "Trade mark": {
-      "markRegistration": {
+      },
+      "preferedApproach": {
         "label": "Category 2 Filter Type 1",
         "pillTemplate": "C2-F1: {optionLabel}",
         "options": [
@@ -117,27 +113,24 @@
           { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
           { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
         ]
-      }
     },
-    "Design": {
-      "designCertification": {
-        "label": "Category 3 Filter Type 1",
-        "pillTemplate": "C3-F1: {optionLabel}",
+    "businessRelationship": {
+        "label": "Category 2 Filter Type 1",
+        "pillTemplate": "C2-F1: {optionLabel}",
         "options": [
-          { "value": "certified", "label": "C3-F1 Option A", "pillLabel": "C3-F1-A" },
-          { "value": "uncertified", "label": "C3-F1 Option B", "pillLabel": "C3-F1-B" }
+          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
+          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
+          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
         ]
-      }
     },
-    "PBR": {
-      "pbrStage": {
-        "label": "Category 4 Filter Type 1",
-        "pillTemplate": "C4-F1: {optionLabel}",
+  "opentToNegotiate": {
+        "label": "Category 2 Filter Type 1",
+        "pillTemplate": "C2-F1: {optionLabel}",
         "options": [
-          { "value": "provisional", "label": "C4-F1 Option A", "pillLabel": "C4-F1-A" },
-          { "value": "granted", "label": "C4-F1 Option B", "pillLabel": "C4-F1-B" }
+          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
+          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
+          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
         ]
-      }
     }
   }
 }
