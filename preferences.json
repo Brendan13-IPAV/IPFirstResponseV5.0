@@ -3,12 +3,12 @@
 
 {
   "filters": {
-    "Juristiction": {    //this is the name of the filter to call in the main code
-      "label": "Focus on right registered with:",    //This is what the user sees as the prompt
-      "pillTemplate": "Filter 1: {optionLabel}",    //This is the generic pill label
+    "Juristiction": {   
+      "label": "Focus on right registered with:",  
+      "pillTemplate": "Options for {optionLabel}",  
       "options": [
-        { "label": "IP Australia", "pillLabel": "Focus on Australian IP" },
-        {  "label": "Foreign IP offices", "pillLabel": "Focus on internationl IP" },
+        { "label": "IP Australia", "pillLabel": "Australian IP" },
+        {  "label": "Foreign IP offices", "pillLabel": "internationl IP" },
         { "label": "Both IP Australia and foreign IP offices", "pillLabel": "International and Aussie IP" }
       ]
     },
