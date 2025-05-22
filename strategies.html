@@ -281,11 +281,11 @@ const filterGroups = {
           container.className = 'grid';
 
           const leftCol = document.createElement('div');
-          leftCol.appendChild(renderTopPreferences()); // Move specific preferences outside accordion
-          leftCol.appendChild(renderPreferencesAccordion());
-          leftCol.appendChild(renderSituationSpecificFilters()); // New situation filters
-          leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
-          leftCol.appendChild(renderOtherFactorsAccordion());
+                          // leftCol.appendChild(renderTopPreferences()); // Move specific preferences outside accordion
+                          // leftCol.appendChild(renderPreferencesAccordion());
+                          // leftCol.appendChild(renderSituationSpecificFilters()); // New situation filters
+                          // leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
+                          // leftCol.appendChild(renderOtherFactorsAccordion());
           // Example of rendering your custom filter groupings
 leftCol.appendChild(renderCustomAccordion("Your trade mark", ["Juristiction", "YourTMStatus"]));
 leftCol.appendChild(renderCustomAccordion("Your patent", ["YourPatStatus", "thirdPartyServices"]));
