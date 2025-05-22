@@ -1,137 +1,282 @@
 {
   "filters": {
-      
-    "Jurisdiction": {   
-      "label": "Focus on right registered with:",  
-      "pillTemplate": "Options for {optionLabel}",  
+    "Jurisdiction": {
+      "label": "Focus on right registered with:",
+      "pillTemplate": "Options for {optionLabel}",
       "options": [
-        { "label": "IP Australia", "pillLabel": "Australian IP" },
-        {  "label": "Foreign IP offices", "pillLabel": "internationl IP" },
-        { "label": "Both IP Australia and foreign IP offices", "pillLabel": "International and Aussie IP" }
+        {
+          "label": "IP Australia",
+          "pillLabel": "Australian IP"
+        },
+        {
+          "label": "Foreign IP offices",
+          "pillLabel": "internationl IP"
+        },
+        {
+          "label": "Both IP Australia and foreign IP offices",
+          "pillLabel": "International and Aussie IP"
+        }
       ]
     },
     "YourTMStatus": {
       "label": "Trade mark status:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
-        {  "label": "Registered", "pillLabel": "Registered TM" },
-        {  "label": "Accepted, being examined, or being challenged", "pillLabel": "yet to be registered TM" },
-        {  "label": "No longer registered", "pillLabel": "Previously registered TM" }
+        {
+          "label": "Registered",
+          "pillLabel": "Registered TM"
+        },
+        {
+          "label": "Accepted, being examined, or being challenged",
+          "pillLabel": "yet to be registered TM"
+        },
+        {
+          "label": "No longer registered",
+          "pillLabel": "Previously registered TM"
+        }
       ]
     },
     "YourPatStatus": {
       "label": "Patent satatus:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
-        { "label": "Granted", "pillLabel": "Granted patents" },
-        { "label": "Accepted, being examined, or being challenged", "pillLabel": "ungranted patents" },
-        { "label": "No longer in force", "pillLabel": "expired patents" }
+        {
+          "label": "Granted",
+          "pillLabel": "Granted patents"
+        },
+        {
+          "label": "Accepted, being examined, or being challenged",
+          "pillLabel": "ungranted patents"
+        },
+        {
+          "label": "No longer in force",
+          "pillLabel": "expired patents"
+        }
       ]
     },
     "BusinessIssue": {
       "label": "Filter Type 4",
       "pillTemplate": "{optionLabel}",
       "options": [
-        { "label": "Filter 4 Option A", "pillLabel": "Filter 4-A" },
-        { "label": "Filter 4 Option B", "pillLabel": "Filter 4-B" },
-        { "label": "Filter 4 Option C", "pillLabel": "Filter 4-C" },
-        { "label": "Filter 4 Option D", "pillLabel": "Filter 4-D" }
+        {
+          "label": "Filter 4 Option A",
+          "pillLabel": "Filter 4-A"
+        },
+        {
+          "label": "Filter 4 Option B",
+          "pillLabel": "Filter 4-B"
+        },
+        {
+          "label": "Filter 4 Option C",
+          "pillLabel": "Filter 4-C"
+        },
+        {
+          "label": "Filter 4 Option D",
+          "pillLabel": "Filter 4-D"
+        }
       ]
     },
     "Where": {
       "label": "Where is the issue taking place?",
       "pillTemplate": "Filter 5: {optionLabel}",
       "options": [
-        { "label": "Mainly Australia (including online sales targeting Aussies)", "pillLabel": "Filter 5-A" },
-        { "label": "Both in Australia and outside Australia", "pillLabel": "Filter 5-B" },
-        { "label": "Mainly outside Australia (including online sales targeting non-Australians)", "pillLabel": "Filter 5-C" }
+        {
+          "label": "Mainly Australia (including online sales targeting Aussies)",
+          "pillLabel": "Filter 5-A"
+        },
+        {
+          "label": "Both in Australia and outside Australia",
+          "pillLabel": "Filter 5-B"
+        },
+        {
+          "label": "Mainly outside Australia (including online sales targeting non-Australians)",
+          "pillLabel": "Filter 5-C"
+        }
       ]
     },
-    "onlineIssues ": {
+    "onlineIssues": {
       "label": "Other Factor Type 1",
       "pillTemplate": "{optionLabel}",
       "options": [
-        {  "label": "Option A", "pillLabel": "Factor 1-A" },
-        { "label": "Option B", "pillLabel": "Factor 1-B" },
-        { "label": "Option C", "pillLabel": "Factor 1-C" }
+        {
+          "label": "Option A",
+          "pillLabel": "Factor 1-A"
+        },
+        {
+          "label": "Option B",
+          "pillLabel": "Factor 1-B"
+        },
+        {
+          "label": "Option C",
+          "pillLabel": "Factor 1-C"
+        }
       ],
-      "showFor": ["Trade mark", "Copyright"]
+      "showFor": [
+        "Trade mark",
+        "Copyright"
+      ]
     },
     "domainName": {
       "label": "Domain/website name dispute?",
       "pillTemplate": "Factor 2: {optionLabel}",
       "options": [
-        { "label": "Option A", "pillLabel": "Factor 2-A" },
-        { "label": "Option B", "pillLabel": "Factor 2-B" },
-        { "label": "Option C", "pillLabel": "Factor 2-C" }
+        {
+          "label": "Option A",
+          "pillLabel": "Factor 2-A"
+        },
+        {
+          "label": "Option B",
+          "pillLabel": "Factor 2-B"
+        },
+        {
+          "label": "Option C",
+          "pillLabel": "Factor 2-C"
+        }
       ],
-      "showFor": ["Trade mark"]
+      "showFor": [
+        "Trade mark"
+      ]
     },
     "importingGoods": {
       "label": "Other Factor Type 3",
       "pillTemplate": "Factor 3: {optionLabel}",
       "options": [
-        { "label": "Option A", "pillLabel": "Factor 3-A" },
-        { "label": "Option B", "pillLabel": "Factor 3-B" },
-        { "label": "Option C", "pillLabel": "Factor 3-C" }
+        {
+          "label": "Option A",
+          "pillLabel": "Factor 3-A"
+        },
+        {
+          "label": "Option B",
+          "pillLabel": "Factor 3-B"
+        },
+        {
+          "label": "Option C",
+          "pillLabel": "Factor 3-C"
+        }
       ],
-      "showFor": ["Trade mark", "Copyright"]
+      "showFor": [
+        "Trade mark",
+        "Copyright"
+      ]
     },
     "identifyParty": {
       "label": "Other Factor Type 4",
       "pillTemplate": "Factor 4: {optionLabel}",
       "options": [
-        { "label": "Option A", "pillLabel": "Factor 4-A" },
-        { "label": "Option B", "pillLabel": "Factor 4-B" },
-        { "label": "Option C", "pillLabel": "Factor 4-C" }
+        {
+          "label": "Option A",
+          "pillLabel": "Factor 4-A"
+        },
+        {
+          "label": "Option B",
+          "pillLabel": "Factor 4-B"
+        },
+        {
+          "label": "Option C",
+          "pillLabel": "Factor 4-C"
+        }
       ],
-      "showFor": ["Any"]
+      "showFor": [
+        "Any"
+      ]
     },
-      "theirIPRights": {
-        "label": "Situation 1 Filter Type 1",
-        "pillTemplate": "S1-F1: {optionLabel}",
-        "options": [
-          { "label": "S1-F1 Option A", "pillLabel": "S1-F1-A" },
-          {  "label": "S1-F1 Option B", "pillLabel": "S1-F1-B" },
-          { "label": "S1-F1 Option C", "pillLabel": "S1-F1-C" }
-        ],
-        "showFor": ["Any"]
-      },
+    "theirIPRights": {
+      "label": "Situation 1 Filter Type 1",
+      "pillTemplate": "S1-F1: {optionLabel}",
+      "options": [
+        {
+          "label": "S1-F1 Option A",
+          "pillLabel": "S1-F1-A"
+        },
+        {
+          "label": "S1-F1 Option B",
+          "pillLabel": "S1-F1-B"
+        },
+        {
+          "label": "S1-F1 Option C",
+          "pillLabel": "S1-F1-C"
+        }
+      ],
+      "showFor": [
+        "Any"
+      ]
+    },
     "desiredOutcome": {
-           "label": "Category 1 Filter Type 1",
-        "pillTemplate": "C1-F1: {optionLabel}",
-        "options": [
-          { "label": "C1-F1 Option A", "pillLabel": "C1-F1-A" },
-          { "label": "C1-F1 Option B", "pillLabel": "C1-F1-B" }
-        ]
-      },
-      "preferedApproach": {
-        "label": "Category 2 Filter Type 1",
-        "pillTemplate": "C2-F1: {optionLabel}",
-        "options": [
-          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
-          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
-          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
-        ]
+      "label": "Category 1 Filter Type 1",
+      "pillTemplate": "C1-F1: {optionLabel}",
+      "options": [
+        {
+          "label": "C1-F1 Option A",
+          "pillLabel": "C1-F1-A"
+        },
+        {
+          "label": "C1-F1 Option B",
+          "pillLabel": "C1-F1-B"
+        }
+      ]
+    },
+    "preferredApproach": {
+      "label": "Category 2 Filter Type 1",
+      "pillTemplate": "C2-F1: {optionLabel}",
+      "options": [
+        {
+          "value": "registered",
+          "label": "C2-F1 Option A",
+          "pillLabel": "C2-F1-A"
+        },
+        {
+          "value": "pending",
+          "label": "C2-F1 Option B",
+          "pillLabel": "C2-F1-B"
+        },
+        {
+          "value": "unregistered",
+          "label": "C2-F1 Option C",
+          "pillLabel": "C2-F1-C"
+        }
+      ]
     },
     "businessRelationship": {
-        "label": "Category 2 Filter Type 1",
-        "pillTemplate": "C2-F1: {optionLabel}",
-        "options": [
-          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
-          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
-          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
-        ]
+      "label": "Category 2 Filter Type 1",
+      "pillTemplate": "C2-F1: {optionLabel}",
+      "options": [
+        {
+          "value": "registered",
+          "label": "C2-F1 Option A",
+          "pillLabel": "C2-F1-A"
+        },
+        {
+          "value": "pending",
+          "label": "C2-F1 Option B",
+          "pillLabel": "C2-F1-B"
+        },
+        {
+          "value": "unregistered",
+          "label": "C2-F1 Option C",
+          "pillLabel": "C2-F1-C"
+        }
+      ]
     },
-  "opentToNegotiate": {
-        "label": "Category 2 Filter Type 1",
-        "pillTemplate": "C2-F1: {optionLabel}",
-        "options": [
-          { "value": "registered", "label": "C2-F1 Option A", "pillLabel": "C2-F1-A" },
-          { "value": "pending", "label": "C2-F1 Option B", "pillLabel": "C2-F1-B" },
-          { "value": "unregistered", "label": "C2-F1 Option C", "pillLabel": "C2-F1-C" }
-        ]
+    "openToNegotiate": {
+      "label": "Category 2 Filter Type 1",
+      "pillTemplate": "C2-F1: {optionLabel}",
+      "options": [
+        {
+          "value": "registered",
+          "label": "C2-F1 Option A",
+          "pillLabel": "C2-F1-A"
+        },
+        {
+          "value": "pending",
+          "label": "C2-F1 Option B",
+          "pillLabel": "C2-F1-B"
+        },
+        {
+          "value": "unregistered",
+          "label": "C2-F1 Option C",
+          "pillLabel": "C2-F1-C"
+        }
+      ]
     }
   }
 }
-
