@@ -430,7 +430,7 @@ leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName
             Object.entries(state.preferences).forEach(([key, value]) => {
               if (value !== 0) {
                 const config = preferenceConfigs.filters[key];
-                const opt = config.options.find(o => o.value === value);
+                const opt = config.options.find(o => o.label === value);
                 
                 // Use pillTemplate and pillLabel for better display
                 let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
@@ -462,7 +462,7 @@ leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName
             Object.entries(state.otherFactors).forEach(([key, value]) => {
               if (value !== 'neutral') {
                 const config = preferenceConfigs.otherFactors[key];
-                const opt = config.options.find(o => o.value === value);
+                const opt = config.options.find(o => o.label === value);
                 
                 // Use pillTemplate and pillLabel for better display
                 let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
@@ -503,7 +503,7 @@ leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName
                         preferenceConfigs.situationSpecific[situation][key]) {
                       
                       const config = preferenceConfigs.situationSpecific[situation][key];
-                      const opt = config.options.find(o => o.value === value);
+                      const opt = config.options.find(o => o.label === value);
                       
                       // Use pillTemplate and pillLabel for better display
                       let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
@@ -550,7 +550,7 @@ leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName
                         preferenceConfigs.ipTypeSpecific[ipType][key]) {
                       
                       const config = preferenceConfigs.ipTypeSpecific[ipType][key];
-                      const opt = config.options.find(o => o.value === value);
+                      const opt = config.options.find(o => o.label === value);
                       
                       // Use pillTemplate and pillLabel for better display
                       let pillText = config.pillTemplate || `${config.label}: ${opt.label}`;
@@ -942,17 +942,18 @@ leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName
       const currentValue =
         stateSection === 'preferences' ? state.preferences[key] : state.otherFactors[key];
 
-      if (currentValue === opt.value) {
+if (currentValue === opt.label) {
         radio.classList.add('radio-selected');
       }
 
       radio.textContent = opt.label;
       radio.onclick = () => {
-        if (stateSection === 'preferences') {
-          state.preferences[key] = currentValue === opt.value ? 0 : opt.value;
-        } else {
-          state.otherFactors[key] = currentValue === opt.value ? 'neutral' : opt.value;
-        }
+if (stateSection === 'preferences') {
+  state.preferences[key] = currentValue === opt.label ? 0 : opt.label;
+} else {
+  state.otherFactors[key] = currentValue === opt.label ? 'neutral' : opt.label;
+}
+
 
         state.filteredStrategies = calculateStrategyScores(state.strategies, state, scoringMatrix);
         render();
