@@ -217,6 +217,12 @@
             state,
             scoringMatrix
           );
+const filterGroups = {
+  "Your IP": ["Juristiction", "YourTMStatus", "YourPatStatus"],
+  "Costs": ["investment", "thirdPartyServices"],
+  "Risks": ["legalAction"],
+  "Resolution Preferences": ["domainName", "onlineMarkets", "importingGoods", "identifyParty"]
+};
 
           render();
         }
@@ -280,6 +286,17 @@
           leftCol.appendChild(renderSituationSpecificFilters()); // New situation filters
           leftCol.appendChild(renderIPTypeSpecificFilters()); // New IP type filters
           leftCol.appendChild(renderOtherFactorsAccordion());
+          // Example of rendering your custom filter groupings
+leftCol.appendChild(renderCustomAccordion("Your trade mark", ["Juristiction", "YourTMStatus"]));
+leftCol.appendChild(renderCustomAccordion("Your patent", ["YourPatStatus", "thirdPartyServices"]));
+leftCol.appendChild(renderCustomAccordion("Risks", ["legalAction"]));
+leftCol.appendChild(renderCustomAccordion("Resolution Preferences", ["domainName", "onlineMarkets", "importingGoods", "identifyParty"], 'otherFactors'));
+
+          //  Heres how you make specific combis base don input
+          //if (state.selectedSituations.includes("Enforcement")) {
+          //  leftCol.appendChild(renderCustomAccordion("Risks", ["legalAction"]));
+          //       }
+
           container.appendChild(leftCol);
 
           const rightCol = document.createElement('div');
@@ -880,6 +897,78 @@
           wrapper.appendChild(accordion);
           return wrapper;
         }
+
+        function renderCustomAccordion(groupLabel, filterKeys, stateSection = 'preferences') {
+  const wrapper = document.createElement('div');
+
+  const toggle = document.createElement('div');
+  toggle.className = 'accordion-header';
+  toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${
+    state.accordions[groupLabel] ? 'rotate(90deg)' : 'rotate(0deg)'
+  };">▶</span> ${groupLabel}`;
+  toggle.onclick = () => {
+    state.accordions[groupLabel] = !state.accordions[groupLabel];
+    render();
+  };
+  wrapper.appendChild(toggle);
+
+  if (!state.accordions[groupLabel]) return wrapper;
+
+  const accordion = document.createElement('div');
+  accordion.className = 'accordion';
+
+  filterKeys.forEach(key => {
+    const config =
+      stateSection === 'preferences'
+        ? preferenceConfigs.filters[key]
+        : preferenceConfigs.otherFactors[key];
+
+    if (!config) return;
+
+    const group = document.createElement('div');
+    group.className = 'preference-group';
+
+    const label = document.createElement('label');
+    label.className = 'preference-label';
+    label.textContent = config.label;
+    group.appendChild(label);
+
+    const radioGroup = document.createElement('div');
+    radioGroup.className = 'radio-group';
+
+    config.options.forEach(opt => {
+      const radio = document.createElement('label');
+      radio.className = 'radio-button';
+      const currentValue =
+        stateSection === 'preferences' ? state.preferences[key] : state.otherFactors[key];
+
+      if (currentValue === opt.value) {
+        radio.classList.add('radio-selected');
+      }
+
+      radio.textContent = opt.label;
+      radio.onclick = () => {
+        if (stateSection === 'preferences') {
+          state.preferences[key] = currentValue === opt.value ? 0 : opt.value;
+        } else {
+          state.otherFactors[key] = currentValue === opt.value ? 'neutral' : opt.value;
+        }
+
+        state.filteredStrategies = calculateStrategyScores(state.strategies, state, scoringMatrix);
+        render();
+      };
+
+      radioGroup.appendChild(radio);
+    });
+
+    group.appendChild(radioGroup);
+    accordion.appendChild(group);
+  });
+
+  wrapper.appendChild(accordion);
+  return wrapper;
+}
+
 
         // Updated renderStrategyCards function to display IP Type and Approach tags
         function renderStrategyCards() {
