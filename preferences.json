@@ -1,7 +1,4 @@
 
-
-
-{
   "filters": {
     "Juristiction": {   
       "label": "Focus on right registered with:",  
@@ -142,4 +139,4 @@
       }
     }
   }
-}
+
