@@ -49,9 +49,7 @@
         { "value": 1, "label": "Filter 5 Option C", "pillLabel": "Filter 5-C" },
         { "value": 2, "label": "Filter 5 Option D", "pillLabel": "Filter 5-D" }
       ]
-    }
-  },
-  "otherFactors": {
+    },
     "onlineMarkets": {
       "label": "Other Factor Type 1",
       "pillTemplate": "{optionLabel}",
@@ -91,10 +89,7 @@
         { "value": "unsure", "label": "Option C", "pillLabel": "Factor 4-C" }
       ],
       "showFor": ["Any"]
-    }
-  },
-  "situationSpecific": {
-    "Enforcement": {
+    },
       "infringementType": {
         "label": "Situation 1 Filter Type 1",
         "pillTemplate": "S1-F1: {optionLabel}",
@@ -105,43 +100,6 @@
         ],
         "showFor": ["Any"]
       },
-      "jurisdiction": {
-        "label": "Situation 1 Filter Type 2",
-        "pillTemplate": "S1-F2: {optionLabel}",
-        "options": [
-          { "value": "australia", "label": "S1-F2 Option A", "pillLabel": "S1-F2-A" },
-          { "value": "international", "label": "S1-F2 Option B", "pillLabel": "S1-F2-B" },
-          { "value": "both", "label": "S1-F2 Option C", "pillLabel": "S1-F2-C" }
-        ],
-        "showFor": ["Any"]
-      }
-    },
-    "Accused": {
-      "letterReceived": {
-        "label": "Situation 2 Filter Type 1",
-        "pillTemplate": "S2-F1: {optionLabel}",
-        "options": [
-          { "value": "initial", "label": "S2-F1 Option A", "pillLabel": "S2-F1-A" },
-          { "value": "responded", "label": "S2-F1 Option B", "pillLabel": "S2-F1-B" },
-          { "value": "legal", "label": "S2-F1 Option C", "pillLabel": "S2-F1-C" }
-        ],
-        "showFor": ["Any"]
-      }
-    },
-    "Proactive": {
-      "businessStage": {
-        "label": "Situation 3 Filter Type 1",
-        "pillTemplate": "S3-F1: {optionLabel}",
-        "options": [
-          { "value": "startup", "label": "S3-F1 Option A", "pillLabel": "S3-F1-A" },
-          { "value": "growth", "label": "S3-F1 Option B", "pillLabel": "S3-F1-B" },
-          { "value": "established", "label": "S3-F1 Option C", "pillLabel": "S3-F1-C" }
-        ],
-        "showFor": ["Any"]
-      }
-    }
-  },
-  "ipTypeSpecific": {
     "Patent": {
       "patentAge": {
         "label": "Category 1 Filter Type 1",
