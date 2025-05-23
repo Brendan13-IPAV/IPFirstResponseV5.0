@@ -165,31 +165,50 @@
         { id: 'Professional', label: "I'm seeking support of an IP professional" }
       ];
 
-                              // Define accordion presets based on IP rights and situations
-                              const accordionPresets = {
-                                default: {
-                                  'Your IP': ['Jurisdiction', 'YourTMStatus'],
-                                  'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
-                                  'Other party details': ['theirIPRights', 'identifyParty'],
-                                  'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'openToNegotiate']
-                                },
-                                
-                                // Example: Patent-specific layout
-                                'Patent-Enforcement': {
-                                  'Your Patent': ['Jurisdiction', 'YourPatStatus'],
-                                  'Enforcement Details': ['Where', 'desiredOutcome'],
-                                  'Other Party': ['theirIPRights', 'identifyParty'],
-                                  'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
-                                },
-                                
-                                // Example: Trademark-specific layout
-                                'Trademark-Enforcement': {
-                                  'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
-                                  'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
-                                  'Response Strategy': ['preferredApproach', 'openToNegotiate'],
-                                  'Other Factors': ['identifyParty', 'importingGoods']
-                                },
-                              };
+      // Define accordion presets based on IP rights and situations
+      const accordionPresets = {
+        default: {
+          topFilters: ['desiredOutcome', 'preferredApproach'], // Filters shown outside/above accordions
+          accordions: {
+            'Your IP': ['Jurisdiction', 'YourTMStatus', 'YourPatStatus'],
+            'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
+            'Other party details': ['theirIPRights', 'identifyParty'],
+            'Resolution Preferences': ['businessRelationship', 'openToNegotiate']
+          }
+        },
+        
+        // Example: Patent-specific layout
+        'Patent-Enforcement': {
+          topFilters: ['desiredOutcome'], // Only one filter above accordions
+          accordions: {
+            'Your Patent': ['Jurisdiction', 'YourPatStatus'],
+            'Enforcement Details': ['Where'],
+            'Other Party': ['theirIPRights', 'identifyParty'],
+            'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
+          }
+        },
+        
+        // Example: Trademark-specific layout
+        'Trademark-Accused': {
+          topFilters: ['preferredApproach'], // No filters above accordions
+          accordions: {
+            'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
+            'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
+            'Response Strategy': ['preferredApproach', 'openToNegotiate'],
+            'Other Factors': ['identifyParty', 'importingGoods']
+          }
+        },
+        
+        // Add more presets here by copying this pattern:
+        // 'IPType-Situation': {
+        //   topFilters: ['filter1', 'filter2'], // Filters above accordions
+        //   accordions: {
+        //     'Accordion Name 1': ['filter3', 'filter4', 'filter5'],
+        //     'Accordion Name 2': ['filter6', 'filter7'],
+        //     'Accordion Name 3': ['filter8', 'filter9', 'filter10']
+        //   }
+        // },
+      };
 
       function IPStrategyFinder() {
         // Get only the primary filters from localStorage (rights and situations)
@@ -303,6 +322,7 @@
           container.className = 'grid';
 
           const leftCol = document.createElement('div');
+          leftCol.appendChild(renderTopFilters());
           leftCol.appendChild(renderDynamicAccordions());
           container.appendChild(leftCol);
 
@@ -314,12 +334,75 @@
           app.appendChild(container);
         }
 
+        // Render filters that appear above accordions
+        function renderTopFilters() {
+          const topFiltersWrapper = document.createElement('div');
+          topFiltersWrapper.className = 'top-filters';
+          topFiltersWrapper.style.marginBottom = '20px';
+          
+          const layout = getAccordionLayout();
+          const topFilters = layout.topFilters || [];
+          
+          if (topFilters.length === 0) {
+            return topFiltersWrapper; // Return empty wrapper if no top filters
+          }
+          
+          topFilters.forEach(filterKey => {
+            const filterConfig = preferenceConfigs.filters[filterKey];
+            
+            if (filterConfig && shouldShowFilter(filterKey, filterConfig)) {
+              const group = document.createElement('div');
+              group.className = 'preference-group';
+
+              const label = document.createElement('label');
+              label.className = 'preference-label';
+              label.textContent = filterConfig.label;
+              group.appendChild(label);
+
+              const radioGroup = document.createElement('div');
+              radioGroup.className = 'radio-group';
+              
+              filterConfig.options.forEach((opt, index) => {
+                const radio = document.createElement('label');
+                radio.className = 'radio-button';
+                if (state.filterSelections[filterKey] === index) {
+                  radio.classList.add('radio-selected');
+                }
+                radio.textContent = opt.label;
+                radio.onclick = () => {
+                  // Toggle selection
+                  if (state.filterSelections[filterKey] === index) {
+                    delete state.filterSelections[filterKey];
+                  } else {
+                    state.filterSelections[filterKey] = index;
+                  }
+                  
+                  state.filteredStrategies = calculateStrategyScores(
+                    state.strategies,
+                    state,
+                    scoringMatrix
+                  );
+
+                  render();
+                };
+                radioGroup.appendChild(radio);
+              });
+              
+              group.appendChild(radioGroup);
+              topFiltersWrapper.appendChild(group);
+            }
+          });
+          
+          return topFiltersWrapper;
+        }
+
         // Render accordions dynamically based on the current layout
         function renderDynamicAccordions() {
           const wrapper = document.createElement('div');
           const layout = getAccordionLayout();
+          const accordions = layout.accordions || layout; // Support both new and old format
 
-          Object.entries(layout).forEach(([accordionTitle, filterKeys]) => {
+          Object.entries(accordions).forEach(([accordionTitle, filterKeys]) => {
             const accordionKey = accordionTitle.toLowerCase().replace(/\s+/g, '');
             
             // Create accordion header
