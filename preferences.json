@@ -55,98 +55,98 @@
       ]
     },
     "BusinessIssue": {
-      "label": "Filter Type 4",
-      "pillTemplate": "{optionLabel}",
+      "label": "Options which involve:",
+      "pillTemplate": "Involving {optionLabel}",
       "options": [
         {
-          "label": "Filter 4 Option A",
-          "pillLabel": "Filter 4-A"
+          "label": "Physical goods/products",
+          "pillLabel": "goods or products"
         },
         {
-          "label": "Filter 4 Option B",
-          "pillLabel": "Filter 4-B"
+          "label": "Services",
+          "pillLabel": "services"
+        },
+          {
+          "label": "Logos, taglines, slogans",
+          "pillLabel": "logos, tagline, slogans"
         },
         {
-          "label": "Filter 4 Option C",
-          "pillLabel": "Filter 4-C"
+          "label": "Know-how or methods",
+          "pillLabel": "know-how, methods"
         },
         {
-          "label": "Filter 4 Option D",
-          "pillLabel": "Filter 4-D"
+          "label": "Creative works, images, graphic design",
+          "pillLabel": "creative works"
+        },
+        {
+          "label": "Website domain",
+          "pillLabel": "domain names"
+        },
+        {
+          "label": "My image, likeness or name",
+          "pillLabel": "likeness or my name"
         }
       ]
     },
     "Where": {
-      "label": "Where is the issue taking place?",
-      "pillTemplate": "Filter 5: {optionLabel}",
+      "label": "Options which target issues in:",
+      "pillTemplate": "Occuring {optionLabel}",
       "options": [
         {
-          "label": "Mainly Australia (including online sales targeting Aussies)",
-          "pillLabel": "Filter 5-A"
+          "label": "Australia (including online sales targeting Aussies)",
+          "pillLabel": "in Australia"
         },
         {
           "label": "Both in Australia and outside Australia",
-          "pillLabel": "Filter 5-B"
+          "pillLabel": "domestically and internationaly"
         },
         {
-          "label": "Mainly outside Australia (including online sales targeting non-Australians)",
-          "pillLabel": "Filter 5-C"
+          "label": "outside Australia (including online sales targeting non-Australians)",
+          "pillLabel": "internationally"
         }
       ]
     },
     "onlineIssues": {
-      "label": "Other Factor Type 1",
-      "pillTemplate": "{optionLabel}",
+      "label": "Involving online marketplaces",
+      "pillTemplate": "{optionLabel} online marketplaces ",
       "options": [
         {
-          "label": "Option A",
-          "pillLabel": "Factor 1-A"
+          "label": "Yes",
+          "pillLabel": "Focusing on"
         },
         {
-          "label": "Option B",
-          "pillLabel": "Factor 1-B"
-        },
-        {
-          "label": "Option C",
-          "pillLabel": "Factor 1-C"
+          "label": "Not at this time",
+          "pillLabel": "Not focusing on"
         }
       ]
 
     },
     "domainName": {
-      "label": "Domain/website name dispute?",
-      "pillTemplate": "Factor 2: {optionLabel}",
+      "label": "Involving domain/website name dispute?",
+      "pillTemplate": "{optionLabel} domain name disputes",
       "options": [
-        {
-          "label": "Option A",
-          "pillLabel": "Factor 2-A"
+       {
+          "label": "Yes",
+          "pillLabel": "Focusing on"
         },
         {
-          "label": "Option B",
-          "pillLabel": "Factor 2-B"
-        },
-        {
-          "label": "Option C",
-          "pillLabel": "Factor 2-C"
+          "label": "Not at this time",
+          "pillLabel": "Not focusing on"
         }
       ]
 
     },
     "importingGoods": {
-      "label": "Other Factor Type 3",
-      "pillTemplate": "Factor 3: {optionLabel}",
+      "label": "Suspected importation to Australia",
+      "pillTemplate": "{optionLabel} importation to Australia",
       "options": [
-        {
-          "label": "Option A",
-          "pillLabel": "Factor 3-A"
+              {
+          "label": "Yes",
+          "pillLabel": "Focusing on"
         },
         {
-          "label": "Option B",
-          "pillLabel": "Factor 3-B"
-        },
-        {
-          "label": "Option C",
-          "pillLabel": "Factor 3-C"
+          "label": "Not at this time",
+          "pillLabel": "Not focusing on"
         }
       ]
 
