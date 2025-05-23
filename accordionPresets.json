@@ -1,6 +1,6 @@
 {
   "default": {
-    "topFilters": ["desiredOutcome", "preferredApproach"],
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
       "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
