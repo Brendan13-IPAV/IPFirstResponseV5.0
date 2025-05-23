@@ -165,31 +165,31 @@
         { id: 'Professional', label: "I'm seeking support of an IP professional" }
       ];
 
-      // Define accordion presets based on IP rights and situations
-      const accordionPresets = {
-        default: {
-          'Your IP': ['Jurisdiction', 'YourTMStatus', 'YourPatStatus'],
-          'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
-          'Other party details': ['theirIPRights', 'identifyParty'],
-          'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'openToNegotiate']
-        },
-        
-        // Example: Patent-specific layout
-        'Patent-Enforcement': {
-          'Your Patent': ['Jurisdiction', 'YourPatStatus'],
-          'Enforcement Details': ['Where', 'desiredOutcome'],
-          'Other Party': ['theirIPRights', 'identifyParty'],
-          'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
-        },
-        
-        // Example: Trademark-specific layout
-        'Trademark-Accused': {
-          'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
-          'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
-          'Response Strategy': ['preferredApproach', 'openToNegotiate'],
-          'Other Factors': ['identifyParty', 'importingGoods']
-        },
-      };
+                              // Define accordion presets based on IP rights and situations
+                              const accordionPresets = {
+                                default: {
+                                  'Your IP': ['Jurisdiction', 'YourTMStatus'],
+                                  'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
+                                  'Other party details': ['theirIPRights', 'identifyParty'],
+                                  'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'openToNegotiate']
+                                },
+                                
+                                // Example: Patent-specific layout
+                                'Patent-Enforcement': {
+                                  'Your Patent': ['Jurisdiction', 'YourPatStatus'],
+                                  'Enforcement Details': ['Where', 'desiredOutcome'],
+                                  'Other Party': ['theirIPRights', 'identifyParty'],
+                                  'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
+                                },
+                                
+                                // Example: Trademark-specific layout
+                                'Trademark-Enforcement': {
+                                  'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
+                                  'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
+                                  'Response Strategy': ['preferredApproach', 'openToNegotiate'],
+                                  'Other Factors': ['identifyParty', 'importingGoods']
+                                },
+                              };
 
       function IPStrategyFinder() {
         // Get only the primary filters from localStorage (rights and situations)
