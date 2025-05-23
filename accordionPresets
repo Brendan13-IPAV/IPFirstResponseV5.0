@@ -1,0 +1,31 @@
+{
+  "default": {
+    "topFilters": ["desiredOutcome", "preferredApproach"],
+    "accordions": {
+      "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
+      "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
+      "Other party details": ["theirIPRights", "identifyParty"],
+      "Resolution Preferences": ["businessRelationship", "openToNegotiate"]
+    }
+  },
+  
+  "Patent-Enforcement": {
+    "topFilters": ["desiredOutcome"],
+    "accordions": {
+      "Your Patent": ["Jurisdiction", "YourPatStatus"],
+      "Enforcement Details": ["Where"],
+      "Other Party": ["theirIPRights", "identifyParty"],
+      "Approach": ["preferredApproach", "businessRelationship", "openToNegotiate"]
+    }
+  },
+  
+  "Trademark-Accused": {
+    "topFilters": [],
+    "accordions": {
+      "Your Trademark": ["Jurisdiction", "YourTMStatus"],
+      "Accusation Details": ["Where", "domainName", "onlineIssues"],
+      "Response Strategy": ["preferredApproach", "openToNegotiate"],
+      "Other Factors": ["identifyParty", "importingGoods"]
+    }
+  }
+}
