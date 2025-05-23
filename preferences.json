@@ -110,7 +110,7 @@
           "label": "Option C",
           "pillLabel": "Factor 1-C"
         }
-      ],
+      ]
 
     },
     "domainName": {
@@ -129,7 +129,7 @@
           "label": "Option C",
           "pillLabel": "Factor 2-C"
         }
-      ],
+      ]
 
     },
     "importingGoods": {
@@ -148,7 +148,7 @@
           "label": "Option C",
           "pillLabel": "Factor 3-C"
         }
-      ],
+      ]
 
     },
     "identifyParty": {
@@ -167,7 +167,7 @@
           "label": "Option C",
           "pillLabel": "Factor 4-C"
         }
-      ],
+      ]
 
     },
     "theirIPRights": {
@@ -186,7 +186,7 @@
           "label": "S1-F1 Option C",
           "pillLabel": "S1-F1-C"
         }
-      ],
+      ]
 
     },
     "desiredOutcome": {
