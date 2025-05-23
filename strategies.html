@@ -173,10 +173,22 @@
           'Other party details': ['theirIPRights', 'identifyParty'],
           'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'openToNegotiate']
         },
-        // You can add more presets here based on different combinations
-        // 'Patent-Enforcement': { ... },
-        // 'Trademark-Accused': { ... },
-        // etc.
+        
+        // Example: Patent-specific layout
+        'Patent-Enforcement': {
+          'Your Patent': ['Jurisdiction', 'YourPatStatus'],
+          'Enforcement Details': ['Where', 'desiredOutcome'],
+          'Other Party': ['theirIPRights', 'identifyParty'],
+          'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
+        },
+        
+        // Example: Trademark-specific layout
+        'Trademark-Accused': {
+          'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
+          'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
+          'Response Strategy': ['preferredApproach', 'openToNegotiate'],
+          'Other Factors': ['identifyParty', 'importingGoods']
+        },
       };
 
       function IPStrategyFinder() {
