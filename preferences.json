@@ -111,10 +111,7 @@
           "pillLabel": "Factor 1-C"
         }
       ],
-      "showFor": [
-        "Trade mark",
-        "Copyright"
-      ]
+
     },
     "domainName": {
       "label": "Domain/website name dispute?",
@@ -133,9 +130,7 @@
           "pillLabel": "Factor 2-C"
         }
       ],
-      "showFor": [
-        "Trade mark"
-      ]
+
     },
     "importingGoods": {
       "label": "Other Factor Type 3",
@@ -154,10 +149,7 @@
           "pillLabel": "Factor 3-C"
         }
       ],
-      "showFor": [
-        "Trade mark",
-        "Copyright"
-      ]
+
     },
     "identifyParty": {
       "label": "Other Factor Type 4",
@@ -176,9 +168,7 @@
           "pillLabel": "Factor 4-C"
         }
       ],
-      "showFor": [
-        "Any"
-      ]
+
     },
     "theirIPRights": {
       "label": "Situation 1 Filter Type 1",
@@ -197,9 +187,7 @@
           "pillLabel": "S1-F1-C"
         }
       ],
-      "showFor": [
-        "Any"
-      ]
+
     },
     "desiredOutcome": {
       "label": "Category 1 Filter Type 1",
