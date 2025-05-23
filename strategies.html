@@ -296,15 +296,9 @@
           return accordionPresets.default;
         }
 
-        // Check if a filter should be shown based on showFor criteria
+        // Simplified function - now just returns true since we removed showFor
         function shouldShowFilter(filterKey, filterConfig) {
-          if (!filterConfig.showFor) {
-            return true; // Show if no showFor restriction
-          }
-          
-          return state.selectedRights.some(right => 
-            filterConfig.showFor.includes(right) || filterConfig.showFor.includes('Any')
-          );
+          return true; // Show all filters since we're controlling visibility through accordion presets
         }
 
         function render() {
