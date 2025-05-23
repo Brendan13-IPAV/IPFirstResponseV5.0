@@ -23,9 +23,9 @@
     "topFilters": ["preferredApproach"],
     "accordions": {
       "Your Trademark": ["Jurisdiction", "YourTMStatus"],
-       "Other party details": ["theirIPRights"],
+      "Other party details": ["theirIPRights"],
       "Accusation Details": ["Where", "domainName", "onlineIssues"],
-      "Response Strategy": [ "openToNegotiate"],
+      "Response Strategy": ["openToNegotiate"],
       "Other Factors": ["identifyParty", "importingGoods"]
     }
   }
