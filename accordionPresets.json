@@ -10,7 +10,7 @@
   },
   
   "Patent-Enforcement": {
-    "topFilters": ["desiredOutcome", "preferredApproach"],
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
       "Your Patent": ["Jurisdiction", "YourPatStatus"],
       "Enforcement Details": ["Where"],
@@ -20,7 +20,7 @@
   },
   
   "Trademark-Accused": {
-    "topFilters": ["preferredApproach"],
+    "topFilters": ["preferredApproach", "BusinessIssue"],
     "accordions": {
       "Your Trademark": ["Jurisdiction", "YourTMStatus"],
       "Other party details": ["theirIPRights"],
