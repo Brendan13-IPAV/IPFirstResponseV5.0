@@ -144,8 +144,11 @@
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
       fetch('preferences.json').then(res => res.json()),
-      fetch('scoring-matrix.json').then(res => res.json())
-    ]).then(([strategiesData, preferenceConfigs, scoringMatrix]) => {
+      fetch('scoring-matrix.json').then(res => res.json()),
+      fetch('accordionPresets.json').then(res => res.json()) // <-- Add this line
+
+      ]).then(([strategiesData, preferenceConfigs, scoringMatrix, accordionPresets]) => {
+
       // Make preferenceConfigs globally available for use in filtering functions
       window.preferenceConfigs = preferenceConfigs;
 
@@ -166,49 +169,7 @@
       ];
 
       // Define accordion presets based on IP rights and situations
-      const accordionPresets = {
-        default: {
-          topFilters: ['desiredOutcome', 'preferredApproach'], // Filters shown outside/above accordions
-          accordions: {
-            'Your IP': ['Jurisdiction', 'YourTMStatus', 'YourPatStatus'],
-            'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
-            'Other party details': ['theirIPRights', 'identifyParty'],
-            'Resolution Preferences': ['businessRelationship', 'openToNegotiate']
-          }
-        },
-        
-        // Example: Patent-specific layout
-        'Patent-Enforcement': {
-          topFilters: ['desiredOutcome'], // Only one filter above accordions
-          accordions: {
-            'Your Patent': ['Jurisdiction', 'YourPatStatus'],
-            'Enforcement Details': ['Where'],
-            'Other Party': ['theirIPRights', 'identifyParty'],
-            'Approach': ['preferredApproach', 'businessRelationship', 'openToNegotiate']
-          }
-        },
-        
-        // Example: Trademark-specific layout
-        'Trademark-Accused': {
-          topFilters: ['preferredApproach'], // No filters above accordions
-          accordions: {
-            'Your Trademark': ['Jurisdiction', 'YourTMStatus'],
-            'Accusation Details': ['Where', 'domainName', 'onlineIssues'],
-            'Response Strategy': ['preferredApproach', 'openToNegotiate'],
-            'Other Factors': ['identifyParty', 'importingGoods']
-          }
-        },
-        
-        // Add more presets here by copying this pattern:
-        // 'IPType-Situation': {
-        //   topFilters: ['filter1', 'filter2'], // Filters above accordions
-        //   accordions: {
-        //     'Accordion Name 1': ['filter3', 'filter4', 'filter5'],
-        //     'Accordion Name 2': ['filter6', 'filter7'],
-        //     'Accordion Name 3': ['filter8', 'filter9', 'filter10']
-        //   }
-        // },
-      };
+ 
 
       function IPStrategyFinder() {
         // Get only the primary filters from localStorage (rights and situations)
@@ -290,11 +251,19 @@
         }
 
         // Get the current accordion layout based on selections
-        function getAccordionLayout() {
-          // For now, use default. Later you can add logic to select different presets
-          // based on state.selectedRights and state.selectedSituations
-          return accordionPresets.default;
-        }
+                              function getAccordionLayout() {
+                            const selectedRight = (state.selectedRights[0] || '').replace(/\s+/g, '').toLowerCase();
+                            const selectedSituation = (state.selectedSituations[0] || '').toLowerCase();
+                      
+                            const ipRightObj = ipRightsOptions.find(opt => opt.id.toLowerCase().replace(/\s+/g, '') === selectedRight);
+                            const situationObj = situationOptions.find(opt => opt.id.toLowerCase() === selectedSituation);
+                      
+                            const rightKey = ipRightObj ? ipRightObj.id.replace(/\s+/g, '') : '';
+                            const situationKey = situationObj ? situationObj.id : '';
+                            const presetKey = `${rightKey}-${situationKey}`;
+                      
+                            return accordionPresets[presetKey] || accordionPresets.default;
+                          }
 
         // Simplified function - now just returns true since we removed showFor
         function shouldShowFilter(filterKey, filterConfig) {
