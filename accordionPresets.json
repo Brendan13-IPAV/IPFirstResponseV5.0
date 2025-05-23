@@ -10,21 +10,22 @@
   },
   
   "Patent-Enforcement": {
-    "topFilters": ["desiredOutcome"],
+    "topFilters": ["desiredOutcome", "preferredApproach"],
     "accordions": {
       "Your Patent": ["Jurisdiction", "YourPatStatus"],
       "Enforcement Details": ["Where"],
       "Other Party": ["theirIPRights", "identifyParty"],
-      "Approach": ["preferredApproach", "businessRelationship", "openToNegotiate"]
+      "Approach": ["businessRelationship", "openToNegotiate"]
     }
   },
   
   "Trademark-Accused": {
-    "topFilters": [],
+    "topFilters": ["preferredApproach"],
     "accordions": {
       "Your Trademark": ["Jurisdiction", "YourTMStatus"],
+       "Other party details": ["theirIPRights"],
       "Accusation Details": ["Where", "domainName", "onlineIssues"],
-      "Response Strategy": ["preferredApproach", "openToNegotiate"],
+      "Response Strategy": [ "openToNegotiate"],
       "Other Factors": ["identifyParty", "importingGoods"]
     }
   }
