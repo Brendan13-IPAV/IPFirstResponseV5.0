@@ -4,7 +4,118 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IP First Response 2.0</title>
+
+  <!-- External CSS -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Additional styles for cost and effort display */
+    .card-metrics {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .metric-row {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .metric-label {
+      font-weight: 500;
+      margin-right: 8px;
+      min-width: 100px;
+    }
+    
+    .metric-value {
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    /* Tag sections wrapper */
+    .tag-sections {
+      margin-top: 12px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+    }
+
+    /* Tighter spacing for tag rows */
+    .tag-row {
+      margin-bottom: 2px;
+    }
+    
+    /* Last tag row has no margin */
+    .tag-row:last-child {
+      margin-bottom: 0;
+    }
+
+    /* New styles for IP type and approach tags */
+    .strategy-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .strategy-tag {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    /* Using the colors from styles.css */
+    .tag-ip-any {
+      background-color: rgba(102, 112, 133, 0.1);
+      color: var(--any-color);
+    }
+    
+    .tag-ip-patent {
+      background-color: rgba(29, 167, 175, 0.1);
+      color: var(--patent-color);
+    }
+    
+    .tag-ip-trademark, .tag-ip-trademarkt {
+      background-color: rgba(222, 67, 38, 0.1);
+      color: var(--trademark-color);
+    }
+    
+    .tag-ip-design {
+      background-color: rgba(132, 201, 143, 0.1);
+      color: var(--design-color);
+    }
+    
+    .tag-ip-copyright {
+      background-color: rgba(120, 122, 187, 0.1);
+      color: var(--copyright-color);
+    }
+    
+    .tag-ip-pbr {
+      background-color: rgba(241, 172, 30, 0.1);
+      color: var(--pbr-color);
+    }
+
+    .tag-approach {
+      background-color: rgba(85, 171, 201, 0.1);
+      color: var(--teal);
+    }
+
+    /* Not applicable styling */
+    .not-applicable {
+      opacity: 0.7;
+    }
+
+    .not-applicable-badge {
+      background-color: #f5f5f5;
+      color: #616161;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -35,29 +146,138 @@
       fetch('preferences.json').then(res => res.json()),
       fetch('scoring-matrix.json').then(res => res.json())
     ]).then(([strategiesData, preferenceConfigs, scoringMatrix]) => {
+      // Make preferenceConfigs globally available for use in filtering functions
       window.preferenceConfigs = preferenceConfigs;
 
-      function IPStrategyFinder() {
-        const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
-        const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
-        const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
+      const ipRightsOptions = [
+        { id: 'Patent', label: 'Patents', color: 'patent' },
+        { id: 'Trade mark', label: 'Trade marks', color: 'trademark' },
+        { id: 'Design', label: 'Design rights', color: 'design' },
+        { id: 'PBR', label: "Plant breeder's rights", color: 'pbr' },
+        { id: 'Copyright', label: 'Copyright', color: 'copyright' },
+        { id: 'Any', label: 'Any IP right', color: 'any' }
+      ];
 
+      const situationOptions = [
+        { id: 'Accused', label: "I've been accused of infringing" },
+        { id: 'Enforcement', label: 'I believe my IP has been infringed' },
+        { id: 'Proactive', label: "I'm proactively protecting my IP" },
+        { id: 'Professional', label: "I'm seeking support of an IP professional" }
+      ];
+
+      // Define accordion presets based on IP rights and situations
+      const accordionPresets = {
+        default: {
+          'Your IP': ['Jurisdiction', 'YourTMStatus', 'YourPatStatus'],
+          'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
+          'Other party details': ['theirIPRights', 'identifyParty'],
+          'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'openToNegotiate']
+        },
+        // You can add more presets here based on different combinations
+        // 'Patent-Enforcement': { ... },
+        // 'Trademark-Accused': { ... },
+        // etc.
+      };
+
+      function IPStrategyFinder() {
+        // Get only the primary filters from localStorage (rights and situations)
+        const savedState = JSON.parse(localStorage.getItem('ipStrategyState')) || {};
+        
+        // Check if coming from index page with new selections
+        const selectedFromIndex = JSON.parse(localStorage.getItem('ipSelectedRights'));
+        
+        // Define all possible rights for use as default
+        const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
+        
         const state = {
           loading: true,
           strategies: strategiesData,
           filteredStrategies: [],
-          accordions: savedState.accordions || {},
+          accordions: savedState.accordions || { 
+            yourIp: true,
+            details: true,
+            otherPartyDetails: true,
+            resolutionPreferences: true
+          },
+          // Use selections from index.html if available, otherwise use saved state or ALL rights
           selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
           selectedSituations: savedState.selectedSituations || ['Enforcement'],
-          preferences: {},
-          otherFactors: {},
-          situationSpecificFilters: {},
-          ipTypeSpecificFilters: {}
+          // Dynamic filter selections - always start fresh
+          filterSelections: {}
         };
-
+        
+        // Clear the selection from localStorage to avoid affecting future visits
         localStorage.removeItem('ipSelectedRights');
 
+        function init() {
+          state.loading = false;
+          state.filteredStrategies = calculateStrategyScores(
+            state.strategies,
+            state,
+            scoringMatrix
+          );
+
+          render();
+        }
+
+        // Create a dynamic title based on selected situation and IP right
+        function createDynamicTitle() {
+          const situationMap = {
+            'Enforcement': 'enforce',
+            'Accused': 'respond to accusations about',
+            'Proactive': 'proactively protect',
+            'Professional': 'seek professional support for'
+          };
+          
+          let action = 'manage'; // Default
+          if (state.selectedSituations.length === 1) {
+            action = situationMap[state.selectedSituations[0]];
+          }
+          
+          let rightText = 'intellectual property';
+          
+          if (state.selectedRights.length === 1) {
+            // Just one right selected
+            rightText = `a ${state.selectedRights[0].toLowerCase()}`;
+          } else if (state.selectedRights.length > 1) {
+            // Multiple rights selected - format them more naturally
+            if (state.selectedRights.length === 2) {
+              // Two rights - use "and" between them
+              rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
+            } else if (state.selectedRights.length <= 4) {
+              // 3-4 rights - list with commas and "and"
+              const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
+              const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
+              rightText = `${otherRights.join(', ')} and ${lastRight}`;
+            } else {
+              // More than 4 rights - keep it simple
+              rightText = 'multiple IP rights';
+            }
+          }
+          
+          return `Showing: Strategies to ${action} ${rightText}`;
+        }
+
+        // Get the current accordion layout based on selections
+        function getAccordionLayout() {
+          // For now, use default. Later you can add logic to select different presets
+          // based on state.selectedRights and state.selectedSituations
+          return accordionPresets.default;
+        }
+
+        // Check if a filter should be shown based on showFor criteria
+        function shouldShowFilter(filterKey, filterConfig) {
+          if (!filterConfig.showFor) {
+            return true; // Show if no showFor restriction
+          }
+          
+          return state.selectedRights.some(right => 
+            filterConfig.showFor.includes(right) || filterConfig.showFor.includes('Any')
+          );
+        }
+
         function render() {
+          // Only save primary filters to localStorage
           localStorage.setItem('ipStrategyState', JSON.stringify({
             accordions: state.accordions,
             selectedRights: state.selectedRights,
@@ -69,73 +289,350 @@
 
           const container = document.createElement('div');
           container.className = 'grid';
+
           const leftCol = document.createElement('div');
-
-          const accordionPresets = {
-            default: {
-              'Your IP': ['Jurisdiction', 'YourTMStatus', 'YourPatStatus'],
-              'Details': ['Where', 'onlineIssues', 'domainName', 'importingGoods'],
-              'Other party details': ['theirIPRights', 'identifyParty'],
-              'Resolution Preferences': ['desiredOutcome', 'preferredApproach', 'businessRelationship', 'opentToNegotiate']
-            }
-          };
-
-          let activeAccordionLayout = accordionPresets.default;
-
-          Object.entries(activeAccordionLayout).forEach(([group, filters]) => {
-            leftCol.appendChild(renderCustomAccordion(group, filters));
-          });
+          leftCol.appendChild(renderDynamicAccordions());
+          container.appendChild(leftCol);
 
           const rightCol = document.createElement('div');
-          rightCol.appendChild(document.createElement('h2')).textContent = 'Filtered strategies will appear here';
-          container.appendChild(leftCol);
+          rightCol.appendChild(renderActiveFilters());
+          rightCol.appendChild(renderStrategyCards());
           container.appendChild(rightCol);
+
           app.appendChild(container);
         }
 
-        function renderCustomAccordion(groupLabel, filterKeys) {
+        // Render accordions dynamically based on the current layout
+        function renderDynamicAccordions() {
           const wrapper = document.createElement('div');
-          const title = document.createElement('h3');
-          title.textContent = groupLabel;
-          wrapper.appendChild(title);
+          const layout = getAccordionLayout();
 
-          filterKeys.forEach(key => {
-            const config = preferenceConfigs.filters[key];
-            if (!config) return;
+          Object.entries(layout).forEach(([accordionTitle, filterKeys]) => {
+            const accordionKey = accordionTitle.toLowerCase().replace(/\s+/g, '');
+            
+            // Create accordion header
+            const toggle = document.createElement('div');
+            toggle.className = 'accordion-header';
+            toggle.style.cursor = 'pointer';
+            toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${state.accordions[accordionKey] ? 'rotate(90deg)' : 'rotate(0deg)'};">▶</span> ${accordionTitle}`;
+            toggle.onclick = () => {
+              state.accordions[accordionKey] = !state.accordions[accordionKey];
+              render();
+            };
+            wrapper.appendChild(toggle);
 
-            const group = document.createElement('div');
-            group.className = 'preference-group';
-            const label = document.createElement('label');
-            label.textContent = config.label;
-            group.appendChild(label);
+            // Create accordion content if expanded
+            if (state.accordions[accordionKey]) {
+              const accordion = document.createElement('div');
+              accordion.className = 'accordion';
 
-            const radioGroup = document.createElement('div');
-            config.options.forEach(opt => {
-              const radio = document.createElement('label');
-              radio.className = 'radio-button';
-              radio.textContent = opt.label;
-              radio.onclick = () => {
-                state.preferences[key] = opt.label;
-                render();
-              };
-              radioGroup.appendChild(radio);
-            });
+              filterKeys.forEach(filterKey => {
+                const filterConfig = preferenceConfigs.filters[filterKey];
+                
+                if (filterConfig && shouldShowFilter(filterKey, filterConfig)) {
+                  const group = document.createElement('div');
+                  group.className = 'preference-group';
 
-            group.appendChild(radioGroup);
-            wrapper.appendChild(group);
+                  const label = document.createElement('label');
+                  label.className = 'preference-label';
+                  label.textContent = filterConfig.label;
+                  group.appendChild(label);
+
+                  const radioGroup = document.createElement('div');
+                  radioGroup.className = 'radio-group';
+                  
+                  filterConfig.options.forEach((opt, index) => {
+                    const radio = document.createElement('label');
+                    radio.className = 'radio-button';
+                    if (state.filterSelections[filterKey] === index) {
+                      radio.classList.add('radio-selected');
+                    }
+                    radio.textContent = opt.label;
+                    radio.onclick = () => {
+                      // Toggle selection
+                      if (state.filterSelections[filterKey] === index) {
+                        delete state.filterSelections[filterKey];
+                      } else {
+                        state.filterSelections[filterKey] = index;
+                      }
+                      
+                      state.filteredStrategies = calculateStrategyScores(
+                        state.strategies,
+                        state,
+                        scoringMatrix
+                      );
+
+                      render();
+                    };
+                    radioGroup.appendChild(radio);
+                  });
+                  
+                  group.appendChild(radioGroup);
+                  accordion.appendChild(group);
+                }
+              });
+
+              wrapper.appendChild(accordion);
+            }
           });
 
           return wrapper;
         }
 
-        return { init: () => { state.loading = false; render(); } };
+        // Render active filters and title
+        function renderActiveFilters() {
+          const filtersWrapper = document.createElement('div');
+          
+          // Create dynamic title and clear button container
+          const titleContainer = document.createElement('div');
+          titleContainer.style.display = 'flex';
+          titleContainer.style.justifyContent = 'space-between';
+          titleContainer.style.alignItems = 'center';
+          titleContainer.style.marginBottom = '20px';
+          
+          // Create title based on selected rights and situation
+          const titleElement = document.createElement('h2');
+          titleElement.className = 'page-title';
+          titleElement.textContent = createDynamicTitle();
+          titleContainer.appendChild(titleElement);
+          
+          // Add Clear All Filters button
+          const resetBtn = document.createElement('button');
+          resetBtn.textContent = 'Clear All Filters';
+          resetBtn.className = 'reset-button';
+          resetBtn.onclick = () => {
+            // Reset all filter selections
+            state.filterSelections = {};
+            state.filteredStrategies = calculateStrategyScores(
+              state.strategies,
+              state,
+              scoringMatrix
+            );
+
+            render();
+          };
+          titleContainer.appendChild(resetBtn);
+          
+          filtersWrapper.appendChild(titleContainer);
+          
+          // Create secondary filters section (if any exist)
+          const hasSecondaryFilters = Object.keys(state.filterSelections).length > 0;
+          
+          if (hasSecondaryFilters) {
+            const secondaryFiltersTitle = document.createElement('div');
+            secondaryFiltersTitle.className = 'filters-section-title';
+            secondaryFiltersTitle.textContent = 'Active Filters';
+            filtersWrapper.appendChild(secondaryFiltersTitle);
+            
+            const secondaryFiltersContainer = document.createElement('div');
+            secondaryFiltersContainer.className = 'active-filters';
+            
+            // Add filter pills
+            Object.entries(state.filterSelections).forEach(([filterKey, optionIndex]) => {
+              const filterConfig = preferenceConfigs.filters[filterKey];
+              if (filterConfig && filterConfig.options[optionIndex]) {
+                const opt = filterConfig.options[optionIndex];
+                
+                // Use pillTemplate and pillLabel for better display
+                let pillText = filterConfig.pillTemplate || `${filterConfig.label}: ${opt.label}`;
+                pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+                
+                const pill = document.createElement('div');
+                pill.className = 'filter-pill';
+                pill.textContent = pillText;
+                
+                const remove = document.createElement('span');
+                remove.className = 'filter-remove';
+                remove.textContent = '×';
+                remove.onclick = () => {
+                  delete state.filterSelections[filterKey];
+                  state.filteredStrategies = calculateStrategyScores(
+                    state.strategies,
+                    state,
+                    scoringMatrix
+                  );
+
+                  render();
+                };
+                pill.appendChild(remove);
+                secondaryFiltersContainer.appendChild(pill);
+              }
+            });
+            
+            filtersWrapper.appendChild(secondaryFiltersContainer);
+          }
+          
+          return filtersWrapper;
+        }
+
+        // Updated renderStrategyCards function to display IP Type and Approach tags
+        function renderStrategyCards() {
+          const list = document.createElement('div');
+          list.className = 'card-grid';
+
+          const activeFilters = Object.keys(state.filterSelections).length;
+          const showUnknown = activeFilters < 2;
+
+          state.filteredStrategies.forEach((strategy, index) => {
+            const card = document.createElement('div');
+            card.className = 'strategy-card';
+            
+            // Add not-applicable class if strategy is not applicable
+            if (!strategy.isApplicable) {
+              card.classList.add('not-applicable');
+            }
+            
+            card.style.opacity = '0';
+            card.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+            setTimeout(() => { card.style.opacity = '1'; }, 50 * index); // Staggered animation
+
+            // Determine relevancy based on match score
+            let matchLabel = 'Possible';
+            let relevanceClass = 'medium'; // mid-green
+            const score = strategy.matchScore;
+            
+            if (!strategy.isApplicable) {
+              matchLabel = 'Not Applicable';
+              relevanceClass = 'very-low';
+            } else if (!showUnknown) {
+              if (score >= 90) { matchLabel = 'Highly Likely'; relevanceClass = 'very-high'; }
+              else if (score >= 75) { matchLabel = 'Likely'; relevanceClass = 'high'; }
+              else if (score >= 50) { matchLabel = 'Possible'; relevanceClass = 'medium'; }
+              else if (score >= 25) { matchLabel = 'Unlikely'; relevanceClass = 'low'; }
+              else { matchLabel = 'Probably Not-Applicable'; relevanceClass = 'very-low'; }
+            }
+            
+            // Apply the relevancy border color
+            card.classList.add(`border-${relevanceClass}`);
+
+            // Get cost, effort and resolution text directly from the JSON
+            // Fallback to placeholders if not present in the JSON
+            const costText = strategy.costText || "Cost varies based on complexity";
+            const effortText = strategy.effortText || "Time requirement varies";
+            const resolutionText = strategy.resolutionText || "Success rate varies by case";
+
+            // Start with base HTML content
+            let htmlContent = `
+              <div class="relevancy">
+                <span class="relevancy-label">Applicability:</span>
+                <span class="relevancy-badge ${relevanceClass}">${matchLabel}</span>
+              </div>
+              <div class="strategy-overtitle">${strategy.overtitle}</div>
+              <h3 class="strategy-title">${strategy.title}</h3>
+              <p class="strategy-description">${strategy.description}</p>
+              
+              <div class="card-metrics">
+                <div class="metric-row">
+                  <span class="metric-label">Estimated cost:</span>
+                  <span class="metric-value">${costText}</span>
+                </div>
+                <div class="metric-row">
+                  <span class="metric-label">Estimated effort:</span>
+                  <span class="metric-value">${effortText}</span>
+                </div>
+                <div class="metric-row">
+                  <span class="metric-label">Rate of resolution:</span>
+                  <span class="metric-value">${resolutionText}</span>
+                </div>
+            `;
+            
+            // Add tag sections underneath the metrics
+            const hasIpTypes = strategy.ipTypeTags && strategy.ipTypeTags.length > 0;
+            const hasApproaches = strategy.approachTags && strategy.approachTags.length > 0;
+            
+            // Create tag sections wrapper
+            if (hasIpTypes || hasApproaches) {
+              htmlContent += '<div class="tag-sections">';
+              
+              // Add IP type section
+              if (hasIpTypes) {
+                // Check if "Any" or "Any IP right" or "Any dispute" is included
+                const hasAny = strategy.ipTypeTags.some(ipType => 
+                  ipType === 'Any' || ipType === 'Any IP right' || ipType === 'Any dispute'
+                );
+                
+                // Filter specific IP types (excluding "Any" or "Any IP right" or "Any dispute")
+                const specificIpTypes = strategy.ipTypeTags.filter(ipType => 
+                  ipType !== 'Any' && ipType !== 'Any IP right' && ipType !== 'Any dispute'
+                );
+                
+                htmlContent += '<div class="metric-row tag-row">';
+                htmlContent += '<span class="metric-label">Specific to:</span>';
+                htmlContent += '<div class="strategy-tags">';
+                
+                if (hasAny) {
+                  // Add "Any dispute" tag
+                  htmlContent += '<span class="strategy-tag tag-ip-any">Any dispute</span>';
+                }
+                
+                // Add specific IP type tags with different colors
+                specificIpTypes.forEach(ipType => {
+                  // Convert ipType to a class-friendly format (lowercase, no spaces)
+                  const ipClass = ipType.toLowerCase().replace(/\s+/g, '');
+                  htmlContent += `<span class="strategy-tag tag-ip-${ipClass}">${ipType}</span>`;
+                });
+                
+                htmlContent += '</div></div>';
+              }
+              
+              // Add approach section
+              if (hasApproaches && strategy.approachTags.length > 0) {
+                htmlContent += '<div class="metric-row tag-row">';
+                htmlContent += '<span class="metric-label">Approach:</span>';
+                htmlContent += '<div class="strategy-tags">';
+                
+                strategy.approachTags.forEach(approach => {
+                  htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
+                });
+                
+                htmlContent += '</div></div>';
+              }
+              
+              htmlContent += '</div>'; // Close tag-sections
+            }
+            
+            // Close card-metrics
+            htmlContent += '</div>';
+            
+            // Set the HTML content
+            card.innerHTML = htmlContent;
+            list.appendChild(card);
+          });
+
+          return list;
+        }
+
+        return { init };
       }
 
-      IPStrategyFinder().init();
+      const app = IPStrategyFinder();
+      app.init();
+
+      // Add "Change IP Rights" link
+      const changeIPRightsLink = document.createElement('a');
+      changeIPRightsLink.href = 'index.html';
+      changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
+      changeIPRightsLink.style.color = 'var(--text-secondary)';
+      changeIPRightsLink.style.textDecoration = 'none';
+      changeIPRightsLink.style.fontSize = '14px';
+      changeIPRightsLink.style.display = 'inline-block';
+      changeIPRightsLink.style.marginTop = '20px';
+      changeIPRightsLink.style.marginBottom = '20px';
+
+      // Add to page above the app
+      document.getElementById('app').before(changeIPRightsLink);
+      
     }).catch(err => {
       console.error('Error loading data:', err);
       document.getElementById('app').textContent = 'Failed to load data.';
     });
   </script>
+<script type="module">
+  import { calculateStrategyScores } from './scoring.js';
+
+  window.calculateStrategyScores = calculateStrategyScores;
+</script>
+
+  
 </body>
 </html>
