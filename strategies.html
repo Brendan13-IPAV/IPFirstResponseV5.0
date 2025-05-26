@@ -144,8 +144,7 @@
     Promise.all([
       fetch('strategies.json').then(res => res.json()),
       fetch('preferences.json').then(res => res.json()),
-      fetch('scoring-matrix.json').then(res => res.json()),
-      fetch('accordionPresets.json').then(res => res.json()) // <-- Add this line
+          fetch('accordionPresets.json').then(res => res.json()) // <-- Add this line
 
       ]).then(([strategiesData, preferenceConfigs, scoringMatrix, accordionPresets]) => {
 
