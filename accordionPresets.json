@@ -52,9 +52,9 @@
     }
   }, 
     
-  "Trademark-Proactive": { ... }, 
+  "Trademark-Proactive": {  }, 
     
-  "Design-Accused": { ... },
+  "Design-Accused": {  },
     
   "Design-Enforcement": { 
           "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
@@ -63,9 +63,9 @@
     }
   },
     
-  "Design-Proactive": { ... },  
+  "Design-Proactive": {  },  
     
-  "PBR-Accused": { ... },
+  "PBR-Accused": {  },
     
   "PBR-Enforcement": {      
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
@@ -74,9 +74,9 @@
     }
   },
     
-  "PBR-Proactive": { ... },
+  "PBR-Proactive": {  },
     
-  "Copyright-Accused": { ... },
+  "Copyright-Accused": {  },
     
   "Copyright-Enforcement": {
           "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
@@ -85,9 +85,9 @@
     }
   },
     
-  "Copyright-Proactive": { ... },
+  "Copyright-Proactive": {  },
     
-  "Any-Accused": { ... },
+  "Any-Accused": {  },
     
   "Any-Enforcement": {
           "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
@@ -96,7 +96,7 @@
     }
   },
     
-  "Any-Proactive": { ... }
+  "Any-Proactive": {  }
 
 }
 
