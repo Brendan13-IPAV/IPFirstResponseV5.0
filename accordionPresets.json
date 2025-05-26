@@ -2,7 +2,7 @@
   "default": {
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "Your IP - DEFAULT": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
+      "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
       "Other party details": ["theirIPRights", "identifyParty"],
       "Resolution Preferences": ["businessRelationship", "openToNegotiate"]
@@ -12,7 +12,7 @@
   "Patent-Enforcement": {
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "Your patent details - ENFORCMENT": ["Jurisdiction", "YourPatStatus"],
+      "Your patent details": ["Jurisdiction", "YourPatStatus"],
       "Suspected infringment details": ["Where"],
       "Other party details": ["theirIPRights", "identifyParty"],
       "Commerical considerations": ["businessRelationship", "openToNegotiate"]
@@ -22,7 +22,7 @@
    "Trademark-Enforcement": {
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "About your trade mark-ENFORCMENT": ["Jurisdiction", "YourTMStatus"],
+      "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "Suspected infringment details": ["Where"],
       "Other Party": ["theirIPRights", "identifyParty"],
       "Commerical considerations": ["businessRelationship", "openToNegotiate"]
