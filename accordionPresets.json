@@ -37,5 +37,66 @@
       "Other Factors": ["identifyParty", "importingGoods"],
        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"]
     }
-  }
+  },
+
+  "Patent-Accused": { 
+      "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"]
+    }
+  },
+  "Patent-Proactive": {      
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"]
+    }
+  }, 
+    
+  "Trademark-Proactive": { ... }, 
+    
+  "Design-Accused": { ... },
+    
+  "Design-Enforcement": { 
+          "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"]
+    }
+  },
+    
+  "Design-Proactive": { ... },  
+    
+  "PBR-Accused": { ... },
+    
+  "PBR-Enforcement": {      
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"] 
+    }
+  },
+    
+  "PBR-Proactive": { ... },
+    
+  "Copyright-Accused": { ... },
+    
+  "Copyright-Enforcement": {
+          "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"]
+    }
+  },
+    
+  "Copyright-Proactive": { ... },
+    
+  "Any-Accused": { ... },
+    
+  "Any-Enforcement": {
+          "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "Incomplete": ["Where"]
+    }
+  },
+    
+  "Any-Proactive": { ... }
+
 }
+
