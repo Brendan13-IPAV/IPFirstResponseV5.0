@@ -40,7 +40,8 @@
         },
         {
           "label": "No longer registered",
-          "pillLabel": "Previously registered TM"
+          "pillLabel": "Previously registered TM",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -50,15 +51,18 @@
       "options": [
         {
           "label": "Granted",
-          "pillLabel": "Granted patents"
+          "pillLabel": "Granted patents",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Pending examination, accepted, or being challenged",
-          "pillLabel": "un-granted patents"
+          "pillLabel": "un-granted patents",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "No longer in force",
-          "pillLabel": "expired patents"
+          "pillLabel": "expired patents",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -68,31 +72,38 @@
       "options": [
         {
           "label": "Physical goods/products",
-          "pillLabel": "goods or products"
+          "pillLabel": "goods or products",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Services",
-          "pillLabel": "services"
+          "pillLabel": "services",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
           {
           "label": "Logos, taglines, slogans",
-          "pillLabel": "logos, tagline, slogans"
+          "pillLabel": "logos, tagline, slogans",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Know-how or methods",
-          "pillLabel": "know-how, methods"
+          "pillLabel": "know-how, methods",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Creative works, images, graphic design",
-          "pillLabel": "creative works"
+          "pillLabel": "creative works",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Website domain",
-          "pillLabel": "domain names"
+          "pillLabel": "domain names",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "My image, likeness or name",
-          "pillLabel": "likeness or my name"
+          "pillLabel": "likeness or my name",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -102,23 +113,28 @@
       "options": [
         {
           "label": "in Australia",
-          "pillLabel": "in Australia"
+          "pillLabel": "in Australia",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
                 {
           "label": "Online sales targeting Australians",
-          "pillLabel": "online - Australia"
+          "pillLabel": "online - Australia",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Outside Australia",
-          "pillLabel": "internationally"
+          "pillLabel": "internationally",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
          {
           "label": "Online sales targeting non-Australians",
-          "pillLabel": "online - internationally"
+          "pillLabel": "online - internationally",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
                 {
           "label": "Both in and outside Australia",
-          "pillLabel": "domestically and internationaly"
+          "pillLabel": "domestically and internationaly",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
 
       ]
@@ -129,11 +145,13 @@
       "options": [
         {
           "label": "Yes",
-          "pillLabel": "Focusing on"
+          "pillLabel": "Focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Not at this time",
-          "pillLabel": "Not focusing on"
+          "pillLabel": "Not focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
 
@@ -144,11 +162,13 @@
       "options": [
        {
           "label": "Yes",
-          "pillLabel": "Focusing on"
+          "pillLabel": "Focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Not at this time",
-          "pillLabel": "Not focusing on"
+          "pillLabel": "Not focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
 
@@ -159,11 +179,13 @@
       "options": [
               {
           "label": "Yes",
-          "pillLabel": "Focusing on"
+          "pillLabel": "Focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Not at this time",
-          "pillLabel": "Not focusing on"
+          "pillLabel": "Not focusing on",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
 
@@ -174,15 +196,18 @@
       "options": [
         {
           "label": "I can contact them",
-          "pillLabel": "Including ability to contact"
+          "pillLabel": "Including ability to contact",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Unable to find contact details",
-          "pillLabel": "Don't rely on contacting other party"
+          "pillLabel": "Don't rely on contacting other party",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Have not tried yet",
-          "pillLabel": "Unsure about the other party"
+          "pillLabel": "Unsure about the other party",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
 
@@ -193,15 +218,18 @@
       "options": [
         {
           "label": "Currently registered trade mark",
-          "pillLabel": "a registered Australian TM"
+          "pillLabel": "a registered Australian TM",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Can't find any rights",
-          "pillLabel": "no Australian IP rights"
+          "pillLabel": "no Australian IP rights",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "A TM that is Accepted, being examined, or being challenged",
-          "pillLabel": "a TM in the process of registration"
+          "pillLabel": "a TM in the process of registration",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
 
@@ -212,19 +240,23 @@
       "options": [
         {
           "label": "Cease current infringment",
-          "pillLabel": "stop further infringment"
+          "pillLabel": "stop further infringment",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Financial compensation",
-          "pillLabel": "seek financial compensation"
+          "pillLabel": "seek financial compensation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Negotiated outcome",
-          "pillLabel": "resolve issues through negotiation"
+          "pillLabel": "resolve issues through negotiation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Invalidate a registered right",
-          "pillLabel": "challenge the legitimacy of an IP right"
+          "pillLabel": "challenge the legitimacy of an IP right",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -234,27 +266,33 @@
       "options": [
         {
           "label": "Challenge",
-          "pillLabel": "adverserial"
+          "pillLabel": "adverserial",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Assess",
-          "pillLabel": "information gathering and evaluation"
+          "pillLabel": "information gathering and evaluation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Negotiate",
-          "pillLabel": "negotiation"
+          "pillLabel": "negotiation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Hire a service",
-          "pillLabel": "professional assistance"
+          "pillLabel": "professional assistance",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Indirect",
-          "pillLabel": "indirect"
+          "pillLabel": "indirect",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Comerical",
-          "pillLabel": "comercial"
+          "pillLabel": "comercial",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -264,19 +302,23 @@
       "options": [
         {
           "label": "Ongoing business relationship",
-          "pillLabel": "ongoing"
+          "pillLabel": "ongoing",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Ceased business relationship",
-          "pillLabel": "ended"
+          "pillLabel": "ended",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Starting a business relationship",
-          "pillLabel": "starting new"
+          "pillLabel": "starting new",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "No future relationship",
-          "pillLabel": "no expected future"
+          "pillLabel": "no expected future",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     },
@@ -286,15 +328,18 @@
       "options": [
         {
           "label": "Open to negotiation",
-          "pillLabel": "Open to negotiation"
+          "pillLabel": "Open to negotiation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Other party will not negotiate",
-          "pillLabel": "Other party will not negotiate"
+          "pillLabel": "Other party will not negotiate",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Not interested in negotitation",
-          "pillLabel": "Avoiding negociation"
+          "pillLabel": "Avoiding negociation",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         }
       ]
     }
