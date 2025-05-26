@@ -140,13 +140,13 @@
     </div>
   </footer>
 
-  <script>
-    Promise.all([
-      fetch('strategies.json').then(res => res.json()),
-      fetch('preferences.json').then(res => res.json()),
-          fetch('accordionPresets.json').then(res => res.json()) // <-- Add this line
-
-      ]).then(([strategiesData, preferenceConfigs, scoringMatrix, accordionPresets]) => {
+    <script type="module">
+  import { calculateStrategyScores } from './scoring.js';
+Promise.all([
+  fetch('strategies.json').then(res => res.json()),
+  fetch('preferences.json').then(res => res.json()),
+  fetch('accordionPresets.json').then(res => res.json())
+]).then(([strategiesData, preferenceConfigs, accordionPresets]) => {
 
       // Make preferenceConfigs globally available for use in filtering functions
       window.preferenceConfigs = preferenceConfigs;
@@ -679,11 +679,7 @@
       document.getElementById('app').textContent = 'Failed to load data.';
     });
   </script>
-<script type="module">
-  import { calculateStrategyScores } from './scoring.js';
 
-  window.calculateStrategyScores = calculateStrategyScores;
-</script>
 
   
 </body>
