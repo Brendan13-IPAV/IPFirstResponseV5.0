@@ -12,21 +12,30 @@
   "Patent-Enforcement": {
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "Your Patent": ["Jurisdiction", "YourPatStatus"],
-      "Enforcement Details": ["Where"],
+      "Your patent details": ["Jurisdiction", "YourPatStatus"],
+      "Suspected infringment details": ["Where"],
+      "Other party details": ["theirIPRights", "identifyParty"],
+      "Commerical considerations": ["businessRelationship", "openToNegotiate"]
+    }
+  },
+
+   "Trademark-Enforcement": {
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
+    "accordions": {
+      "About your trade mark": ["Jurisdiction", "YourTMStatus"],
+      "Suspected infringment details": ["Where"],
       "Other Party": ["theirIPRights", "identifyParty"],
-      "Approach": ["businessRelationship", "openToNegotiate"]
+      "Commerical considerations": ["businessRelationship", "openToNegotiate"]
     }
   },
   
   "Trademark-Accused": {
-    "topFilters": ["preferredApproach", "BusinessIssue"],
+    "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "Your Trademark": ["Jurisdiction", "YourTMStatus"],
-      "Other party details": ["theirIPRights"],
-      "Accusation Details": ["Where", "domainName", "onlineIssues"],
+      "Accusation details": ["theirIPRights", "Where", "domainName", "onlineIssues"],
       "Response Strategy": ["openToNegotiate"],
-      "Other Factors": ["identifyParty", "importingGoods"]
+      "Other Factors": ["identifyParty", "importingGoods"],
+       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"]
     }
   }
 }
