@@ -14,7 +14,7 @@
     "accordions": {
       "Your patent details": ["Jurisdiction", "YourPatStatus"],
       "Suspected infringment details": ["Where"],
-      "Other party details": ["theirIPRights", "identifyParty"],
+      "Other party details": ["identifyParty"],
       "Commerical considerations": ["businessRelationship", "openToNegotiate"]
     }
   },
@@ -24,7 +24,7 @@
     "accordions": {
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "Suspected infringment details": ["Where"],
-      "Other Party": ["theirIPRights", "identifyParty"],
+      "Other Party": ["theirTMRights", "identifyParty"],
       "Commerical considerations": ["businessRelationship", "openToNegotiate"]
     }
   },
@@ -32,7 +32,7 @@
   "Trademark-Accused": {
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
-      "Accusation details": ["theirIPRights", "Where", "domainName", "onlineIssues"],
+      "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
       "Response Strategy": ["openToNegotiate"],
       "Other Factors": ["identifyParty", "importingGoods"],
        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"]
