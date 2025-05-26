@@ -6,15 +6,20 @@
       "options": [
         {
           "label": "IP Australia",
-          "pillLabel": "Australian IP"
+          "pillLabel": "Australian IP",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         },
         {
           "label": "Foreign IP offices",
-          "pillLabel": "internationl IP"
+          "pillLabel": "internationl IP",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
         },
         {
           "label": "Both IP Australia and foreign IP offices",
-          "pillLabel": "International and Aussie IP"
+          "pillLabel": "International and Aussie IP",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1]
+
         }
       ]
     },
