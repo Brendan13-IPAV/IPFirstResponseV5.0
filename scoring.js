@@ -37,126 +37,58 @@ export function calculateStrategyScores(strategies, state) {
     return matchesSelectedRights && matchesSelectedSituations;
   });
 
-  // Now calculate raw scores for pre-filtered strategies
+  // Now calculate scores for pre-filtered strategies
   const scoredStrategies = filteredByRightType.map(strategy => {
     // Strategy IDs are 1-based, but arrays are 0-indexed
-    const index = parseInt(strategy.id, 10) - 1;
-    if (index < 0) {
-      return { ...strategy, rawScore: 0, isApplicable: false };
+    const strategyIndex = parseInt(strategy.id, 10) - 1;
+    if (strategyIndex < 0) {
+      return { ...strategy, rawScore: 0, isApplicable: false, matchScore: 0 };
     }
 
     let finalMultiplier = 1.0;
     let isApplicable = true;
     const baseScore = strategy.baseScore || 100;
-    const activeFilters = [];
     
-    // Helper function to collect filters from config sections
-    const collectFilters = (stateSection, configPath) => {
-      if (!stateSection) return;
-      
-      Object.entries(stateSection).forEach(([key, value]) => {
-        // Check if this filter has a non-default value
-        const hasValue = (configPath.includes('preferences') && value !== 0) ||
-                        (configPath.includes('otherFactors') && value !== 'neutral') ||
-                        (!configPath.includes('preferences') && !configPath.includes('otherFactors') && value);
+    // Get active filters from state.filterSelections
+    if (state.filterSelections) {
+      Object.entries(state.filterSelections).forEach(([filterKey, selectedIndex]) => {
+        // Get the filter config from preferences
+        const filterConfig = window.preferenceConfigs?.filters?.[filterKey];
         
-        if (hasValue) {
-          // Navigate to the config section
-          let config = window.preferenceConfigs;
-          for (const pathSegment of configPath) {
-            config = config?.[pathSegment];
-          }
-          config = config?.[key];
+        if (filterConfig && filterConfig.options && filterConfig.options[selectedIndex]) {
+          const selectedOption = filterConfig.options[selectedIndex];
           
-          if (config) {
-            const option = config.options.find(opt => opt.value === value);
-            if (option) {
-              activeFilters.push({
-                scoringValues: option.scoringValues,
-                label: option.pillLabel || option.label || `${key}-${value}`
-              });
+          // Get the scoring values for this option
+          if (selectedOption.scoringValues && Array.isArray(selectedOption.scoringValues)) {
+            let multiplier = 1; // Default
+            
+            // If strategy index is within the scoring array bounds
+            if (strategyIndex < selectedOption.scoringValues.length) {
+              const arrayValue = selectedOption.scoringValues[strategyIndex];
+              // Use the array value if it's not undefined/null, otherwise default to 1
+              multiplier = (arrayValue !== undefined && arrayValue !== null) ? arrayValue : 1;
             }
-          }
-        }
-      });
-    };
-    
-    // Collect filters from all sections
-   collectFilters(state.filterSelections, ['filters']);
-    collectFilters(state.otherFactors, ['otherFactors']);
-    
-    // For situation-specific filters, we need to check each selected situation
-    if (state.situationSpecificFilters) {
-      Object.entries(state.situationSpecificFilters).forEach(([key, value]) => {
-        if (value) {
-          for (const situation of state.selectedSituations || []) {
-            const situationConfig = window.preferenceConfigs?.situationSpecific?.[situation]?.[key];
-            if (situationConfig) {
-              const option = situationConfig.options.find(opt => opt.value === value);
-              if (option) {
-                activeFilters.push({
-                  scoringValues: option.scoringValues,
-                  label: option.pillLabel || option.label || `${situation}-${key}-${value}`
-                });
-                break; // Found config for this situation, don't check others
-              }
+            // If strategy index is out of bounds, multiplier stays 1
+            
+            finalMultiplier *= multiplier;
+            
+            // If any multiplier is 0, mark strategy as not applicable
+            if (multiplier === 0) {
+              isApplicable = false;
             }
           }
         }
       });
     }
-    
-    // For IP-type specific filters, we need to check each selected IP type
-    if (state.ipTypeSpecificFilters) {
-      Object.entries(state.ipTypeSpecificFilters).forEach(([key, value]) => {
-        if (value) {
-          for (const ipType of state.selectedRights || []) {
-            const ipTypeConfig = window.preferenceConfigs?.ipTypeSpecific?.[ipType]?.[key];
-            if (ipTypeConfig) {
-              const option = ipTypeConfig.options.find(opt => opt.value === value);
-              if (option) {
-                activeFilters.push({
-                  scoringValues: option.scoringValues,
-                  label: option.pillLabel || option.label || `${ipType}-${key}-${value}`
-                });
-                break; // Found config for this IP type, don't check others
-              }
-            }
-          }
-        }
-      });
-    }
-
-    // Apply filter multipliers
-    activeFilters.forEach(filter => {
-      let multiplier = 1; // Default multiplier
-      
-      if (filter.scoringValues && Array.isArray(filter.scoringValues)) {
-        // If index is within bounds, use the actual value
-        if (index >= 0 && index < filter.scoringValues.length) {
-          const arrayValue = filter.scoringValues[index];
-          // Use the array value if it's not undefined/null, otherwise default to 1
-          multiplier = (arrayValue !== undefined && arrayValue !== null) ? arrayValue : 1;
-        }
-        // If index is out of bounds, multiplier stays 1 (default)
-      }
-      // If no scoringValues array, multiplier stays 1 (default)
-      
-      finalMultiplier *= multiplier;
-      
-      // If multiplier is 0, mark strategy as not applicable
-      if (multiplier === 0) {
-        isApplicable = false;
-      }
-    });
 
     // Calculate raw score
     const rawScore = baseScore * finalMultiplier;
+    
     return {
       ...strategy,
       rawScore,
       isApplicable,
-      hasFilters: activeFilters.length > 0
+      hasFilters: Object.keys(state.filterSelections || {}).length > 0
     };
   });
 
@@ -165,7 +97,7 @@ export function calculateStrategyScores(strategies, state) {
   const nonApplicableStrategies = scoredStrategies.filter(s => !s.isApplicable);
   
   // Check if we have any filters applied
-  const hasFilters = applicableStrategies.some(s => s.hasFilters);
+  const hasFilters = Object.keys(state.filterSelections || {}).length > 0;
   
   let finalStrategies = [];
   
@@ -173,17 +105,12 @@ export function calculateStrategyScores(strategies, state) {
     // Sort applicable strategies by raw score (descending)
     const sortedApplicable = [...applicableStrategies].sort((a, b) => b.rawScore - a.rawScore);
     
-    // We'll use a relative ranking approach for a more balanced distribution
-    // This gives a better spread regardless of how many strategies we have
-    
     const totalApplicable = sortedApplicable.length;
     
     // Adaptive thresholds based on total number of strategies
-    // This ensures we have reasonable numbers in each category
     const veryHighThreshold = Math.max(1, Math.ceil(totalApplicable * 0.15)); // ~15% in very high
     const highThreshold = Math.max(2, Math.ceil(totalApplicable * 0.30));     // ~30% in high
     const mediumThreshold = Math.max(3, Math.ceil(totalApplicable * 0.50));   // ~50% in medium
-    // Remainder will be in low category
     
     const scoredApplicable = sortedApplicable.map((strategy, index) => {
       let matchScore;
@@ -191,7 +118,6 @@ export function calculateStrategyScores(strategies, state) {
       // Assign scores based on relative position
       if (index < veryHighThreshold) {
         // Very high category (90-100)
-        // Spread evenly within this category
         const position = index / veryHighThreshold;
         matchScore = Math.round(100 - (position * 10));
       } else if (index < highThreshold) {
@@ -206,14 +132,10 @@ export function calculateStrategyScores(strategies, state) {
         // Low category (25-49)
         const positionInCategory = (index - mediumThreshold) / (totalApplicable - mediumThreshold);
         matchScore = Math.round(49 - (positionInCategory * 24));
-        // Ensure no applicable strategy gets below 25
-        matchScore = Math.max(25, matchScore);
+        matchScore = Math.max(25, matchScore); // Ensure no applicable strategy gets below 25
       }
       
-      return {
-        ...strategy,
-        matchScore
-      };
+      return { ...strategy, matchScore };
     });
     
     // Non-applicable always get 0
@@ -231,6 +153,6 @@ export function calculateStrategyScores(strategies, state) {
     }));
   }
 
-  // Sort the strategies - first by match score since we've already done our ranking
+  // Sort by match score (descending)
   return finalStrategies.sort((a, b) => b.matchScore - a.matchScore);
 }
