@@ -82,7 +82,7 @@ export function calculateStrategyScores(strategies, state) {
     };
     
     // Collect filters from all sections
-    collectFilters(state.preferences, ['filters']);
+   collectFilters(state.filterSelections, ['filters']);
     collectFilters(state.otherFactors, ['otherFactors']);
     
     // For situation-specific filters, we need to check each selected situation
