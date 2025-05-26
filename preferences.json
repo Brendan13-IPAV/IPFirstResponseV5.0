@@ -19,7 +19,7 @@
       ]
     },
     "YourTMStatus": {
-      "label": "Trade mark status:",
+      "label": "Effective for trade marks which are:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -27,7 +27,7 @@
           "pillLabel": "Registered TM"
         },
         {
-          "label": "Accepted, being examined, or being challenged",
+          "label": "Being examined, accepted, or being challenged",
           "pillLabel": "yet to be registered TM"
         },
         {
@@ -37,7 +37,7 @@
       ]
     },
     "YourPatStatus": {
-      "label": "Patent satatus:",
+      "label": "Effective for patents which are:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -45,7 +45,7 @@
           "pillLabel": "Granted patents"
         },
         {
-          "label": "Accepted, being examined, or being challenged",
+          "label": "Pending examination, accepted, or being challenged",
           "pillLabel": "un-granted patents"
         },
         {
@@ -55,7 +55,7 @@
       ]
     },
     "BusinessIssue": {
-      "label": "Options which involve:",
+      "label": "Options effective for:",
       "pillTemplate": "Involving {optionLabel}",
       "options": [
         {
@@ -96,22 +96,23 @@
           "label": "in Australia",
           "pillLabel": "in Australia"
         },
-        {
-          "label": "Both in Australia and outside Australia",
-          "pillLabel": "domestically and internationaly"
+                {
+          "label": "Online sales targeting Australians",
+          "pillLabel": "online - Australia"
         },
         {
-          "label": "outside Australia (including online sales targeting non-Australians)",
+          "label": "Outside Australia",
           "pillLabel": "internationally"
         },
          {
           "label": "Online sales targeting non-Australians",
           "pillLabel": "online - internationally"
         },
-        {
-          "label": "Online sales targeting Australians",
-          "pillLabel": "online - Australia"
+                {
+          "label": "Both in and outside Australia",
+          "pillLabel": "domestically and internationaly"
         }
+
       ]
     },
     "onlineIssues": {
@@ -178,7 +179,7 @@
       ]
 
     },
-    "theirIPRights": {
+    "theirTMRights": {
       "label": "The other party's Australian IP rights",
       "pillTemplate": "Opposing parties with {optionLabel}",
       "options": [
@@ -187,7 +188,7 @@
           "pillLabel": "a registered Australian TM"
         },
         {
-          "label": "Can't find any  rights",
+          "label": "Can't find any rights",
           "pillLabel": "no Australian IP rights"
         },
         {
