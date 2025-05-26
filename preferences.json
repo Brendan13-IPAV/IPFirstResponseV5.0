@@ -29,11 +29,14 @@
       "options": [
         {
           "label": "Registered",
-          "pillLabel": "Registered TM"
+          "pillLabel": "Registered TM",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1]
+
         },
         {
           "label": "Being examined, accepted, or being challenged",
-          "pillLabel": "yet to be registered TM"
+          "pillLabel": "yet to be registered TM",
+          "scoringValues": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1]
         },
         {
           "label": "No longer registered",
