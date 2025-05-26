@@ -161,20 +161,20 @@
 
     },
     "identifyParty": {
-      "label": "Other Factor Type 4",
-      "pillTemplate": "Factor 4: {optionLabel}",
+      "label": "Ability to contact other party;",
+      "pillTemplate": "{optionLabel}",
       "options": [
         {
-          "label": "Option A",
-          "pillLabel": "Factor 4-A"
+          "label": "I can contact them",
+          "pillLabel": "Including ability to contact"
         },
         {
-          "label": "Option B",
-          "pillLabel": "Factor 4-B"
+          "label": "Unable to find contact details",
+          "pillLabel": "Don't rely on contacting other party"
         },
         {
-          "label": "Option C",
-          "pillLabel": "Factor 4-C"
+          "label": "Have not tried yet",
+          "pillLabel": "Unsure about the other party"
         }
       ]
 
@@ -251,38 +251,42 @@
       ]
     },
     "businessRelationship": {
-      "label": "Category 2 Filter Type 1",
-      "pillTemplate": "C2-F1: {optionLabel}",
+      "label": "Prioritise options suited for:",
+      "pillTemplate": "Options suited to {optionLabel} business relationships",
       "options": [
         {
-          "label": "C2-F1 Option A",
-          "pillLabel": "C2-F1-A"
+          "label": "Ongoing business relationship",
+          "pillLabel": "ongoing"
         },
         {
-          "label": "C2-F1 Option B",
-          "pillLabel": "C2-F1-B"
+          "label": "Ceased business relationship",
+          "pillLabel": "ended"
         },
         {
-          "label": "C2-F1 Option C",
-          "pillLabel": "C2-F1-C"
+          "label": "Starting a business relationship",
+          "pillLabel": "starting new"
+        },
+        {
+          "label": "No future relationship",
+          "pillLabel": "no expected future"
         }
       ]
     },
     "openToNegotiate": {
-      "label": "Category 2 Filter Type 1",
-      "pillTemplate": "C2-F1: {optionLabel}",
+      "label": "Options contingent on negotiation",
+      "pillTemplate": "Prioritising: {optionLabel}",
       "options": [
         {
-          "label": "C2-F1 Option A",
-          "pillLabel": "C2-F1-A"
+          "label": "Open to negotiation",
+          "pillLabel": "Open to negotiation"
         },
         {
-          "label": "C2-F1 Option B",
-          "pillLabel": "C2-F1-B"
+          "label": "Other party will not negotiate",
+          "pillLabel": "Other party will not negotiate"
         },
         {
-          "label": "C2-F1 Option C",
-          "pillLabel": "C2-F1-C"
+          "label": "Not interested in negotitation",
+          "pillLabel": "Avoiding negociation"
         }
       ]
     }
