@@ -205,8 +205,7 @@
           state.loading = false;
           state.filteredStrategies = calculateStrategyScores(
             state.strategies,
-            state,
-            scoringMatrix
+            state
           );
 
           render();
@@ -342,8 +341,7 @@
                   
                   state.filteredStrategies = calculateStrategyScores(
                     state.strategies,
-                    state,
-                    scoringMatrix
+                    state
                   );
 
                   render();
@@ -416,8 +414,7 @@
                       
                       state.filteredStrategies = calculateStrategyScores(
                         state.strategies,
-                        state,
-                        scoringMatrix
+                        state
                       );
 
                       render();
@@ -463,8 +460,7 @@
             state.filterSelections = {};
             state.filteredStrategies = calculateStrategyScores(
               state.strategies,
-              state,
-              scoringMatrix
+              state
             );
 
             render();
@@ -506,8 +502,7 @@
                   delete state.filterSelections[filterKey];
                   state.filteredStrategies = calculateStrategyScores(
                     state.strategies,
-                    state,
-                    scoringMatrix
+                    state
                   );
 
                   render();
