@@ -1,4 +1,4 @@
-export function calculateStrategyScores(strategies, state, idIndexMap) {
+export function calculateStrategyScores(strategies, state) {
   // First, pre-filter strategies by selected IP rights and situations
   const filteredByRightType = strategies.filter(strategy => {
     // Check if strategy matches any of the selected IP rights
@@ -39,8 +39,9 @@ export function calculateStrategyScores(strategies, state, idIndexMap) {
 
   // Now calculate raw scores for pre-filtered strategies
   const scoredStrategies = filteredByRightType.map(strategy => {
-    const index = idIndexMap.indexOf(parseInt(strategy.id, 10));
-    if (index === -1) {
+    // Strategy IDs are 1-based, but arrays are 0-indexed
+    const index = parseInt(strategy.id, 10) - 1;
+    if (index < 0) {
       return { ...strategy, rawScore: 0, isApplicable: false };
     }
 
@@ -132,7 +133,7 @@ export function calculateStrategyScores(strategies, state, idIndexMap) {
       
       if (filter.scoringValues && Array.isArray(filter.scoringValues)) {
         // If index is within bounds, use the actual value
-        if (index < filter.scoringValues.length) {
+        if (index >= 0 && index < filter.scoringValues.length) {
           const arrayValue = filter.scoringValues[index];
           // Use the array value if it's not undefined/null, otherwise default to 1
           multiplier = (arrayValue !== undefined && arrayValue !== null) ? arrayValue : 1;
