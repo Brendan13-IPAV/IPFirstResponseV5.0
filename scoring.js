@@ -1,6 +1,4 @@
-export function calculateStrategyScores(strategies, state, scoringMatrix) {
-  const idIndexMap = scoringMatrix.ID_Index_Map;
-
+export function calculateStrategyScores(strategies, state, idIndexMap) {
   // First, pre-filter strategies by selected IP rights and situations
   const filteredByRightType = strategies.filter(strategy => {
     // Check if strategy matches any of the selected IP rights
@@ -49,39 +47,44 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     let finalMultiplier = 1.0;
     let isApplicable = true;
     const baseScore = strategy.baseScore || 100;
-    const activeFilterKeys = [];
+    const activeFilters = [];
     
-    // Get preference filters
-    if (state.preferences) {
-      Object.entries(state.preferences).forEach(([key, value]) => {
-        if (value !== 0) {
-          const preferenceConfig = window.preferenceConfigs?.filters?.[key];
-          if (preferenceConfig) {
-            const option = preferenceConfig.options.find(opt => opt.value === value);
-            if (option && option.pillLabel) {
-              activeFilterKeys.push(option.pillLabel);
+    // Helper function to collect filters from config sections
+    const collectFilters = (stateSection, configPath) => {
+      if (!stateSection) return;
+      
+      Object.entries(stateSection).forEach(([key, value]) => {
+        // Check if this filter has a non-default value
+        const hasValue = (configPath.includes('preferences') && value !== 0) ||
+                        (configPath.includes('otherFactors') && value !== 'neutral') ||
+                        (!configPath.includes('preferences') && !configPath.includes('otherFactors') && value);
+        
+        if (hasValue) {
+          // Navigate to the config section
+          let config = window.preferenceConfigs;
+          for (const pathSegment of configPath) {
+            config = config?.[pathSegment];
+          }
+          config = config?.[key];
+          
+          if (config) {
+            const option = config.options.find(opt => opt.value === value);
+            if (option) {
+              activeFilters.push({
+                scoringValues: option.scoringValues,
+                label: option.pillLabel || option.label || `${key}-${value}`
+              });
             }
           }
         }
       });
-    }
+    };
     
-    // Get other factors filters
-    if (state.otherFactors) {
-      Object.entries(state.otherFactors).forEach(([key, value]) => {
-        if (value !== 'neutral') {
-          const factorConfig = window.preferenceConfigs?.otherFactors?.[key];
-          if (factorConfig) {
-            const option = factorConfig.options.find(opt => opt.value === value);
-            if (option && option.pillLabel) {
-              activeFilterKeys.push(option.pillLabel);
-            }
-          }
-        }
-      });
-    }
+    // Collect filters from all sections
+    collectFilters(state.preferences, ['filters']);
+    collectFilters(state.otherFactors, ['otherFactors']);
     
-    // Get situation-specific filters
+    // For situation-specific filters, we need to check each selected situation
     if (state.situationSpecificFilters) {
       Object.entries(state.situationSpecificFilters).forEach(([key, value]) => {
         if (value) {
@@ -89,17 +92,20 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
             const situationConfig = window.preferenceConfigs?.situationSpecific?.[situation]?.[key];
             if (situationConfig) {
               const option = situationConfig.options.find(opt => opt.value === value);
-              if (option && option.pillLabel) {
-                activeFilterKeys.push(option.pillLabel);
+              if (option) {
+                activeFilters.push({
+                  scoringValues: option.scoringValues,
+                  label: option.pillLabel || option.label || `${situation}-${key}-${value}`
+                });
+                break; // Found config for this situation, don't check others
               }
-              break;
             }
           }
         }
       });
     }
     
-    // Get IP-type specific filters
+    // For IP-type specific filters, we need to check each selected IP type
     if (state.ipTypeSpecificFilters) {
       Object.entries(state.ipTypeSpecificFilters).forEach(([key, value]) => {
         if (value) {
@@ -107,10 +113,13 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
             const ipTypeConfig = window.preferenceConfigs?.ipTypeSpecific?.[ipType]?.[key];
             if (ipTypeConfig) {
               const option = ipTypeConfig.options.find(opt => opt.value === value);
-              if (option && option.pillLabel) {
-                activeFilterKeys.push(option.pillLabel);
+              if (option) {
+                activeFilters.push({
+                  scoringValues: option.scoringValues,
+                  label: option.pillLabel || option.label || `${ipType}-${key}-${value}`
+                });
+                break; // Found config for this IP type, don't check others
               }
-              break;
             }
           }
         }
@@ -118,18 +127,25 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
     }
 
     // Apply filter multipliers
-    activeFilterKeys.forEach(key => {
-      const filterObj = scoringMatrix.Filters.find(f => f.FilterKey === key);
-      if (filterObj && index < filterObj.Values.length) {
-        const multiplier = filterObj.Values[index];
-        if (multiplier !== undefined) {
-          finalMultiplier *= multiplier;
-          
-          // If multiplier is 0, mark strategy as not applicable
-          if (multiplier === 0) {
-            isApplicable = false;
-          }
+    activeFilters.forEach(filter => {
+      let multiplier = 1; // Default multiplier
+      
+      if (filter.scoringValues && Array.isArray(filter.scoringValues)) {
+        // If index is within bounds, use the actual value
+        if (index < filter.scoringValues.length) {
+          const arrayValue = filter.scoringValues[index];
+          // Use the array value if it's not undefined/null, otherwise default to 1
+          multiplier = (arrayValue !== undefined && arrayValue !== null) ? arrayValue : 1;
         }
+        // If index is out of bounds, multiplier stays 1 (default)
+      }
+      // If no scoringValues array, multiplier stays 1 (default)
+      
+      finalMultiplier *= multiplier;
+      
+      // If multiplier is 0, mark strategy as not applicable
+      if (multiplier === 0) {
+        isApplicable = false;
       }
     });
 
@@ -139,7 +155,7 @@ export function calculateStrategyScores(strategies, state, scoringMatrix) {
       ...strategy,
       rawScore,
       isApplicable,
-      hasFilters: activeFilterKeys.length > 0
+      hasFilters: activeFilters.length > 0
     };
   });
 
