@@ -23,7 +23,7 @@
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
-      "Suspected infringment details": ["Where"],
+      "Suspected infringment details": ["Where", "onlineIssues", "domainName", "importingGoods"],
       "Other Party": ["theirTMRights", "identifyParty"],
       "Commerical considerations": ["businessRelationship", "openToNegotiate"]
     }
@@ -33,9 +33,8 @@
     "topFilters": ["desiredOutcome", "preferredApproach", "BusinessIssue"],
     "accordions": {
       "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
-      "Response Strategy": ["openToNegotiate"],
-      "Other Factors": ["identifyParty", "importingGoods"],
-       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"]
+       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
+           "Commerical considerations": ["openToNegotiate", "businessRelationship"]
     }
   },
     
