@@ -682,3 +682,70 @@
 .border-not-applicable {
   border-left: 3px solid #9e9e9e;
 }
+
+/* Tooltip styles */
+.radio-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background-color: var(--dark-blue);
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: normal;
+  z-index: 1000;
+  transition: opacity 0.3s, visibility 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 250px;
+  white-space: normal;
+}
+
+/* Tooltip arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--dark-blue) transparent transparent transparent;
+}
+
+/* Show tooltip on hover */
+.radio-wrapper:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Ensure radio buttons work well with wrapper */
+.radio-wrapper .radio-button {
+  display: block;
+  cursor: pointer;
+}
+
+/* Optional: Adjust tooltip position for items near screen edges */
+@media (max-width: 768px) {
+  .tooltip {
+    left: 0;
+    transform: translateX(0);
+    margin-left: -8px;
+  }
+  
+  .tooltip::after {
+    left: 20px;
+  }
+}
+
