@@ -323,30 +323,46 @@ Promise.all([
               const radioGroup = document.createElement('div');
               radioGroup.className = 'radio-group';
               
-              filterConfig.options.forEach((opt, index) => {
-                const radio = document.createElement('label');
-                radio.className = 'radio-button';
-                if (state.filterSelections[filterKey] === index) {
-                  radio.classList.add('radio-selected');
-                }
-                radio.textContent = opt.label;
-                radio.onclick = () => {
-                  // Toggle selection
-                  if (state.filterSelections[filterKey] === index) {
-                    delete state.filterSelections[filterKey];
-                  } else {
-                    state.filterSelections[filterKey] = index;
-                  }
-                  
-                  state.filteredStrategies = calculateStrategyScores(
-                    state.strategies,
-                    state
-                  );
+             filterConfig.options.forEach((opt, index) => {
+  const radioWrapper = document.createElement('div');
+  radioWrapper.className = 'radio-wrapper';
+  radioWrapper.style.position = 'relative';
+  
+  const radio = document.createElement('label');
+  radio.className = 'radio-button';
+  if (state.filterSelections[filterKey] === index) {
+    radio.classList.add('radio-selected');
+  }
+  radio.textContent = opt.label;
+  radio.onclick = () => {
+    // Toggle selection
+    if (state.filterSelections[filterKey] === index) {
+      delete state.filterSelections[filterKey];
+    } else {
+      state.filterSelections[filterKey] = index;
+    }
+    
+    state.filteredStrategies = calculateStrategyScores(
+      state.strategies,
+      state
+    );
 
-                  render();
-                };
-                radioGroup.appendChild(radio);
-              });
+    render();
+  };
+  
+  // Add tooltip if it exists
+  if (opt.tooltip) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = opt.tooltip;
+    radioWrapper.appendChild(radio);
+    radioWrapper.appendChild(tooltip);
+  } else {
+    radioWrapper.appendChild(radio);
+  }
+  
+  radioGroup.appendChild(radioWrapper);
+});
               
               group.appendChild(radioGroup);
               topFiltersWrapper.appendChild(group);
@@ -397,29 +413,45 @@ Promise.all([
                   radioGroup.className = 'radio-group';
                   
                   filterConfig.options.forEach((opt, index) => {
-                    const radio = document.createElement('label');
-                    radio.className = 'radio-button';
-                    if (state.filterSelections[filterKey] === index) {
-                      radio.classList.add('radio-selected');
-                    }
-                    radio.textContent = opt.label;
-                    radio.onclick = () => {
-                      // Toggle selection
-                      if (state.filterSelections[filterKey] === index) {
-                        delete state.filterSelections[filterKey];
-                      } else {
-                        state.filterSelections[filterKey] = index;
-                      }
-                      
-                      state.filteredStrategies = calculateStrategyScores(
-                        state.strategies,
-                        state
-                      );
+  const radioWrapper = document.createElement('div');
+  radioWrapper.className = 'radio-wrapper';
+  radioWrapper.style.position = 'relative';
+  
+  const radio = document.createElement('label');
+  radio.className = 'radio-button';
+  if (state.filterSelections[filterKey] === index) {
+    radio.classList.add('radio-selected');
+  }
+  radio.textContent = opt.label;
+  radio.onclick = () => {
+    // Toggle selection
+    if (state.filterSelections[filterKey] === index) {
+      delete state.filterSelections[filterKey];
+    } else {
+      state.filterSelections[filterKey] = index;
+    }
+    
+    state.filteredStrategies = calculateStrategyScores(
+      state.strategies,
+      state
+    );
 
-                      render();
-                    };
-                    radioGroup.appendChild(radio);
-                  });
+    render();
+  };
+  
+  // Add tooltip if it exists
+  if (opt.tooltip) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = opt.tooltip;
+    radioWrapper.appendChild(radio);
+    radioWrapper.appendChild(tooltip);
+  } else {
+    radioWrapper.appendChild(radio);
+  }
+  
+  radioGroup.appendChild(radioWrapper);
+});
                   
                   group.appendChild(radioGroup);
                   accordion.appendChild(group);
