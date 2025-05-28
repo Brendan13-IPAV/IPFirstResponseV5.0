@@ -401,7 +401,7 @@ toggle.style.cursor = 'pointer';
 const selectionCount = getAccordionSelectionCount(filterKeys);
 const selectionText = selectionCount > 0 ? ` <span style="font-style: italic; font-weight: normal; color: var(--text-secondary);">${selectionCount} selected</span>` : '';
 
-toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${state.accordions[accordionKey] ? 'rotate(90deg)' : 'rotate(0deg)'};">▶</span> ${accordionTitle}${selectionText}`;
+toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${state.accordions[accordionKey] ? 'rotate(90deg)' : 'rotate(0deg)'};">▶</span> ${selectionText}${accordionTitle}`;
 
 toggle.onclick = () => {
   state.accordions[accordionKey] = !state.accordions[accordionKey];
