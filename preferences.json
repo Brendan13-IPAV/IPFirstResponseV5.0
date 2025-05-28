@@ -22,7 +22,7 @@
       ]
     },
     "YourTMStatus": {
-      "label": "Effective for trade marks which are:",
+      "label": "Relevant to trade marks which are:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -43,7 +43,7 @@
       ]
     },
     "YourPatStatus": {
-      "label": "Effective for patents which are:",
+      "label": "Relevant to patents which are:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -64,7 +64,7 @@
       ]
     },
     "BusinessIssue": {
-      "label": "Options effective for:",
+      "label": "Options relevant to:",
       "pillTemplate": "Involving {optionLabel}",
       "options": [
         {
@@ -252,7 +252,7 @@
       ]
     },
     "preferredApproach": {
-      "label": "Preferred approach",
+      "label": "Type of approach",
       "pillTemplate": "Prioritising {optionLabel}",
       "options": [
         {
