@@ -184,11 +184,7 @@ Promise.all([
           loading: true,
           strategies: strategiesData,
           filteredStrategies: [],
-          accordions: savedState.accordions || { 
-            yourIp: true,
-            details: true,
-            otherPartyDetails: true,
-            resolutionPreferences: true
+          accordions: savedState.accordions || {  //Set all as closed, using the fact no values reads as falsy
           },
           // Use selections from index.html if available, otherwise use saved state or ALL rights
           selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
