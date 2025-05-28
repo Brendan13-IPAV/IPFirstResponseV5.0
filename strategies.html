@@ -268,6 +268,16 @@ Promise.all([
           return true; // Show all filters since we're controlling visibility through accordion presets
         }
 
+        function getAccordionSelectionCount(filterKeys) {
+  let count = 0;
+  filterKeys.forEach(filterKey => {
+    if (state.filterSelections[filterKey] !== undefined) {
+      count++;
+    }
+  });
+  return count;
+}
+
         function render() {
           // Only save primary filters to localStorage
           localStorage.setItem('ipStrategyState', JSON.stringify({
@@ -382,15 +392,22 @@ Promise.all([
             const accordionKey = accordionTitle.toLowerCase().replace(/\s+/g, '');
             
             // Create accordion header
-            const toggle = document.createElement('div');
-            toggle.className = 'accordion-header';
-            toggle.style.cursor = 'pointer';
-            toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${state.accordions[accordionKey] ? 'rotate(90deg)' : 'rotate(0deg)'};">▶</span> ${accordionTitle}`;
-            toggle.onclick = () => {
-              state.accordions[accordionKey] = !state.accordions[accordionKey];
-              render();
-            };
-            wrapper.appendChild(toggle);
+// Create accordion header
+const toggle = document.createElement('div');
+toggle.className = 'accordion-header';
+toggle.style.cursor = 'pointer';
+
+// Count selections in this accordion
+const selectionCount = getAccordionSelectionCount(filterKeys);
+const selectionText = selectionCount > 0 ? ` <span style="font-style: italic; font-weight: normal; color: var(--text-secondary);">${selectionCount} selected</span>` : '';
+
+toggle.innerHTML = `<span class="accordion-arrow" style="display:inline-block; transition: transform 0.3s ease; transform: ${state.accordions[accordionKey] ? 'rotate(90deg)' : 'rotate(0deg)'};">▶</span> ${accordionTitle}${selectionText}`;
+
+toggle.onclick = () => {
+  state.accordions[accordionKey] = !state.accordions[accordionKey];
+  render();
+};
+wrapper.appendChild(toggle);
 
             // Create accordion content if expanded
             if (state.accordions[accordionKey]) {
