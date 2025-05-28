@@ -144,7 +144,7 @@
   import { calculateStrategyScores } from './scoring.js';
 Promise.all([
   fetch('strategies.json').then(res => res.json()),
-  fetch('preferences.json').then(res => res.json()),
+  fetch('filterOptions.json').then(res => res.json()),
   fetch('accordionPresets.json').then(res => res.json())
 ]).then(([strategiesData, preferenceConfigs, accordionPresets]) => {
 
