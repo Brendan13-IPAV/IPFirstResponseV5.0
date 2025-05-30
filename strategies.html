@@ -226,40 +226,43 @@ localStorage.removeItem('ipSelectedSituation');
         }
 
         // Create a dynamic title based on selected situation and IP right
-        function createDynamicTitle() {
-          const situationMap = {
-            'Enforcement': 'enforce',
-            'Accused': 'respond to accusations about',
-            'Proactive': 'prevent future IP headaches involving',
-            'Professional': 'use professional support for',
-            'Disagree': 'oppose or revoke'
-          };
-          
-          let action = 'manage'; // Default
-          if (state.selectedSituations.length === 1) {
-            action = situationMap[state.selectedSituations[0]];
-          }
-          
-          let rightText = 'intellectual property';
-          
-          if (state.selectedRights.length === 1) {
-            // Just one right selected
-            rightText = `a ${state.selectedRights[0].toLowerCase()}`;
-          } else if (state.selectedRights.length > 1) {
-            // Multiple rights selected - format them more naturally
-            if (state.selectedRights.length === 2) {
-              // Two rights - use "and" between them
-              rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
-                                                // } else if (state.selectedRights.length <= 4) {
-                                                //   // 3-4 rights - list with commas and "and"
-                                                //   const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
-                                                //   const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
-                                                //   rightText = `${otherRights.join(', ')} and ${lastRight}`;
-            } else {
-              // More than 4 rights - keep it simple
-              rightText = 'multiple IP rights';
-            }
-          }
+                                        function createDynamicTitle() {
+                                          const situationMap = {
+                                            'Enforcement': 'enforce',
+                                            'Accused': 'defend against accusations about',
+                                            'Proactive': 'prevent future issues with',
+                                            'Professional': 'get professional support for',
+                                            'Disagree': 'challenge decisions about'
+                                          };
+                                          
+                                          // Debug log to see what we're working with
+                                          console.log('Creating title with situations:', state.selectedSituations);
+                                          
+                                          let action = 'manage'; // Default
+                                          if (state.selectedSituations && state.selectedSituations.length === 1) {
+                                            const situationKey = state.selectedSituations[0];
+                                            action = situationMap[situationKey] || 'manage';
+                                            console.log('Using action:', action, 'for situation:', situationKey);
+                                          }
+                                          
+                                          let rightText = 'intellectual property';
+                                          
+                                          if (state.selectedRights.length === 1) {
+                                            // Just one right selected
+                                            rightText = `${state.selectedRights[0].toLowerCase()}`;
+                                          } else if (state.selectedRights.length > 1) {
+                                            // Multiple rights selected - format them more naturally
+                                            if (state.selectedRights.length === 2) {
+                                              // Two rights - use "and" between them
+                                              rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
+                                            } else {
+                                              // More than 2 rights - keep it simple
+                                              rightText = 'multiple IP rights';
+                                            }
+                                          }
+                                          
+                                          return `Showing: Strategies to ${action} ${rightText}`;
+                                        }
           
           return `Showing: Strategies which can ${action} ${rightText}`;
         }
