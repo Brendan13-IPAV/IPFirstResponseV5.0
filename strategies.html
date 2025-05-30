@@ -674,18 +674,18 @@ wrapper.appendChild(toggle);
                 htmlContent += '</div></div>';
               }
               
-              // Add approach section
-              if (hasApproaches && strategy.approachTags.length > 0) {
-                htmlContent += '<div class="metric-row tag-row">';
-                htmlContent += '<span class="metric-label">Approach:</span>';
-                htmlContent += '<div class="strategy-tags">';
-                
-                strategy.approachTags.forEach(approach => {
-                  htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
-                });
-                
-                htmlContent += '</div></div>';
-              }
+              // Removed approach tag section
+                                                                  // if (hasApproaches && strategy.approachTags.length > 0) {
+                                                                  //   htmlContent += '<div class="metric-row tag-row">';
+                                                                  //   htmlContent += '<span class="metric-label">Approach:</span>';
+                                                                  //   htmlContent += '<div class="strategy-tags">';
+                                                                    
+                                                                  //   strategy.approachTags.forEach(approach => {
+                                                                  //     htmlContent += `<span class="strategy-tag tag-approach">${approach}</span>`;
+                                                                  //   });
+                                                                    
+                                                                  //   htmlContent += '</div></div>';
+                                                                  // }
               
               htmlContent += '</div>'; // Close tag-sections
             }
