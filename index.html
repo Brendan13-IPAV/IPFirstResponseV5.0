@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP First Response</title>
+    <style>
+        :root {
+            --dark-blue: #1D2939;
+            --teal: #55ABC9;
+            --light-mint: #F6FAFC;
+            --border-color: #E4E7EC;
+            --text-primary: #1D2939;
+            --text-secondary: #667085;
+            --highlight: #787ABB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23334155" width="1200" height="800"/><g opacity="0.1"><circle cx="200" cy="200" r="40" fill="%23fff"/><circle cx="800" cy="150" r="30" fill="%23fff"/><circle cx="1000" cy="300" r="50" fill="%23fff"/><rect x="400" y="400" width="80" height="120" fill="%23fff" opacity="0.3"/><rect x="600" y="500" width="60" height="100" fill="%23fff" opacity="0.2"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .situation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .situation-btn {
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 24px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            line-height: 1.3;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .situation-btn:hover {
+            background-color: #4799B5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .situation-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .situation-btn.selected {
+            background-color: #2D6B7A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .continue-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            font-size: 18px;
+            margin: 20px auto 0 auto;
+            display: block;
+            backdrop-filter: blur(10px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-btn.enabled {
+            opacity: 1;
+            pointer-events: auto;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .continue-btn.enabled:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 3px solid var(--teal);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 60px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .info-section p {
+            margin-bottom: 12px;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0 60px 0;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+            
+            .situation-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .situation-btn {
+                padding: 20px 16px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <div class="header">
+                <div class="logo">IP First Response</div>
+            </div>
+
+            <div class="content-wrapper">
+                <h1>Are you facing an intellectual property infringement issue?</h1>
+                <p class="subtitle">Find out more about what options you might have if you believe you are being infringed on or believe that you are being falsely accused of infringement. This site is currently under development. Features and content may change as we test and refine our approach.</p>
+
+                <div class="situation-grid">
+                    <div class="situation-btn" data-situation="Enforcement">
+                        I believe my IP has been infringed
+                    </div>
+                    
+                    <div class="situation-btn" data-situation="Accused">
+                        I've been accused of infringement
+                    </div>
+                    
+                    <div class="situation-btn" data-situation="Disagree">
+                        I disagree with a decision that has been made by IP Australia
+                    </div>
+                    
+                    <div class="situation-btn" data-situation="Professional">
+                        I want to strengthen my IP strategy
+                    </div>
+                </div>
+
+                <button type="button" id="continue-btn" class="continue-btn">Continue to IP Rights Selection</button>
+
+                <div class="info-section">
+                    <p><strong>About this tool:</strong> IP First Response uses a flexible set of filters to help you explore your options. With over 60 possible pathways, you can apply as many or as few filters as you like. As you adjust the filters, the system organises and highlights the options most likely to be applicable to your situation.</p>
+                    
+                    <p><strong>This tool does not provide professional advice.</strong> This website helps IP rights holders navigate IP infringement and enforcement by making information visible and accessible. It does not provide legal, business or other professional advice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedSituation = null;
+
+        // Handle situation button selection
+        document.querySelectorAll('.situation-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove selected class from all buttons
+                document.querySelectorAll('.situation-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                
+                // Store selected situation
+                selectedSituation = this.dataset.situation;
+                
+                // Enable continue button
+                const continueBtn = document.getElementById('continue-btn');
+                continueBtn.classList.add('enabled');
+            });
+        });
+
+        // Handle continue button click
+        document.getElementById('continue-btn').addEventListener('click', function() {
+            if (selectedSituation) {
+                // Save selected situation to localStorage
+                localStorage.setItem('ipSelectedSituation', JSON.stringify([selectedSituation]));
+                
+                // Navigate to IP rights selection page
+                window.location.href = 'ip-rights.html'; // Rename your current index.html to this
+            }
+        });
+    </script>
+</body>
+</html>
