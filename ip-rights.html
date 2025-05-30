@@ -253,9 +253,9 @@
 
     <div class="main-content">
         <div class="container">
-            <div class="title-section">
-                <h1>I believe my IP rights have been infringed</h1>
-                <p><strong>If you suspect that your IP rights have been infringed, this navigator tool (currently in pilot stage) is designed to provide clear and accessible information, giving you the confidence to take the next step.</strong></p>
+<div class="title-section">
+    <h1 id="dynamic-title">I believe my IP rights have been infringed</h1>
+    <p><strong><span id="dynamic-description">If you suspect that your IP rights have been infringed, this navigator tool (currently in pilot stage) is designed to provide clear and accessible information, giving you the confidence to take the next step.</span></strong></p>
                 
                 <p>IP First Response uses a flexible set of filters to help you explore your options. With over 60 possible pathways, you can apply as many or as few filters as you like—none are required. As you adjust the filters, the system organises and highlights the options most likely to be applicable to your situation.</p>
                 
@@ -347,6 +347,44 @@
     </div>
 
     <script>
+
+        // Add this at the top of the existing script section, before the existing code
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the selected situation from localStorage
+    const selectedSituation = JSON.parse(localStorage.getItem('ipSelectedSituation'));
+    
+    // Define the title and description for each situation
+    const situationContent = {
+        'Enforcement': {
+            title: 'I believe my IP rights have been infringed',
+            description: 'If you suspect that your IP rights have been infringed, this navigator tool (currently in pilot stage) is designed to provide clear and accessible information, giving you the confidence to take the next step.'
+        },
+        'Accused': {
+            title: 'I\'ve been accused of infringement',
+            description: 'If you have been accused of infringing someone else\'s IP rights, this navigator tool (currently in pilot stage) is designed to help you understand your options and provide clear information about how to respond.'
+        },
+        'Disagree': {
+            title: 'I want to oppose or revoke an Australian IP right',
+            description: 'If you disagree with a decision made by IP Australia or want to challenge an IP right, this navigator tool (currently in pilot stage) will help you explore your options for opposition or revocation proceedings.'
+        },
+        'Proactive': {
+            title: 'I want to prevent future IP headaches',
+            description: 'If you want to take proactive steps to protect your IP rights and avoid future disputes, this navigator tool (currently in pilot stage) will help you explore preventive strategies and best practices.'
+        }
+    };
+    
+    // Update the page content based on selection
+    if (selectedSituation && selectedSituation.length > 0) {
+        const situation = selectedSituation[0];
+        const content = situationContent[situation];
+        
+        if (content) {
+            document.getElementById('dynamic-title').textContent = content.title;
+            document.getElementById('dynamic-description').textContent = content.description;
+        }
+    }
+});
+        
         // Handle option button selection for checkboxes (multi-select)
         document.querySelectorAll('.option-btn').forEach(button => {
             // Make the entire button clickable
