@@ -163,8 +163,9 @@ Promise.all([
       const situationOptions = [
         { id: 'Accused', label: "I've been accused of infringing" },
         { id: 'Enforcement', label: 'I believe my IP has been infringed' },
-        { id: 'Proactive', label: "I'm proactively protecting my IP" },
-        { id: 'Professional', label: "I'm seeking support of an IP professional" }
+        { id: 'Proactive', label: "I want to prevent future IP headaches" },
+        { id: 'Professional', label: "I'm seeking support of an IP professional" },
+        { id: 'Disagree', label: "I want to oppose or revoke an IP right" }
       ];
 
       // Define accordion presets based on IP rights and situations
@@ -212,7 +213,7 @@ Promise.all([
             'Enforcement': 'enforce',
             'Accused': 'respond to accusations about',
             'Proactive': 'prevent future IP headaches involving',
-            'Professional': 'seek professional support for',
+            'Professional': 'use professional support for',
             'Disagree': 'oppose or revoke'
           };
           
@@ -231,18 +232,18 @@ Promise.all([
             if (state.selectedRights.length === 2) {
               // Two rights - use "and" between them
               rightText = `${state.selectedRights[0].toLowerCase()} and ${state.selectedRights[1].toLowerCase()}`;
-            } else if (state.selectedRights.length <= 4) {
-              // 3-4 rights - list with commas and "and"
-              const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
-              const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
-              rightText = `${otherRights.join(', ')} and ${lastRight}`;
+                                                // } else if (state.selectedRights.length <= 4) {
+                                                //   // 3-4 rights - list with commas and "and"
+                                                //   const lastRight = state.selectedRights[state.selectedRights.length - 1].toLowerCase();
+                                                //   const otherRights = state.selectedRights.slice(0, -1).map(r => r.toLowerCase());
+                                                //   rightText = `${otherRights.join(', ')} and ${lastRight}`;
             } else {
               // More than 4 rights - keep it simple
               rightText = 'multiple IP rights';
             }
           }
           
-          return `Showing: Strategies aimed to ${action} ${rightText}`;
+          return `Showing: Strategies which can ${action} ${rightText}`;
         }
 
         // Get the current accordion layout based on selections
