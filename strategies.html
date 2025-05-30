@@ -181,18 +181,36 @@ Promise.all([
         // Define all possible rights for use as default
         const allRights = ['Patent', 'Trade mark', 'Design', 'PBR', 'Copyright', 'Any'];
         
-        const state = {
-          loading: true,
-          strategies: strategiesData,
-          filteredStrategies: [],
-          accordions: savedState.accordions || {  //Set all as closed, using the fact no values reads as falsy
-          },
-          // Use selections from index.html if available, otherwise use saved state or ALL rights
-          selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
-          selectedSituations: savedState.selectedSituations || ['Enforcement'],
-          // Dynamic filter selections - always start fresh
-          filterSelections: {}
-        };
+                                                                  // const state = {
+                                                                  //   loading: true,
+                                                                  //   strategies: strategiesData,
+                                                                  //   filteredStrategies: [],
+                                                                  //   accordions: savedState.accordions || {  //Set all as closed, using the fact no values reads as falsy
+                                                                  //   },
+                                                                  //   // Use selections from index.html if available, otherwise use saved state or ALL rights
+                                                                  //   selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
+                                                                  //   selectedSituations: savedState.selectedSituations || ['Enforcement'],
+                                                                  //   // Dynamic filter selections - always start fresh
+                                                                  //   filterSelections: {}
+                                                                  // };
+
+        // Check if coming from index page with new situation selection
+const selectedSituationFromIndex = JSON.parse(localStorage.getItem('ipSelectedSituation'));
+
+const state = {
+  loading: true,
+  strategies: strategiesData,
+  filteredStrategies: [],
+  accordions: savedState.accordions || {},
+  // Use selections from index.html if available, otherwise use saved state or ALL rights
+  selectedRights: selectedFromIndex || savedState.selectedRights || allRights,
+  selectedSituations: selectedSituationFromIndex || savedState.selectedSituations || ['Enforcement'],
+  // Dynamic filter selections - always start fresh
+  filterSelections: {}
+};
+
+// Clear the situation selection from localStorage to avoid affecting future visits
+localStorage.removeItem('ipSelectedSituation');
         
         // Clear the selection from localStorage to avoid affecting future visits
         localStorage.removeItem('ipSelectedRights');
@@ -707,19 +725,35 @@ wrapper.appendChild(toggle);
       const app = IPStrategyFinder();
       app.init();
 
-      // Add "Change IP Rights" link
-      const changeIPRightsLink = document.createElement('a');
-      changeIPRightsLink.href = 'index.html';
-      changeIPRightsLink.textContent = 'Start Over with Different IP Rights';
-      changeIPRightsLink.style.color = 'var(--text-secondary)';
-      changeIPRightsLink.style.textDecoration = 'none';
-      changeIPRightsLink.style.fontSize = '14px';
-      changeIPRightsLink.style.display = 'inline-block';
-      changeIPRightsLink.style.marginTop = '20px';
-      changeIPRightsLink.style.marginBottom = '20px';
+// Create container for navigation links
+const navLinksContainer = document.createElement('div');
+navLinksContainer.style.marginTop = '20px';
+navLinksContainer.style.marginBottom = '20px';
 
-      // Add to page above the app
-      document.getElementById('app').before(changeIPRightsLink);
+// Add "Change Situation" link
+const changeSituationLink = document.createElement('a');
+changeSituationLink.href = 'index.html';
+changeSituationLink.textContent = 'Change Situation';
+changeSituationLink.style.color = 'var(--text-secondary)';
+changeSituationLink.style.textDecoration = 'none';
+changeSituationLink.style.fontSize = '14px';
+changeSituationLink.style.display = 'inline-block';
+changeSituationLink.style.marginRight = '20px';
+
+// Add "Change IP Rights" link
+const changeIPRightsLink = document.createElement('a');
+changeIPRightsLink.href = 'ip-rights.html';
+changeIPRightsLink.textContent = 'Change IP Rights';
+changeIPRightsLink.style.color = 'var(--text-secondary)';
+changeIPRightsLink.style.textDecoration = 'none';
+changeIPRightsLink.style.fontSize = '14px';
+changeIPRightsLink.style.display = 'inline-block';
+
+navLinksContainer.appendChild(changeSituationLink);
+navLinksContainer.appendChild(changeIPRightsLink);
+
+// Add to page above the app
+document.getElementById('app').before(navLinksContainer);
       
     }).catch(err => {
       console.error('Error loading data:', err);
