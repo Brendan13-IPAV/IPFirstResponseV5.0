@@ -228,11 +228,11 @@ localStorage.removeItem('ipSelectedSituation');
         // Create a dynamic title based on selected situation and IP right
                                        function createDynamicTitle() {
                                                       const situationMap = {
-                                                        'Enforcement': 'enforce',
-                                                        'Accused': 'defend against accusations about',
-                                                        'Proactive': 'prevent future issues with',
-                                                        'Professional': 'get professional support for',
-                                                        'Disagree': 'challenge decisions about'
+                                                        'Enforcement': 'Showing strategies to enforce a',
+                                                        'Accused': 'Showing strategies to defend against accusations involving a',
+                                                        'Proactive': 'Showing strategies to prevent future issues with a',
+                                                        'Professional': 'Showing information about professional support for a',
+                                                        'Disagree': 'Showing information about IP processes relating to a'  //Note that this is currenty what is shown for "help with IP processes"
                                                       };
                                                       
                                                       // Debug log to see what we're working with
@@ -261,7 +261,7 @@ localStorage.removeItem('ipSelectedSituation');
                                                         }
                                                       }
                                                       
-                                                      return `Showing: Strategies to ${action} ${rightText}`;
+                                                      return `${action} ${rightText}`;
                                                     }
 
         // Get the current accordion layout based on selections
