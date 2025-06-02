@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "responseType": ["Enforcement", "Accused", "Disagree", "Professional"],
+    "ipTypeTags": ["Patent"]
+  },
+  {
+    "id": 2,
+    "responseType": ["Enforcement", "Accused", "Disagree", "Professional"],
+    "ipTypeTags": ["Patent"]
+  },
+  {
+    "id": 3,
+    "responseType": ["Enforcement", "Accused", "Professional"],
+    "ipTypeTags": ["Patent"]
+  },
+  {
+    "id": 4,
+    "responseType": ["Enforcement", "Disagree", "Professional"],
+    "ipTypeTags": ["Trade mark"]
+  },
+  {
+    "id": 5,
+    "responseType": ["Enforcement", "Disagree", "Professional"],
+    "ipTypeTags": ["Trade mark"]
+  }
+]
