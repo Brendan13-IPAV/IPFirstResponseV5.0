@@ -1,181 +1,178 @@
 [
 
 {
- "id": 1,     "responseType": ["Accused","Proactive","Professional"],
-    "ipTypeTags": ["Any dispute","Patent"]
+ "id": 1,     "responseType": ["Enforcement","Proactive","Disagree","Professional"],
+    "ipTypeTags": ["Patent"]
 },
 {
- "id": 2,     "responseType": ["Enforcement","Accused","Proactive","Disagree"],    "ipTypeTags": ["Patent"]
+ "id": 2,     "responseType": ["Enforcement","Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 3,     "responseType": ["Proactive"],    "ipTypeTags": ["Trade mark","Design"]
+ "id": 3,     "responseType": ["Accused","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 4,     "responseType": ["Enforcement","Accused","Proactive","Professional"],    "ipTypeTags": ["Any dispute","Trade mark","Patent","Design"]
+ "id": 4,     "responseType": ["Enforcement","Accused","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 5,     "responseType": ["Enforcement","Disagree","Professional"],    "ipTypeTags": ["Any dispute","Trade mark","Copyright"]
+ "id": 5,     "responseType": ["Enforcement","Accused","Proactive","Professional"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright"]
 },
 {
- "id": 6,     "responseType": ["Accused","Proactive"],    "ipTypeTags": ["Trade mark"]
+ "id": 6,     "responseType": ["Accused","Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 7,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Trade mark"]
+ "id": 7,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 8,     "responseType": [],    "ipTypeTags": []
+ "id": 8,     "responseType": ["Accused"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 9,     "responseType": [],    "ipTypeTags": []
+ "id": 9,     "responseType": ["Enforcement","Proactive","Disagree"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 10,     "responseType": [],    "ipTypeTags": []
+ "id": 10,     "responseType": ["Accused"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 11,     "responseType": [],    "ipTypeTags": []
+ "id": 11,     "responseType": ["Accused"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 12,     "responseType": [],    "ipTypeTags": []
+ "id": 12,     "responseType": ["Accused"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 13,     "responseType": [],    "ipTypeTags": []
+ "id": 13,     "responseType": ["Accused"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 14,     "responseType": [],    "ipTypeTags": []
+ "id": 14,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 15,     "responseType": [],    "ipTypeTags": []
+ "id": 15,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 16,     "responseType": [],    "ipTypeTags": []
+ "id": 16,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 17,     "responseType": [],    "ipTypeTags": []
+ "id": 17,     "responseType": ["Enforcement"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 18,     "responseType": [],    "ipTypeTags": []
+ "id": 18,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 19,     "responseType": [],    "ipTypeTags": []
+ "id": 19,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 20,     "responseType": [],    "ipTypeTags": []
+ "id": 20,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 21,     "responseType": [],    "ipTypeTags": []
+ "id": 21,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 22,     "responseType": [],    "ipTypeTags": []
+ "id": 22,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 23,     "responseType": [],    "ipTypeTags": []
+ "id": 23,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 24,     "responseType": [],    "ipTypeTags": []
+ "id": 24,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 25,     "responseType": [],    "ipTypeTags": []
+ "id": 25,     "responseType": ["Accused","Proactive","Disagree"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 26,     "responseType": [],    "ipTypeTags": []
+ "id": 26,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 27,     "responseType": [],    "ipTypeTags": []
+ "id": 27,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 28,     "responseType": [],    "ipTypeTags": []
+ "id": 28,     "responseType": ["Proactive"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 29,     "responseType": [],    "ipTypeTags": []
+ "id": 29,     "responseType": ["Enforcement","Accused","Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 30,     "responseType": [],    "ipTypeTags": []
+ "id": 30,     "responseType": ["Proactive","Disagree"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 32,     "responseType": [],    "ipTypeTags": []
+ "id": 32,     "responseType": ["Enforcement","Accused","Proactive","Disagree"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 33,     "responseType": [],    "ipTypeTags": []
+ "id": 33,     "responseType": ["Enforcement","Professional"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 34,     "responseType": [],    "ipTypeTags": []
+ "id": 34,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 35,     "responseType": [],    "ipTypeTags": []
+ "id": 35,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 37,     "responseType": [],    "ipTypeTags": []
+ "id": 37,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark","Patent","Design","PBR"]
 },
 {
- "id": 41,     "responseType": [],    "ipTypeTags": []
+ "id": 41,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 42,     "responseType": [],    "ipTypeTags": []
+ "id": 42,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 43,     "responseType": [],    "ipTypeTags": []
+ "id": 43,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 44,     "responseType": [],    "ipTypeTags": []
+ "id": 44,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 45,     "responseType": [],    "ipTypeTags": []
+ "id": 45,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 46,     "responseType": [],    "ipTypeTags": []
+ "id": 46,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 48,     "responseType": [],    "ipTypeTags": []
+ "id": 48,     "responseType": ["Enforcement","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 49,     "responseType": [],    "ipTypeTags": []
+ "id": 49,     "responseType": ["Enforcement","Proactive"],    "ipTypeTags": ["Trade mark","Design","Copyright"]
 },
 {
- "id": 57,     "responseType": [],    "ipTypeTags": []
+ "id": 57,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 58,     "responseType": [],    "ipTypeTags": []
+ "id": 58,     "responseType": ["Enforcement","Proactive"],    "ipTypeTags": ["Trade mark","Copyright"]
 },
 {
- "id": 60,     "responseType": [],    "ipTypeTags": []
+ "id": 60,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 61,     "responseType": [],    "ipTypeTags": []
+ "id": 61,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 62,     "responseType": [],    "ipTypeTags": []
+ "id": 62,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 63,     "responseType": [],    "ipTypeTags": []
+ "id": 63,     "responseType": ["Enforcement","Accused"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 64,     "responseType": [],    "ipTypeTags": []
+ "id": 65,     "responseType": ["Proactive","Professional"],    "ipTypeTags": ["Trade mark","Patent","Design","PBR"]
 },
 {
- "id": 65,     "responseType": [],    "ipTypeTags": []
+ "id": 66,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Design"]
 },
 {
- "id": 66,     "responseType": [],    "ipTypeTags": []
+ "id": 67,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["PBR"]
 },
 {
- "id": 67,     "responseType": [],    "ipTypeTags": []
+ "id": 68,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Copyright"]
 },
 {
- "id": 68,     "responseType": [],    "ipTypeTags": []
+ "id": 69,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 69,     "responseType": [],    "ipTypeTags": []
+ "id": 70,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 70,     "responseType": [],    "ipTypeTags": []
+ "id": 71,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 71,     "responseType": [],    "ipTypeTags": []
+ "id": 72,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute","Patent","Design","PBR","Copyright"]
 },
 {
- "id": 72,     "responseType": [],    "ipTypeTags": []
-},
-{
- "id": 73,     "responseType": [],    "ipTypeTags": []
+ "id": 73,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark"]
 }
 ]
