@@ -143,10 +143,17 @@ d<!DOCTYPE html>
     <script type="module">
   import { calculateStrategyScores } from './scoring.js';
 Promise.all([
-  fetch('strategies.json').then(res => res.json()),
+  fetch('strategies-content.json').then(res => res.json()),
+  fetch('strategies-metadata.json').then(res => res.json()),
   fetch('filterOptions.json').then(res => res.json()),
   fetch('accordionPresets.json').then(res => res.json())
-]).then(([strategiesData, preferenceConfigs, accordionPresets]) => {
+]).then(([strategiesContent, strategiesMetadata, preferenceConfigs, accordionPresets]) => {
+
+  // Merge the content and metadata arrays
+  const strategiesData = strategiesContent.map(content => {
+    const metadata = strategiesMetadata.find(meta => meta.id === content.id);
+    return { ...content, ...metadata };
+  });
 
       // Make preferenceConfigs globally available for use in filtering functions
       window.preferenceConfigs = preferenceConfigs;
