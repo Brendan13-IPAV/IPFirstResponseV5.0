@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "overtitle": "Patent opposition",
+    "title": "Challenge a new or amended patent",
+    "description": "Initiate a challenge to the validity of a new patent with IP Australia",
+    "costText": "$5,000+ plus legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "Varies depending on complexity"
+  },
+  {
+    "id": 2,
+    "overtitle": "Patent re-examination",
+    "title": "Challenge a granted patent",
+    "description": "Request a re-examination with IP Australia, to revoke or amend a granted patent",
+    "costText": "$3,000+ plus legal fees",
+    "effortText": "Weeks to months",
+    "resolutionText": "Varies by case"
+  },
+  {
+    "id": 3,
+    "overtitle": "Court - Patent",
+    "title": "Seek binding, authoritative decisions",
+    "description": "Escalate a wide range of patent matters to court",
+    "costText": "$15,000-$100,000+ plus legal fees",
+    "effortText": "6-12+ months",
+    "resolutionText": "Varies depending on court and case complexity"
+  },
+  {
+    "id": 4,
+    "overtitle": "Trade mark opposition",
+    "title": "Challenge the registration of a trade mark",
+    "description": "Initiate a trade mark opposition process against a new trademark with IP Australia",
+    "costText": "$1,500-$3,000 plus legal fees",
+    "effortText": "3-4 months",
+    "resolutionText": "Success depends on grounds of opposition"
+  },
+  {
+    "id": 5,
+    "overtitle": "Trade mark registration revocation",
+    "title": "Remove a trade mark from the register",
+    "description": "Let IP Australia know a recently registered trade mark should not have been registered",
+    "costText": "-",
+    "effortText": "Weeks to months",
+    "resolutionText": "-"
+  }
+]
