@@ -37,8 +37,8 @@
   },
   {
     "id": 5,
-    "overtitle": "",
-    "title": "Rebrand your IP ",
+    "overtitle": "Develop new IP",
+    "title": "Create new products or services which do not use contested IP",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -55,8 +55,8 @@
   },
   {
     "id": 7,
-    "overtitle": "",
-    "title": "Contact a legal professional",
+    "overtitle": "Obtain legal advice",
+    "title": "Obtain legal advice to respond to allegations of IP infringement ",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -84,7 +84,7 @@
     "id": 10,
     "overtitle": "Respond to a trade mark opposition at IP Australia",
     "title": "Defend your trade mark from opposition ",
-    "description": "Steps to defend your trade mark application when another party claims it encroaches on their rights during IP Australia’s opposition or hearing process.",
+    "description": "Steps to defend your trade mark application when another party claims it encroaches on their rights during IP Australia’s opposition or hearing process",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -109,9 +109,9 @@
   },
   {
     "id": 13,
-    "overtitle": "",
-    "title": "Challenge their IP - Pat",
-    "description": "",
+    "overtitle": "Patent Re-Examination",
+    "title": "Challenge a granted patent",
+    "description": "Request a re-examination with IP Australia, to revoke or amend a granted patent",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -127,8 +127,8 @@
   },
   {
     "id": 15,
-    "overtitle": "",
-    "title": "Engage in a conversation to work out a solution",
+    "overtitle": "Negotiate and de-escalate",
+    "title": "Engage in a conversation to resolve IP disputes",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -136,9 +136,9 @@
   },
   {
     "id": 16,
-    "overtitle": "",
-    "title": "Unjustified threat",
-    "description": "",
+    "overtitle": "Court",
+    "title": "Respond to an unjustified threat",
+    "description": "Options to take if you receive an unjustified threat for your intellectual property",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -163,7 +163,7 @@
   },
   {
     "id": 19,
-    "overtitle": "",
+    "overtitle": "Monitor",
     "title": "Regularly scan for breaches",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -172,8 +172,8 @@
   },
   {
     "id": 20,
-    "overtitle": "",
-    "title": "Market Scanning Tool",
+    "overtitle": "Monitor",
+    "title": "Pay for a market Scanning Tool",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -181,7 +181,7 @@
   },
   {
     "id": 21,
-    "overtitle": "",
+    "overtitle": "Monitor",
     "title": "Monitor supply chain",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -190,7 +190,7 @@
   },
   {
     "id": 22,
-    "overtitle": "",
+    "overtitle": "Monitor",
     "title": "Monitoring competitors' IP",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -219,7 +219,7 @@
     "id": 25,
     "overtitle": "Trade mark registration revocation",
     "title": "Remove a trade mark from the register",
-    "description": "Let IP Australia KNOW A recently registered trade mark SHOULD NOT HAVE BEEN REGISTERED",
+    "description": "Let IP Australia know A recently registered trade mark should not be registered",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -326,7 +326,7 @@
   {
     "id": 37,
     "overtitle": "World IP Organisation (WIPO) ",
-    "title": "RESOLVE INTERNATIONAL DISPUTES",
+    "title": "Resolve international disputes",
     "description": "Seek dispute resolution through the WIPO Arbitration and Mediation Center",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
