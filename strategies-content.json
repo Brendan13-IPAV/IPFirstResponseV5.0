@@ -19,8 +19,8 @@
   },
   {
     "id": 3,
-    "overtitle": "",
-    "title": "Understanding the C&D",
+    "overtitle": "Letter of demand",
+    "title": "Understanding a letter of demand  ",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -30,7 +30,7 @@
     "id": 4,
     "overtitle": "Take no immediate action",
     "title": "Monitor & gather evidence",
-    "description": "",
+    "description": "When to delay responding to groundless IP infringement claims and how to gather evidence for future defence.",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -46,8 +46,8 @@
   },
   {
     "id": 6,
-    "overtitle": "",
-    "title": "How to stop infringement gracefully",
+    "overtitle": "Consider the other party's demand",
+    "title": "De-escalate disputes by ceasing use of contested IP",
     "description": "",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
@@ -64,9 +64,9 @@
   },
   {
     "id": 8,
-    "overtitle": "",
-    "title": "Register your trade mark ASAP",
-    "description": "",
+    "overtitle": "Apply for a registered trade mark ",
+    "title": "Register your trade mark to reinforce your defence",
+    "description": "Apply to IP Australia for a registered trade mark to secure exclusive rights to your brand. ",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -82,16 +82,16 @@
   },
   {
     "id": 10,
-    "overtitle": "",
-    "title": "Respond to O&H (TM)",
-    "description": "",
+    "overtitle": "Respond to a trade mark opposition at IP Australia",
+    "title": "Defend your trade mark from opposition ",
+    "description": "Steps to defend your trade mark application when another party claims it encroaches on their rights during IP Australia’s opposition or hearing process.",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
   },
   {
     "id": 11,
-    "overtitle": "",
+    "overtitle": "Respond to a patent opposition at IP Australia",
     "title": "Respond to O&H (Pat)",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -100,9 +100,9 @@
   },
   {
     "id": 12,
-    "overtitle": "",
-    "title": "Challenge their IP - TM",
-    "description": "",
+    "overtitle": "IP Australia Oppositions & Hearings",
+    "title": "Challenge their Australian trade mark registration",
+    "description": "Ask IP Australia to refuse, cancel or narrow a trade mark that is effecting you",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -118,9 +118,9 @@
   },
   {
     "id": 14,
-    "overtitle": "",
-    "title": "Report a scam/fraud",
-    "description": "",
+    "overtitle": "Report criminal activities",
+    "title": "Report a scam, fraud or other risk to public interest ",
+    "description": "How to recognise and report scams or crimes that misuse intellectual property (IP) infringement claims to intimidate or extort.",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
