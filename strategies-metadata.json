@@ -2,7 +2,7 @@
 
 {
  "id": 1,     "responseType": ["Accused","Proactive","Professional"],
-    "ipTypeTags": ["any dispute","Patent"]
+    "ipTypeTags": ["Any dispute","Patent"]
 },
 {
  "id": 2,     "responseType": ["Enforcement","Accused","Proactive","Disagree"],    "ipTypeTags": ["Patent"]
@@ -11,10 +11,10 @@
  "id": 3,     "responseType": ["Proactive"],    "ipTypeTags": ["Trade mark","Design"]
 },
 {
- "id": 4,     "responseType": ["Enforcement","Accused","Proactive","Professional"],    "ipTypeTags": ["any dispute","Trade mark","Patent","Design"]
+ "id": 4,     "responseType": ["Enforcement","Accused","Proactive","Professional"],    "ipTypeTags": ["Any dispute","Trade mark","Patent","Design"]
 },
 {
- "id": 5,     "responseType": ["Enforcement","Disagree","Professional"],    "ipTypeTags": ["any dispute","Trade mark","Copyright"]
+ "id": 5,     "responseType": ["Enforcement","Disagree","Professional"],    "ipTypeTags": ["Any dispute","Trade mark","Copyright"]
 },
 {
  "id": 6,     "responseType": ["Accused","Proactive"],    "ipTypeTags": ["Trade mark"]
