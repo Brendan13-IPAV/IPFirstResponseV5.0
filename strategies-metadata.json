@@ -20,119 +20,162 @@
  "id": 6,     "responseType": ["Accused","Proactive"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 7,    "ipTypeTags": ["Trade mark"]
+ "id": 7,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Trade mark"]
 },
 {
- "id": 8,    "ipTypeTags": []
+ "id": 8,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 9,    "ipTypeTags": []
+ "id": 9,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 10,    "ipTypeTags": []
+ "id": 10,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 11,    "ipTypeTags": []
+ "id": 11,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 12,    "ipTypeTags": []
+ "id": 12,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 13,    "ipTypeTags": []
+ "id": 13,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 14,    "ipTypeTags": []
+ "id": 14,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 15,    "ipTypeTags": []
+ "id": 15,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 16,    "ipTypeTags": []
+ "id": 16,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 17,},
+ "id": 17,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 18,},
+ "id": 18,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 19,},
+ "id": 19,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 20,},
+ "id": 20,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 21,},
+ "id": 21,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 22,},
+ "id": 22,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 23,},
+ "id": 23,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 24,},
+ "id": 24,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 25,},
+ "id": 25,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 26,},
+ "id": 26,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 27,},
+ "id": 27,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 28,},
+ "id": 28,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 29,},
+ "id": 29,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 30,},
+ "id": 30,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 32,},
+ "id": 32,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 33,},
+ "id": 33,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 34,},
+ "id": 34,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 35,},
+ "id": 35,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 37,},
+ "id": 37,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 41,},
+ "id": 41,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 42,},
+ "id": 42,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 43,},
+ "id": 43,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 44,},
+ "id": 44,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 45,},
+ "id": 45,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 46,},
+ "id": 46,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 48,},
+ "id": 48,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 49,},
+ "id": 49,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 57,},
+ "id": 57,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 58,},
+ "id": 58,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 60,},
+ "id": 60,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 61,},
+ "id": 61,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 62,},
+ "id": 62,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 63,},
+ "id": 63,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 64,},
+ "id": 64,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 65,},
+ "id": 65,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 66,},
+ "id": 66,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 67,},
+ "id": 67,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 68,},
+ "id": 68,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 69,},
+ "id": 69,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 70,},
+ "id": 70,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 71,},
+ "id": 71,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 72,},
+ "id": 72,     "responseType": [],    "ipTypeTags": []
+},
 {
- "id": 73,}
+ "id": 73,     "responseType": [],    "ipTypeTags": []
+}
 ]
