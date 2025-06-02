@@ -17,7 +17,7 @@
  "id": 5,     "responseType": ["Enforcement","Accused","Proactive","Professional"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright"]
 },
 {
- "id": 6,     "responseType": ["Accused","Proactive"],    "ipTypeTags": ["Any dispute"]
+ "id": 6,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
  "id": 7,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
@@ -170,7 +170,7 @@
  "id": 71,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 72,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute","Patent","Design","PBR","Copyright"]
+ "id": 72,     "responseType": ["Enforcement"],    "ipTypeTags": ["Patent","Design","PBR","Copyright"]
 },
 {
  "id": 73,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark"]
