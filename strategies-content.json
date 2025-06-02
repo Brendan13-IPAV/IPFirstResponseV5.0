@@ -253,7 +253,7 @@
   },
   {
     "id": 29,
-    "overtitle": "",
+    "overtitle": "Pre-plan IP conflicts",
     "title": "WIPO Contract Clause Builder",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -309,7 +309,7 @@
     "id": 35,
     "overtitle": "Interim court injuction order",
     "title": "Stop infringing activity immediately",
-    "description": "Lodge an INTERIM INJUNCTION ORDER through court ",
+    "description": "Lodge an interim injunction order through court ",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -325,7 +325,7 @@
   },
   {
     "id": 37,
-    "overtitle": "World IP Organisation (WIPO) ",
+    "overtitle": "World IP Organisation (WIPO)",
     "title": "Resolve international disputes",
     "description": "Seek dispute resolution through the WIPO Arbitration and Mediation Center",
     "costText": "Cost varies based on complexity",
