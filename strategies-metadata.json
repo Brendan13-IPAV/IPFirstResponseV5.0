@@ -161,7 +161,7 @@
  "id": 68,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Copyright"]
 },
 {
- "id": 69,     "responseType": ["Enforcement","Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
+ "id": 69,     "responseType": ["Enforcement","Accused", "Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
  "id": 70,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
