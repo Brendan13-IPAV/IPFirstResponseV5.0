@@ -271,9 +271,9 @@
   },
   {
     "id": 31,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Overlapping IP infringement claims",
+    "title": "Enforcing your own IP as a response to IP infringement accusations",
+    "description": "Consider taking enforcement action if someone accusing you of infringement has actually been infringing your rights",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
