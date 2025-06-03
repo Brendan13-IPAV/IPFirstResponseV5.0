@@ -91,6 +91,9 @@
 {
  "id": 30,     "responseType": ["Proactive","Disagree"],    "ipTypeTags": ["Patent"]
 },
+ {
+ "id": 31,     "responseType": ["Accused","Disagree"],    "ipTypeTags": ["Any dispute"]
+},
 {
  "id": 32,     "responseType": ["Enforcement","Accused","Proactive","Disagree"],    "ipTypeTags": ["Trade mark"]
 },
