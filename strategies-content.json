@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "overtitle": "Contact intermediaries",
+    "overtitle": "Not Assigned",
     "title": "",
     "description": "",
     "costText": "Cost varies based on complexity",
@@ -21,7 +21,7 @@
     "id": 3,
     "overtitle": "Letter of demand",
     "title": "Understanding a letter of demand  ",
-    "description": "",
+    "description": "Understanding what you can do when you receive a letter of demand / cease and desist.",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
@@ -56,8 +56,8 @@
   {
     "id": 7,
     "overtitle": "Obtain legal advice",
-    "title": "Obtain legal advice to respond to allegations of IP infringement ",
-    "description": "",
+    "title": "Obtain legal advice about your fituation",
+    "description": "Seek expert advice on how to respond to allegations of IP infringement",
     "costText": "Cost varies based on complexity",
     "effortText": "Time requirement varies",
     "resolutionText": "Success rate varies by case"
