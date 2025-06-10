@@ -1,6 +1,6 @@
 {
   "default": {
-    "topFilters": [ "preferredApproach", "BusinessIssue", "howCommon"],
+    "topFilters": [ "preferredApproach", "howCommon"],
     "accordions": {
       "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
@@ -10,7 +10,7 @@
   },
   
   "Patent-Enforcement": {
-    "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
+    "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "Your patent details": ["Jurisdiction", "YourPatStatus"],
       "Suspected infringment details": ["Where"],
@@ -20,7 +20,7 @@
   },
 
    "Trademark-Enforcement": {
-    "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
+    "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "Suspected infringment details": ["Where", "onlineIssues", "domainName", "importingGoods"],
@@ -30,7 +30,7 @@
   },
   
   "Trademark-Accused": {
-    "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
+    "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
@@ -39,21 +39,21 @@
   },
     
   "Design-Enforcement": { 
-          "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
+          "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "Incomplete": ["Where"]
     }
   },
     
   "PBR-Enforcement": {      
-    "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
+    "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "Incomplete": ["Where"] 
     }
   },
     
   "Copyright-Enforcement": {
-          "topFilters": [ "preferredApproach", "BusinessIssue", "howCommon"],
+          "topFilters": [ "preferredApproach", "howCommon"],
     "accordions": {
       "Incomplete": ["Where"]
     }
