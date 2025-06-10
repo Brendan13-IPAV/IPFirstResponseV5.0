@@ -149,11 +149,15 @@ Promise.all([
   fetch('accordionPresets.json').then(res => res.json())
 ]).then(([strategiesContent, strategiesMetadata, preferenceConfigs, accordionPresets]) => {
 
-  // Merge the content and metadata arrays
-  const strategiesData = strategiesContent.map(content => {
-    const metadata = strategiesMetadata.find(meta => meta.id === content.id);
-    return { ...content, ...metadata };
-  });
+// Merge the content and metadata arrays
+const strategiesData = strategiesContent.map(content => {
+  const metadata = strategiesMetadata.find(meta => meta.id === content.id);
+  return { ...content, ...metadata };
+}).filter(strategy => {
+  // Filter out "Not Assigned" strategies
+  return strategy.overtitle !== "Not Assigned" && 
+         strategy.title !== "Not Assigned";
+});
 
       // Make preferenceConfigs globally available for use in filtering functions
       window.preferenceConfigs = preferenceConfigs;
