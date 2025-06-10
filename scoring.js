@@ -1,6 +1,11 @@
 export function calculateStrategyScores(strategies, state) {
-  // First, pre-filter strategies by selected IP rights and situations
-  const filteredByRightType = strategies.filter(strategy => {
+  // First, filter out strategies with "Not Assigned" IDs
+const assignedStrategies = strategies.filter(strategy => 
+  strategy.id !== "Not Assigned"
+);
+  // Then, pre-filter strategies by selected IP rights and situations
+const filteredByRightType = assignedStrategies.filter(strategy => {
+
     // Check if strategy matches any of the selected IP rights
     let matchesSelectedRights = false;
     
