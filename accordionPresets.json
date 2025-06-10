@@ -2,7 +2,7 @@
   "default": {
     "topFilters": [ "preferredApproach", "howCommon"],
     "accordions": {
-      "Your IP": ["Jurisdiction", "YourTMStatus", "YourPatStatus"],
+      "Your IP": ["Jurisdiction"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
       "Other party details": ["theirIPRights", "identifyParty"],
       "Resolution Preferences": ["businessRelationship", "openToNegotiate"]
