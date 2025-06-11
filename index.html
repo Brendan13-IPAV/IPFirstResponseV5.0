@@ -232,6 +232,10 @@
                     <div class="situation-btn" data-situation="Proactive">
                         I want to prevent future IP headaches
                     </div>
+                        <!-- NEW BUTTON -->
+                    <div class="situation-btn" data-situation="Professional">
+                        Find the right IP professional
+                    </div>
                 </div>
 
                 <button type="button" id="continue-btn" class="continue-btn">Continue</button>
@@ -269,15 +273,18 @@
         });
 
         // Handle continue button click
-        document.getElementById('continue-btn').addEventListener('click', function() {
-            if (selectedSituation) {
-                // Save selected situation to localStorage
-                localStorage.setItem('ipSelectedSituation', JSON.stringify([selectedSituation]));
-                
-                // Navigate to IP rights selection page
-                window.location.href = 'ip-rights.html'; // Rename your current index.html to this
-            }
-        });
+document.getElementById('continue-btn').addEventListener('click', function() {
+    if (selectedSituation) {
+        if (selectedSituation === 'Professional') {
+            // Go directly to professionals page
+            window.location.href = 'ip-professionals.html';
+        } else {
+            // Save selected situation and go to IP rights selection
+            localStorage.setItem('ipSelectedSituation', JSON.stringify([selectedSituation]));
+            window.location.href = 'ip-rights.html';
+        }
+    }
+});
     </script>
 </body>
 </html>
