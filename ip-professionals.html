@@ -161,6 +161,10 @@
             line-height: 1.5;
         }
 
+        .service-card {
+            position: relative;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -227,19 +231,20 @@
 
             function init() {
                 render();
-                setupEventListeners();
             }
 
             function setupEventListeners() {
+                // Set up event delegation for dynamically created elements
                 document.addEventListener('click', function(e) {
-                    if (e.target.matches('[data-filter]')) {
+                    if (e.target.matches('.radio-button[data-filter]')) {
                         handleFilterClick(e.target);
                     } else if (e.target.matches('.filter-remove')) {
                         handleFilterRemove(e.target);
                     } else if (e.target.matches('.reset-button')) {
                         clearAllFilters();
-                    } else if (e.target.matches('.accordion-header')) {
-                        toggleAccordion(e.target);
+                    } else if (e.target.matches('.accordion-header') || e.target.closest('.accordion-header')) {
+                        const header = e.target.matches('.accordion-header') ? e.target : e.target.closest('.accordion-header');
+                        toggleAccordion(header);
                     }
                 });
             }
@@ -302,12 +307,16 @@
                 const accordion = header.nextElementSibling;
                 const arrow = header.querySelector('span');
                 
+                if (!accordion) return;
+                
                 if (accordion.style.display === 'none' || !accordion.style.display) {
                     accordion.style.display = 'block';
-                    arrow.textContent = '▼ ' + arrow.textContent.substring(2);
+                    const arrowText = arrow.textContent;
+                    arrow.textContent = '▼ ' + arrowText.substring(2);
                 } else {
                     accordion.style.display = 'none';
-                    arrow.textContent = '▶ ' + arrow.textContent.substring(2);
+                    const arrowText = arrow.textContent;
+                    arrow.textContent = '▶ ' + arrowText.substring(2);
                 }
             }
 
@@ -350,10 +359,10 @@
                 
                 container.innerHTML = filteredServices.map((service, index) => {
                     const borderClass = `border-${service.category}`;
-                    const diyClass = `diy-${service.diy.replace(' ', '-')}`;
+                    const diyClass = `diy-${service.diy.replace(/\s+/g, '-')}`;
                     
                     return `
-                        <div class="service-card ${borderClass}" style="opacity: 0; animation: fadeInUp 0.6s ease forwards; animation-delay: ${index * 0.1}s;">
+                        <div class="service-card strategy-card ${borderClass}" style="opacity: 0; animation: fadeInUp 0.6s ease forwards; animation-delay: ${index * 0.1}s;">
                             <div>
                                 <div class="service-category">${service.serviceCategory}</div>
                                 <h3 class="service-title">${service.title}</h3>
@@ -451,7 +460,7 @@
 
             function render() {
                 const app = document.getElementById('app');
-                app.innerHTML = `
+                app.innerHTML = 
                     <div class="grid">
                         <!-- Left column - Filters -->
                         <div>
@@ -468,7 +477,7 @@
                             </div>
 
                             <!-- Accordion sections -->
-                            <div class="accordion-header">
+                            <div class="accordion-header" style="cursor: pointer;">
                                 <span>▶ IP Type</span>
                             </div>
                             <div class="accordion" style="display: none;">
@@ -485,7 +494,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-header">
+                            <div class="accordion-header" style="cursor: pointer;">
                                 <span>▶ DIY Feasibility</span>
                             </div>
                             <div class="accordion" style="display: none;">
@@ -500,7 +509,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-header">
+                            <div class="accordion-header" style="cursor: pointer;">
                                 <span>▶ Professional Type</span>
                             </div>
                             <div class="accordion" style="display: none;">
@@ -538,7 +547,10 @@
                             </div>
                         </div>
                     </div>
-                `;
+                ;
+                
+                // Setup event listeners after DOM is created
+                setupEventListeners();
                 
                 // Initial render of services
                 renderServices();
