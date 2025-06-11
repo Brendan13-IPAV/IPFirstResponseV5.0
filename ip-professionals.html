@@ -6,22 +6,14 @@
     <title>Find IP Professional Services</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-        /* Additional styles specific to professionals page */
-        .diy-possible {
-            color: #059669; 
-        }
+        .diy-possible { color: #059669; }
+        .diy-experience { color: #D97706; }
+        .diy-professional { color: #DC2626; }
 
-        .diy-not-possible {
-            color: #DC2626;
-        }
-
-        .diy-requires-experience, .diy-experience {
-            color: #D97706;
-        }
-
-        .diy-professional {
-            color: #DC2626;
-        }
+        .border-registration { border-left: 3px solid var(--teal); }
+        .border-search { border-left: 3px solid var(--patent-color); }
+        .border-enforcement { border-left: 3px solid var(--trademark-color); }
+        .border-strategy { border-left: 3px solid var(--pbr-color); }
 
         .tag-sections {
             margin-top: 8px;
@@ -35,16 +27,11 @@
             align-items: flex-start;
         }
 
-        .tag-row:last-child {
-            margin-bottom: 0;
-        }
-
         .tag-row-label {
             font-size: 11px;
             color: var(--text-secondary);
             margin-right: 8px;
             min-width: 80px;
-            flex-shrink: 0;
             font-weight: 500;
         }
 
@@ -59,122 +46,26 @@
             font-size: 11px;
             padding: 3px 8px;
             border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
             font-weight: 500;
         }
 
-        /* Professional type tag colors */
-        .tag-patent-attorney {
-            background-color: rgba(29, 167, 175, 0.1);
-            color: var(--patent-color);
-        }
+        .tag-patent-attorney { background-color: rgba(29, 167, 175, 0.1); color: var(--patent-color); }
+        .tag-trademark-attorney { background-color: rgba(222, 67, 38, 0.1); color: var(--trademark-color); }
+        .tag-ip-lawyer { background-color: rgba(29, 41, 57, 0.1); color: var(--dark-blue); }
+        .tag-ip-consultant { background-color: rgba(241, 172, 30, 0.1); color: var(--pbr-color); }
+        .tag-prior-art-searcher { background-color: rgba(120, 122, 187, 0.1); color: var(--copyright-color); }
+        .tag-qualified-person { background-color: rgba(102, 112, 133, 0.1); color: var(--any-color); }
+        .tag-design-attorney { background-color: rgba(132, 201, 143, 0.1); color: var(--design-color); }
+        .tag-barrister { background-color: rgba(139, 69, 19, 0.1); color: #8B4513; }
+        .tag-tech-transfer { background-color: rgba(75, 0, 130, 0.1); color: #4B0082; }
+        .tag-valuation-expert { background-color: rgba(255, 140, 0, 0.1); color: #FF8C00; }
 
-        .tag-trademark-attorney {
-            background-color: rgba(222, 67, 38, 0.1);
-            color: var(--trademark-color);
-        }
-
-        .tag-design-attorney {
-            background-color: rgba(132, 201, 143, 0.1);
-            color: var(--design-color);
-        }
-
-        .tag-ip-lawyer {
-            background-color: rgba(29, 41, 57, 0.1);
-            color: var(--dark-blue);
-        }
-
-        .tag-prior-art-searcher {
-            background-color: rgba(120, 122, 187, 0.1);
-            color: var(--copyright-color);
-        }
-
-        .tag-ip-consultant {
-            background-color: rgba(241, 172, 30, 0.1);
-            color: var(--pbr-color);
-        }
-
-        .tag-patent-agent {
-            background-color: rgba(85, 171, 201, 0.1);
-            color: var(--teal);
-        }
-
-        .tag-qualified-person {
-            background-color: rgba(102, 112, 133, 0.1);
-            color: var(--any-color);
-        }
-
-        .tag-barrister {
-            background-color: rgba(139, 69, 19, 0.1);
-            color: #8B4513;
-        }
-
-        .tag-tech-transfer {
-            background-color: rgba(75, 0, 130, 0.1);
-            color: #4B0082;
-        }
-
-        .tag-valuation-expert {
-            background-color: rgba(255, 140, 0, 0.1);
-            color: #FF8C00;
-        }
-
-        .tag-docketing-specialist {
-            background-color: rgba(128, 128, 128, 0.1);
-            color: #808080;
-        }
-
-        /* Category specific border colors */
-        .border-registration {
-            border-left: 3px solid var(--teal);
-        }
-
-        .border-search {
-            border-left: 3px solid var(--patent-color);
-        }
-
-        .border-enforcement {
-            border-left: 3px solid var(--trademark-color);
-        }
-
-        .border-strategy {
-            border-left: 3px solid var(--pbr-color);
-        }
-
-        .service-category {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-
-        .service-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .service-description {
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .service-card {
-            position: relative;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .tag-ip-patent { background-color: rgba(29, 167, 175, 0.1); color: var(--patent-color); }
+        .tag-ip-trademark { background-color: rgba(222, 67, 38, 0.1); color: var(--trademark-color); }
+        .tag-ip-design { background-color: rgba(132, 201, 143, 0.1); color: var(--design-color); }
+        .tag-ip-pbr { background-color: rgba(241, 172, 30, 0.1); color: var(--pbr-color); }
+        .tag-ip-copyright { background-color: rgba(120, 122, 187, 0.1); color: var(--copyright-color); }
+        .tag-ip-any { background-color: rgba(102, 112, 133, 0.1); color: var(--any-color); }
     </style>
 </head>
 <body>
@@ -192,13 +83,12 @@
     </header>
 
     <div class="container main-content">
-        <!-- Navigation breadcrumbs -->
         <div style="margin-bottom: 20px;">
             <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; margin-right: 20px;">← Back to Home</a>
             <a href="strategies.html" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;">IP Strategies</a>
         </div>
 
-        <div id="app">Loading professional services... Please wait.</div>
+        <div id="app">Loading professional services...</div>
     </div>
 
     <footer class="footer">
@@ -208,356 +98,190 @@
     </footer>
 
     <script>
-        // Load the services data
+        let servicesData = [];
+        let currentFilters = { category: null, iptype: null, diy: null, professional: null };
+
+        // Load data and initialize
         fetch('ip-professionals-data.json')
         .then(response => response.json())
-        .then(servicesData => {
-            const app = IPProfessionalsApp(servicesData);
-            app.init();
+        .then(data => {
+            servicesData = data;
+            render();
         })
         .catch(err => {
-            console.error('Error loading professionals data:', err);
-            document.getElementById('app').textContent = 'Failed to load professional services data.';
+            console.error('Error:', err);
+            document.getElementById('app').innerHTML = 'Failed to load data.';
         });
 
-        function IPProfessionalsApp(servicesData) {
-            // Filter state
-            let currentFilters = {
-                category: null,
-                iptype: null,
-                diy: null,
-                professional: null
-            };
-
-            function init() {
-                render();
-            }
-
-            function setupEventListeners() {
-                // Set up event delegation for dynamically created elements
-                document.addEventListener('click', function(e) {
-                    if (e.target.matches('.radio-button[data-filter]')) {
-                        handleFilterClick(e.target);
-                    } else if (e.target.matches('.filter-remove')) {
-                        handleFilterRemove(e.target);
-                    } else if (e.target.matches('.reset-button')) {
-                        clearAllFilters();
-                    } else if (e.target.matches('.accordion-header') || e.target.closest('.accordion-header')) {
-                        const header = e.target.matches('.accordion-header') ? e.target : e.target.closest('.accordion-header');
-                        toggleAccordion(header);
-                    }
-                });
-            }
-
-            function handleFilterClick(button) {
-                const filter = button.dataset.filter;
-                const value = button.dataset.value;
-                
-                // Remove selection from siblings
-                const siblings = button.parentElement.querySelectorAll('.radio-button');
-                siblings.forEach(sibling => sibling.classList.remove('radio-selected'));
-                
-                // Toggle selection
-                if (currentFilters[filter] === value) {
-                    currentFilters[filter] = null;
-                } else {
-                    button.classList.add('radio-selected');
-                    currentFilters[filter] = value;
-                }
-                
-                renderServices();
-                renderActiveFilters();
-            }
-
-            function handleFilterRemove(button) {
-                const filterType = button.dataset.filter;
-                removeFilter(filterType);
-            }
-
-            function removeFilter(filterType) {
-                currentFilters[filterType] = null;
-                
-                // Update UI
-                document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(button => {
-                    button.classList.remove('radio-selected');
-                });
-                
-                renderServices();
-                renderActiveFilters();
-            }
-
-            function clearAllFilters() {
-                currentFilters = {
-                    category: null,
-                    iptype: null,
-                    diy: null,
-                    professional: null
-                };
-                
-                // Update UI
-                document.querySelectorAll('.radio-button').forEach(button => {
-                    button.classList.remove('radio-selected');
-                });
-                
-                renderServices();
-                renderActiveFilters();
-            }
-
-            function toggleAccordion(header) {
-                const accordion = header.nextElementSibling;
-                const arrow = header.querySelector('span');
-                
-                if (!accordion) return;
-                
-                if (accordion.style.display === 'none' || !accordion.style.display) {
-                    accordion.style.display = 'block';
-                    const arrowText = arrow.textContent;
-                    arrow.textContent = '▼ ' + arrowText.substring(2);
-                } else {
-                    accordion.style.display = 'none';
-                    const arrowText = arrow.textContent;
-                    arrow.textContent = '▶ ' + arrowText.substring(2);
-                }
-            }
-
-            function filterServices() {
-                return servicesData.filter(service => {
-                    // Category filter
-                    if (currentFilters.category && currentFilters.category !== 'all' && service.category !== currentFilters.category) {
-                        return false;
-                    }
-                    
-                    // IP type filter
-                    if (currentFilters.iptype && currentFilters.iptype !== 'any' && service.ipType !== currentFilters.iptype && service.ipType !== 'any') {
-                        return false;
-                    }
-                    
-                    // DIY filter
-                    if (currentFilters.diy && currentFilters.diy !== 'all' && service.diy !== currentFilters.diy) {
-                        return false;
-                    }
-                    
-                    // Professional filter
-                    if (currentFilters.professional && currentFilters.professional !== 'any' && !service.professionals.includes(currentFilters.professional)) {
-                        return false;
-                    }
-                    
-                    return true;
-                });
-            }
-
-            function renderServices() {
-                const filteredServices = filterServices();
-                const container = document.getElementById('serviceCards');
-                
-                if (!container) return;
-                
-                if (filteredServices.length === 0) {
-                    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-secondary);">No services match your current filters. Try adjusting your selection.</div>';
-                    return;
-                }
-                
-                container.innerHTML = filteredServices.map((service, index) => {
-                    const borderClass = `border-${service.category}`;
-                    const diyClass = `diy-${service.diy.replace(/\s+/g, '-')}`;
-                    
-                    return `
-                        <div class="service-card strategy-card ${borderClass}" style="opacity: 0; animation: fadeInUp 0.6s ease forwards; animation-delay: ${index * 0.1}s;">
-                            <div>
-                                <div class="service-category">${service.serviceCategory}</div>
-                                <h3 class="service-title">${service.title}</h3>
-                                <p class="service-description">${service.description}</p>
-                                
-                                <div class="card-metrics">
-                                    <div class="metric-row">
-                                        <span class="metric-label">Typical cost:</span>
-                                        <span class="metric-value">${service.cost}</span>
-                                    </div>
-                                    <div class="metric-row">
-                                        <span class="metric-label">Typical timeline:</span>
-                                        <span class="metric-value">${service.timeline}</span>
-                                    </div>
-                                    <div class="metric-row">
-                                        <span class="metric-label">DIY alternative:</span>
-                                        <span class="metric-value ${diyClass}">${service.diyText}</span>
-                                    </div>
-                                </div>
-
-                                <div class="tag-sections">
-                                    <div class="tag-row">
-                                        <span class="tag-row-label">IP Type:</span>
-                                        <div class="tag-row-content">
-                                            <span class="ip-type-tag tag-ip-${service.ipType}">${service.ipType === 'any' ? 'Any Right' : service.ipType.charAt(0).toUpperCase() + service.ipType.slice(1)}</span>
-                                        </div>
-                                    </div>
-                                    <div class="tag-row">
-                                        <span class="tag-row-label">Professionals:</span>
-                                        <div class="tag-row-content">
-                                            ${service.professionalLabels.map((prof, i) => `<span class="professional-tag tag-${service.professionals[i]}">${prof}</span>`).join('')}
-                                        </div>
-                                    </div>
-                                </div>
+        function render() {
+            document.getElementById('app').innerHTML = `
+                <div class="grid">
+                    <div>
+                        <div class="preference-group">
+                            <label class="preference-label">Service category:</label>
+                            <div class="radio-group">
+                                <label class="radio-button" onclick="setFilter('category', 'registration')">Registration & filing</label>
+                                <label class="radio-button" onclick="setFilter('category', 'search')">Search & analysis</label>
+                                <label class="radio-button" onclick="setFilter('category', 'enforcement')">Enforcement</label>
+                                <label class="radio-button" onclick="setFilter('category', 'strategy')">Strategy & commercialization</label>
+                                <label class="radio-button" onclick="setFilter('category', null)">All categories</label>
                             </div>
                         </div>
-                    `;
-                }).join('');
-            }
 
-            function renderActiveFilters() {
-                const container = document.getElementById('activeFilters');
-                
-                if (!container) return;
-                
-                const activeFilters = [];
-                
-                const filterLabels = {
-                    category: {
-                        registration: 'Registration & filing',
-                        search: 'Search & analysis', 
-                        enforcement: 'Enforcement',
-                        strategy: 'Strategy & commercialization'
-                    },
-                    iptype: {
-                        patent: 'Patents',
-                        trademark: 'Trade marks',
-                        design: 'Design rights',
-                        pbr: 'Plant breeder\'s rights',
-                        copyright: 'Copyright'
-                    },
-                    diy: {
-                        possible: 'DIY Possible',
-                        experience: 'Requires Experience',
-                        professional: 'Professional Required'
-                    },
-                    professional: {
-                        'patent-attorney': 'Patent Attorney',
-                        'trademark-attorney': 'Trade Mark Attorney',
-                        'design-attorney': 'Design Attorney',
-                        'ip-lawyer': 'IP Lawyer',
-                        'ip-consultant': 'IP Consultant',
-                        'prior-art-searcher': 'Prior Art Searcher',
-                        'qualified-person': 'Qualified Person',
-                        'barrister': 'Barrister',
-                        'tech-transfer': 'Tech Transfer Specialist',
-                        'valuation-expert': 'Valuation Expert'
-                    }
-                };
-                
-                Object.entries(currentFilters).forEach(([filterType, value]) => {
-                    if (value && value !== 'all' && value !== 'any') {
-                        const label = filterLabels[filterType][value] || value;
-                        activeFilters.push(`
-                            <div class="filter-pill">
-                                ${label} 
-                                <span class="filter-remove" data-filter="${filterType}">×</span>
-                            </div>
-                        `);
-                    }
-                });
-                
-                container.innerHTML = activeFilters.join('');
-            }
-
-            function render() {
-                const app = document.getElementById('app');
-                app.innerHTML = 
-                    <div class="grid">
-                        <!-- Left column - Filters -->
-                        <div>
-                            <!-- Top filters -->
+                        <div class="accordion-header" onclick="toggleAccordion('ipType')" style="cursor: pointer;">
+                            <span id="ipTypeArrow">▶ IP Type</span>
+                        </div>
+                        <div id="ipType" class="accordion" style="display: none;">
                             <div class="preference-group">
-                                <label class="preference-label">Service category:</label>
+                                <label class="preference-label">IP right type:</label>
                                 <div class="radio-group">
-                                    <label class="radio-button" data-filter="category" data-value="registration">Registration & filing</label>
-                                    <label class="radio-button" data-filter="category" data-value="search">Search & analysis</label>
-                                    <label class="radio-button" data-filter="category" data-value="enforcement">Enforcement</label>
-                                    <label class="radio-button" data-filter="category" data-value="strategy">Strategy & commercialization</label>
-                                    <label class="radio-button" data-filter="category" data-value="all">All categories</label>
-                                </div>
-                            </div>
-
-                            <!-- Accordion sections -->
-                            <div class="accordion-header" style="cursor: pointer;">
-                                <span>▶ IP Type</span>
-                            </div>
-                            <div class="accordion" style="display: none;">
-                                <div class="preference-group">
-                                    <label class="preference-label">IP right type:</label>
-                                    <div class="radio-group">
-                                        <label class="radio-button" data-filter="iptype" data-value="patent">Patents</label>
-                                        <label class="radio-button" data-filter="iptype" data-value="trademark">Trade marks</label>
-                                        <label class="radio-button" data-filter="iptype" data-value="design">Design rights</label>
-                                        <label class="radio-button" data-filter="iptype" data-value="pbr">Plant breeder's rights</label>
-                                        <label class="radio-button" data-filter="iptype" data-value="copyright">Copyright</label>
-                                        <label class="radio-button" data-filter="iptype" data-value="any">Any IP type</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-header" style="cursor: pointer;">
-                                <span>▶ DIY Feasibility</span>
-                            </div>
-                            <div class="accordion" style="display: none;">
-                                <div class="preference-group">
-                                    <label class="preference-label">Can I attempt this myself?</label>
-                                    <div class="radio-group">
-                                        <label class="radio-button" data-filter="diy" data-value="possible">Possible to DIY</label>
-                                        <label class="radio-button" data-filter="diy" data-value="experience">Requires experience</label>
-                                        <label class="radio-button" data-filter="diy" data-value="professional">Professional required</label>
-                                        <label class="radio-button" data-filter="diy" data-value="all">Show all levels</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-header" style="cursor: pointer;">
-                                <span>▶ Professional Type</span>
-                            </div>
-                            <div class="accordion" style="display: none;">
-                                <div class="preference-group">
-                                    <label class="preference-label">Professional type available:</label>
-                                    <div class="radio-group">
-                                        <label class="radio-button" data-filter="professional" data-value="patent-attorney">Patent Attorney</label>
-                                        <label class="radio-button" data-filter="professional" data-value="trademark-attorney">Trade Mark Attorney</label>
-                                        <label class="radio-button" data-filter="professional" data-value="design-attorney">Design Attorney</label>
-                                        <label class="radio-button" data-filter="professional" data-value="ip-lawyer">IP Lawyer</label>
-                                        <label class="radio-button" data-filter="professional" data-value="ip-consultant">IP Consultant</label>
-                                        <label class="radio-button" data-filter="professional" data-value="prior-art-searcher">Prior Art Searcher</label>
-                                        <label class="radio-button" data-filter="professional" data-value="any">Any professional</label>
-                                    </div>
+                                    <label class="radio-button" onclick="setFilter('iptype', 'patent')">Patents</label>
+                                    <label class="radio-button" onclick="setFilter('iptype', 'trademark')">Trade marks</label>
+                                    <label class="radio-button" onclick="setFilter('iptype', 'design')">Design rights</label>
+                                    <label class="radio-button" onclick="setFilter('iptype', 'pbr')">Plant breeder's rights</label>
+                                    <label class="radio-button" onclick="setFilter('iptype', 'copyright')">Copyright</label>
+                                    <label class="radio-button" onclick="setFilter('iptype', null)">Any IP type</label>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right column - Results -->
-                        <div>
-                            <!-- Title and controls -->
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h2 class="page-title">Find professional services for your IP needs</h2>
-                                <button class="reset-button">Clear All Filters</button>
-                            </div>
-
-                            <!-- Active filters -->
-                            <div class="active-filters" id="activeFilters">
-                                <!-- Active filters will be populated by JavaScript -->
-                            </div>
-
-                            <!-- Service cards -->
-                            <div class="card-grid" id="serviceCards">
-                                <!-- Cards will be populated by JavaScript -->
+                        <div class="accordion-header" onclick="toggleAccordion('diyLevel')" style="cursor: pointer;">
+                            <span id="diyLevelArrow">▶ DIY Feasibility</span>
+                        </div>
+                        <div id="diyLevel" class="accordion" style="display: none;">
+                            <div class="preference-group">
+                                <label class="preference-label">Can I attempt this myself?</label>
+                                <div class="radio-group">
+                                    <label class="radio-button" onclick="setFilter('diy', 'possible')">Possible to DIY</label>
+                                    <label class="radio-button" onclick="setFilter('diy', 'experience')">Requires experience</label>
+                                    <label class="radio-button" onclick="setFilter('diy', 'professional')">Professional required</label>
+                                    <label class="radio-button" onclick="setFilter('diy', null)">Show all levels</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                ;
-                
-                // Setup event listeners after DOM is created
-                setupEventListeners();
-                
-                // Initial render of services
-                renderServices();
-                renderActiveFilters();
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 class="page-title">Find professional services for your IP needs</h2>
+                            <button class="reset-button" onclick="clearFilters()">Clear All Filters</button>
+                        </div>
+
+                        <div id="activeFilters" class="active-filters"></div>
+                        <div id="serviceCards" class="card-grid"></div>
+                    </div>
+                </div>
+            `;
+            renderServices();
+            renderActiveFilters();
+        }
+
+        function setFilter(type, value) {
+            currentFilters[type] = value;
+            
+            // Update button states
+            document.querySelectorAll('.radio-button').forEach(btn => btn.classList.remove('radio-selected'));
+            event.target.classList.add('radio-selected');
+            
+            renderServices();
+            renderActiveFilters();
+        }
+
+        function clearFilters() {
+            currentFilters = { category: null, iptype: null, diy: null, professional: null };
+            document.querySelectorAll('.radio-button').forEach(btn => btn.classList.remove('radio-selected'));
+            renderServices();
+            renderActiveFilters();
+        }
+
+        function toggleAccordion(id) {
+            const accordion = document.getElementById(id);
+            const arrow = document.getElementById(id + 'Arrow');
+            
+            if (accordion.style.display === 'none') {
+                accordion.style.display = 'block';
+                arrow.textContent = '▼ ' + arrow.textContent.substring(2);
+            } else {
+                accordion.style.display = 'none';
+                arrow.textContent = '▶ ' + arrow.textContent.substring(2);
+            }
+        }
+
+        function renderServices() {
+            const filtered = servicesData.filter(service => {
+                if (currentFilters.category && service.category !== currentFilters.category) return false;
+                if (currentFilters.iptype && service.ipType !== currentFilters.iptype && service.ipType !== 'any') return false;
+                if (currentFilters.diy && service.diy !== currentFilters.diy) return false;
+                return true;
+            });
+
+            const container = document.getElementById('serviceCards');
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-secondary);">No services match your filters.</div>';
+                return;
             }
 
-            return { init };
+            container.innerHTML = filtered.map(service => `
+                <div class="strategy-card border-${service.category}">
+                    <div class="strategy-overtitle">${service.serviceCategory}</div>
+                    <h3 class="strategy-title">${service.title}</h3>
+                    <p class="strategy-description">${service.description}</p>
+                    
+                    <div class="card-metrics">
+                        <div class="metric-row">
+                            <span class="metric-label">Typical cost:</span>
+                            <span class="metric-value">${service.cost}</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Typical timeline:</span>
+                            <span class="metric-value">${service.timeline}</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">DIY alternative:</span>
+                            <span class="metric-value diy-${service.diy}">${service.diyText}</span>
+                        </div>
+                    </div>
+
+                    <div class="tag-sections">
+                        <div class="tag-row">
+                            <span class="tag-row-label">IP Type:</span>
+                            <div class="tag-row-content">
+                                <span class="ip-type-tag tag-ip-${service.ipType}">${service.ipType === 'any' ? 'Any Right' : service.ipType.charAt(0).toUpperCase() + service.ipType.slice(1)}</span>
+                            </div>
+                        </div>
+                        <div class="tag-row">
+                            <span class="tag-row-label">Professionals:</span>
+                            <div class="tag-row-content">
+                                ${service.professionalLabels.map((prof, i) => `<span class="professional-tag tag-${service.professionals[i]}">${prof}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderActiveFilters() {
+            const labels = {
+                category: { registration: 'Registration & filing', search: 'Search & analysis', enforcement: 'Enforcement', strategy: 'Strategy & commercialization' },
+                iptype: { patent: 'Patents', trademark: 'Trade marks', design: 'Design rights', pbr: 'Plant breeder\'s rights', copyright: 'Copyright' },
+                diy: { possible: 'DIY Possible', experience: 'Requires Experience', professional: 'Professional Required' }
+            };
+
+            const activeFilters = [];
+            Object.entries(currentFilters).forEach(([type, value]) => {
+                if (value && labels[type] && labels[type][value]) {
+                    activeFilters.push(`<div class="filter-pill">${labels[type][value]} <span onclick="removeFilter('${type}')" style="cursor: pointer;">×</span></div>`);
+                }
+            });
+
+            document.getElementById('activeFilters').innerHTML = activeFilters.join('');
+        }
+
+        function removeFilter(type) {
+            currentFilters[type] = null;
+            document.querySelectorAll('.radio-button').forEach(btn => btn.classList.remove('radio-selected'));
+            renderServices();
+            renderActiveFilters();
         }
     </script>
 </body>
