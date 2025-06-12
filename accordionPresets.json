@@ -74,6 +74,24 @@
       "Business context": ["Where", "domainName", "onlineIssues"]
 
     }
+  },
+      "Patent-Proactive": {
+    "topFilters": ["LikelyHeadacheContext", "howCommon"],
+    "accordions": {
+        "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
+        "Your goals": ["IPGoals"],
+      "Business context": ["Where", "domainName", "onlineIssues"]
+
+    }
+  },
+      "Any-Proactive": {
+    "topFilters": ["LikelyHeadacheContext", "howCommon"],
+    "accordions": {
+        "About your IP right (if any)": ["Jurisdiction"],
+        "Your goals": ["IPGoals"],
+      "Business context": ["Where", "domainName", "onlineIssues"]
+
+    }
   }
 }
 
