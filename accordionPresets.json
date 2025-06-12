@@ -4,7 +4,7 @@
     "accordions": {
       "Your IP": ["Jurisdiction"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
-      "Other party details": ["theirIPRights", "identifyParty"],
+      "Other party details": ["theirTMRights", "identifyParty"],
       "Resolution Preferences": ["businessRelationship", "openToNegotiate"]
     }
   },
