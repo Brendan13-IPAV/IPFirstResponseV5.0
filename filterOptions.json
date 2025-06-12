@@ -73,6 +73,7 @@
         }
         
       ]
+    },
        "YourDesStatus": {
       "label": "Relevant to designs which are:",
       "pillTemplate": "Options for {optionLabel}",
