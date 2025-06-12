@@ -112,6 +112,39 @@
         }
               ]
     },
+
+       "LikelyHeadacheContext": {
+      "label": "Expected context to include:",
+      "pillTemplate": "Options for {optionLabel}",
+      "options": [
+        {
+          "label": "Online",
+          "pillLabel": "online business and sales",
+          "scoringValues": [1.0]
+        },
+          {
+          "label": "In-Person/Off-line",
+          "pillLabel": "in-person business and sales",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "International markets",
+          "pillLabel": "international markets",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Australian market",
+          "pillLabel": "Australia",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Importation to Australia",
+          "pillLabel": "importation",
+          "scoringValues": [1.0]
+        }
+              ]
+    },
+    
     "BusinessIssue": {
       "label": "Options relevant to:",
       "pillTemplate": "Involving {optionLabel}",
