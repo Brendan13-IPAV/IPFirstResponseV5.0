@@ -39,6 +39,11 @@
           "label": "No longer registered",
           "pillLabel": "Previously registered TM",
           "scoringValues": [1.0,1.0,1.0,0.8,1.0,0.7,0.8,0.8,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,0.8,1.0,0.7,1.0,1.0,1.0,1.0,1.0,0.8,0.8,0.8,1.0,1.0,0.8,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,0.8,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+        {
+          "label": "Not registered",
+          "pillLabel": "non-registered TMs",
+          "scoringValues": [1.0,1.0,1.0,0.8,1.0,0.7,0.8,0.8,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,0.8,1.0,0.7,1.0,1.0,1.0,1.0,1.0,0.8,0.8,0.8,1.0,1.0,0.8,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,0.8,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         }
       ]
     },
@@ -60,8 +65,51 @@
           "label": "No longer in force",
           "pillLabel": "expired patents",
           "scoringValues": [0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+        {
+          "label": "Not yet applied",
+          "pillLabel": "un-granted patents",
+          "scoringValues": [0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         }
+        
       ]
+       "YourDesStatus": {
+      "label": "Relevant to designs which are:",
+      "pillTemplate": "Options for {optionLabel}",
+      "options": [
+        {
+          "label": "Registered",
+          "pillLabel": "registered designs",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Certified",
+          "pillLabel": "certified designs",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Unregistered",
+          "pillLabel": "unregistered or expired designs",
+          "scoringValues": [1.0]
+        }
+              ]
+    },
+
+             "YourPBRStatus": {
+      "label": "Relevant to plant breeder's rights which are:",
+      "pillTemplate": "Options for {optionLabel}",
+      "options": [
+        {
+          "label": "Registered",
+          "pillLabel": "registered varieties",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Unregistered",
+          "pillLabel": "unregistered or expired PBR",
+          "scoringValues": [1.0]
+        }
+              ]
     },
     "BusinessIssue": {
       "label": "Options relevant to:",
