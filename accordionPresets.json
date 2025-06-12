@@ -65,7 +65,7 @@
     "accordions": {
       "Incomplete": ["Where"]
     }
-  }
+  },
 
     "Trademark-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
@@ -74,6 +74,6 @@
        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
         "Your goals": ["IPGoals"]
     }
-  },
+  }
 }
 
