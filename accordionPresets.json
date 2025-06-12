@@ -59,7 +59,6 @@
     }
   },
 
-    
   "Any-Enforcement": {
           "topFilters": ["preferredApproach", "BusinessIssue", "howCommon"],
     "accordions": {
