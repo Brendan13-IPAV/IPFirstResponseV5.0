@@ -69,9 +69,10 @@
     "Trademark-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
     "accordions": {
-      "Business context": ["Where", "domainName", "onlineIssues"],
-       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-        "Your goals": ["IPGoals"]
+        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
+        "Your goals": ["IPGoals"],
+      "Business context": ["Where", "domainName", "onlineIssues"]
+
     }
   }
 }
