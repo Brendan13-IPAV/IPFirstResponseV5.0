@@ -69,8 +69,8 @@
     "Trademark-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
     "accordions": {
-        "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
         "Your goals": ["IPGoals"],
+      "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
       "Business context": ["Where", "domainName", "onlineIssues"]
 
     }
@@ -78,8 +78,8 @@
       "Patent-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
     "accordions": {
-        "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
         "Your goals": ["IPGoals"],
+      "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
       "Business context": ["Where", "domainName", "onlineIssues"]
 
     }
@@ -87,8 +87,8 @@
       "Any-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
     "accordions": {
-        "About your IP right (if any)": ["Jurisdiction"],
         "Your goals": ["IPGoals"],
+      "About your IP right (if any)": ["Jurisdiction"],
       "Business context": ["Where", "domainName", "onlineIssues"]
 
     }
