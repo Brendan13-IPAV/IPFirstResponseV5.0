@@ -357,15 +357,63 @@ localStorage.removeItem('ipSelectedSituation');
           return true; // Show all filters since we're controlling visibility through accordion presets
         }
 
-        function getAccordionSelectionCount(filterKeys) {
+        // Helper function to check if a filter allows multiple selections
+function isMultipleSelectionFilter(filterConfig) {
+  return filterConfig.selectionType === 'multiple';
+}
+
+// Helper function to check if an option is selected
+function isOptionSelected(filterKey, optionIndex, filterConfig) {
+  const selection = state.filterSelections[filterKey];
+  if (isMultipleSelectionFilter(filterConfig)) {
+    return Array.isArray(selection) && selection.includes(optionIndex);
+  } else {
+    return selection === optionIndex;
+  }
+}
+
+// Helper function to toggle option selection
+function toggleOptionSelection(filterKey, optionIndex, filterConfig) {
+  if (isMultipleSelectionFilter(filterConfig)) {
+    // Multiple selection - toggle in/out of array
+    const currentSelections = state.filterSelections[filterKey] || [];
+    if (currentSelections.includes(optionIndex)) {
+      // Remove from array
+      state.filterSelections[filterKey] = currentSelections.filter(i => i !== optionIndex);
+      // If array becomes empty, delete the key
+      if (state.filterSelections[filterKey].length === 0) {
+        delete state.filterSelections[filterKey];
+      }
+    } else {
+      // Add to array
+      state.filterSelections[filterKey] = [...currentSelections, optionIndex];
+    }
+  } else {
+    // Radio selection - toggle on/off
+    if (state.filterSelections[filterKey] === optionIndex) {
+      delete state.filterSelections[filterKey];
+    } else {
+      state.filterSelections[filterKey] = optionIndex;
+    }
+  }
+}
+        
+function getAccordionSelectionCount(filterKeys) {
   let count = 0;
   filterKeys.forEach(filterKey => {
-    if (state.filterSelections[filterKey] !== undefined) {
-      count++;
+    const selection = state.filterSelections[filterKey];
+    if (selection !== undefined) {
+      const filterConfig = preferenceConfigs.filters[filterKey];
+      if (isMultipleSelectionFilter(filterConfig) && Array.isArray(selection)) {
+        count += selection.length; // Count each selected option
+      } else if (selection !== undefined) {
+        count += 1; // Single selection
+      }
     }
   });
   return count;
 }
+
 
         function render() {
           // Only save primary filters to localStorage
@@ -429,25 +477,20 @@ localStorage.removeItem('ipSelectedSituation');
   
   const radio = document.createElement('label');
   radio.className = 'radio-button';
-  if (state.filterSelections[filterKey] === index) {
+  if (isOptionSelected(filterKey, index, filterConfig)) {
     radio.classList.add('radio-selected');
   }
   radio.textContent = opt.label;
-  radio.onclick = () => {
-    // Toggle selection
-    if (state.filterSelections[filterKey] === index) {
-      delete state.filterSelections[filterKey];
-    } else {
-      state.filterSelections[filterKey] = index;
-    }
-    
-    state.filteredStrategies = calculateStrategyScores(
-      state.strategies,
-      state
-    );
+radio.onclick = () => {
+  toggleOptionSelection(filterKey, index, filterConfig);
+  
+  state.filteredStrategies = calculateStrategyScores(
+    state.strategies,
+    state
+  );
 
-    render();
-  };
+  render();
+};
   
   // Add tooltip if it exists
   if (opt.tooltip) {
@@ -525,25 +568,20 @@ wrapper.appendChild(toggle);
   
   const radio = document.createElement('label');
   radio.className = 'radio-button';
-  if (state.filterSelections[filterKey] === index) {
+  if (isOptionSelected(filterKey, index, filterConfig)) {
     radio.classList.add('radio-selected');
   }
   radio.textContent = opt.label;
   radio.onclick = () => {
-    // Toggle selection
-    if (state.filterSelections[filterKey] === index) {
-      delete state.filterSelections[filterKey];
-    } else {
-      state.filterSelections[filterKey] = index;
-    }
-    
-    state.filteredStrategies = calculateStrategyScores(
-      state.strategies,
-      state
-    );
+  toggleOptionSelection(filterKey, index, filterConfig);
+  
+  state.filteredStrategies = calculateStrategyScores(
+    state.strategies,
+    state
+  );
 
-    render();
-  };
+  render();
+};
   
   // Add tooltip if it exists
   if (opt.tooltip) {
@@ -619,40 +657,69 @@ wrapper.appendChild(toggle);
             secondaryFiltersContainer.className = 'active-filters';
             
             // Add filter pills
-            Object.entries(state.filterSelections).forEach(([filterKey, optionIndex]) => {
-              const filterConfig = preferenceConfigs.filters[filterKey];
-              if (filterConfig && filterConfig.options[optionIndex]) {
-                const opt = filterConfig.options[optionIndex];
-                
-                // Use pillTemplate and pillLabel for better display
-                let pillText = filterConfig.pillTemplate || `${filterConfig.label}: ${opt.label}`;
-                pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
-                
-                const pill = document.createElement('div');
-                pill.className = 'filter-pill';
-                pill.textContent = pillText;
-                
-                const remove = document.createElement('span');
-                remove.className = 'filter-remove';
-                remove.textContent = '×';
-                remove.onclick = () => {
-                  delete state.filterSelections[filterKey];
-                  state.filteredStrategies = calculateStrategyScores(
-                    state.strategies,
-                    state
-                  );
-
-                  render();
-                };
-                pill.appendChild(remove);
-                secondaryFiltersContainer.appendChild(pill);
-              }
-            });
+      // Add filter pills
+Object.entries(state.filterSelections).forEach(([filterKey, selection]) => {
+  const filterConfig = preferenceConfigs.filters[filterKey];
+  if (filterConfig) {
+    if (isMultipleSelectionFilter(filterConfig) && Array.isArray(selection)) {
+      // Handle multiple selections - create one pill per selection
+      selection.forEach(optionIndex => {
+        if (filterConfig.options[optionIndex]) {
+          createFilterPill(filterKey, optionIndex, filterConfig, secondaryFiltersContainer);
+        }
+      });
+    } else if (typeof selection === 'number' && filterConfig.options[selection]) {
+      // Handle single selection
+      createFilterPill(filterKey, selection, filterConfig, secondaryFiltersContainer);
+    }
+  }
+});
             
             filtersWrapper.appendChild(secondaryFiltersContainer);
           }
           
           return filtersWrapper;
+
+          // Helper function to create filter pills
+function createFilterPill(filterKey, optionIndex, filterConfig, container) {
+  const opt = filterConfig.options[optionIndex];
+  
+  // Use pillTemplate and pillLabel for better display
+  let pillText = filterConfig.pillTemplate || `${filterConfig.label}: ${opt.label}`;
+  pillText = pillText.replace('{optionLabel}', opt.pillLabel || opt.label);
+  
+  const pill = document.createElement('div');
+  pill.className = 'filter-pill';
+  pill.textContent = pillText;
+  
+  const remove = document.createElement('span');
+  remove.className = 'filter-remove';
+  remove.textContent = '×';
+  remove.onclick = () => {
+    const selection = state.filterSelections[filterKey];
+    if (isMultipleSelectionFilter(filterConfig) && Array.isArray(selection)) {
+      // Remove this specific option from the array
+      const newSelection = selection.filter(i => i !== optionIndex);
+      if (newSelection.length === 0) {
+        delete state.filterSelections[filterKey];
+      } else {
+        state.filterSelections[filterKey] = newSelection;
+      }
+    } else {
+      // Remove single selection
+      delete state.filterSelections[filterKey];
+    }
+    
+    state.filteredStrategies = calculateStrategyScores(
+      state.strategies,
+      state
+    );
+
+    render();
+  };
+  pill.appendChild(remove);
+  container.appendChild(pill);
+}
         }
 
         // Updated renderStrategyCards function to display IP Type and Approach tags
