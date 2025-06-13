@@ -115,6 +115,7 @@
 
        "LikelyHeadacheContext": {
       "label": "Expected context to include:",
+         "selectionType": "multiple",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -147,6 +148,7 @@
     
     "BusinessIssue": {
       "label": "Options relevant to:",
+      "selectionType": "multiple",
       "pillTemplate": "Involving {optionLabel}",
       "options": [
         {
@@ -314,6 +316,7 @@
     },
     "desiredOutcome": {
       "label": "Desired outcome",
+      "selectionType": "multiple",
       "pillTemplate": "Prioritising options which {optionLabel}",
       "options": [
         {
@@ -340,6 +343,7 @@
     },
     "preferredApproach": {
       "label": "Type of approach",
+      "selectionType": "multiple",
       "pillTemplate": "Prioritising {optionLabel}",
       "options": [
         {
@@ -460,6 +464,7 @@
 
    "IPGoals": {
       "label": "Your goals",
+     "selectionType": "multiple",
       "pillTemplate": "Focusing on {optionLabel}",
       "options": [
         {
@@ -512,6 +517,7 @@
     
         "template": {
       "label": "Prompt text goes here:",
+          "selectionType": "multiple",
       "pillTemplate": "Prioritising: {optionLabel}",
       "options": [
         {
