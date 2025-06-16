@@ -10,9 +10,9 @@
   },
   {
     "id": 2,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Online brand registry",
+    "title": "Make sure online platforms are aware of your IP rights.",
+    "description": "Register your trade mark with platforms to unlock extra enforcement tools.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -298,9 +298,9 @@
   },
   {
     "id": 34,
-    "overtitle": "Court - Generic",
-    "title": "Seek binding, authoritative decisions",
-    "description": "Take IP matters to court for binding legal decisions.",
+    "overtitle": "Research",
+    "title": "Freedom to operate analysis",
+    "description": "Confirm that my business will not infringe anyones registered rights.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -416,7 +416,7 @@
   {
     "id": 47,
     "overtitle": "Not Assigned",
-    "title": "Not Assigned",
+    "title": "Finding a QP (PBR)",
     "description": "Not Assigned",
     "costText": "-",
     "effortText": "-",
@@ -460,9 +460,9 @@
   },
   {
     "id": 52,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Monitor",
+    "title": "Monitor the market to prevent harm to your trade mark.",
+    "description": "Keep an eye on others' new brands so you can act early if they get too close to yours.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
