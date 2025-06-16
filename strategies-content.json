@@ -586,7 +586,7 @@
   },
   {
     "id": 66,
-    "overtitle": "Sorry, This information isn't available yet",
+       "overtitle": "Not Assigned",
     "title": "Design rights",
     "description": "We cannot provide information on this right just yet",
     "costText": "-",
@@ -595,7 +595,7 @@
   },
   {
     "id": 67,
-    "overtitle": "Sorry, This information isn't available yet",
+   "overtitle": "Not Assigned",
     "title": "Plant breeders' rights",
     "description": "We cannot provide information on this right just yet",
     "costText": "-",
@@ -613,7 +613,7 @@
   },
   {
     "id": 69,
-    "overtitle": "Sorry, This information isn't available yet",
+   "overtitle": "Not Assigned",
     "title": "Other IP Types",
     "description": "We cannot provide information on this right just yet",
     "costText": "-",
