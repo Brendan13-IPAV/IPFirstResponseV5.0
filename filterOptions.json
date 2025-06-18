@@ -1,10 +1,8 @@
 
   
-  {
+{
   "filters": {
-
-
-     "preferredApproach": {
+    "preferredApproach": {
       "label": "Type of approach",
       "selectionType": "multiple",
       "pillTemplate": "Prioritising {optionLabel}",
@@ -521,7 +519,7 @@
       ]
     },
     
-        "template": {
+    "template": {
       "label": "Prompt text goes here:",
           "selectionType": "multiple",
       "pillTemplate": "Prioritising: {optionLabel}",
@@ -543,10 +541,8 @@
         }
       ]
     }
-
   }
-
-  }
+}
 
 
 
