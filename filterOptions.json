@@ -1,4 +1,9 @@
-{
+
+  
+  {
+  "filters": {
+
+
      "preferredApproach": {
       "label": "Type of approach",
       "selectionType": "multiple",
@@ -53,9 +58,7 @@
         }
       ]
      },
-  
-  
-  "filters": {
+       
     "Jurisdiction": {
       "label": "Focus on right registered with:",
       "pillTemplate": "Options for {optionLabel}",
@@ -541,6 +544,9 @@
       ]
     }
 
+  }
+
+  }
 
 
 
