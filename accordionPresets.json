@@ -22,7 +22,7 @@
    "Trademark-Enforcement": {
     "topFilters": ["ProcessStage", "howCommon"],
     "accordions": {
-      "Your preferences": ["Adverserial", "Negotiatied"],
+      "Your preferences": ["Adverserial", "Negotiated"],
      "Suspected infringment details": ["TargetIssues"],
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "About the other party": ["theirTMRights", "businessRelationship"]
