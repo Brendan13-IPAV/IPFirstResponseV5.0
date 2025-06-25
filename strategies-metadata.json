@@ -11,7 +11,7 @@
  "id": 3,     "responseType": ["Accused","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 4,     "responseType": ["Enforcement","Accused","Professional"],    "ipTypeTags": ["Any dispute"]
+ "id": 4,     "responseType": ["Accused","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
  "id": 5,     "responseType": ["Accused","Proactive","Professional"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright"]
