@@ -25,12 +25,12 @@
           "tooltip": "Seek a mutual agreement, compromise or commercial deal.",
 "scoringValues": [0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,1.2,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,1,0.8,0.8,0.8,0.8,1,0.8,1,1,1,0.8,0.8,0.8,0.8,0.8,0.8,1,1.2,0.8,1,1,1,1,1,1,1,0.8,0.8,1,0.8,0.8,0.8,0.8,1,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 },
-        {
-          "label": "Professional service",
-          "pillLabel": "approaches leveraging professional services",
-          "tooltip": "Engage a legal professional or third-party service to support you.",
-"scoringValues": [1.1,1,1.1,1.1,1,1,1.1,1,1.1,1,1,1,1.1,1,1,1,1.1,1.1,1,1,1,1,1,1,1,1,1.1,1,1,1,1,1.1,1.1,1,1,1,1.1,1,1,1,1.1,1,1.1,1.1,1.1,0.9,1,1.1,0.9,1,1,1,1,1,1,1,0.8,0.9,1,1.1,1.1,0.9,0.9,1,1,1,1,0,1,1,1,1,1,0.9]       
-        },
+{
+  "label": "Professional service",
+  "pillLabel": "approaches leveraging professional services",
+  "tooltip": "Engage a legal professional or third-party service to support you.",
+  "scoringValues": [1.1,1,1.1,1.1,1,1,1.1,1,1.1,1,1,1,1.1,1,1,1,1.1,1.1,1,1,1,1,1,1,1,1,1.1,1,1,1,1,1.1,1.1,1,1,1,1.1,1,1,1,1.1,1,1.1,1.1,1.1,0.9,1,1.1,0.9,1,1,1,1,1,1,1,0.8,0.9,1,1.1,1.1,0.9,0.9,1,1,1,1,1,1,1,1,1,1,0.9,1,1,1]
+},
         
         {
           "label": "Avoid",
