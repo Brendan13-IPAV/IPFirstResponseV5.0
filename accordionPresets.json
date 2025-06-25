@@ -20,12 +20,13 @@
   },
 
    "Trademark-Enforcement": {
-    "topFilters": ["preferredApproach", "howCommon"],
+    "topFilters": ["ProcessStage", "howCommon"],
     "accordions": {
+      "Your preferences": ["Adverserial", "Negotiatied"],
+     "Suspected infringment details": ["TargetIssues"],
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
-      "Suspected infringment details": ["Where", "onlineIssues", "domainName", "importingGoods"],
-      "Other Party": ["theirTMRights", "identifyParty"],
-      "Commerical considerations": ["businessRelationship", "openToNegotiate"]
+      "About the other party": ["theirTMRights", "businessRelationship"]
+
     }
   },
   
