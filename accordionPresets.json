@@ -20,8 +20,9 @@
   },
 
    "Trademark-Enforcement": {
-    "topFilters": ["ProcessStage", "howCommon"],
+    "topFilters": [],
     "accordions": {
+      "Sort options by:": ["ProcessStage", "howCommon"],
       "Your preferences": ["Adverserial", "Negotiated", "businessRelationship"],
      "Suspected infringment details": ["TargetIssues"],
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
