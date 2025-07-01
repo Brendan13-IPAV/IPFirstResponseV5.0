@@ -1,7 +1,8 @@
                                                                       {
   "default": {
-    "topFilters": [ "preferredApproach", "howCommon"],
+    "topFilters": [ ],
     "accordions": {
+       "Sort options by:": ["ProcessStage", "howCommon"],
       "Your IP": ["Jurisdiction"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
       "Other party details": ["theirTMRights", "identifyParty"],
