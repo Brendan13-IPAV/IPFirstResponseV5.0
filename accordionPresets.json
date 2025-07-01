@@ -1,4 +1,4 @@
-{
+                                                                      {
   "default": {
     "topFilters": [ "preferredApproach", "howCommon"],
     "accordions": {
@@ -27,15 +27,6 @@
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "About the other party": ["theirTMRights"]
 
-    }
-  },
-  
-  "Trademark-Accused": {
-    "topFilters": ["preferredApproach", "howCommon"],
-    "accordions": {
-      "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
-       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-           "Commerical considerations": ["openToNegotiate", "businessRelationship"]
     }
   },
     
@@ -67,6 +58,24 @@
     }
   },
 
+
+                                                                          
+  "Trademark-Accused": {
+    "topFilters": ["preferredApproach", "howCommon"],
+    "accordions": {
+      "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
+       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
+           "Commerical considerations": ["openToNegotiate", "businessRelationship"]
+    }
+  },
+
+
+
+
+
+
+
+                                                                        
     "Trademark-Proactive": {
     "topFilters": ["LikelyHeadacheContext", "howCommon"],
     "accordions": {
@@ -94,5 +103,5 @@
 
     }
   }
-}
+                                                                                }
 
