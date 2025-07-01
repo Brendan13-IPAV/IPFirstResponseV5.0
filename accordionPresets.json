@@ -2,7 +2,7 @@
   "default": {
     "topFilters": [ ],
     "accordions": {
-       "Sort options by:": ["ProcessStage", "howCommon"],
+       "Sort options": ["ProcessStage", "howCommon"],
       "Your IP": ["Jurisdiction"],
       "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
       "Other party details": ["theirTMRights", "identifyParty"],
@@ -11,8 +11,9 @@
   },
   
   "Patent-Enforcement": {
-    "topFilters": ["preferredApproach", "howCommon"],
+    "topFilters": [],
     "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
       "Your patent details": ["Jurisdiction", "YourPatStatus"],
       "Suspected infringment details": ["Where"],
       "Other party details": ["identifyParty"],
@@ -23,9 +24,9 @@
    "Trademark-Enforcement": {
     "topFilters": [],
     "accordions": {
-      "Sort options by:": ["ProcessStage", "howCommon"],
-      "Your preferences": ["Adverserial", "Negotiated", "businessRelationship"],
-     "Suspected infringment details": ["TargetIssues"],
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+     "Suspected infringment details": ["TargetIssues", "businessRelationship"],
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
       "About the other party": ["theirTMRights"]
 
