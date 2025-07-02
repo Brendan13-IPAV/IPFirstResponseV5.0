@@ -28,7 +28,7 @@
       "Your preferences": ["Adverserial", "Negotiated"],
       "Infringement details": ["TargetIssues"],
       "About your trade mark": ["Jurisdiction", "YourTMStatus"],
-      "About the other party": ["theirTMRights",,"businessRelationship"]
+      "About the other party": ["theirTMRights","businessRelationship"]
 
     }
   },
