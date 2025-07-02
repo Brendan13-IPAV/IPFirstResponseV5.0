@@ -210,6 +210,7 @@
           "label": "Granted",
           "pillLabel": "a granted Australian patent",
           "scoringValues": [1.0]
+        },
         {
           "label": "None found",
           "pillLabel": "no clear Australian patent found",
@@ -227,6 +228,7 @@
           "label": "Being challenged",
           "pillLabel": "a patent being challenged",
           "scoringValues": [1.0]
+                }
       ]
     },
                                                       
