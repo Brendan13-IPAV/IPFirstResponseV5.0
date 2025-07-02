@@ -2,7 +2,7 @@
                                                     "filters": {
           
     "Jurisdiction": {
-      "label": "Focus on right registered with:",
+      "label": "Focus on rights registered with:",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
