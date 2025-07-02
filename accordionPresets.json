@@ -39,7 +39,7 @@
       "Sort options": ["ProcessStage", "howCommon"],
       "Your preferences": ["Adverserial", "Negotiated"],
       "Infringement details": ["TargetIssues"],
-      "About your trade mark": ["Jurisdiction", "YourDesStatus"],
+      "About your registered design": ["Jurisdiction", "YourDesStatus"],
       "About the other party": ["businessRelationship"]
     }
   },
@@ -50,7 +50,7 @@
       "Sort options": ["ProcessStage", "howCommon"],
       "Your preferences": ["Adverserial", "Negotiated"],
       "Infringement details": ["TargetIssues"],
-      "About your trade mark": ["Jurisdiction", "YourPBRStatus"],
+      "About your plant breeder's right": ["Jurisdiction", "YourPBRStatus"],
       "About the other party": ["businessRelationship"]
     }
   },
@@ -58,7 +58,10 @@
   "Copyright-Enforcement": {
        "topFilters": [],
     "accordions": {
-      "Sort options by": ["ProcessStage", "howCommon"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About the other party": ["businessRelationship"]
     }
   },
 
