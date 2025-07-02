@@ -98,7 +98,7 @@
       ]
     },
        "YourDesStatus": {
-      "label": "Relevant to designs which are:",
+      "label": "Status of your Australian design right",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
@@ -120,7 +120,7 @@
     },
 
              "YourPBRStatus": {
-      "label": "Relevant to plant breeder's rights which are:",
+      "label": "Status of your Australian plant breeder's right",
       "pillTemplate": "Options for {optionLabel}",
       "options": [
         {
