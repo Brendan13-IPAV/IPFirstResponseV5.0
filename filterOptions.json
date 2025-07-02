@@ -60,29 +60,40 @@
       ]
     },
     "YourPatStatus": {
-      "label": "Relevant to patents which are:",
-      "pillTemplate": "Options for {optionLabel}",
+      "label": "Status of your Australian patent",
+      "pillTemplate": "Options relivant to {optionLabel}",
       "options": [
+         {
+          "label": "No patent",
+          "pillLabel": "no patents",
+          "scoringValues": [0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
         {
           "label": "Granted",
-          "pillLabel": "Granted patents",
+          "pillLabel": "granted patents",
           "scoringValues": [1.1,1.2,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         },
         {
-          "label": "Pending examination, accepted, or being challenged",
-          "pillLabel": "un-granted patents",
+          "label": "Pending examination",
+          "pillLabel": "patents pending examination",
+          "scoringValues": [1.2,0.9,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+               {
+          "label": "Accepted",
+          "pillLabel": "accepted patents",
+          "scoringValues": [1.2,0.9,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+               {
+          "label": "Being challenged",
+          "pillLabel": "patents being challenged",
           "scoringValues": [1.2,0.9,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         },
         {
           "label": "No longer in force",
           "pillLabel": "expired patents",
           "scoringValues": [0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
-        },
-        {
-          "label": "Not yet applied",
-          "pillLabel": "un-granted patents",
-          "scoringValues": [0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         }
+      
         
       ]
     },
@@ -191,6 +202,34 @@
       ]
     },
 
+      "theirPatent": {
+      "label": "Status of their Australian patent",
+      "pillTemplate": "Facing a party with {optionLabel}",
+      "options": [
+        {
+          "label": "Granted",
+          "pillLabel": "a granted Australian patent",
+          "scoringValues": [1.0]
+        {
+          "label": "None found",
+          "pillLabel": "no clear Australian patent found",
+          "scoringValues": [1.0]
+          "label": "Under examination",
+          "pillLabel": "a patent awaiting examination",
+          "scoringValues": [1.0]
+        },
+                {
+          "label": "Accepted",
+          "pillLabel": "an accepted patent",
+          "scoringValues": [1.0]
+        },
+                {
+          "label": "Being challenged",
+          "pillLabel": "a patent being challenged",
+          "scoringValues": [1.0]
+      ]
+    },
+                                                      
     
     "businessRelationship": {
       "label": "Favour options based on my relationship with other party:",
