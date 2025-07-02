@@ -16,7 +16,7 @@
           "scoringValues": [0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,1.2,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,0.8,1.0,1.2,1.0,1.0,1.0,0.8,1.2,0.8,1.0,1.0,0.8,1.0,0.8,1.0,1.0,0.8,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.8,0.8,0.8,0.8,1.0,1.0,1.0,0.8,0.8,0.8,1.0,1.0]
         },
         {
-          "label": "Both Australian and overseas offices",
+          "label": "Both Australian and overseas IP offices",
           "pillLabel": "International and Aussie IP",
           "scoringValues": [1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         }
@@ -236,7 +236,7 @@
                                                       
     
     "businessRelationship": {
-      "label": "Favour options based on my relationship with other party:",
+      "label": "Favour options based on my relationship with other party",
       "pillTemplate": "Options suited to {optionLabel} business relationship",
       "options": [
         {
@@ -396,7 +396,7 @@
     },
 
         "ProcessStage": {
-      "label": "Sort options by resolution stage:",
+      "label": "Sort options by resolution stage",
       "pillTemplate": "Prioritising {optionLabel} resolution attempts",
       "options": [
         {
