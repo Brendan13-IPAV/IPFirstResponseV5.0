@@ -1,23 +1,23 @@
                                                                       {
   "default": {
-    "topFilters": [ ],
+    "topFilters": [],
     "accordions": {
-       "Sort options by": ["ProcessStage", "howCommon"],
-      "Your IP": ["Jurisdiction"],
-      "Details": ["Where", "onlineIssues", "domainName", "importingGoods"],
-      "Other party details": ["theirTMRights", "identifyParty"],
-      "Resolution Preferences": ["businessRelationship", "openToNegotiate"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About your rights": ["Jurisdiction"],
+      "About the other party": ["businessRelationship"]
     }
   },
   
   "Patent-Enforcement": {
-    "topFilters": [],
+       "topFilters": [],
     "accordions": {
-      "Sort options by": ["ProcessStage", "howCommon"],
-      "Your patent details": ["Jurisdiction", "YourPatStatus"],
-      "Suspected infringment details": ["Where"],
-      "Other party details": ["identifyParty"],
-      "Commerical considerations": ["businessRelationship", "openToNegotiate"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About your patent": ["Jurisdiction", "YourPatStatus"],
+      "About the other party": ["theirPatent","businessRelationship"]
     }
   },
 
@@ -34,16 +34,24 @@
   },
     
   "Design-Enforcement": { 
-       "topFilters": [],
+ "topFilters": [],
     "accordions": {
-      "Sort options by": ["ProcessStage", "howCommon"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About your trade mark": ["Jurisdiction", "YourDesStatus"],
+      "About the other party": ["businessRelationship"]
     }
   },
     
   "PBR-Enforcement": {      
-       "topFilters": [],
+ "topFilters": [],
     "accordions": {
-      "Sort options by": ["ProcessStage", "howCommon"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About your trade mark": ["Jurisdiction", "YourPBRStatus"],
+      "About the other party": ["businessRelationship"]
     }
   },
     
