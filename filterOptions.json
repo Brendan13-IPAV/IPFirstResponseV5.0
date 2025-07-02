@@ -215,6 +215,8 @@
           "label": "None found",
           "pillLabel": "no clear Australian patent found",
           "scoringValues": [1.0]
+        },
+        {
           "label": "Under examination",
           "pillLabel": "a patent awaiting examination",
           "scoringValues": [1.0]
