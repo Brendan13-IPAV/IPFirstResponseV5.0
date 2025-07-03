@@ -230,7 +230,7 @@
           "label": "Don't know",
           "pillLabel": "an unknown patent status",
           "scoringValues": [1.0]
-                }
+                },
         {
           "label": "Filed",
           "pillLabel": "a filed patent awaiting examination",
