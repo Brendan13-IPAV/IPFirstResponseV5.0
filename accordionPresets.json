@@ -139,29 +139,32 @@
 
                                                                         
     "Trademark-Proactive": {
-    "topFilters": ["LikelyHeadacheContext", "howCommon"],
+    "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
-        "Your goals": ["IPGoals"],
+     
       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-      "Business context": ["Where", "domainName", "onlineIssues"]
-
+      "Business context": ["LikelyHeadacheContext"],
+      "About another party": ["theirTMRights","businessRelationship"]
+     
     }
   },
       "Patent-Proactive": {
-    "topFilters": ["LikelyHeadacheContext", "howCommon"],
+       "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
-        "Your goals": ["IPGoals"],
+      
       "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
-      "Business context": ["Where", "domainName", "onlineIssues"]
-
+      "Business context": ["LikelyHeadacheContext"],
+      "About another party": ["theirPatent","businessRelationship"]
     }
   },
       "Any-Proactive": {
-    "topFilters": ["LikelyHeadacheContext", "howCommon"],
+       "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
-        "Your goals": ["IPGoals"],
+    
       "About your IP right (if any)": ["Jurisdiction"],
-      "Business context": ["Where", "domainName", "onlineIssues"]
+      "Business context": ["LikelyHeadacheContext"],
+      "About another party": ["businessRelationship"]
+    }
 
     }
   }
