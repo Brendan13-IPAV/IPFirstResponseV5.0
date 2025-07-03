@@ -21,7 +21,7 @@
     "id": 3,
     "overtitle": "Letter of demand",
     "title": "Receiving a letter of demand",
-    "description": "Understanding what you can do when you receive a letter of demand / cease and desist.",
+    "description": "B1000 - Understanding what you can do when you receive a letter of demand / cease and desist.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -30,7 +30,7 @@
     "id": 4,
     "overtitle": "Evaluate the situation",
     "title": "Choose not to respond immediately",
-    "description": "When to delay responding to groundless IP infringement claims and how to gather evidence for future defence.",
+    "description": "B1004 - When to delay responding to groundless IP infringement claims and how to gather evidence for future defence.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -48,7 +48,7 @@
     "id": 6,
     "overtitle": "Consider the demands",
     "title": "De-escalate disputes by ceasing use of contested IP",
-    "description": "Evaluate the accuser's demands and consider stopping use of the contested IP to avoid escalation.",
+    "description": "B1003 - Evaluate the accuser's demands and consider stopping use of the contested IP to avoid escalation.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -57,7 +57,7 @@
     "id": 7,
     "overtitle": "IP attorney or lawyer",
     "title": "Obtain legal advice on Your Situation",
-    "description": "Seek expert advice on how to respond to allegations of IP infringement",
+    "description": "B1004 - Seek expert advice on how to respond to allegations of IP infringement",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -66,7 +66,7 @@
     "id": 8,
     "overtitle": "IP Australia",
     "title": "Register your trade mark to reinforce your defence",
-    "description": "Apply to IP Australia for a registered trade mark to secure exclusive rights to your brand",
+    "description": "B1005 - Apply to IP Australia for a registered trade mark to secure exclusive rights to your brand",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -84,7 +84,7 @@
     "id": 10,
     "overtitle": "IP Australia",
     "title": "Defend your trade mark from opposition",
-    "description": "How to respond when someone has opposed your trade mark application",
+    "description": "B1006 - How to respond when someone has opposed your trade mark application",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -93,7 +93,7 @@
     "id": 11,
     "overtitle": "IP Australia",
     "title": "Responding to a patent opposition",
-    "description": "How to respond when someone has opposed your patent application",
+    "description": "B1007 - How to respond when someone has opposed your patent application",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -101,8 +101,8 @@
   {
     "id": 12,
     "overtitle": "IP Australia",
-    "title": "Challenge their Australian trade mark registration",
-    "description": "Ask IP Australia to refuse, cancel or narrow a trade mark that is affecting you",
+    "title": "BLANK BLANK BLANK Challenge their Australian trade mark registration",
+    "description": "B1008 - Don't use. Ask IP Australia to refuse, cancel or narrow a trade mark that is affecting you",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -111,7 +111,7 @@
     "id": 13,
     "overtitle": "Patent Re-Examination",
     "title": "Challenge a granted patent",
-    "description": "Request a re-examination with IP Australia, to revoke or amend a granted patent",
+    "description": "B1009 - Request a re-examination with IP Australia, to revoke or amend a granted patent",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -120,7 +120,7 @@
     "id": 14,
     "overtitle": "Report criminal activities",
     "title": "Report a scam, fraud or other risk to public interest",
-    "description": "How to recognise and report scams or crimes that misuse intellectual property (IP) infringement claims to intimidate or extort.",
+    "description": "B1010 - How to recognise and report scams or crimes that misuse intellectual property (IP) infringement claims to intimidate or extort.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -129,7 +129,7 @@
     "id": 15,
     "overtitle": "Negotiate and de-escalate",
     "title": "Engage in a conversation to resolve IP disputes",
-    "description": "Discuss resolution options with the other party to find a mutually acceptable solution.",
+    "description": "B1012 - Discuss resolution options with the other party to find a mutually acceptable solution.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -138,7 +138,7 @@
     "id": 16,
     "overtitle": "Court",
     "title": "Respond to an unjustified threat",
-    "description": "Options to take if you receive an unjustified threat for your intellectual property",
+    "description": "B1013 - Options to take if you receive an unjustified threat for your intellectual property",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -273,7 +273,7 @@
     "id": 31,
     "overtitle": "Overlapping IP infringement claims",
     "title": "Enforcing your own IP as a response to IP infringement accusations",
-    "description": "Consider taking enforcement action if someone accusing you of infringement has actually been infringing your rights",
+    "description": "B1015 - Consider taking enforcement action if someone accusing you of infringement has actually been infringing your rights",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -316,9 +316,9 @@
   },
   {
     "id": 36,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Negotiation",
+    "title": "Reach an agreement with the accusing party",
+    "description": "B1014 - Negotiate a mutually acceptable commercial or financial resolution.",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -334,27 +334,27 @@
   },
   {
     "id": 38,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Trade mark opposition",
+    "title": "Challenge the registration of a new trade mark",
+    "description": "B1019 - Oppose a trade mark you’re accused of infringing before it becomes registered",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
   },
   {
     "id": 39,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Trade mark non-use action",
+    "title": "Remove a trade mark from the register",
+    "description": "B1020 - Request IP Australia removes a trade mark from the register for non-use",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
   },
   {
     "id": 40,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Design certification ",
+    "title": "Request certification for a registered design  ",
+    "description": "B1017 - Request IP Australia examines and certifies a registered design ",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
@@ -442,18 +442,18 @@
   },
   {
     "id": 50,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "International options",
+    "title": "Respond to international accusations",
+    "description": "B1016 - Considerations when responding to accusations of IP infringement happening outside of Australia. ",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
   },
   {
     "id": 51,
-    "overtitle": "Not Assigned",
-    "title": "Not Assigned",
-    "description": "Not Assigned",
+    "overtitle": "Takedown request",
+    "title": "Respond to a takedown request",
+    "description": "B1018 - Responding to an IP infringement notice from an online marketplace",
     "costText": "-",
     "effortText": "-",
     "resolutionText": "-"
