@@ -461,6 +461,38 @@
               ]
     },
 
+       "GoalsAccused": {
+      "label": "Your desired outcome",
+          "selectionType": "multiple",
+      "pillTemplate": "Prioritising options which {optionLabel}",
+      "options": [
+                    {
+          "label": "Get expert help",
+          "pillLabel": "involve expert support",
+      "scoringValues": []
+        },
+        {
+          "label": "Keep using the IP",
+          "pillLabel": "aim to allow you to keep using the IP",
+          "scoringValues": []
+        },
+        {
+          "label": "Dispute the claim",
+          "pillLabel": "challenge the claim",
+      "scoringValues": []
+        },
+        {
+          "label": "Avoid escalation",
+          "pillLabel": "Pill Text 3",
+      "scoringValues": []
+        },
+            {
+          "label": "Dispute the claim",
+          "pillLabel": "Pill Text 2",
+      "scoringValues": []
+        }
+      ]
+    },
     
         "template": {
       "label": "Prompt text goes here:",
