@@ -68,7 +68,10 @@
   "Any-Enforcement": {
        "topFilters": [],
     "accordions": {
-      "Sort options by": ["ProcessStage", "howCommon"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About the other party": ["businessRelationship"]
     }
   },
 
@@ -78,8 +81,8 @@
     "topFilters": ["preferredApproach", "howCommon"],
     "accordions": {
       "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
-       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-           "Commerical considerations": ["openToNegotiate", "businessRelationship"]
+      "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
+      "Commerical considerations": ["openToNegotiate", "businessRelationship"]
     }
   },
 
