@@ -87,7 +87,7 @@
     }
   },
 
-    "Patents-Accused": {
+    "Patent-Accused": {
     "topFilters": ["GoalsAccused"],
     "accordions": {
       "Sort options": ["ProcessStage", "howCommon"],
