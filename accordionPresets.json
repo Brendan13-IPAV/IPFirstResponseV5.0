@@ -78,16 +78,61 @@
 
                                                                           
   "Trademark-Accused": {
-    "topFilters": ["preferredApproach", "howCommon"],
+    "topFilters": ["GoalsAccused"],
     "accordions": {
-      "Accusation details": ["theirTMRights", "Where", "domainName", "onlineIssues"],
-      "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-      "Commerical considerations": ["openToNegotiate", "businessRelationship"]
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "About your trade mark": ["Jurisdiction", "YourTMStatus"],
+      "About the other party": ["theirTMRights","businessRelationship"]
     }
   },
 
+    "Patents-Accused": {
+    "topFilters": ["GoalsAccused"],
+    "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "About your patent": ["Jurisdiction", "YourPatStatus"],
+      "About the other party": ["theirPatent","businessRelationship"]
+    }
+  },
 
-
+    "Design-Accused": {
+    "topFilters": ["GoalsAccused"],
+    "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "About your registered design": ["Jurisdiction", "YourDesStatus"],
+      "About the other party": ["businessRelationship"]
+    }
+  },
+    "PBR-Accused": {
+    "topFilters": ["GoalsAccused"],
+    "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "About your plant breeder's right": ["Jurisdiction", "YourPBRStatus"],
+      "About the other party": ["businessRelationship"]
+    }
+  },
+        "Copyright-Accused": {
+    "topFilters": ["GoalsAccused"],
+    "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+     "Infringement details": ["TargetIssues"],
+      "About the other party": ["businessRelationship"]
+    }
+  },       
+      "Any-Enforcement": {
+       "topFilters": ["GoalsAccused"],
+    "accordions": {
+      "Sort options": ["ProcessStage", "howCommon"],
+      "Your preferences": ["Adverserial", "Negotiated"],
+      "Infringement details": ["TargetIssues"],
+      "About the other party": ["businessRelationship"]
+    }
+  },
 
 
 
