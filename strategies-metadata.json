@@ -74,7 +74,7 @@
  "id": 24,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 25,     "responseType": ["Accused","Proactive","Disagree"],    "ipTypeTags": ["Trade mark"]
+ "id": 25,     "responseType": ["Enforcement","Proactive"],    "ipTypeTags": ["Trade mark"]
 },
 {
  "id": 26,     "responseType": ["Proactive"],    "ipTypeTags": ["Any dispute"]
@@ -95,7 +95,7 @@
  "id": 31,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 32,     "responseType": ["Enforcement","Accused","Proactive"],    "ipTypeTags": ["Trade mark"]
+ "id": 32,     "responseType": ["Enforcement","Proactive"],    "ipTypeTags": ["Trade mark"]
 },
 {
  "id": 33,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark"]
@@ -125,10 +125,10 @@
  "id": 41,     "responseType": ["Enforcement","Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 42,     "responseType": ["Enforcement","Accused"],    "ipTypeTags": ["Any dispute"]
+ "id": 42,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 43,     "responseType": ["Enforcement","Accused"],    "ipTypeTags": ["Any dispute"]
+ "id": 43,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
  "id": 44,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
@@ -188,7 +188,7 @@
  "id": 62,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 63,     "responseType": ["Enforcement","Accused"],    "ipTypeTags": ["Trade mark"]
+ "id": 63,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark"]
 },
 {
  "id": 64,     "responseType": [],    "ipTypeTags": []
@@ -209,16 +209,16 @@
  "id": 69,     "responseType": [],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 70,     "responseType": ["Enforcement", "Accused"],    "ipTypeTags": ["Trade mark", "Copyright"]
+ "id": 70,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark", "Copyright"]
 },
 {
- "id": 71,     "responseType": ["Enforcement", "Accused"],    "ipTypeTags": ["Trade mark", "Copyright"]
+ "id": 71,     "responseType": ["Enforcement"],    "ipTypeTags": ["Trade mark", "Copyright"]
 },
 {
  "id": 72,     "responseType": [],    "ipTypeTags": ["Design","PBR","Copyright"]
 },
 {
- "id": 73,     "responseType": ["Enforcement", "Accused", "Proactive"],    "ipTypeTags": ["Trade mark"]
+ "id": 73,     "responseType": ["Enforcement", "Proactive"],    "ipTypeTags": ["Trade mark"]
 },
 {
  "id": 74,     "responseType": ["Enforcement"],    "ipTypeTags": ["Any dispute"]
