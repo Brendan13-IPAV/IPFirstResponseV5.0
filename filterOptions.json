@@ -175,13 +175,18 @@
       "pillTemplate": "Facing a party with {optionLabel}",
       "options": [
         {
-          "label": "Currently registered",
+          "label": "Registered",
           "pillLabel": "a registered Australian trade mark",
           "scoringValues": [0.9,0.9,0.9,0.8,1.0,0.8,0.8,0.8,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.1,1.1,1.0,1.0,1.0,0.9,1.0,1.0,0.9,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         },
         {
           "label": "None found",
           "pillLabel": "no clear Australian trade mark",
+          "scoringValues": [1.1,1.1,1.1,1.2,1.0,1.2,1.2,1.2,1.0,1.0,1.0,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.1,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+                {
+          "label": "Don't know",
+          "pillLabel": "unknown trade mark status",
           "scoringValues": [1.1,1.1,1.1,1.2,1.0,1.2,1.2,1.2,1.0,1.0,1.0,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9,1.0,1.0,1.0,1.1,1.0,1.0,1.1,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         },
         {
@@ -197,6 +202,11 @@
                 {
           "label": "Being challenged",
           "pillLabel": "a trade mark being challenged",
+          "scoringValues": [1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.2,1.2,1.0,1.0,1.0,1.2,1.2,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.2,1.0,1.2,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.2,1.2,1.2,1.2,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+        },
+                     {
+          "label": "Expired or removed",
+          "pillLabel": "an expired trade mark",
           "scoringValues": [1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.2,1.2,1.0,1.0,1.0,1.2,1.2,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.2,1.0,1.2,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.2,1.2,1.2,1.2,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.2,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
         }
       ]
@@ -216,8 +226,18 @@
           "pillLabel": "no clear Australian patent found",
           "scoringValues": [1.0]
         },
+                    {
+          "label": "Don't know",
+          "pillLabel": "an unknown patent status",
+          "scoringValues": [1.0]
+                }
         {
-          "label": "Pending examination",
+          "label": "Filed",
+          "pillLabel": "a filed patent awaiting examination",
+          "scoringValues": [1.0]
+        },
+        {
+          "label": "Under examination",
           "pillLabel": "a patent awaiting examination",
           "scoringValues": [1.0]
         },
@@ -227,15 +247,16 @@
           "scoringValues": [1.0]
         },
                 {
-          "label": "Being challenged",
+          "label": "Under opposition",
           "pillLabel": "a patent being challenged",
           "scoringValues": [1.0]
                 },
               {
-          "label": "No longer in force",
+          "label": "Expired",
           "pillLabel": "an expired or lapsed patent",
           "scoringValues": [1.0]
                 }
+          
       ]
     },
                                                       
@@ -474,17 +495,17 @@
         },
         {
           "label": "Dispute the claim",
-          "pillLabel": "challenge the claim",
+          "pillLabel": "challenge the claims against you",
       "scoringValues": []
         },
         {
           "label": "Avoid escalation",
-          "pillLabel": "Pill Text 3",
+          "pillLabel": "help prevent the dispute escalating",
       "scoringValues": []
         },
             {
-          "label": "Dispute the claim",
-          "pillLabel": "Pill Text 2",
+          "label": "Understand the issue",
+          "pillLabel": "help you uderstand your position better",
       "scoringValues": []
         }
       ]
