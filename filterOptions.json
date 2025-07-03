@@ -217,7 +217,7 @@
           "scoringValues": [1.0]
         },
         {
-          "label": "Under examination",
+          "label": "Pending examination",
           "pillLabel": "a patent awaiting examination",
           "scoringValues": [1.0]
         },
@@ -229,6 +229,11 @@
                 {
           "label": "Being challenged",
           "pillLabel": "a patent being challenged",
+          "scoringValues": [1.0]
+                },
+              {
+          "label": "No longer in force",
+          "pillLabel": "an expired or lapsed patent",
           "scoringValues": [1.0]
                 }
       ]
