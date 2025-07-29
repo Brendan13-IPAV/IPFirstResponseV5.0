@@ -313,22 +313,49 @@
 {
  "id": 104,     "responseType": [],    "ipTypeTags": []
 },
-{
- "id": 200,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-},
-{
- "id": 201,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-},
-{
- "id": 202,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-},
-{
- "id": 203,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-},
-{
- "id": 204,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-},
- {
- "id": 205,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
-}
+{"id": 200,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 201,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 202,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 203,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 204,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 205,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 206,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 207,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 208,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 209,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 210,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 211,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 212,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 213,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 214,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 215,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 216,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 217,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 218,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 219,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 220,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 221,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 222,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 223,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 224,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 225,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 226,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 227,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 228,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 229,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 230,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 231,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 232,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 233,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 234,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 235,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 236,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 237,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+{"id": 238,"responseType": ["Disagree"],"ipTypeTags": ["Any dispute"]   },
+
+
+
+
+
+ 
 ]
