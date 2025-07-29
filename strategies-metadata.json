@@ -14,7 +14,7 @@
  "id": 4,     "responseType": ["Accused","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 5,     "responseType": ["Proactive","Professional"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright"]
+ "id": 5,     "responseType": ["Proactive","Professional"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
 {
  "id": 6,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
@@ -314,21 +314,21 @@
  "id": 104,     "responseType": [],    "ipTypeTags": []
 },
 {
- "id": 200,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 200,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
 {
- "id": 201,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 201,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
 {
- "id": 202,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 202,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
 {
- "id": 203,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 203,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
 {
- "id": 204,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 204,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 },
  {
- "id": 205,     "responseType": ["Disagree"],    "ipTypeTags": ["Any dispute"]
+ "id": 205,     "responseType": ["Disagree"],    "ipTypeTags": ["Trade mark","Design","PBR","Copyright","Any dispute","Patent"]
 }
 ]
