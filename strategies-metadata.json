@@ -20,7 +20,7 @@
  "id": 6,     "responseType": ["Accused"],    "ipTypeTags": ["Any dispute"]
 },
 {
- "id": 7,     "responseType": ["Accused","Proactive","Disagree","Professional"],    "ipTypeTags": ["Any dispute"]
+ "id": 7,     "responseType": ["Accused","Proactive","Professional"],    "ipTypeTags": ["Any dispute"]
 },
 {
  "id": 8,     "responseType": ["Accused"],    "ipTypeTags": ["Trade mark"]
