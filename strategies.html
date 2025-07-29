@@ -436,7 +436,7 @@ function getAccordionSelectionCount(filterKeys) {
 
           const rightCol = document.createElement('div');
           rightCol.appendChild(renderActiveFilters());
-          rightCol.appendChild(renderStrategyCards());
+          rightCol.appendChild());
           container.appendChild(rightCol);
 
           app.appendChild(container);
@@ -762,6 +762,11 @@ function createFilterPill(filterKey, optionIndex, filterConfig, container) {
             // Apply the relevancy border color
             card.classList.add(`border-${relevanceClass}`);
 
+
+            // Check if current situation is "Disagree" (IP processes)
+const isDisagreeSituation = state.selectedSituations.includes('Disagree');
+
+            
             // Get cost, effort and resolution text directly from the JSON
             // Fallback to placeholders if not present in the JSON
             const costText = strategy.costText || "Cost varies based on complexity";
@@ -770,6 +775,8 @@ function createFilterPill(filterKey, optionIndex, filterConfig, container) {
 
             // Start with base HTML content
 // Start with base HTML content
+
+            // Start with base HTML content
 let htmlContent = `
   <div class="strategy-id">${strategy.id}</div>
   <div class="relevancy">
@@ -778,30 +785,39 @@ let htmlContent = `
   </div>
   <div class="strategy-overtitle">${strategy.overtitle}</div>
             
-              <h3 class="strategy-title">${strategy.title}</h3>
-              <p class="strategy-description">${strategy.description}</p>
-              
-              <div class="card-metrics">
-                <div class="metric-row">
-                  <span class="metric-label">Estimated cost:</span>
-                  <span class="metric-value">${costText}</span>
-                </div>
-                <div class="metric-row">
-                  <span class="metric-label">Estimated effort:</span>
-                  <span class="metric-value">${effortText}</span>
-                </div>
-                <div class="metric-row">
-                  <span class="metric-label">Rate of resolution:</span>
-                  <span class="metric-value">${resolutionText}</span>
-                </div>
-            `;
+  <h3 class="strategy-title">${strategy.title}</h3>
+  <p class="strategy-description">${strategy.description}</p>
+`;
+
+// Only add metrics if NOT in Disagree situation
+if (!isDisagreeSituation) {
+  htmlContent += `
+  <div class="card-metrics">
+    <div class="metric-row">
+      <span class="metric-label">Estimated cost:</span>
+      <span class="metric-value">${costText}</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Estimated effort:</span>
+      <span class="metric-value">${effortText}</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Rate of resolution:</span>
+      <span class="metric-value">${resolutionText}</span>
+    </div>
+  `;
+} else {
+  // Add empty card-metrics div for consistent styling
+  htmlContent += '<div class="card-metrics">';
+}
             
             // Add tag sections underneath the metrics
             const hasIpTypes = strategy.ipTypeTags && strategy.ipTypeTags.length > 0;
             const hasApproaches = strategy.approachTags && strategy.approachTags.length > 0;
             
             // Create tag sections wrapper
-            if (hasIpTypes || hasApproaches) {
+     // Create tag sections wrapper (skip for Disagree situation)
+if (!isDisagreeSituation && (hasIpTypes || hasApproaches)) {
               htmlContent += '<div class="tag-sections">';
               
               // Add IP type section
