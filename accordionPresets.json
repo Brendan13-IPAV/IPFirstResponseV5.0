@@ -139,7 +139,7 @@
     "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
-      "Business context": ["LikelyHeadacheContext"],
+      "Business context": ["LikelyHeadacheContext"]
 
     }
   },
@@ -147,7 +147,7 @@
        "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
       "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
-      "Business context": ["LikelyHeadacheContext"],
+      "Business context": ["LikelyHeadacheContext"]
 
     }
   },
@@ -155,8 +155,8 @@
        "topFilters": ["IPGoals", "howCommon"],
     "accordions": {
           "About your IP right (if any)": ["Jurisdiction"],
-      "Business context": ["LikelyHeadacheContext"],
-      "About another party": ["businessRelationship"]
+      "Business context": ["LikelyHeadacheContext"]
+  
     }
 
     },
