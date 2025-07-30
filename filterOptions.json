@@ -364,7 +364,7 @@
         {
           "label": "Strengthen my position",
           "pillLabel": "which make your IP more difficult to infringe",
-          "scoringValues": [.0,1.0]
+          "scoringValues": [1.0]
         },
         {
           "label": "Get professional opinions",
