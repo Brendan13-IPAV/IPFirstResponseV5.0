@@ -140,7 +140,7 @@
     "accordions": {
       "About your IP right (if any)": ["Jurisdiction", "YourTMStatus"],
       "Business context": ["LikelyHeadacheContext"],
-      "About another party": ["theirTMRights","businessRelationship"]
+
     }
   },
       "Patent-Proactive": {
@@ -148,7 +148,7 @@
     "accordions": {
       "About your IP right (if any)": ["Jurisdiction", "YourPatStatus"],
       "Business context": ["LikelyHeadacheContext"],
-      "About another party": ["theirPatent","businessRelationship"]
+
     }
   },
       "Any-Proactive": {
