@@ -162,37 +162,37 @@
     },
 
         "Any-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
     },
         "Patent-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
     },
         "Trademark-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
     },
        "Design-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
     },
        "PBR-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
     },
        "Copyright-Disagree": {
-       "topFilters": ["UnderstandIP"],
+       "topFilters": ["UnderstandIP", "ContentComplexity"],
         "accordions": {
 
     }
