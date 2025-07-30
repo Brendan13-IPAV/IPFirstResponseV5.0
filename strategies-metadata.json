@@ -35,7 +35,7 @@
  "id": 11,     "responseType": ["Accused"],    "ipTypeTags": ["Patent"]
 },
 {
- "id": 12,     "responseType": ["Proactive"],    "ipTypeTags": ["Trade mark","Copyright","Design"]
+ "id": 12,     "responseType": ["Proactive"],    "ipTypeTags": ["Design"]
 },
 {
  "id": 13,     "responseType": ["Accused"],    "ipTypeTags": ["Patent"]
